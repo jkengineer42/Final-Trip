@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&display=swap');
+
+:root {
+    --grey: #373737;
+    --yellow: #FFCF30;
+    --white: #DEDEDE;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--grey);
+    margin: 0;
+    /* Pour éviter que le contenu ne passe sous le footer fixé : */
+    padding-bottom: 200px; 
+    font-family: "DM Sans", sans-serif;
+    color: var(--white);
+}
+
+/* ++++ HEADER +++++ */
+
+header {
+    display: flex;
+    justify-content: space-between; /* Écarte les éléments */
+    align-items: center; /* Centre verticalement */
+    padding: 10px 40px; /* Ajuste le padding pour un meilleur rendu */
+}
+
+.logo {
+    color: var(--yellow);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Newsreader;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center; /* Centre verticalement */
+    gap: 40px; /* Ajuste l'espacement entre les éléments */
+    margin-left: auto; /* Pousse tout le groupe à droite */
+    margin-top: 5px;
+}
+
+.head1 {
+    color: var(--white);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "DM Sans";
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; /* 26px */
+    text-decoration: none;
+}
+
+.encadré {
+    display: inline-flex;
+    padding: 15px 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background: var(--white);
+    border: none; /* Supprime une éventuelle bordure */
+    cursor: pointer; /* Change le curseur pour montrer que c'est cliquable */
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.img1 .img2{
+    width: 30px; /* Ajuste la taille des icônes si nécessaire */
+    height: auto;
+}
+
+/* ++++ HERO +++++ */
+
+.hero {
+    position: relative;
+    background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("assests/img/Dunes-de-sable-photo.jpg")  no-repeat   center/cover;
+    background-size: cover;
+    min-height: 100vh;
+
+    border: 0.66px solid transparent;
+    border-image-source: linear-gradient(166deg, #3E3E3E 0.74%, rgba(62, 62, 62, 0.00) 90.27%);
+    border-image-slice: 1;
+    text-align: center;
+    padding: 2rem;
+    color: var(--white);
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.03em;
+    color: rgb(207, 207, 207);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.sansita {
+    font-family: 'Sansita One', cursive; 
+    /* Ou sans "cursive" si tu préfères, 
+       l'important est d'indiquer la famille importée. */
+    font-weight: 700; 
+}
+
+/* Barre de recherche */
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 999px;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 1rem;
+    color: var(--grey);
+}
+
+
+.search-bar button {
+    background-color: var(--yellow);
+    border: none;
+    color: var(--grey);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-bar button:hover {
+    opacity: 0.9;
+}
+
+
+/* ++++ FOOTER +++++ */
+
+footer {
+    background-color: #af923f; /* Couleur de fond dorée */
+    color: black;
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    position : relative;
+    width: 100%;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2{
+    width: 80%;
+    height: 1px;
+    background-color: black;
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
