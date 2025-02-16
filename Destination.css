@@ -1,0 +1,244 @@
+:root {
+    --grey: #373737;
+    --yellow: #FFCF30;
+    --white: #DEDEDE;
+}
+
+body {
+    background-color: var(--grey);
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+.logo {
+    color: var(--yellow);
+    font-family: Newsreader;
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+}
+
+.head1 {
+    color: var(--white);
+    font-family: "DM Sans";
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.encadré {
+    padding: 15px 50px;
+    border-radius: 200px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+.hero {
+    text-align: center;
+    padding: 50px 20px;
+    background: url('hero-background.jpg') no-repeat center center/cover;
+    color: var(--white);
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.destination-container {
+    display: flex;
+    width: 90%;
+    margin: auto;
+}
+
+.filters {
+    width: 25%;
+    padding: 20px;
+    background: #2a2a2a;
+    border-radius: 10px;
+    color: white;
+    position: sticky;
+    top: 20px;
+    height: calc(100vh - 80px); /* Ajuste la hauteur pour aller jusqu'en bas */
+    overflow-y: auto; /* Ajout du défilement vertical */
+}
+
+.filters h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #FFCF30;
+}
+
+.filters ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.filters li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.filters input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.filters input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background: #1e1e1e;
+    color: white;
+}
+
+.trip-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+    width: 75%;
+}
+
+.trip-card {
+    position: relative;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.trip-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+}
+
+.trip-info {
+    position: relative;
+    z-index: 2;
+    padding: 15px;
+    border-radius: 15px;
+    flex-grow: 1;
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.4); /* Filtre blanc transparent à moitié */
+}
+
+.trip-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.trip-info p {
+    font-size: 1rem;
+    color: #000; /* Changer la couleur du texte en noir */
+}
+
+.trip-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #af923f;
+    color: black;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 130px;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: black;
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+.cadre {
+    border-radius: 15%;
+}
