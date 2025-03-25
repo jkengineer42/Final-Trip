@@ -86,6 +86,16 @@ header {
     padding: 2rem;
     color: var(--white);
     overflow: hidden;
+    margin-top: 40px;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
 }
 
 .hero h1 {
@@ -97,7 +107,7 @@ header {
     font-family: 'DM Sans', sans-serif;
     font-weight: 700;
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 0px auto 300px;
     text-align: center;
 }
 
@@ -107,29 +117,30 @@ header {
     color: var(--yellow);
 }
 
-.video-container {
+.dernier {
+    color: var(--black_f);
+}
+
+.picture {
     position: relative;
-    width:50%;
+    width: 100%;
+    max-width: 80rem; /* Limite la largeur maximale de l'image */
     margin: 0 auto;
     border-radius: 40px;
     overflow: hidden;
     box-shadow: 0 2px 8px var(--black);
-    margin-top: -40px;
 }
 
-.background-video {
+.picture img {
     width: 100%;
     height: auto;
-    object-fit: cover;
+    border-radius: 40px;
 }
+
 
 /* Barre de recherche */
 
 .search-bar {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
     align-items: center;
     max-width: 600px;
@@ -138,8 +149,7 @@ header {
     border-radius: 999px;
     background-color: var(--white);
     box-shadow: 0 2px 8px var(--black);
-    transform: translate(-50%, -400%);
-    
+    margin: 0 auto;
 }
 
 .search-bar input {
