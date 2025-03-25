@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&display=swap');
+@import url(root.css);
+
+body {
+    background-color: var(--grey);
+    margin: 0;
+}
+
+/* =========================================
+   1. HEADER
+   ========================================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.logo {
+    color: var(--yellow);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Newsreader;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+    margin-top: 5px;
+}
+
+.head1 {
+    color: var(--white);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "DM Sans";
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    text-decoration: none;
+}
+
+.encadré {
+    display: inline-flex;
+    padding: 15px 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.img1, .img2 {
+    width: 30px;
+    height: auto;
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+/* ++++ HERO +++++ */
+
+.hero {
+    position: relative;
+    text-align: center;
+    padding: 2rem;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 72px;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    font-family: 'Sansita One', cursive;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.sansita {
+    font-family: 'Sansita One', cursive;
+    font-weight: 700;
+    color: var(--yellow);
+}
+
+.video-container {
+    position: relative;
+    width:50%;
+    margin: 0 auto;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px var(--black);
+    margin-top: -40px;
+}
+
+.background-video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Barre de recherche */
+
+.search-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    width: 90%;
+    padding: 10px;
+    border-radius: 999px;
+    background-color: var(--white);
+    box-shadow: 0 2px 8px var(--black);
+    transform: translate(-50%, -400%);
+    
+}
+
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 15px;
+    font-size: 1rem;
+    color: var(--grey);
+    background-color: transparent;
+}
+
+.search-bar button {
+    background-color: var(--yellow);
+    border: none;
+    color: var(--grey);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-bar button:hover {
+    opacity: 0.9;
+}
+
+/* =========================================
+   3. FOOTER
+   ========================================= */
+
+footer {
+    background-color: var(--yellow2);
+    color: var(--black_f);
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    width: 100%;
+    margin-top: 10rem;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: var(--black_f);
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
