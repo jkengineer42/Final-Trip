@@ -43,7 +43,9 @@ function updateUserData($email, $nom, $prenom, $birthdate, $password) {
             $jsonData[$i]['nom'] = $nom;
             $jsonData[$i]['prenom'] = $prenom;
             $jsonData[$i]['birthdate'] = $birthdate;
-            $jsonData[$i]['password'] = $password;
+            if ($password) {
+                $jsonData[$i]['password'] = $password;
+            }
             break;
         }
     }
@@ -57,12 +59,29 @@ $editEmail = isset($_GET['edit']) ? $_GET['edit'] : $_SESSION['user_email'];
 // Récupérer les informations de l'utilisateur
 $user = getUserData($editEmail);
 
+// Vérifier si l'utilisateur est un administrateur
+$isAdmin = false;
+$jsonFile = '../data/data_user.json';
+$jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+
+foreach ($jsonData as $userData) {
+    if ($userData['email'] === $_SESSION['user_email'] && $userData['is_admin']) {
+        $isAdmin = true;
+        break;
+    }
+}
+
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST['nom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $birthdate = htmlspecialchars($_POST['birthdate']);
-    $password = !empty($_POST['password']) ? password_hash($_POST['password'], PASSWORD_DEFAULT) : $user['password'];
+    $password = null;
+
+    // Vérifier si l'utilisateur modifie son propre profil
+    if ($_SESSION['user_email'] === $editEmail && !empty($_POST['password'])) {
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    }
 
     // Vérification de la date de naissance
     if (!validateDate($birthdate)) {
@@ -110,6 +129,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($error)): ?>
                     <div class="error"><?= $error ?></div>
                 <?php endif; ?>
+                
+                <?php if ($isAdmin): ?>
+                <div class="admin-link">
+                    <a href="Admin.php" class="button2" class="admin">  Accéder à la page Admin</a>
+                </div>
+                <?php endif; ?>
 
                 <div class="form-group">
                     <div class="input-container">
@@ -129,10 +154,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" disabled>
                     </div>
 
-                    <div class="input-container">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" placeholder="Entrez votre nouveau mot de passe">
-                    </div>
+                    <?php if ($_SESSION['user_email'] === $editEmail): ?>
+                        <div class="input-container">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" id="password" name="password" placeholder="Entrez votre nouveau mot de passe">
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-group">

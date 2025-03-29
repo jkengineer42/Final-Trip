@@ -27,14 +27,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promote'])) {
 // Vérifier si un utilisateur doit être supprimé
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $emailToDelete = $_POST['email'];
-    foreach ($jsonData as $key => $user) {
-        if ($user['email'] === $emailToDelete) {
-            unset($jsonData[$key]);
+    $canDelete = true;
+
+    // Vérifier si l'utilisateur à supprimer est un administrateur
+    foreach ($jsonData as $user) {
+        if ($user['email'] === $emailToDelete && $user['is_admin']) {
+            $canDelete = false;
             break;
         }
     }
-    // Réécrire le fichier JSON
-    file_put_contents($jsonFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
+
+    // Supprimer l'utilisateur s'il n'est pas administrateur
+    if ($canDelete) {
+        foreach ($jsonData as $key => $user) {
+            if ($user['email'] === $emailToDelete) {
+                unset($jsonData[$key]);
+                break;
+            }
+        }
+        // Réécrire le fichier JSON
+        file_put_contents($jsonFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
+    }
 }
 ?>
 
@@ -93,13 +106,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                                     <a href="Profil.php?edit=<?= urlencode($user['email']) ?>">
                                         <img src="../assets/icon/black_edit.png" alt="Modifier" class="icon">
                                     </a>
-                                    <form method="POST" style="display:inline;">
-                                        <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
-                                        <button type="submit" name="delete" class="delete-button">
-                                            <img src="../assets/icon/delete.png" alt="Supprimer" class="icon">
-                                        </button>
-                                    </form>
                                     <?php if (!$user['is_admin']): ?>
+                                        <form method="POST" style="display:inline;">
+                                            <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                                            <button type="submit" name="delete" class="delete-button">
+                                                <img src="../assets/icon/delete.png" alt="Supprimer" class="icon delete-icon">
+                                            </button>
+                                        </form>
                                         <form method="POST" style="display:inline;">
                                             <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
                                             <button type="submit" name="promote" class="promote-button">
