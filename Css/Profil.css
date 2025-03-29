@@ -140,6 +140,13 @@ input {
     margin-bottom: -50px;
 }
 
+.admin-link {
+    position: absolute;
+    right: 200px; /* Ajustez selon vos besoins */
+    top: 200px; /* Ajustez selon vos besoins */
+}
+
+
 footer {
     background-color: var(--yellow2);
     color: var(--black_f);
