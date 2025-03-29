@@ -70,6 +70,10 @@ header {
     background-color: var(--white); /* Couleur */
 }
 
+.right{
+    text-align: left;
+}
+
 footer {
     background-color: var(--yellow2); /* Couleur de fond dorée */
     color: var(--black_f);

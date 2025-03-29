@@ -57,6 +57,33 @@ main {
     flex-grow: 1;
 }
 
+.promote-button {
+    background: none; /* Supprime le fond */
+    border: none; /* Supprime les bordures */
+    padding: 0; /* Supprime le padding */
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.promote-button img {
+    width: 25px; /* Même taille que les autres icônes */
+    height: 25px; /* Même taille que les autres icônes */
+}
+.icons {
+    display: flex;
+    justify-content: center; /* Centre les icônes horizontalement */
+    align-items: center; /* Centre les icônes verticalement */
+    gap: 5px; /* Espace entre les icônes */
+    padding: 0; /* Supprime le padding pour éviter les décalages */
+    margin: 0; /* Supprime les marges pour éviter les décalages */
+}
+
+.icon {
+    width: 25px;
+    cursor: pointer;
+    margin: 0; /* Supprime les marges pour éviter les décalages */
+}
+
 .admin-title {
     text-align: center;
     color: var(--white);
@@ -111,27 +138,12 @@ td:not(.icons) {
 }
 
 td.icons {
-    width: 50px; 
+    width: auto; /* Ajuste automatiquement la largeur */
     text-align: center;
-    white-space: nowrap; 
+    white-space: nowrap;
     border: none;
     background: transparent;
-    padding: 5px;
-}
-
-.icons {
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    gap: 5px; 
-    border: none;
-    margin-left: 5px;
-}
-
-.icon {
-    width: 25px;
-    cursor: pointer;
-    margin-left: 15px;
+    padding: 0; /* Supprime le padding pour éviter les décalages */
 }
 
 

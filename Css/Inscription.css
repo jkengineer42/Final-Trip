@@ -44,6 +44,10 @@ header {
     font-weight: bold;
 }
 
+.error_message{
+    color: var(--yellow);
+}
+
 .hr1 {
     width: 90%;
     margin: 20px auto;
@@ -76,6 +80,16 @@ form {
     margin-bottom: 20px;
     text-align: left;
 }
+
+.checkbox-label {
+    align-items: center;
+    display: inline-block;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-left: 10px; /* Ajustez la marge selon vos besoins */
+}
+
 
 label {
     color: var(--white);
