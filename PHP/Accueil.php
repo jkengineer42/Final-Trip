@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (isset($_SESSION['user_email'])) {
+    $profileLink = 'Profil.php'; // Lien vers la page de profil
+} else {
+    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,10 +24,12 @@
             <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
             <a href="Destination.php" class="head1">Destination</a>
             <button class="encadré">Contact</button>
-            <a href="Connexion.php" class="img1"><img src="../assets/icon/User.png"></a>
+            <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png"></a>
             <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png"></a>
         </div>
     </header>
+
+    <hr class="hr1">
 
     <main>
         <section class="hero">

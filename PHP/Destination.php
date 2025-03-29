@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (isset($_SESSION['user_email'])) {
+    $profileLink = 'Profil.php'; // Lien vers la page de profil
+} else {
+    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +24,7 @@
             <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
             <a href="Destination.php" class="head1">Destination</a>
             <button class="encadré">Contact</button>
-            <a href="Connexion.php" class="img1"><img src="../assets/icon/User.png" alt="Profil"></a>
+            <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png" alt="Profil"></a>
             <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png" alt="Panier"></a>
         </div>
     </header>
@@ -28,7 +39,8 @@
         <section class="destination-container">
             <aside class="filters">
                 <h2>Pays</h2>
-                <select class="cadre"><option>Sélectionnez votre pays ici</option>
+                <select class="cadre">
+                    <option>Sélectionnez votre pays ici</option>
                     <option>France</option>
                     <option>Pérou</option>
                     <option>Costa Rica</option>
@@ -194,7 +206,7 @@
                         <img src="../assets/img/Voyage Antarctique.gif" alt="Expédition en Antarctique">
                         <div class="trip-info">
                             <h3>Expédition en Antarctique</h3>
-                            <p>L'Antarctique est un lieu d'aventure ultime. Vous pourrez observer des paysages glacés spectaculaires et des animaux qui donnent la givre.</p>
+                            <p>L'Antarctique est un lieu d'aventure ultime. Vous pourrez observer des paysages glacés spectaculaires et des animaux qui donnent la chair de poule.</p>
                             <div class="trip-meta">
                                 <span class="price">12490€</span>
                                 <span class="duration">60 jours</span>
@@ -232,7 +244,7 @@
         <div class="links">
             <a href="#">Mentions légales</a>
             <a href="#">Politique de confidentialité</a>
-            <a href="#">Conditions d’utilisations</a>
+            <a href="#">Conditions d’utilisation</a>
         </div>
     </footer>
 </body>

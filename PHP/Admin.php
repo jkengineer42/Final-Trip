@@ -1,3 +1,43 @@
+<?php
+session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_email'])) {
+    header("Location: Connexion.php"); // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    exit();
+}
+
+// Lire le fichier JSON existant
+$jsonFile = '../data/data_user.json';
+$jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+
+// Vérifier si un utilisateur doit être promu en tant qu'administrateur
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promote'])) {
+    $emailToPromote = $_POST['email'];
+    foreach ($jsonData as &$user) {
+        if ($user['email'] === $emailToPromote) {
+            $user['is_admin'] = true;
+            break;
+        }
+    }
+    // Réécrire le fichier JSON
+    file_put_contents($jsonFile, json_encode($jsonData, JSON_PRETTY_PRINT));
+}
+
+// Vérifier si un utilisateur doit être supprimé
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+    $emailToDelete = $_POST['email'];
+    foreach ($jsonData as $key => $user) {
+        if ($user['email'] === $emailToDelete) {
+            unset($jsonData[$key]);
+            break;
+        }
+    }
+    // Réécrire le fichier JSON
+    file_put_contents($jsonFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -13,7 +53,7 @@
             <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
             <a href="Destination.php" class="head1">Destination</a>
             <button class="encadré">Contact</button>
-            <a href="Connexion.php"><img src="../assets/icon/User.png"></a>
+            <a href="Profil.php"><img src="../assets/icon/User.png"></a>
             <a href="#"><img src="../assets/icon/Shopping cart.png"></a>
         </div>
     </header>
@@ -36,27 +76,40 @@
                             <th>NOM</th>
                             <th>Prénom</th>
                             <th>Email</th>
-                            <th>Bloqué</th>
-                            <th>Niveau XTREME</th>
-                            <th>Restrictions</th>
+                            <th>Date de naissance</th>
+                            <th>Administrateur</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Dupont</td><td>Jean</td><td>jean.dupont@gmail.com</td><td>Non</td><td>3</td><td>Asthme</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Meo</td><td>Dimi</td><td>neo.dimi@gmail.com</td><td>Non</td><td>2</td><td>Aucune</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Leroy</td><td>Camille</td><td>camille.leroy@gmail.com</td><td>Non</td><td>4</td><td>Allergie aux noix</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Martin</td><td>Sophie</td><td>sophie.martin@email.com</td><td>Non</td><td>1</td><td>Diabète</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Dubois</td><td>Lucas</td><td>lucas.dubois@email.com</td><td>Oui</td><td>3</td><td>Aucune</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Moreau</td><td>Emma</td><td>emma.moreau@email.com</td><td>Non</td><td>2</td><td>Asthme</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Bernard</td><td>Hugo</td><td>hugo.bernard@email.com</td><td>Non</td><td>4</td><td>Hypertension</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Thomas</td><td>Chloé</td><td>chloe.thomas@email.com</td><td>Non</td><td>2</td><td>Aucune</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Petit</td><td>Louis</td><td>louis.petit@email.com</td><td>Non</td><td>1</td><td>Allergie aux fruits de mer</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Lemoine</td><td>Julie</td><td>julie.lemoine@email.com</td><td>Non</td><td>3</td><td>Diabète</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Rousseau</td><td>Paul</td><td>paul.rousseau@email.com</td><td>Non</td><td>2</td><td>Aucune</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Vincent</td><td>Marie</td><td>marie.vincent@email.com</td><td>Non</td><td>4</td><td>Mal de Mer</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Giraud</td><td>Antoine</td><td>antoine.giraud@email.com</td><td>Non</td><td>1</td><td>Asthme</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Marchand</td><td>Isabelle</td><td>isabelle.marchand@email.com</td><td>Oui</td><td>3</td><td>Aucune</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
-                        <tr><td>Lefebvre</td><td>Maxime</td><td>maxime.lefebvre@email.com</td><td>Non</td><td>2</td><td>Allergie au pollen</td><td class="icons"><img src="../assets/icon/black_edit.png" alt="Modifier" class="icon"><img src="../assets/icon/delete.png" alt="Supprimer" class="icon"></td></tr>
+                        <?php foreach ($jsonData as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user['nom']) ?></td>
+                                <td><?= htmlspecialchars($user['prenom']) ?></td>
+                                <td><?= htmlspecialchars($user['email']) ?></td>
+                                <td><?= htmlspecialchars($user['birthdate']) ?></td>
+                                <td><?= $user['is_admin'] ? 'Oui' : 'Non' ?></td>
+                                <td class="icons">
+                                    <a href="Profil.php?edit=<?= urlencode($user['email']) ?>">
+                                        <img src="../assets/icon/black_edit.png" alt="Modifier" class="icon">
+                                    </a>
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                                        <button type="submit" name="delete" class="delete-button">
+                                            <img src="../assets/icon/delete.png" alt="Supprimer" class="icon">
+                                        </button>
+                                    </form>
+                                    <?php if (!$user['is_admin']): ?>
+                                        <form method="POST" style="display:inline;">
+                                            <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                                            <button type="submit" name="promote" class="promote-button">
+                                                <img src="../assets/icon/Admin.png" alt="Admin">
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
@@ -75,7 +128,7 @@
         <div class="links">
             <a href="#">Mentions légales</a>
             <a href="#">Politique de confidentialité</a>
-            <a href="#">Conditions d’utilisations</a>
+            <a href="#">Conditions d’utilisation</a>
         </div>
     </footer>
 </body>

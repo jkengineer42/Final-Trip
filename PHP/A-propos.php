@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Vérifier si l'utilisateur est connecté
+if (isset($_SESSION['user_email'])) {
+    $profileLink = 'Profil.php'; // Lien vers la page de profil
+} else {
+    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,87 +21,86 @@
     <header>
         <a href="Accueil.php" class="logo">FINAL TRIP</a>
         <div class="right">
-        <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
-        <a href="Destination.php" class="head1">Destination</a>
-        <button class="encadré">Contact</button>
-        <a href="Connexion.php" class="img1"><img src="../assets/icon/User.png"></a>
-        <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png"></a>
-    </div>
+            <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
+            <a href="Destination.php" class="head1">Destination</a>
+            <button class="encadré">Contact</button>
+            <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png"></a>
+            <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png"></a>
+        </div>
     </header>
-
 
     <hr class="hr1">
 
     <main>
         <section class="hero">
-            <h1>Découvrez les voyages les plus sensationnel du monde </h1>
+            <h1>Découvrez les voyages les plus sensationnels du monde</h1>
             <div class="search-bar">
                 <button><img src="../assets/icon/Loupe.svg" alt="Rechercher"></button>
                 <input type="text" placeholder="Recherchez le voyage de vos rêves...">
             </div>
         </section>
-    
+
         <div class="travel-section">
             <div class="card card-antarctica">
-              <div class="card-content">
-                <div>
-                  <div class="location">
-                    <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    Antarctique
-                  </div>
-                  <h2 class="title">Pas peur du froid ?</h2>
-                  <p class="description">Découvrez l'aventure ultime dans le continent le plus austral de la Terre. Une expérience unique entre glaciers et manchots.</p>
+                <div class="card-content">
+                    <div>
+                        <div class="location">
+                            <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Antarctique
+                        </div>
+                        <h2 class="title">Pas peur du froid ?</h2>
+                        <p class="description">Découvrez l'aventure ultime dans le continent le plus austral de la Terre. Une expérience unique entre glaciers et manchots.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="image-container">
-                <img src="../assets/img/Voyage Antarctique.gif" alt="" />
-              </div>
-              <div class="arrow-button"></div>
+                <div class="image-container">
+                    <img src="../assets/img/Voyage Antarctique.gif" alt="" />
+                </div>
+                <div class="arrow-button"></div>
             </div>
-        
+
             <div class="card card-kenya">
-              <div class="card-content">
-                <div>
-                  <div class="location">
-                    <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    Kenya
-                  </div>
-                  <h2 class="title">Envie d'aventure ?</h2>
-                  <p class="description">Explorez les savanes sauvages et rencontrez la faune africaine dans son habitat naturel.</p>
+                <div class="card-content">
+                    <div>
+                        <div class="location">
+                            <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Kenya
+                        </div>
+                        <h2 class="title">Envie d'aventure ?</h2>
+                        <p class="description">Explorez les savanes sauvages et rencontrez la faune africaine dans son habitat naturel.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="image-container">
-                <img src="../assets/img/Safari Zanzibar.jpg" alt="" />
-              </div>
-              <div class="arrow-button"></div>
+                <div class="image-container">
+                    <img src="../assets/img/Safari Zanzibar.jpg" alt="" />
+                </div>
+                <div class="arrow-button"></div>
             </div>
-        
+
             <div class="card card-nepal">
-              <div class="card-content">
-                <div>
-                  <div class="location">
-                    <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    Népal
-                  </div>
-                  <h2 class="title">Une balade en montagne ?</h2>
-                  <p class="description">Parcourez les sentiers de l'Himalaya et découvrez la culture unique des villages de montagne.</p>
+                <div class="card-content">
+                    <div>
+                        <div class="location">
+                            <svg class="location-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            Népal
+                        </div>
+                        <h2 class="title">Une balade en montagne ?</h2>
+                        <p class="description">Parcourez les sentiers de l'Himalaya et découvrez la culture unique des villages de montagne.</p>
+                    </div>
                 </div>
-              </div>
-              <div class="image-container">
-                <img src="../assets/img/Chukung Nepal escalade Everest.jpg" alt="" />
-              </div>
-              <div class="arrow-button"></div>
+                <div class="image-container">
+                    <img src="../assets/img/Chukung Nepal escalade Everest.jpg" alt="" />
+                </div>
+                <div class="arrow-button"></div>
             </div>
-          </div>
+        </div>
 
         <section class="about-section">
             <div class="text-content">
@@ -103,7 +113,6 @@
                 <img src="../assets/img/Coucher de soleil montagnes Californie.jpg" alt="Photo de l'équipe" class="team-photo">
             </div>
         </section>
-        
 
         <section class="avis-section">
             <h2 class="avis-title">Avis</h2>
@@ -166,28 +175,22 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
         <h2>Le dernier voyage que vous rêvez d’avoir</h2>
-
-    <div class="contact">
-        <p><strong>Adresse :</strong> <a href="#">34, Boulevard Haussmann, Paris 75009</a></p>
-        <p><strong>Numéro :</strong> <a href="tel:0749685456">07 49 68 54 56</a></p>
-        <p><strong>Email :</strong> <a href="mailto:contact@final-trip.com">contact@final-trip.com</a></p>
-    </div>
-
-    <p class="copyright">© 2025 Final Trip, ALL RIGHTS RESERVED.</p>
-
-    <hr class="hr2">
-
-    <div class="links">
-        <a href="#">Mentions légales</a>
-        <a href="#">Politique de confidentialité</a>
-        <a href="#">Conditions d’utilisations</a>
-    </div>
+        <div class="contact">
+            <p><strong>Adresse :</strong> <a href="#">34, Boulevard Haussmann, Paris 75009</a></p>
+            <p><strong>Numéro :</strong> <a href="tel:0749685456">07 49 68 54 56</a></p>
+            <p><strong>Email :</strong> <a href="mailto:contact@final-trip.com">contact@final-trip.com</a></p>
+        </div>
+        <p class="copyright">© 2025 Final Trip, ALL RIGHTS RESERVED.</p>
+        <hr class="hr2">
+        <div class="links">
+            <a href="#">Mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+            <a href="#">Conditions d’utilisation</a>
+        </div>
     </footer>
-
 </body>
 </html>
