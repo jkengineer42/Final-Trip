@@ -42,8 +42,10 @@ if (isset($_SESSION['user_email'])) {
                     comme le <span class="dernier">dernier</span></span>
                 </h1>
                 <div class="search-bar">
-                    <input type="text" placeholder="Saisissez une destination, un voyage qui vous donne envie...">
-                    <button>Rechercher</button>
+                	<form action="Destination.php" method="get">
+                    	<input type="text" name="search" placeholder="Saisissez une destination, un voyage qui vous donne envie..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+           			    <button type="submit">Rechercher</button>
+                    </form>
                 </div>
             </div>
         </section>
