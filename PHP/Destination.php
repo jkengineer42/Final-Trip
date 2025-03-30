@@ -7,6 +7,48 @@ if (isset($_SESSION['user_email'])) {
 } else {
     $profileLink = 'Connexion.php'; // Lien vers la page de connexion
 }
+
+// Charger le fichier JSON des voyages
+$json = file_get_contents('/Applications/MAMP/htdocs/Final-Trip-main/data/voyages.json');
+if ($json === false) {
+    echo "Erreur d'ouverture du fichier JSON. Détail de l'erreur : " . json_last_error_msg();
+    exit;
+}
+
+// Parser
+$voyages = json_decode($json, true);
+if ($voyages === null) {
+    echo "Erreur de décodage du fichier JSON. Détail de l'erreur : " . json_last_error_msg();
+    exit;
+}
+
+// Récupérer le mot-clé de la recherche
+$searchKeyword = isset($_GET['search']) ? $_GET['search'] : '';
+
+//Filtrer les voyages selon le mot-clé
+$filteredVoyages = array_filter($voyages['voyages'], function($voyage) use ($searchKeyword) {
+	return strpos(strtolower($voyage['titre']), strtolower($searchKeyword)) !== false || strpos(strtolower($voyage['description']), strtolower($searchKeyword)) !== false; 
+	});
+
+// Trier les voyages par niveau décroissant
+usort($filteredVoyages, function ($a, $b) {
+    return $b['niveau'] - $a['niveau'];
+});
+
+// Pagination
+$tripsPerPage = 6;  // Nombre de voyages à afficher par page
+$totalTrips = count($filteredVoyages);  // Nombre total de voyages
+$totalPages = ceil($totalTrips / $tripsPerPage);  // Nombre total de pages
+
+// Obtenir la page actuelle
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$page = max(1, min($page, $totalPages));  // S'assurer que la page est valide
+
+// Calculer l'index de départ pour la pagination
+$startIndex = ($page - 1) * $tripsPerPage;
+
+// Limiter les voyages à afficher sur la page actuelle
+$voyagesToShow = array_slice($filteredVoyages, $startIndex, $tripsPerPage);
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +75,12 @@ if (isset($_SESSION['user_email'])) {
 
     <main>
         <section class="hero">
-            <h1>Découvrez les voyages les plus sensationnels des États-Unis</h1>
+            <h1>Découvrez les voyages les plus sensationnels du moment</h1>
+            <div class="search-bar">
+            	<form action="Destination.php" method="get">
+            		<input type="text" name="search" placeholder="Saisissez une destination, un voyage qui vous donne envie..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+        		</form>
+    		</div>
         </section>
 
         <section class="destination-container">
@@ -87,149 +134,47 @@ if (isset($_SESSION['user_email'])) {
                 <h2>Prix</h2>
                 <input type="number" placeholder="Indiquez votre prix maximum...">
             </aside>
-
+            
             <div class="trip-list">
-                <a href="details-expedition-polaire.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Voyage Groenland Expédition Polaire.jpg" alt="Expédition polaire">
-                        <div class="trip-info">
-                            <h3>Expédition polaire</h3>
-                            <p>Une expédition exceptionnelle entre banquises, hautes montagnes et glaciers en un lieu sans doute le plus esthétique et isolé du Groenland.</p>
-                            <div class="trip-meta">
-                                <span class="price">3200€</span>
-                                <span class="duration">18 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-plongee-cage.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Plongée sous marine Guadalupe.jpg" alt="Plongée en cage">
-                        <div class="trip-info">
-                            <h3>Plongée en cage</h3>
-                            <p>Pour les amateurs de sensations fortes, et ceux qui aiment se retrouver face à face avec l'un des prédateurs les plus redoutables du monde.</p>
-                            <div class="trip-meta">
-                                <span class="price">6290€</span>
-                                <span class="duration">14 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-randonnee-velo.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Vélo de montagne Costa Rica.jpg" alt="Randonnée à vélo">
-                        <div class="trip-info">
-                            <h3>Randonnée à vélo</h3>
-                            <p>Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.</p>
-                            <div class="trip-meta">
-                                <span class="price">4600€</span>
-                                <span class="duration">21 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-kilimandjaro.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Lava Tower Kilimandjaro.webp" alt="Ascension du Mont Kilimandjaro">
-                        <div class="trip-info">
-                            <h3>Ascension du Mont Kilimandjaro</h3>
-                            <p>L’ascension du Kilimandjaro est une aventure inoubliable, passant de la jungle tropicale à la neige éternelle.</p>
-                            <div class="trip-meta">
-                                <span class="price">7490€</span>
-                                <span class="duration">10 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-balade-maghreb.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Desert du Maghreb.jpg" alt="Balade dans le désert du Maghreb">
-                        <div class="trip-info">
-                            <h3>Balade dans le désert du Maghreb</h3>
-                            <p>Découvrez l'envoûtante beauté du désert du Maghreb lors d'une balade inoubliable. Explorez des dunes dorées à perte de vue et laissez-vous captiver par le silence majestueux et les ciels étoilés.</p>
-                            <div class="trip-meta">
-                                <span class="price">2990€</span>
-                                <span class="duration">6 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-everest.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Camp de Base Everest Nepal.jpg" alt="Escalade de l'Everest">
-                        <div class="trip-info">
-                            <h3>Escalade sur l'Everest</h3>
-                            <p>L’ascension de l'Everest est l'un des défis les plus extrêmes au monde. Les trekkings vers le camp de base de l'Everest sont également très populaires, offrant un aperçu de l'environnement himalayen.</p>
-                            <div class="trip-meta">
-                                <span class="price">3290€</span>
-                                <span class="duration">18 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-sentier-inca.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Sentier Inca Machu Picchu.jpg" alt="Randonnée sur le sentier Inca">
-                        <div class="trip-info">
-                            <h3>Randonnée sur le sentier Inca</h3>
-                            <p>Le sentier Inca est une aventure à la fois historique et physique, qui mène les aventuriers à travers des paysages magnifiques et des ruines anciennes.</p>
-                            <div class="trip-meta">
-                                <span class="price">9990€</span>
-                                <span class="duration">60 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-saut-elastique.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Saut à l'élastique Pont Bloukrans (1).jpg" alt="Saut à l'élastique au Pont Bloukrans">
-                        <div class="trip-info">
-                            <h3>Saut à l'élastique au Pont Bloukrans</h3>
-                            <p>Le saut à l'élastique au-dessus du Bloukrans River vous permet de vivre une montée d'adrénaline pure.</p>
-                            <div class="trip-meta">
-                                <span class="price">1990€</span>
-                                <span class="duration">6 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-antarctique.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Voyage Antarctique.gif" alt="Expédition en Antarctique">
-                        <div class="trip-info">
-                            <h3>Expédition en Antarctique</h3>
-                            <p>L'Antarctique est un lieu d'aventure ultime. Vous pourrez observer des paysages glacés spectaculaires et des animaux qui donnent la chair de poule.</p>
-                            <div class="trip-meta">
-                                <span class="price">12490€</span>
-                                <span class="duration">60 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="details-safari.php" class="trip-card-link">
-                    <article class="trip-card">
-                        <img src="../assets/img/Safari Zanzibar.jpg" alt="Safari en Afrique">
-                        <div class="trip-info">
-                            <h3>Safari en Afrique</h3>
-                            <p>Partez en safari pour une expérience au cœur de la nature sauvage, avec la possibilité de voir des animaux dans leur habitat naturel.</p>
-                            <div class="trip-meta">
-                                <span class="price">6280€</span>
-                                <span class="duration">14 jours</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
+           <?php
+           // on limite au 5 voyages les plus Xtrem
+            // Afficher chaque voyage trié par niveau décroissant
+            if (isset($voyagesToShow) && is_array($voyagesToShow)) {
+                foreach ($voyagesToShow as $voyage) {
+                    echo '<a href="details-expedition-polaire.php?id=' . $voyage['id'] . '" class="trip-card-link">';
+                    echo '  <article class="trip-card">';
+                    echo '    <img src="' . $voyage['image'] . '" alt="' . $voyage['titre'] . '">';
+                    echo '    <div class="trip-info">';
+                    echo '      <h3>' . $voyage['titre'] . '</h3>';
+                    echo '      <p>' . $voyage['description'] . '</p>';
+                    echo '      <div class="trip-meta">';
+                    echo '        <span class="price">' . $voyage['prix'] . '</span>';
+                    echo '        <span class="duration">' . $voyage['duree']['jours'] . ' jours</span>';
+                    echo '      </div>';
+                    echo '    </div>';
+                    echo '  </article>';
+                    echo '</a>';
+                }
+            } else {
+                echo "Aucun voyage trouvé pour cette recherche.";
+            }
+            ?>
             </div>
         </section>
+        <div class="pagination">
+            <?php if ($page > 1) : ?>
+                <a href="?page=<?= $page - 1 ?>&search=<?= urlencode($searchKeyword) ?>" class="prev">Précédent</a>
+            <?php endif; ?>
+
+            <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                <a href="?page=<?= $i ?>&search=<?= urlencode($searchKeyword) ?>" class="page"><?= $i ?></a>
+            <?php endfor; ?>
+
+            <?php if ($page < $totalPages) : ?>
+                <a href="?page=<?= $page + 1 ?>&search=<?= urlencode($searchKeyword) ?>" class="next">Suivant</a>
+            <?php endif; ?>
+        </div>
+            </div>
     </main>
 
     <footer>
@@ -244,7 +189,7 @@ if (isset($_SESSION['user_email'])) {
         <div class="links">
             <a href="#">Mentions légales</a>
             <a href="#">Politique de confidentialité</a>
-            <a href="#">Conditions d’utilisation</a>
+            <a href="#">Conditions d’utilisations</a>
         </div>
     </footer>
 </body>
