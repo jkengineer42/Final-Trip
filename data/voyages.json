@@ -1,0 +1,274 @@
+{
+  "voyages": [
+    {
+      "id": 1,
+      "titre": "Expédition polaire",
+      "prix": "3200€",
+      "duree": {
+        "debut": "2025-12-01",
+        "fin": "2025-12-10",
+        "jours": 10
+      },
+      "description": "Une expédition exceptionnelle entre banquises, hautes montagnes et glaciers en un lieu sans doute le plus esthétique et isolé du Groenland.",
+      "image": "../assets/img/Voyage Groenland Expédition Polaire.jpg",
+      "climat": "froid",
+      "terrain": "aquatique",
+      "couchage": ["hotel", "auberge", "habitant"],
+      "restrictions": ["asthme, arthrose"],
+      "pays": "Groenland",
+      "niveau": 3
+    },
+    {
+      "id": 2,
+      "titre": "Plongée en cage",
+      "prix": "6290€",
+      "duree": {
+        "debut": "2025-12-01",
+        "fin": "2025-12-10",
+        "jours": 14
+      },
+      "description": "Pour les amateurs de sensations fortes, et ceux qui aiment se retrouver face à face avec l'un des prédateurs les plus redoutables du monde.",
+      "image": "../assets/img/Plongée sous marine Guadalupe.jpg",
+      "climat": "chaud",
+      "terrain": "aquatique",
+      "couchage": ["hotel"],
+      "restrictions": ["allergie"],
+      "pays": "Mexique",
+      "niveau": 2
+    },
+    {
+      "id": 3,
+      "titre": "Randonnée à vélo",
+      "prix": "4600€",
+      "duree": {
+        "debut": "2025-11-15",
+        "fin": "2025-11-30",
+        "jours": 16
+      },
+      "description": "Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.",
+      "image": "../assets/img/Vélo de montagne Costa Rica.jpg",
+      "climat": "chaud",
+      "terrain": "montagneux",
+      "couchage": ["tente", "auberge"],
+      "restrictions": ["diabète"],
+      "pays": "Costa Rica",
+      "niveau": 4
+    },
+    {
+      "id": 4,
+      "titre": "Ascension du Mont Kilimandjaro",
+      "prix": "7490€",
+      "duree": {
+        "debut": "2025-01-10",
+        "fin": "2025-01-20",
+        "jours": 10
+      },
+      "description": "L’ascension du Kilimandjaro est une aventure inoubliable, passant de la jungle tropicale à la neige éternelle.",
+      "image": "../assets/img/Lava Tower Kilimandjaro.webp",
+      "climat": "tempéré",
+      "terrain": "montagneux",
+      "couchage": ["tente", "refuge"],
+      "restrictions": ["arthrose"],
+      "pays": "Tanzanie",
+      "niveau": 2
+    },
+    {
+      "id": 5,
+      "titre": "Safari en Afrique",
+      "prix": "6280€",
+      "duree": {
+        "debut": "2025-02-01",
+        "fin": "2025-02-15",
+        "jours": 15
+      },
+      "description": "Partez en safari pour une expérience au cœur de la nature sauvage, avec la possibilité de voir des animaux dans leur habitat naturel.",
+      "image": "../assets/img/Safari Zanzibar.jpg",
+      "climat": "chaud",
+      "terrain": "terrestre",
+      "couchage": ["hotel", "tente"],
+      "restrictions": ["allergie"],
+      "pays": "Tanzanie",
+      "niveau": 3
+    },
+    {
+      "id": 6,
+      "titre": "Escalade sur l'Everest",
+      "prix": "3290€",
+      "duree": {
+        "debut": "2025-03-01",
+        "fin": "2025-03-10",
+        "jours": 10
+      },
+      "description": "L’ascension de l'Everest est l'un des défis les plus extrêmes au monde. Les trekkings vers le camp de base de l'Everest sont également très populaires.",
+      "image": "../assets/img/Camp de Base Everest Nepal.jpg",
+      "climat": "froid",
+      "terrain": "montagneux",
+      "couchage": ["refuge", "tente"],
+      "restrictions": ["asthme"],
+      "pays": "Népal",
+      "niveau": 2
+    },
+    {
+      "id": 7,
+      "titre": "Expédition en Antarctique",
+      "prix": "12490€",
+      "duree": {
+        "debut": "2025-12-01",
+        "fin": "2025-12-30",
+        "jours": 30
+      },
+      "description": "L'Antarctique est un lieu d'aventure ultime. Vous pourrez observer des paysages glacés spectaculaires et des animaux qui donnent la givre.",
+      "image": "../assets/img/Voyage Antarctique.gif",
+      "climat": "froid",
+      "terrain": "aquatique",
+      "couchage": ["hotel", "auberge"],
+      "restrictions": ["aucune"],
+      "pays": "Antarctique",
+      "niveau": 5
+    },
+    {
+      "id": 8,
+      "titre": "Saut à l'élastique au Pont Bloukrans",
+      "prix": "1990€",
+      "duree": {
+        "debut": "2025-05-10",
+        "fin": "2025-05-15",
+        "jours": 5
+      },
+      "description": "Le saut à l'élastique au-dessus du Bloukrans River vous permet de vivre une montée d'adrénaline pure.",
+      "image": "../assets/img/Saut à l'élastique Pont Bloukrans (1).jpg",
+      "climat": "tempéré",
+      "terrain": "aérien",
+      "couchage": ["hotel"],
+      "restrictions": ["allergie"],
+      "pays": "Afrique du Sud",
+      "niveau": 3
+    },
+    {
+      "id": 9,
+      "titre": "Balade dans le désert du Maghreb",
+      "prix": "2990€",
+      "duree": {
+        "debut": "2025-06-01",
+        "fin": "2025-06-06",
+        "jours": 6
+      },
+      "description": "Découvrez l'envoûtante beauté du désert du Maghreb lors d'une balade inoubliable. Explorez des dunes dorées à perte de vue et laissez-vous captiver par le silence majestueux et les ciels étoilés.",
+      "image": "../assets/img/Desert du Maghreb.jpg",
+      "climat": "chaud",
+      "terrain": "terrestre",
+      "couchage": ["tente", "hotel"],
+      "restrictions": ["aucune"],
+      "pays": "Maroc",
+      "niveau": 2
+    },
+    {
+      "id": 10,
+      "titre": "Randonnée sur le sentier Inca",
+      "prix": "9990€",
+      "duree": {
+        "debut": "2025-08-01",
+        "fin": "2025-08-10",
+        "jours": 10
+      },
+      "description": "Le sentier Inca est une aventure à la fois historique et physique, qui mène les aventuriers à travers des paysages magnifiques et des ruines anciennes.",
+      "image": "../assets/img/Sentier Inca Machu Picchu.jpg",
+      "climat": "tempéré",
+      "terrain": "montagneux",
+      "couchage": ["hotel", "auberge"],
+      "restrictions": "allergie",
+      "pays": "Pérou",
+      "niveau": 1
+    },
+    {
+      "id": 11,
+      "titre": "Expéditions dans l'espace",
+      "prix": "500000€",
+      "duree": {
+        "debut": "2025-07-01",
+        "fin": "2025-07-07",
+        "jours": 7
+      },
+      "description": "Vivez l'aventure ultime en rejoignant un vol spatial et explorez l'espace au-delà de la Terre. Une expérience inédite pour les passionnés de l'inconnu.",
+      "image": "../assets/img/Expedition dans l'espace.jpg",
+      "climat": "spatial",
+      "terrain": "spatial",
+      "couchage": ["vaisseau spatial"],
+      "restrictions": ["aucune"],
+      "pays": "International",
+      "niveau": 5
+    },
+    {
+      "id": 12,
+      "titre": "Traversée du Sahara en 4x4",
+      "prix": "8990€",
+      "duree": {
+        "debut": "2025-10-01",
+        "fin": "2025-10-15",
+        "jours": 15
+      },
+      "description": "Traversez le plus grand désert du monde à bord d'un 4x4. Une aventure extrême où vous serez confronté à des conditions de chaleur et d'isolement intenses.",
+      "image": "../assets/img/4x4 Sahara.jpg",
+      "climat": "chaud",
+      "terrain": "désert",
+      "couchage": ["tente"],
+      "restrictions": ["aucune"],
+      "pays": "Algérie",
+      "niveau": 4
+    },
+    {
+      "id": 13,
+      "titre": "Descente du fleuve Amazone en kayak",
+      "prix": "4590€",
+      "duree": {
+        "debut": "2025-08-15",
+        "fin": "2025-08-30",
+        "jours": 15
+      },
+      "description": "Naviguez en kayak à travers les eaux tumultueuses de l'Amazone, en traversant la jungle dense et en affrontant les défis d'un fleuve sauvage.",
+      "image": "../assets/img/Kayak Amazone.jpg",
+      "climat": "chaud",
+      "terrain": "aquatique",
+      "couchage": ["tente", "abris de fortune"],
+      "restrictions": ["aucune"],
+      "pays": "Brésil",
+      "niveau": 4
+    },
+    {
+      "id": 14,
+      "titre": "Trekking sur le glacier de Patagonie",
+      "prix": "7990€",
+      "duree": {
+        "debut": "2025-11-01",
+        "fin": "2025-11-10",
+        "jours": 10
+      },
+      "description": "Partez pour une aventure glacière dans la région la plus extrême de la Patagonie. Marchez sur des glaciers et découvrez un paysage sauvage et inhospitalier.",
+      "image": "../assets/img/Glacier Patagonie.jpg",
+      "climat": "froid",
+      "terrain": "glaciaire",
+      "couchage": ["tente", "refuge"],
+      "restrictions": ["aucune"],
+      "pays": "Chili",
+      "niveau": 5
+    },
+    {
+      "id": 15,
+      "titre": "Traversée de l'Antarctique à ski",
+      "prix": "29990€",
+      "duree": {
+        "debut": "2025-12-01",
+        "fin": "2025-12-20",
+        "jours": 20
+      },
+      "description": "Affrontez les conditions les plus extrêmes en traversant l'Antarctique à ski. C'est un défi sans pareil, réservé aux plus aguerris des aventuriers.",
+      "image": "../assets/img/Traverse Antarctique ski.jpg",
+      "climat": "froid",
+      "terrain": "glaciaire",
+      "couchage": ["tente", "abri"],
+      "restrictions": ["aucune"],
+      "pays": "Antarctique",
+      "niveau": 5
+    }
+  ]
+}
