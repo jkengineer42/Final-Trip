@@ -22,6 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promote'])) {
     }
     // Réécrire le fichier JSON
     file_put_contents($jsonFile, json_encode($jsonData, JSON_PRETTY_PRINT));
+    // Rediriger pour recharger la page
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
 }
 
 // Vérifier si un utilisateur doit être supprimé
@@ -47,6 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         }
         // Réécrire le fichier JSON
         file_put_contents($jsonFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
+        // Rediriger pour recharger la page
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
     }
 }
 ?>
