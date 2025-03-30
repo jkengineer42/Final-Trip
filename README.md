@@ -1,0 +1,1 @@
+Pour le bien du projet, tous les mots de passes des comptes déjà existants dans le fichier data_user.json est "1234", les mots de passes dans le .json sont chiffré pour sécuriser les informations des utilisateurs.
