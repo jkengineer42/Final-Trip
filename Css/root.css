@@ -1,9 +1,13 @@
 :root {
     --grey: #373737;
+    --darker-grey: #2B2B2B;
     --yellow: #FFCF30;
-    --yellow2 : #af923f;
+    --yellow2: #af923f;
     --white: #DEDEDE;
-    --white2:#ffffff;
+    --white2: #ffffff;
     --black: rgba(0, 0, 0, 0.5);
     --black_f: #000000;
+    --light-grey: #D9D9D9;
+    --card-bg: #373737;
+    --input-bg: #D9D9D9;
 }
