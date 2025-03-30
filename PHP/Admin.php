@@ -11,6 +11,14 @@ if (!isset($_SESSION['user_email'])) {
 $jsonFile = '../data/data_user.json';
 $jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
+// Nombre d'utilisateurs par page
+$usersPerPage = 15;
+$totalUsers = count($jsonData);
+$totalPages = ceil($totalUsers / $usersPerPage);
+
+// Obtenir la page actuelle à partir de l'URL, par défaut page 1
+$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+
 // Vérifier si un utilisateur doit être promu en tant qu'administrateur
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promote'])) {
     $emailToPromote = $_POST['email'];
@@ -23,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['promote'])) {
     // Réécrire le fichier JSON
     file_put_contents($jsonFile, json_encode($jsonData, JSON_PRETTY_PRINT));
     // Rediriger pour recharger la page
-    header("Location: " . $_SERVER['PHP_SELF']);
+    header("Location: " . $_SERVER['PHP_SELF'] . "?page=" . $currentPage);
     exit();
 }
 
@@ -51,10 +59,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
         // Réécrire le fichier JSON
         file_put_contents($jsonFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
         // Rediriger pour recharger la page
-        header("Location: " . $_SERVER['PHP_SELF']);
+        header("Location: " . $_SERVER['PHP_SELF'] . "?page=" . $currentPage);
         exit();
     }
 }
+
+// Calculer l'index de début pour la pagination
+$startIndex = ($currentPage - 1) * $usersPerPage;
+$paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +91,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
 
     <hr class="hr1">
 
+    <div class="icon-legend">
+        <div class="legend-item">
+            <img src="../assets/icon/black_edit.png" alt="Modifier" class="legend-icon">
+            <span>Modifier</span>
+        </div>
+        <div class="legend-item">
+            <img src="../assets/icon/delete.png" alt="Supprimer" class="legend-icon">
+            <span>Supprimer</span>
+        </div>
+        <div class="legend-item">
+            <img src="../assets/icon/Admin.png" alt="Admin" class="legend-icon">
+            <span>Promouvoir en Admin</span>
+        </div>
+    </div>
+
     <main>
         <h1 class="admin-title"><em>FINAL ADMIN</em></h1>
 
@@ -101,7 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($jsonData as $user): ?>
+                        <?php foreach ($paginatedUsers as $user): ?>
                             <tr>
                                 <td><?= htmlspecialchars($user['nom']) ?></td>
                                 <td><?= htmlspecialchars($user['prenom']) ?></td>
@@ -131,6 +158,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <?php if ($currentPage > 1): ?>
+                    <a href="?page=<?= $currentPage - 1 ?>" class="page-link">Précédent</a>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                    <a href="?page=<?= $i ?>" class="page-link <?= $i == $currentPage ? 'active' : '' ?>">
+                        <?= $i ?>
+                    </a>
+                <?php endfor; ?>
+
+                <?php if ($currentPage < $totalPages): ?>
+                    <a href="?page=<?= $currentPage + 1 ?>" class="page-link">Suivant</a>
+                <?php endif; ?>
             </div>
         </div>
     </main>
