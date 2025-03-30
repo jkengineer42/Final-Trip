@@ -1,0 +1,42 @@
+[
+    {
+        "nom": "Fiorot",
+        "prenom": "Manon",
+        "email": "manon@gmail.com",
+        "birthdate": "2005-10-26",
+        "password": "$2y$10$dKJvGlIR9TrTlyOCSIWG8urzwixk6a\/9M6K3y1UeXsvDLBVtMyaia",
+        "is_admin": true
+    },
+    {
+        "nom": "xdrg",
+        "prenom": "xdgr",
+        "email": "xdrgw@gmail.com",
+        "birthdate": "1988-08-18",
+        "password": "$2y$10$0P9u7Js7H.05XfvQ7oz.1eW8W4.B0X8SinDNwBN78JIiOyidvL6wq",
+        "is_admin": true
+    },
+    {
+        "nom": "gvxdrg",
+        "prenom": "dxrgxrdg",
+        "email": "xdrgwv@gmail.com",
+        "birthdate": "2005-01-01",
+        "password": "$2y$10$UVcdvJdoPhYDKv9bJYoav.ugZM7d8vPfDqH07EL6FoTuTaaZmt7Au",
+        "is_admin": true
+    },
+    {
+        "nom": "Lina",
+        "prenom": "Star",
+        "email": "Lina@gmail.com",
+        "birthdate": "2003-03-01",
+        "password": "$2y$10$RRY2Gxo6ZNAesVNaXvAjl.bsCIlTHLvp9MVt9OP8T0\/UdIBCB2G5u",
+        "is_admin": false
+    },
+    {
+        "nom": "Badid boucham",
+        "prenom": "Aminouille ",
+        "email": "amine.@gmail.com",
+        "birthdate": "2003-09-03",
+        "password": "$2y$10$.FQewmBjNrgFSLU.6OxF1eukd4eR89Oc4AicWRi9m0LQ3f\/9v9n3W",
+        "is_admin": false
+    }
+]
