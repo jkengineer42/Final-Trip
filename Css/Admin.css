@@ -69,6 +69,7 @@ main {
     width: 25px; /* Même taille que les autres icônes */
     height: 25px; /* Même taille que les autres icônes */
 }
+
 .icons {
     display: flex;
     justify-content: center; /* Centre les icônes horizontalement */
@@ -84,11 +85,24 @@ main {
     margin: 0; /* Supprime les marges pour éviter les décalages */
 }
 
+.icons .delete-button {
+    background: none; /* Supprime le fond */
+    border: none; /* Supprime les bordures */
+    padding: 0; /* Supprime le padding */
+    cursor: pointer;
+}
+
+.icons .delete-button img {
+    width: 25px; /* Même taille que les autres icônes */
+    height: 25px; /* Même taille que les autres icônes */
+}
+
 .admin-title {
     text-align: center;
     color: var(--white);
     font-size: 2rem;
     margin: 20px 0;
+    margin-top: -40px;
 }
 
 .admin-container {
@@ -146,7 +160,6 @@ td.icons {
     padding: 0; /* Supprime le padding pour éviter les décalages */
 }
 
-
 footer {
     background-color: var(--yellow2);
     color: var(--black_f);
@@ -191,4 +204,52 @@ footer h2 {
     text-decoration: none;
     color: var(--black_f);
     font-size: 14px;
+}
+
+/* Styles pour la légende des icônes */
+.icon-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    background-color: var(--yellow);
+    padding: 10px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 10px auto;
+    margin-right: 200px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.legend-icon {
+    width: 20px;
+    height: 20px;
+}
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-link {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid var(--black_f);
+    border-radius: 5px;
+}
+
+.page-link.active {
+    background-color: var(--yellow);
+    color: var(--black);
 }
