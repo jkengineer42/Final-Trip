@@ -7,16 +7,143 @@
       "duree": {
         "debut": "2025-12-01",
         "fin": "2025-12-10",
-        "jours": 10
+        "jours": 5
       },
       "description": "Une expédition exceptionnelle entre banquises, hautes montagnes et glaciers en un lieu sans doute le plus esthétique et isolé du Groenland.",
-      "image": "../assets/img/Voyage Groenland Expédition Polaire.jpg",
+      "image": "../assets/img/Voyage Groenland Expédition Polaire.jpg",
       "climat": "froid",
       "terrain": "aquatique",
       "couchage": ["hotel", "auberge", "habitant"],
       "restrictions": ["asthme, arthrose"],
       "pays": "Groenland",
-      "niveau": 3
+      "niveau": 3,
+      "inspiration": "Ce voyage est inspiré par les grandes expéditions polaires des explorateurs comme Roald Amundsen et Fridtjof Nansen. L'immensité blanche du Groenland offre une expérience unique où la nature règne en maître absolu, permettant aux voyageurs de se reconnecter avec la force brute des éléments et la beauté silencieuse de l'Arctique.",
+      "etapes": [
+        {
+          "id": 1,
+          "jour": 1,
+          "titre": "Arrivée à Nuuk",
+          "description": "Arrivée à l'aéroport de Nuuk et transfert vers l'hôtel.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Arctic", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Auberge Nordlys", "prix": "-50€", "par_defaut": false},
+              {"id": 3, "nom": "Chez l'habitant", "prix": "-100€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Demi-pension", "prix": "-30€", "par_defaut": false},
+              {"id": 3, "nom": "Sans repas", "prix": "-60€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Visite guidée de la ville", "prix": "inclus", "par_defaut": true, "max_personnes": 15},
+              {"id": 2, "nom": "Musée national du Groenland", "prix": "+20€", "par_defaut": false, "max_personnes": 20}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert groupé", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+50€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "jour": 2,
+          "titre": "Exploration des glaciers",
+          "description": "Journée d'exploration en bateau à travers les glaciers.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Refuge", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Tente équipée", "prix": "-40€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Demi-pension", "prix": "-30€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Excursion bateau standard", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Excursion privée", "prix": "+100€", "par_defaut": false, "max_personnes": 6},
+              {"id": 3, "nom": "Kayak entre les icebergs", "prix": "+80€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Bateau collectif", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hélicoptère (survol + dépôt)", "prix": "+350€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "jour": 3,
+          "titre": "Randonnée sur la banquise",
+          "description": "Journée de randonnée sur la banquise avec guide spécialisé.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Auberge", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Chez l'habitant", "prix": "-20€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Repas traditionnel inuit", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Randonnée guidée standard", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+              {"id": 2, "nom": "Observation de la faune arctique", "prix": "+60€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Motoneige partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Motoneige individuelle", "prix": "+120€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "jour": 4,
+          "titre": "Communauté Inuit",
+          "description": "Immersion dans une communauté inuit et découverte de leur mode de vie traditionnel.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Chez l'habitant", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Auberge locale", "prix": "+30€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Repas traditionnels inuits", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu occidental", "prix": "+20€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Ateliers artisanaux", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Pêche sur glace", "prix": "+40€", "par_defaut": false, "max_personnes": 8},
+              {"id": 3, "nom": "Récits et légendes inuits", "prix": "+25€", "par_defaut": false, "max_personnes": 15}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transport collectif en traîneau", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Traîneau à chiens privé", "prix": "+90€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "jour": 5,
+          "titre": "Aurores boréales et retour",
+          "description": "Soirée d'observation des aurores boréales et préparation au retour.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Arctic", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Igloo de verre", "prix": "+200€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Dîner d'adieu", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner gastronomique nordique", "prix": "+70€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Session photo aurores boréales", "prix": "inclus", "par_defaut": true, "max_personnes": 14},
+              {"id": 2, "nom": "Bain chaud en plein air", "prix": "+50€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert à l'aéroport", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé avec arrêts photo", "prix": "+80€", "par_defaut": false}
+            ]
+          }
+        }
+      ]
     },
     {
       "id": 2,
@@ -25,35 +152,211 @@
       "duree": {
         "debut": "2025-12-01",
         "fin": "2025-12-10",
-        "jours": 14
+        "jours": 4
       },
       "description": "Pour les amateurs de sensations fortes, et ceux qui aiment se retrouver face à face avec l'un des prédateurs les plus redoutables du monde.",
-      "image": "../assets/img/Plongée sous marine Guadalupe.jpg",
+      "image": "../assets/img/Plongée sous marine Guadalupe.jpg",
       "climat": "chaud",
       "terrain": "aquatique",
       "couchage": ["hotel"],
       "restrictions": ["allergie"],
       "pays": "Mexique",
-      "niveau": 2
+      "niveau": 2,
+      "inspiration": "Ce voyage s'inspire du documentaire 'Blue Water, White Death' et du travail du célèbre photographe océanique Michael Muller. L'île de Guadalupe est l'un des rares endroits au monde où les conditions optimales permettent d'observer le grand requin blanc dans son habitat naturel, offrant une expérience aussi terrifiante que fascinante pour comprendre ce prédateur souvent incompris.",
+      "etapes": [
+        {
+          "id": 1,
+          "jour": 1,
+          "titre": "Arrivée à Ensenada",
+          "description": "Arrivée à Ensenada et transfert vers le port.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Marina", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Premium vue mer", "prix": "+80€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Pension complète", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Briefing de sécurité", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Tour de la ville", "prix": "+30€", "par_defaut": false, "max_personnes": 15}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert groupé depuis l'aéroport", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+60€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "jour": 2,
+          "titre": "Navigation vers l'île de Guadalupe",
+          "description": "Embarquement et navigation vers l'île de Guadalupe (20-22h de traversée).",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Cabine standard partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Cabine privée", "prix": "+150€", "par_defaut": false},
+              {"id": 3, "nom": "Cabine deluxe", "prix": "+250€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Orientation et formation à la plongée", "prix": "inclus", "par_defaut": true, "max_personnes": 16}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Navigation standard", "prix": "inclus", "par_defaut": true}
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "jour": 3,
+          "titre": "Plongée avec les requins blancs",
+          "description": "Première journée de plongée en cage avec les grands requins blancs.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Cabine standard partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Cabine privée", "prix": "+150€", "par_defaut": false},
+              {"id": 3, "nom": "Cabine deluxe", "prix": "+250€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu premium avec fruits de mer", "prix": "+60€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Plongée en cage de surface (3 sessions)", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Plongée en cage submersible", "prix": "+200€", "par_defaut": false, "max_personnes": 6},
+              {"id": 3, "nom": "Atelier photo sous-marine", "prix": "+80€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Navigation standard", "prix": "inclus", "par_defaut": true}
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "jour": 4,
+          "titre": "Deuxième journée de plongée et retour",
+          "description": "Dernières plongées avec les requins blancs et début du voyage retour vers Ensenada.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Cabine standard partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Cabine privée", "prix": "+150€", "par_defaut": false},
+              {"id": 3, "nom": "Cabine deluxe", "prix": "+250€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner spécial du capitaine", "prix": "+50€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Plongée en cage (2 sessions)", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Conférence sur la conservation des requins", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 3, "nom": "Observation d'otaries", "prix": "+40€", "par_defaut": false, "max_personnes": 15}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Navigation retour standard", "prix": "inclus", "par_defaut": true}
+            ]
+          }
+        }
+      ]
+    },
+    {
+     "id": 3,
+  "titre": "Randonnée à vélo",
+  "prix": "4600€",
+  "duree": {
+    "debut": "2025-11-15",
+    "fin": "2025-11-30",
+    "jours": 3
+  },
+  "description": "Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.",
+  "image": "../assets/img/Vélo de montagne Costa Rica.jpg",
+  "climat": "chaud",
+  "terrain": "montagneux",
+  "couchage": ["tente", "auberge"],
+  "restrictions": ["diabète"],
+  "pays": "Costa Rica",
+  "niveau": 4,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée à San José et transfert à Arenal",
+      "description": "Accueil à l'aéroport de San José, briefing technique et transfert vers la région du volcan Arenal. Préparation des équipements.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge La Fortuna", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Camping équipé", "prix": "-50€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète", "prix": "+30€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing technique et ajustement des vélos", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+          {"id": 2, "nom": "Visite des sources chaudes", "prix": "+40€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert groupé depuis l'aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé", "prix": "+70€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Circuit du volcan Arenal",
+      "description": "Première journée de VTT autour du spectaculaire volcan Arenal avec passages techniques en forêt tropicale.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Eco-lodge forestier", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Camping aménagé vue volcan", "prix": "-40€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Repas énergétique spécial cyclistes", "prix": "+25€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Circuit VTT standard (35km)", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+          {"id": 2, "nom": "Circuit VTT avancé (50km)", "prix": "+60€", "par_defaut": false, "max_personnes": 8},
+          {"id": 3, "nom": "Observation nocturne de la faune", "prix": "+35€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport des bagages", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Véhicule d'assistance dédié", "prix": "+90€", "par_defaut": false}
+        ]
+      }
     },
     {
       "id": 3,
-      "titre": "Randonnée à vélo",
-      "prix": "4600€",
-      "duree": {
-        "debut": "2025-11-15",
-        "fin": "2025-11-30",
-        "jours": 16
-      },
-      "description": "Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.",
-      "image": "../assets/img/Vélo de montagne Costa Rica.jpg",
-      "climat": "chaud",
-      "terrain": "montagneux",
-      "couchage": ["tente", "auberge"],
-      "restrictions": ["diabète"],
-      "pays": "Costa Rica",
-      "niveau": 4
-    },
+      "jour": 3,
+      "titre": "Descente vers les plages du Pacifique",
+      "description": "Journée mémorable de VTT avec descente depuis les montagnes centrales vers les plages du Pacifique.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge côtière", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Camping sur la plage", "prix": "-30€", "par_defaut": false},
+          {"id": 3, "nom": "Éco-lodge premium", "prix": "+120€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner fruits de mer sur la plage", "prix": "+45€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Circuit single-track (40km)", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+          {"id": 2, "nom": "Baignade et récupération", "prix": "inclus", "par_defaut": true, "max_personnes": 14},
+          {"id": 3, "nom": "Cours de surf en fin de journée", "prix": "+50€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport des bagages", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Véhicule d'assistance avec ravitaillement premium", "prix": "+70€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+}, 			
     {
       "id": 4,
       "titre": "Ascension du Mont Kilimandjaro",
