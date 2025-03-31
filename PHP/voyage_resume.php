@@ -41,7 +41,7 @@ if (isset($_POST['confirm_booking'])) {
             <div class="confirmation-message">
                 <h2>Votre voyage personnalisé a été enregistré !</h2>
                 <p>Un conseiller vous contactera prochainement pour finaliser votre réservation.</p>
-                <a href="Accueil.php" class="primary-button">Retour à l'accueil</a>
+                <a href="Destination.php" class="primary-button">Retour à l'accueil</a>
             </div>
         <?php else: ?>
             <header class="summary-header">
