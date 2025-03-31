@@ -366,14 +366,138 @@
         "fin": "2025-01-20",
         "jours": 10
       },
-      "description": "L’ascension du Kilimandjaro est une aventure inoubliable, passant de la jungle tropicale à la neige éternelle.",
+      "description": "L'ascension du Kilimandjaro est une aventure inoubliable, passant de la jungle tropicale à la neige éternelle.",
       "image": "../assets/img/Lava Tower Kilimandjaro.webp",
       "climat": "tempéré",
       "terrain": "montagneux",
       "couchage": ["tente", "refuge"],
       "restrictions": ["arthrose"],
       "pays": "Tanzanie",
-      "niveau": 2
+      "niveau": 2,
+      "inspiration": "Ce voyage est inspiré par l'esprit d'exploration et la quête de défis personnels. Le Kilimandjaro, sommet mythique d'Afrique, offre une ascension unique où l'on traverse cinq zones climatiques différentes, de la forêt tropicale aux neiges éternelles. Cette expédition est un hommage aux premiers explorateurs comme Hans Meyer qui fut le premier à atteindre le sommet en 1889.",
+      "etapes": [
+        {
+          "id": 1,
+          "jour": 1,
+          "titre": "Arrivée à Moshi",
+          "description": "Accueil à l'aéroport de Kilimandjaro, transfert à Moshi et briefing sur l'expédition.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Springlands", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Kilimanjaro Wonders", "prix": "+70€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Pension complète", "prix": "+30€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Briefing d'ascension", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Visite de Moshi", "prix": "+40€", "par_defaut": false, "max_personnes": 15}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+50€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "jour": 2,
+          "titre": "Porte de Machame - Camp de Machame",
+          "description": "Début de l'ascension par la forêt tropicale jusqu'au premier camp.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Tente standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Tente confort", "prix": "+60€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu enrichi", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Randonnée standard", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Observation de la flore", "prix": "+25€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert vers la porte de Machame", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Porteur supplémentaire", "prix": "+80€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "jour": 3,
+          "titre": "Camp de Machame - Camp de Shira",
+          "description": "Ascension vers la lande alpine et le plateau de Shira.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Tente standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Tente confort", "prix": "+60€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu enrichi", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Randonnée standard", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Séance photo paysage", "prix": "+30€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Porteurs standards", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Porteur supplémentaire", "prix": "+80€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "jour": 8,
+          "titre": "Sommet du Kilimandjaro",
+          "description": "Ascension nocturne vers le sommet Uhuru Peak (5895m) et descente vers le camp de Mweka.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Tente standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Tente confort", "prix": "+60€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu énergétique spécial", "prix": "+50€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Ascension nocturne guidée", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+              {"id": 2, "nom": "Guide privé", "prix": "+150€", "par_defaut": false, "max_personnes": 1},
+              {"id": 3, "nom": "Certificat d'ascension", "prix": "+20€", "par_defaut": false, "max_personnes": 20}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Assistance standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Porteur d'oxygène dédié", "prix": "+120€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "jour": 10,
+          "titre": "Retour à Moshi et départ",
+          "description": "Descente finale, cérémonie de remise des certificats et transfert à l'aéroport.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Springlands", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Kilimanjaro Wonders", "prix": "+70€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner de célébration", "prix": "+45€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Cérémonie de remise des certificats", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Massage post-ascension", "prix": "+60€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert collectif hôtel-aéroport", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+50€", "par_defaut": false}
+            ]
+          }
+        }
+      ]
     },
     {
       "id": 5,
@@ -391,7 +515,131 @@
       "couchage": ["hotel", "tente"],
       "restrictions": ["allergie"],
       "pays": "Tanzanie",
-      "niveau": 3
+      "niveau": 3,
+      "inspiration": "Ce safari s'inspire des expéditions de grands naturalistes comme Jane Goodall et Dian Fossey. La Tanzanie abrite certains des écosystèmes les plus riches en biodiversité au monde, offrant une expérience immersive dans la nature sauvage africaine. Chaque jour sur la savane est une leçon vivante d'écologie et un moment d'émerveillement face à la complexité et à la beauté de la vie sauvage.",
+      "etapes": [
+        {
+          "id": 1,
+          "jour": 1,
+          "titre": "Arrivée à Arusha",
+          "description": "Accueil à l'aéroport d'Arusha, transfert vers le lodge et briefing sur le safari.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Lodge Arusha", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Mount Meru", "prix": "+90€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Pension complète", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Briefing safari", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Visite marché local", "prix": "+30€", "par_defaut": false, "max_personnes": 12}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert collectif aéroport-lodge", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+60€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "jour": 2,
+          "titre": "Parc National du Tarangire",
+          "description": "Journée complète de safari dans le parc du Tarangire, réputé pour ses grands troupeaux d'éléphants.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Tente de luxe", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Lodge premium", "prix": "+120€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu gastronomique", "prix": "+50€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Safari journée complète", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+              {"id": 2, "nom": "Safari photographique", "prix": "+80€", "par_defaut": false, "max_personnes": 4}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Jeep safari partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Jeep safari privée", "prix": "+150€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "jour": 5,
+          "titre": "Cratère du Ngorongoro",
+          "description": "Exploration du spectaculaire cratère du Ngorongoro, véritable arche de Noé naturelle.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Lodge vue cratère", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Suite panoramique", "prix": "+180€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner d'exception", "prix": "+70€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Safari dans le cratère", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+              {"id": 2, "nom": "Rencontre avec les Maasaï", "prix": "+60€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Jeep safari partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Jeep safari privée", "prix": "+150€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "jour": 8,
+          "titre": "Parc National du Serengeti",
+          "description": "Immersion dans les vastes plaines du Serengeti pour observer la grande migration des gnous.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Camp de luxe", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Lodge exclusif", "prix": "+200€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu dégustation", "prix": "+60€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Safari journée complète", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+              {"id": 2, "nom": "Safari au lever du soleil", "prix": "+100€", "par_defaut": false, "max_personnes": 4},
+              {"id": 3, "nom": "Vol en montgolfière", "prix": "+350€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Jeep safari partagée", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Jeep safari privée", "prix": "+150€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "jour": 14,
+          "titre": "Zanzibar et départ",
+          "description": "Transfert vers l'île de Zanzibar pour une journée de détente avant le départ.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel bord de mer", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Villa privée", "prix": "+220€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner fruits de mer", "prix": "+50€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Visite de Stone Town", "prix": "inclus", "par_defaut": true, "max_personnes": 15},
+              {"id": 2, "nom": "Excursion snorkeling", "prix": "+70€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert collectif aéroport", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+60€", "par_defaut": false}
+            ]
+          }
+        }
+      ]
     },
     {
       "id": 6,
@@ -402,14 +650,138 @@
         "fin": "2025-03-10",
         "jours": 10
       },
-      "description": "L’ascension de l'Everest est l'un des défis les plus extrêmes au monde. Les trekkings vers le camp de base de l'Everest sont également très populaires.",
+      "description": "L'ascension de l'Everest est l'un des défis les plus extrêmes au monde. Les trekkings vers le camp de base de l'Everest sont également très populaires.",
       "image": "../assets/img/Camp de Base Everest Nepal.jpg",
       "climat": "froid",
       "terrain": "montagneux",
       "couchage": ["refuge", "tente"],
       "restrictions": ["asthme"],
       "pays": "Népal",
-      "niveau": 2
+      "niveau": 2,
+      "inspiration": "Cette expédition est inspirée par les exploits légendaires de sir Edmund Hillary et Tenzing Norgay, les premiers à atteindre le sommet de l'Everest en 1953. Bien que notre circuit ne mène pas au sommet même, il suit les traces de ces pionniers jusqu'au camp de base, offrant une immersion authentique dans la culture sherpa et les paysages mythiques de l'Himalaya.",
+      "etapes": [
+        {
+          "id": 1,
+          "jour": 1,
+          "titre": "Arrivée à Katmandou",
+          "description": "Accueil à l'aéroport de Katmandou, installation à l'hôtel et briefing sur le trek.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Thamel", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Yak & Yeti", "prix": "+70€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Pension complète", "prix": "+30€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Briefing trek", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Visite de Katmandou", "prix": "+40€", "par_defaut": false, "max_personnes": 15}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Transfert privé", "prix": "+45€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 2,
+          "jour": 2,
+          "titre": "Vol pour Lukla et trek vers Phakding",
+          "description": "Vol spectaculaire vers Lukla et début du trek vers Phakding.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Lodge local", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Lodge confort", "prix": "+40€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu premium", "prix": "+25€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Trek standard", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Visite monastère", "prix": "+20€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Vol collectif Katmandou-Lukla", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Vol privé", "prix": "+300€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 3,
+          "jour": 5,
+          "titre": "Acclimatation à Namche Bazaar",
+          "description": "Journée d'acclimatation dans la capitale sherpa avec randonnée panoramique.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Lodge standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Lodge premium", "prix": "+50€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu altitude", "prix": "+30€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Randonnée d'acclimatation", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Musée sherpa", "prix": "+15€", "par_defaut": false, "max_personnes": 15},
+              {"id": 3, "nom": "Consultation médecin altitude", "prix": "+40€", "par_defaut": false, "max_personnes": 1}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Porteur standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Porteur personnel", "prix": "+100€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 4,
+          "jour": 8,
+          "titre": "Camp de base de l'Everest",
+          "description": "Journée au camp de base de l'Everest avec vue sur le glacier du Khumbu.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Lodge à Gorak Shep", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Lodge confort", "prix": "+60€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Menu altitude renforcé", "prix": "+40€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Visite camp de base", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+              {"id": 2, "nom": "Sunrise au Kala Patthar", "prix": "+50€", "par_defaut": false, "max_personnes": 8}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Porteur standard", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Porteur personnel", "prix": "+100€", "par_defaut": false}
+            ]
+          }
+        },
+        {
+          "id": 5,
+          "jour": 10,
+          "titre": "Retour à Lukla et vol pour Katmandou",
+          "description": "Dernière journée de trek, retour à Lukla et vol vers Katmandou.",
+          "options": {
+            "hebergement": [
+              {"id": 1, "nom": "Hôtel Thamel", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Hôtel Yak & Yeti", "prix": "+70€", "par_defaut": false}
+            ],
+            "restauration": [
+              {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Dîner de célébration", "prix": "+45€", "par_defaut": false}
+            ],
+            "activites": [
+              {"id": 1, "nom": "Soirée folklorique", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+              {"id": 2, "nom": "Massage détente", "prix": "+35€", "par_defaut": false, "max_personnes": 10}
+            ],
+            "transport": [
+              {"id": 1, "nom": "Vol collectif Lukla-Katmandou", "prix": "inclus", "par_defaut": true},
+              {"id": 2, "nom": "Vol privé", "prix": "+300€", "par_defaut": false}
+            ]
+          }
+        }
+      ]
     },
     {
       "id": 7,
@@ -427,8 +799,128 @@
       "couchage": ["hotel", "auberge"],
       "restrictions": ["aucune"],
       "pays": "Antarctique",
-      "niveau": 5
+      "niveau": 5,
+      "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Départ pour Ushuaia",
+      "description": "Vol international vers Ushuaia, la ville la plus australe du monde. Briefing sur l'expédition et préparation à l'embarquement.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel Albatros", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Arakur Resort & Spa", "prix": "+120€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète", "prix": "+45€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing expédition", "prix": "inclus", "par_defaut": true, "max_personnes": 30},
+          {"id": 2, "nom": "Visite guidée d'Ushuaia", "prix": "+60€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé", "prix": "+80€", "par_defaut": false}
+        ]
+      }
     },
+    {
+      "id": 2,
+      "jour": 5,
+      "titre": "Traversée du passage de Drake",
+      "description": "Navigation à travers le fameux passage de Drake, l'une des mers les plus tumultueuses au monde, séparant l'Amérique du Sud de l'Antarctique.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine supérieure avec hublot", "prix": "+300€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique", "prix": "+150€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Conférences sur l'Antarctique", "prix": "inclus", "par_defaut": true, "max_personnes": 40},
+          {"id": 2, "nom": "Observation des oiseaux marins", "prix": "+50€", "par_defaut": false, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Navire d'expédition", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 10,
+      "titre": "Exploration de la péninsule Antarctique",
+      "description": "Premières explorations en zodiac et débarquements sur la péninsule Antarctique. Observation de colonies de manchots et de phoques.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine supérieure avec balcon", "prix": "+350€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner du commandant", "prix": "+100€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Excursion en zodiac", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+          {"id": 2, "nom": "Kayak polaire", "prix": "+250€", "par_defaut": false, "max_personnes": 8},
+          {"id": 3, "nom": "Randonnée sur banquise", "prix": "+180€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Zodiac", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 18,
+      "titre": "Station scientifique et mer de Weddell",
+      "description": "Visite d'une station scientifique en activité et navigation dans la mer de Weddell à la recherche d'icebergs tabulaires et de baleines.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine supérieure", "prix": "+350€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial mer de Weddell", "prix": "+80€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite station scientifique", "prix": "inclus", "par_defaut": true, "max_personnes": 30},
+          {"id": 2, "nom": "Observation de baleines", "prix": "+120€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Conférence scientifique", "prix": "+40€", "par_defaut": false, "max_personnes": 40}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Zodiac et navire", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 28,
+      "titre": "Retour vers Ushuaia",
+      "description": "Navigation retour à travers le passage de Drake et dernières conférences récapitulatives avant l'arrivée à Ushuaia.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine supérieure", "prix": "+300€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner d'adieu", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Bilan de l'expédition", "prix": "inclus", "par_defaut": true, "max_personnes": 40},
+          {"id": 2, "nom": "Atelier photo polaire", "prix": "+60€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Navire d'expédition", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    }
+  ]
+},
     {
       "id": 8,
       "titre": "Saut à l'élastique au Pont Bloukrans",
@@ -445,8 +937,131 @@
       "couchage": ["hotel"],
       "restrictions": ["allergie"],
       "pays": "Afrique du Sud",
-      "niveau": 3
+      "niveau": 3,
+      "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée au Cap",
+      "description": "Vol international vers Le Cap, Afrique du Sud. Accueil, transfert à l'hôtel et briefing sur l'aventure à venir.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel de luxe vue mer", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Petit-déjeuner", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Demi-pension", "prix": "+60€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing aventure", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Visite guidée du Cap", "prix": "+70€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé", "prix": "+90€", "par_defaut": false}
+        ]
+      }
     },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Route vers Garden Route",
+      "description": "Départ pour la célèbre Garden Route, l'une des routes panoramiques les plus spectaculaires d'Afrique du Sud, en direction du Pont Bloukrans.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Lodge de la Garden Route", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite avec vue panoramique", "prix": "+180€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Arrêts photos panoramiques", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Safari en réserve privée", "prix": "+120€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Minibus climatisé", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "4x4 privatisé", "prix": "+150€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 3,
+      "titre": "Saut à l'élastique au Pont Bloukrans",
+      "description": "Journée dédiée au saut à l'élastique depuis le Pont Bloukrans, le plus haut pont commercial pour le saut à l'élastique au monde (216 mètres).",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Lodge aventure", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre premium", "prix": "+130€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Repas célébration post-saut", "prix": "+90€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Saut à l'élastique standard", "prix": "inclus", "par_defaut": true, "max_personnes": 30},
+          {"id": 2, "nom": "Package photo et vidéo HD", "prix": "+120€", "par_defaut": false, "max_personnes": 30},
+          {"id": 3, "nom": "Saut tandem", "prix": "+80€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert vers le pont", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 4,
+      "titre": "Activités d'aventure complémentaires",
+      "description": "Journée consacrée à d'autres activités d'aventure dans la région de Tsitsikamma, connue pour ses forêts et ses opportunités d'activités en plein air.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Lodge standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Eco-lodge de luxe", "prix": "+160€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète avec cuisine locale", "prix": "+75€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Randonnée dans la forêt de Tsitsikamma", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Tyrolienne en forêt", "prix": "+90€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Kayak en rivière", "prix": "+70€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Minibus pour les déplacements", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport privatisé", "prix": "+110€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 5,
+      "titre": "Retour au Cap et départ",
+      "description": "Retour au Cap pour le vol international de retour. Temps libre en fonction de l'horaire du vol et dernières activités.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Chambre de jour (si nécessaire)", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite (si nécessaire)", "prix": "+140€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Petit-déjeuner", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner d'adieu", "prix": "+85€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Temps libre au Cap", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Tour de la Table Mountain", "prix": "+95€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert hôtel-aéroport collectif", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé", "prix": "+90€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
     {
       "id": 9,
       "titre": "Balade dans le désert du Maghreb",
@@ -463,8 +1078,157 @@
       "couchage": ["tente", "hotel"],
       "restrictions": ["aucune"],
       "pays": "Maroc",
-      "niveau": 2
+      "niveau": 2,
+      "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée à Marrakech",
+      "description": "Accueil à l'aéroport de Marrakech et transfert vers votre hôtel. Briefing sur l'expédition à venir et première immersion dans l'ambiance marocaine avec une visite guidée de la médina.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Riad traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel 5 étoiles", "prix": "+180€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète avec repas gastronomique", "prix": "+75€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing et visite guidée de la médina", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Cours de cuisine marocaine", "prix": "+60€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé en véhicule de luxe", "prix": "+90€", "par_defaut": false}
+        ]
+      }
     },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Traversée du Haut Atlas",
+      "description": "Départ de Marrakech pour traverser la chaîne montagneuse du Haut Atlas. Passage par le col de Tizi n'Tichka offrant des panoramas spectaculaires, puis descente vers Ouarzazate, porte du désert.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Kasbah rénovée", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite dans un hôtel de charme", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu dégustation berbère", "prix": "+65€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Arrêts panoramiques dans l'Atlas", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Visite des studios de cinéma d'Ouarzazate", "prix": "+45€", "par_defaut": false, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "4x4 climatisé", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "4x4 privatisé", "prix": "+160€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 3,
+      "titre": "Route des Kasbahs et Vallée du Drâa",
+      "description": "Exploration de la célèbre Route des Kasbahs avec ses forteresses en pisé. Continuation vers la luxuriante Vallée du Drâa bordée de palmiers, avant d'atteindre les premières dunes du désert en fin de journée.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge en bordure de désert", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre supérieure vue dunes", "prix": "+140€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner traditionnel avec musiciens locaux", "prix": "+85€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite des kasbahs", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Rencontre avec artisans locaux", "prix": "+40€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Initiation à la photographie désertique", "prix": "+70€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "4x4 tout-terrain", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "4x4 tout-terrain privatisé", "prix": "+160€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 4,
+      "titre": "Expédition dans l'Erg Chegaga",
+      "description": "Journée complète d'immersion dans le grand erg Chegaga, l'une des plus vastes étendues de dunes du Maroc. Caravane en dromadaire et nuit en campement au cœur du désert sous un ciel étoilé incomparable.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente nomade confortable", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente deluxe avec lit", "prix": "+120€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète avec repas traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Repas festif sous les étoiles", "prix": "+95€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Balade en dromadaire", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Cours d'astronomie désertique", "prix": "+60€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Sandboard sur les dunes", "prix": "+50€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "4x4 et dromadaire", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Trek privatisé avec guide personnel", "prix": "+200€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 5,
+      "titre": "Lac Iriki et oasis",
+      "description": "Après un lever de soleil sur les dunes, traversée de l'ancien lac asséché d'Iriki et découverte d'oasis verdoyantes contrastant avec l'aridité du désert. Rencontre avec des communautés berbères.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Maison d'hôtes traditionnelle", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre supérieure avec terrasse privée", "prix": "+110€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Repas chez l'habitant", "prix": "+55€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite d'une oasis et palmeraie", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Atelier artisanat berbère", "prix": "+45€", "par_defaut": false, "max_personnes": 12},
+          {"id": 3, "nom": "Cérémonie du thé traditionnelle", "prix": "+30€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "4x4 tout-terrain", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Excursion privée", "prix": "+140€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "jour": 6,
+      "titre": "Retour à Marrakech",
+      "description": "Dernière journée de traversée avec retour vers Marrakech. Passage par la route alternative via Foum Zguid et Taznakht, célèbre pour ses tapis berbères. Arrivée à Marrakech en fin de journée pour le vol de retour.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Chambre de jour (si nécessaire)", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite (si nécessaire)", "prix": "+130€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner d'adieu dans un palace", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite d'une coopérative de tapis", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Shopping guidé dans les souks", "prix": "+40€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "4x4 et transfert aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé avec chauffeur", "prix": "+110€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
     {
       "id": 10,
       "titre": "Randonnée sur le sentier Inca",
@@ -481,97 +1245,1227 @@
       "couchage": ["hotel", "auberge"],
       "restrictions": "allergie",
       "pays": "Pérou",
-      "niveau": 1
+      "niveau": 1,
+      "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée à Lima",
+      "description": "Accueil à l'aéroport international Jorge Chávez de Lima et transfert vers votre hôtel. Briefing sur l'expédition à venir et première découverte de la capitale péruvienne.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel 4 étoiles Miraflores", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel 5 étoiles vue océan", "prix": "+220€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Petit-déjeuner", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Demi-pension avec dîner gastronomique", "prix": "+90€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing sur l'expédition", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Visite guidée du centre historique de Lima", "prix": "+75€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert collectif aéroport-hôtel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé avec guide francophone", "prix": "+110€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Vol vers Cusco et acclimatation",
+      "description": "Vol intérieur vers Cusco, ancienne capitale de l'Empire inca située à 3 400 mètres d'altitude. Journée d'acclimatation à l'altitude avec visite tranquille de la ville et de ses principaux sites.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel colonial dans le centre", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel de luxe avec spa oxygéné", "prix": "+190€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pension complète avec cuisine locale", "prix": "+80€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée du centre de Cusco", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Cérémonie traditionnelle de bienvenue", "prix": "+65€", "par_defaut": false, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Vol Lima-Cusco et transferts", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transferts privatisés", "prix": "+95€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 3,
+      "titre": "Vallée Sacrée des Incas",
+      "description": "Exploration de la Vallée Sacrée des Incas avec ses sites archéologiques, ses villages traditionnels et ses marchés colorés. Visite de Pisac et Ollantaytambo, importantes forteresses incas.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel dans la Vallée Sacrée", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lodge de luxe avec vue sur les montagnes", "prix": "+210€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu dégustation produits andins", "prix": "+75€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite des sites archéologiques", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Atelier de tissage traditionnel", "prix": "+50€", "par_defaut": false, "max_personnes": 12},
+          {"id": 3, "nom": "Visite d'une distillerie de chicha", "prix": "+40€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Minibus confortable", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport privatisé", "prix": "+180€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 4,
+      "titre": "Début du sentier Inca - Km 82 à Wayllabamba",
+      "description": "Premier jour de randonnée sur le célèbre sentier Inca. Départ du Km 82 et randonnée modérée jusqu'au premier campement à Wayllabamba, avec vues sur les montagnes andines et premières ruines incas.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge de montagne confortable", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre supérieure avec vue", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète avec cuisine de trek", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique de montagne", "prix": "+85€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Randonnée guidée sur le sentier", "prix": "inclus", "par_defaut": true, "max_personnes": 16},
+          {"id": 2, "nom": "Guide archéologique privé", "prix": "+120€", "par_defaut": false, "max_personnes": 6},
+          {"id": 3, "nom": "Rituel de connexion à la Pachamama", "prix": "+60€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert au départ du sentier", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Service de portage supplémentaire", "prix": "+95€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 5,
+      "titre": "Sentier Inca - Col de Warmiwañusca",
+      "description": "Journée la plus exigeante du trek avec l'ascension du col de Warmiwañusca (Pas de la Femme Morte) culminant à 4 215 mètres d'altitude, offrant des panoramas spectaculaires sur la cordillère des Andes.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge de montagne", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre supérieure avec chauffage", "prix": "+160€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète renforcée", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial haute altitude", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Randonnée guidée avec pauses", "prix": "inclus", "par_defaut": true, "max_personnes": 16},
+          {"id": 2, "nom": "Accompagnement personnel", "prix": "+150€", "par_defaut": false, "max_personnes": 4},
+          {"id": 3, "nom": "Session de yoga en altitude", "prix": "+55€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Portage d'équipement standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Portage confort supplémentaire", "prix": "+110€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "jour": 6,
+      "titre": "Sentier Inca - Sites archéologiques",
+      "description": "Journée riche en découvertes archéologiques avec la visite de plusieurs sites incas le long du sentier, dont Runkurakay, Sayacmarca et Phuyupatamarca, offrant un aperçu fascinant de la civilisation inca.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge près de Wiñay Wayna", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Chambre panoramique", "prix": "+140€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner spécial avec mets traditionnels", "prix": "+80€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée des sites archéologiques", "prix": "inclus", "par_defaut": true, "max_personnes": 16},
+          {"id": 2, "nom": "Méditation au coucher du soleil", "prix": "+45€", "par_defaut": false, "max_personnes": 10},
+          {"id": 3, "nom": "Atelier de photographie andine", "prix": "+65€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Randonnée guidée", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Guide archéologue privé", "prix": "+130€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "jour": 7,
+      "titre": "Machu Picchu - La cité perdue des Incas",
+      "description": "Lever avant l'aube pour atteindre la Porte du Soleil (Intipunku) et découvrir le Machu Picchu au lever du soleil. Visite guidée complète de la cité perdue des Incas, l'un des sites archéologiques les plus impressionnants au monde.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel à Aguas Calientes", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel de luxe avec spa", "prix": "+240€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Pension complète", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner de célébration vue sur la rivière", "prix": "+95€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée du Machu Picchu", "prix": "inclus", "par_defaut": true, "max_personnes": 16},
+          {"id": 2, "nom": "Montée à la Montagne Machu Picchu", "prix": "+80€", "par_defaut": false, "max_personnes": 10},
+          {"id": 3, "nom": "Bains thermaux à Aguas Calientes", "prix": "+45€", "par_defaut": false, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Navette Machu Picchu et train retour", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Train Vistadome premium", "prix": "+120€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "jour": 8,
+      "titre": "Retour à Cusco et détente",
+      "description": "Matinée libre à Aguas Calientes pour profiter des sources thermales ou faire quelques achats. Retour à Cusco en train panoramique à travers la Vallée Sacrée et après-midi libre pour se détendre.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel colonial à Cusco", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite dans un hôtel historique", "prix": "+190€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner-spectacle culturel", "prix": "+85€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Temps libre à Cusco", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Massage de récupération", "prix": "+70€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Shopping guidé d'artisanat local", "prix": "+50€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Train et transferts à Cusco", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Train first class et transfert privé", "prix": "+150€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "jour": 9,
+      "titre": "Cusco et sites environnants",
+      "description": "Journée consacrée à la découverte des impressionnants sites incas autour de Cusco, notamment la forteresse de Sacsayhuamán, le temple de Qenqo, Puca Pucara et le site religieux de Tambomachay.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel à Cusco", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel 5 étoiles historique", "prix": "+190€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Demi-pension", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Expérience gastronomique andine complète", "prix": "+110€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Circuit des sites archéologiques", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Cérémonie d'offrande à la Pachamama", "prix": "+70€", "par_defaut": false, "max_personnes": 12},
+          {"id": 3, "nom": "Cours de cuisine péruvienne", "prix": "+60€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Circuit en minibus", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tour privé avec archéologue", "prix": "+160€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "jour": 10,
+      "titre": "Retour à Lima et départ",
+      "description": "Vol de Cusco à Lima et temps libre dans la capitale en fonction de l'horaire de votre vol international. Possibilité de visiter les quartiers de Barranco et Miraflores ou le musée Larco avant votre transfert à l'aéroport.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Chambre de jour (si nécessaire)", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite (si nécessaire)", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Petit-déjeuner et déjeuner", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Déjeuner gastronomique d'adieu", "prix": "+90€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Temps libre à Lima", "prix": "inclus", "par_defaut": true, "max_personnes": 25},
+          {"id": 2, "nom": "Visite du musée Larco", "prix": "+65€", "par_defaut": false, "max_personnes": 15},
+          {"id": 3, "nom": "Tour culinaire de Lima", "prix": "+80€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Vol Cusco-Lima et transfert aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transferts privés et assistance VIP", "prix": "+120€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
+  {
+  "id": 11,
+  "titre": "Expéditions dans l'espace",
+  "prix": "500000€",
+  "duree": {
+    "debut": "2025-07-01",
+    "fin": "2025-07-07",
+    "jours": 7
+  },
+  "description": "Vivez l'aventure ultime en rejoignant un vol spatial et explorez l'espace au-delà de la Terre. Une expérience inédite pour les passionnés de l'inconnu.",
+  "image": "../assets/img/Expedition dans l'espace.jpg",
+  "climat": "spatial",
+  "terrain": "spatial",
+  "couchage": ["vaisseau spatial"],
+  "restrictions": ["aucune"],
+  "pays": "International",
+  "niveau": 5,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Préparation et décollage",
+      "description": "La première journée est consacrée à l'ultime briefing de sécurité, aux derniers ajustements de votre combinaison spatiale, et au décollage impressionnant à bord du vaisseau. Vous vivrez l'accélération intense et votre premier ressenti d'apesanteur.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing et simulation de décollage", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Enregistrement vidéo personnalisé du décollage", "prix": "+5000€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport standard vers la base spatiale", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport VIP en hélicoptère", "prix": "+8000€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Adaptation à l'apesanteur",
+      "description": "Cette journée est dédiée à votre adaptation à l'environnement spatial. Vous apprendrez à vous déplacer en apesanteur, à utiliser les équipements du vaisseau et profiterez de votre première observation complète de la Terre depuis l'espace.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Formation à la vie en apesanteur", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Session photo privée avec la Terre en arrière-plan", "prix": "+7000€", "par_defaut": false, "max_personnes": 5}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Déplacement dans le vaisseau", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 3,
+      "titre": "Sortie extravéhiculaire",
+      "description": "Le moment tant attendu : votre sortie dans l'espace. Accompagné d'astronautes professionnels, vous effectuerez une sortie extravéhiculaire sécurisée pour flotter librement dans le vide spatial et admirer la vue incomparable de notre planète bleue.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Sortie extravéhiculaire guidée (30 minutes)", "prix": "inclus", "par_defaut": true, "max_personnes": 8},
+          {"id": 2, "nom": "Sortie extravéhiculaire prolongée (1 heure)", "prix": "+50000€", "par_defaut": false, "max_personnes": 4},
+          {"id": 3, "nom": "Expérience photographique professionnelle dans l'espace", "prix": "+15000€", "par_defaut": false, "max_personnes": 4}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Équipement standard de sortie spatiale", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Combinaison spatiale personnalisée", "prix": "+30000€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 4,
+      "titre": "Expériences scientifiques en orbite",
+      "description": "Participez à des expériences scientifiques réelles à bord du vaisseau. Vous contribuerez à la recherche spatiale en réalisant des expériences sur le comportement des fluides, la croissance des plantes et d'autres phénomènes uniques en apesanteur.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Participation aux expériences scientifiques", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Expérience personnalisée avec un scientifique", "prix": "+10000€", "par_defaut": false, "max_personnes": 3}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Déplacement dans le vaisseau", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 5,
+      "titre": "Orbitale lunaire",
+      "description": "Une journée exceptionnelle avec un passage en orbite autour de la Lune. Vous observerez sa surface de près et vivrez l'émotion de contempler la face cachée de notre satellite naturel, vue par seulement quelques centaines d'humains avant vous.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Observation guidée de la Lune", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Session privée d'observation avec un astronome", "prix": "+12000€", "par_defaut": false, "max_personnes": 5}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Manœuvre orbitale standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Manœuvre orbitale personnalisée", "prix": "+40000€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "jour": 6,
+      "titre": "Communication avec la Terre et dernières activités spatiales",
+      "description": "Pour l'avant-dernière journée, profitez d'une séance de communication en direct avec vos proches sur Terre. Vous participerez également à des activités récréatives en apesanteur et capturerez vos derniers souvenirs inoubliables de cette aventure unique.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Cabine standard dans le vaisseau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Cabine premium avec hublot panoramique", "prix": "+25000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas astronaute standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique spatial", "prix": "+3000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Session de communication avec la Terre", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Vidéo souvenir professionnelle de votre aventure", "prix": "+8000€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Déplacement dans le vaisseau", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "jour": 7,
+      "titre": "Retour sur Terre",
+      "description": "Le jour du retour est arrivé. Vous vivrez l'expérience intense de la rentrée atmosphérique, suivie d'un atterrissage en douceur. Une cérémonie d'accueil vous attend pour célébrer votre exploit d'être devenu un touriste spatial.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel 5 étoiles pour récupération post-mission", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite présidentielle avec service médical privé", "prix": "+5000€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Menu réintégration standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique de célébration", "prix": "+1000€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Cérémonie d'accueil standard", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Débriefing privé avec astronautes professionnels", "prix": "+3000€", "par_defaut": false, "max_personnes": 5}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport standard vers l'hôtel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport VIP en hélicoptère", "prix": "+5000€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
+{
+  "id": 12,
+  "titre": "Traversée du Sahara en 4x4",
+  "prix": "8990€",
+  "duree": {
+    "debut": "2025-10-01",
+    "fin": "2025-10-15",
+    "jours": 15
+  },
+  "description": "Traversez le plus grand désert du monde à bord d'un 4x4. Une aventure extrême où vous serez confronté à des conditions de chaleur et d'isolement intenses.",
+  "image": "../assets/img/4x4 Sahara.jpg",
+  "climat": "chaud",
+  "terrain": "désert",
+  "couchage": ["tente"],
+  "restrictions": ["aucune"],
+  "pays": "Algérie",
+  "niveau": 4,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée à Alger et préparatifs",
+      "description": "Accueil à l'aéroport d'Alger et transfert vers votre hôtel. Briefing complet sur l'expédition, vérification de l'équipement et présentation de l'équipe qui vous accompagnera durant cette aventure saharienne.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel 4 étoiles à Alger", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hôtel 5 étoiles avec vue sur la Méditerranée", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner de bienvenue traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner gastronomique algérien", "prix": "+80€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Briefing et présentation de l'équipe", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Visite guidée de la Casbah d'Alger", "prix": "+60€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert aéroport-hôtel standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé en véhicule climatisé", "prix": "+50€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 2,
+      "titre": "Transfert vers le désert et première nuit saharienne",
+      "description": "Départ matinal vers le sud algérien. Vous traverserez les paysages changeants jusqu'à atteindre les portes du Sahara. Premier campement dans le désert et initiation aux techniques de survie en milieu désertique.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas traditionnel bédouin", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique du désert", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Formation aux techniques de survie", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Initiation à l'orientation astronomique", "prix": "+50€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "4x4 premium avec équipements spéciaux", "prix": "+200€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 3,
+      "titre": "Traversée des dunes de l'Erg Oriental",
+      "description": "Votre première véritable journée dans le désert profond. Vous affronterez les majestueuses dunes de l'Erg Oriental, apprenant les techniques de conduite sur sable et découvrant l'immensité du désert saharien.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas désertique traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial avec produits locaux", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Formation à la conduite sur dunes", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Session photo professionnelle dans les dunes", "prix": "+120€", "par_defaut": false, "max_personnes": 8},
+          {"id": 3, "nom": "Cours de géologie du Sahara", "prix": "+60€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Essai de conduite sur dunes supervisé", "prix": "+150€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 4,
+      "titre": "Exploration de l'oasis de Timimoun",
+      "description": "Journée de découverte de la splendide oasis de Timimoun, surnommée 'la perle rouge du désert'. Vous découvrirez l'architecture unique, les jardins ombragés et la façon dont les populations locales ont appris à vivre dans cet environnement extrême.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Maison d'hôtes traditionnelle", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite dans une kasbah rénovée", "prix": "+180€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas chez l'habitant", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dégustation de spécialités oasiennes", "prix": "+60€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée de l'oasis", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Rencontre privée avec les populations locales", "prix": "+70€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 5,
+      "titre": "Traversée du plateau du Tademaït",
+      "description": "Journée d'aventure intense à travers le plateau rocailleux du Tademaït. Vous traverserez des paysages lunaires, des hamadas (plateaux désertiques) et découvrirez des fossiles marins, témoins d'un passé où le Sahara était sous les eaux.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas désertique traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial avec thé du désert", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Recherche de fossiles guidée", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Excursion géologique spéciale", "prix": "+90€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport en 4x4 avec suspension renforcée", "prix": "+120€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "jour": 6,
+      "titre": "Les mystérieuses gravures rupestres de Tassili",
+      "description": "Excursion exceptionnelle vers les sites préhistoriques du Tassili n'Ajjer, où vous découvrirez des gravures rupestres datant de plus de 10 000 ans. Ces témoignages d'un Sahara verdoyant vous transporteront dans un autre temps.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas désertique traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial inspiré des traditions anciennes", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée des sites rupestres", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Atelier de photographie archéologique", "prix": "+80€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transport avec guide archéologue privé", "prix": "+200€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "jour": 7,
+      "titre": "Les grands ergs du sud algérien",
+      "description": "Cette journée sera dédiée à la traversée des grands ergs (mers de sable) du sud algérien. Vous affronterez des dunes gigantesques et apprendrez des techniques avancées de conduite sur sable mou et de désensablage.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas désertique traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Barbecue spécial du désert", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Cours avancé de désensablage", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Initiation au sandboard sur les dunes", "prix": "+90€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Conduite supervisée sur grandes dunes", "prix": "+180€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "jour": 8,
+      "titre": "Découverte de Djanet et de son marché",
+      "description": "Journée de détente dans la ville oasis de Djanet, porte d'entrée du Tassili. Vous visiterez son marché coloré, rencontrerez les artisans locaux et pourrez recharger vos batteries dans cet environnement plus hospitalier.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Auberge traditionnelle à Djanet", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Maison d'hôtes de luxe", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas au marché local", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner préparé par un chef touareg", "prix": "+90€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée du marché et de la ville", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Atelier d'artisanat touareg", "prix": "+70€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Balade à dos de dromadaire", "prix": "+60€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "jour": 9,
+      "titre": "Traversée du Ténéré et ses paysages surréalistes",
+      "description": "Cette journée vous fera traverser la région du Ténéré, connue pour ses formations rocheuses étranges et ses paysages lunaires. Vous explorerez des canyons étroits et des arches naturelles sculptées par le vent.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium avec matelas confort", "prix": "+100€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas désertique traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial avec produits frais", "prix": "+70€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Randonnée guidée dans les canyons", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Séance photo au coucher du soleil", "prix": "+80€", "par_defaut": false, "max_personnes": 12}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Trek pédestre guidé (portion du trajet)", "prix": "+150€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "jour": 10,
+      "titre": "Exploration des ruines de l'ancienne forteresse",
+      "description": "Découverte d'une citadelle abandonnée du XIXe siècle, vestige des expéditions coloniales. Vous apprendrez l'histoire mouvementée de ces avant-postes militaires perdus dans le désert.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente standard de bivouac", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Nuit dans les ruines sécurisées", "prix": "+200€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas de campagne historique", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner thématique 'vie de garnison'", "prix": "+90€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite historique guidée", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Chasse au trésor dans les ruines", "prix": "+100€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true}
+        ]
+      }
     },
     {
       "id": 11,
-      "titre": "Expéditions dans l'espace",
-      "prix": "500000€",
-      "duree": {
-        "debut": "2025-07-01",
-        "fin": "2025-07-07",
-        "jours": 7
-      },
-      "description": "Vivez l'aventure ultime en rejoignant un vol spatial et explorez l'espace au-delà de la Terre. Une expérience inédite pour les passionnés de l'inconnu.",
-      "image": "../assets/img/Expedition dans l'espace.jpg",
-      "climat": "spatial",
-      "terrain": "spatial",
-      "couchage": ["vaisseau spatial"],
-      "restrictions": ["aucune"],
-      "pays": "International",
-      "niveau": 5
+      "jour": 11,
+      "titre": "Survie en conditions extrêmes",
+      "description": "Journée test où vous mettrez en pratique toutes les techniques apprises. Vous serez livrés à vous-mêmes (avec supervision discrète) pour gérer un campement autonome pendant 24h.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente de survie basique", "prix": "inclus", "par_defaut": true}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Rations de survie standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Kit de survie gastronomique", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Exercice de navigation autonome", "prix": "inclus", "par_defaut": true, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Dépose en 4x4 sur le site", "prix": "inclus", "par_defaut": true}
+        ]
+      }
     },
     {
       "id": 12,
-      "titre": "Traversée du Sahara en 4x4",
-      "prix": "8990€",
-      "duree": {
-        "debut": "2025-10-01",
-        "fin": "2025-10-15",
-        "jours": 15
-      },
-      "description": "Traversez le plus grand désert du monde à bord d'un 4x4. Une aventure extrême où vous serez confronté à des conditions de chaleur et d'isolement intenses.",
-      "image": "../assets/img/4x4 Sahara.jpg",
-      "climat": "chaud",
-      "terrain": "désert",
-      "couchage": ["tente"],
-      "restrictions": ["aucune"],
-      "pays": "Algérie",
-      "niveau": 4
+      "jour": 12,
+      "titre": "Rencontre avec une tribu nomade",
+      "description": "Immersion totale dans une communauté nomade du Sahara. Vous partagerez leur quotidien, apprendrez à traire les dromadaires et participerez à la préparation du thé traditionnel.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente nomade traditionnelle", "prix": "inclus", "par_defaut": true}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas avec la tribu", "prix": "inclus", "par_defaut": true}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Initiation aux traditions nomades", "prix": "inclus", "par_defaut": true, "max_personnes": 15},
+          {"id": 2, "nom": "Atelier de tissage de tapis", "prix": "+50€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Déplacement à dos de dromadaire", "prix": "inclus", "par_defaut": true}
+        ]
+      }
     },
     {
       "id": 13,
-      "titre": "Descente du fleuve Amazone en kayak",
-      "prix": "4590€",
-      "duree": {
-        "debut": "2025-08-15",
-        "fin": "2025-08-30",
-        "jours": 15
-      },
-      "description": "Naviguez en kayak à travers les eaux tumultueuses de l'Amazone, en traversant la jungle dense et en affrontant les défis d'un fleuve sauvage.",
-      "image": "../assets/img/Kayak Amazone.jpg",
-      "climat": "chaud",
-      "terrain": "aquatique",
-      "couchage": ["tente", "abris de fortune"],
-      "restrictions": ["aucune"],
-      "pays": "Brésil",
-      "niveau": 4
+      "jour": 13,
+      "titre": "Nuit sous les étoiles du Sahara",
+      "description": "Expérience unique de couchage à la belle étoile dans le silence absolu du désert. Observation astronomique avec un expert et méditation sous la Voie Lactée.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Couchage sur matelas sous les étoiles", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lit nomade avec vue panoramique", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner léger sous les étoiles", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gastronomique nocturne", "prix": "+130€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Session d'astronomie guidée", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Séance de photographie astronomique", "prix": "+110€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": []
+      }
     },
     {
       "id": 14,
-      "titre": "Trekking sur le glacier de Patagonie",
-      "prix": "7990€",
-      "duree": {
-        "debut": "2025-11-01",
-        "fin": "2025-11-10",
-        "jours": 10
-      },
-      "description": "Partez pour une aventure glacière dans la région la plus extrême de la Patagonie. Marchez sur des glaciers et découvrez un paysage sauvage et inhospitalier.",
-      "image": "../assets/img/Glacier Patagonie.jpg",
-      "climat": "froid",
-      "terrain": "glaciaire",
-      "couchage": ["tente", "refuge"],
-      "restrictions": ["aucune"],
-      "pays": "Chili",
-      "niveau": 5
+      "jour": 14,
+      "titre": "Retour vers la civilisation",
+      "description": "Dernière journée de conduite à travers des paysages contrastés pour regagner Alger. Cérémonie d'adieu et célébration de votre réussite avec l'équipe.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel 4 étoiles à Alger", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite exécutive avec spa", "prix": "+250€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner d'adieu traditionnel", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu de gala avec champagne", "prix": "+180€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Cérémonie de remise de diplôme", "prix": "inclus", "par_defaut": true, "max_personnes": 20},
+          {"id": 2, "nom": "Montage vidéo souvenir personnalisé", "prix": "+200€", "par_defaut": false, "max_personnes": 20}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport en 4x4 standard", "prix": "inclus", "par_defaut": true}
+        ]
+      }
     },
     {
       "id": 15,
-      "titre": "Traversée de l'Antarctique à ski",
-      "prix": "29990€",
-      "duree": {
-        "debut": "2025-12-01",
-        "fin": "2025-12-20",
-        "jours": 20
-      },
-      "description": "Affrontez les conditions les plus extrêmes en traversant l'Antarctique à ski. C'est un défi sans pareil, réservé aux plus aguerris des aventuriers.",
-      "image": "../assets/img/Traverse Antarctique ski.jpg",
-      "climat": "froid",
-      "terrain": "glaciaire",
-      "couchage": ["tente", "abri"],
-      "restrictions": ["aucune"],
-      "pays": "Antarctique",
-      "niveau": 5
+      "jour": 15,
+      "titre": "Départ d'Alger",
+      "description": "Transfert à l'aéroport et assistance aux formalités de départ. Possibilité de prolonger votre séjour pour visiter Alger selon les disponibilités.",
+      "options": {
+        "hebergement": [],
+        "restauration": [
+          {"id": 1, "nom": "Petit déjeuner d'adieu", "prix": "inclus", "par_defaut": true}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite express d'Alger", "prix": "+80€", "par_defaut": false, "max_personnes": 15}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert aéroport standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert VIP avec guide francophone", "prix": "+120€", "par_defaut": false}
+        ]
+      }
     }
+  ]
+},    
+    {
+  "id": 13,
+  "titre": "Descente du fleuve Amazone en kayak",
+  "prix": "4590€",
+  "duree": {
+    "debut": "2025-08-15",
+    "fin": "2025-08-30",
+    "jours": 15
+  },
+  "description": "Naviguez en kayak à travers les eaux tumultueuses de l'Amazone, en traversant la jungle dense et en affrontant les défis d'un fleuve sauvage.",
+  "image": "../assets/img/Kayak Amazone.jpg",
+  "climat": "chaud",
+  "terrain": "aquatique",
+  "couchage": ["tente", "abris de fortune"],
+  "restrictions": ["aucune"],
+  "pays": "Brésil",
+  "niveau": 4,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Préparation à Manaus",
+      "description": "Arrivée à Manaus, porte d'entrée de l'Amazonie brésilienne. Journée consacrée à la préparation de l'équipement, briefing technique sur la sécurité en kayak et introduction à l'écosystème amazonien par un guide local.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel éco-responsable à Manaus", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lodge de luxe avec vue sur le Rio Negro", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas traditionnel amazonien", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner gastronomique fusion brésilien", "prix": "+80€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite du marché de Manaus", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+          {"id": 2, "nom": "Excursion nocturne pour observer la faune", "prix": "+70€", "par_defaut": false, "max_personnes": 8}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert depuis l'aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privatisé avec guide local", "prix": "+45€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 3,
+      "titre": "Rencontre avec la communauté Caboclo",
+      "description": "Journée de navigation vers un village Caboclo isolé où nous apprendrons les techniques de survie en forêt amazonienne. Participation aux activités quotidiennes de la communauté et initiation aux remèdes traditionnels de la jungle.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Campement près du village", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Maison d'hôte aménagée du village", "prix": "+60€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas communautaire préparé par les villageois", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu spécial avec produits de la chasse locale", "prix": "+40€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Atelier de techniques de survie", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+          {"id": 2, "nom": "Cérémonie traditionnelle avec le chaman", "prix": "+90€", "par_defaut": false, "max_personnes": 6}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Kayak standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Kayak professionnel haute performance", "prix": "+120€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 7,
+      "titre": "Exploration de la forêt inondée",
+      "description": "Navigation à travers l'igapó, forêt inondée caractéristique de l'Amazonie. Observation de la faune unique adaptée à cet environnement, dont les dauphins roses d'eau douce et les paresseux. Nuit en campement sur une plateforme suspendue.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Plateforme de camping en hauteur", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lodge flottant confortable", "prix": "+180€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Poisson grillé au feu de camp", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Buffet de spécialités amazoniennes", "prix": "+65€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Observation des dauphins roses", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+          {"id": 2, "nom": "Pêche au piranha", "prix": "+50€", "par_defaut": false, "max_personnes": 8},
+          {"id": 3, "nom": "Randonnée nocturne guidée", "prix": "+85€", "par_defaut": false, "max_personnes": 6}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Kayak standard", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Expédition en canoë traditionnel", "prix": "+70€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 10,
+      "titre": "Descente des rapides de Tabuleiro",
+      "description": "Journée d'adrénaline sur les rapides de Tabuleiro, section plus technique qui mettra à l'épreuve vos compétences en kayak. Coaching personnalisé par nos guides experts et sensations fortes garanties dans un cadre naturel spectaculaire.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Campement au bord de la rivière", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Eco-lodge avec douches chaudes", "prix": "+130€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Barbecue brésilien en plein air", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gourmet préparé par un chef", "prix": "+95€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Descente des rapides guidée", "prix": "inclus", "par_defaut": true, "max_personnes": 8},
+          {"id": 2, "nom": "Session photo professionnelle", "prix": "+110€", "par_defaut": false, "max_personnes": 4}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Kayak de whitewater", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 14,
+      "titre": "Rencontre des eaux et retour",
+      "description": "Dernière étape majeure avec l'arrivée au phénomène naturel de la 'rencontre des eaux', où le Rio Negro et le Solimões se rejoignent sans se mélanger. Cérémonie de clôture, célébration des 15 jours d'aventure et préparation au retour à la civilisation.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel traditionnel à Manaus", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite dans l'historique Hotel Tropical", "prix": "+200€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner d'adieu collectif", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Expérience culinaire amazonienne premium", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Croisière pour observer la rencontre des eaux", "prix": "inclus", "par_defaut": true, "max_personnes": 15},
+          {"id": 2, "nom": "Visite de l'Opéra de Manaus", "prix": "+60€", "par_defaut": false, "max_personnes": 10}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Bateau motorisé vers Manaus", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Hydravion panoramique (trajet raccourci)", "prix": "+350€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
+    {
+  "id": 14,
+  "titre": "Trekking sur le glacier de Patagonie",
+  "prix": "7990€",
+  "duree": {
+    "debut": "2025-11-01",
+    "fin": "2025-11-10",
+    "jours": 10
+  },
+  "description": "Partez pour une aventure glacière dans la région la plus extrême de la Patagonie. Marchez sur des glaciers et découvrez un paysage sauvage et inhospitalier.",
+  "image": "../assets/img/Glacier Patagonie.jpg",
+  "climat": "froid",
+  "terrain": "glaciaire",
+  "couchage": ["tente", "refuge"],
+  "restrictions": ["aucune"],
+  "pays": "Chili",
+  "niveau": 5,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Arrivée à Punta Arenas",
+      "description": "Accueil à l'aéroport de Punta Arenas, porte d'entrée de la Patagonie chilienne. Briefing complet sur l'expédition, vérification de l'équipement technique et adaptation au climat austral. Introduction à la géologie et à l'histoire des glaciers patagoniens.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel confortable à Punta Arenas", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Boutique hôtel historique", "prix": "+180€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner d'accueil avec spécialités patagoniennes", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu dégustation avec accord mets-vins chiliens", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite du musée de la Patagonie", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+          {"id": 2, "nom": "Conférence privée avec un glaciologue", "prix": "+90€", "par_defaut": false, "max_personnes": 6}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert collectif depuis l'aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé en 4x4", "prix": "+75€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 3,
+      "titre": "Base du glacier Grey",
+      "description": "Transfert au parc national Torres del Paine et première approche du glacier Grey, l'une des langues glaciaires du Campo de Hielo Sur. Formation technique à la marche sur glace, utilisation des crampons et consignes de sécurité en milieu glaciaire. Premier contact avec le glacier.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Refuge Grey", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium isolée avec matelas confortable", "prix": "+150€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas énergétique au refuge", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu explorer avec options végétariennes gourmet", "prix": "+95€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Initiation aux techniques glaciaires", "prix": "inclus", "par_defaut": true, "max_personnes": 8},
+          {"id": 2, "nom": "Excursion en kayak face au glacier", "prix": "+185€", "par_defaut": false, "max_personnes": 4}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert en minibus + bateau", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert avec survol panoramique en hélicoptère", "prix": "+590€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 5,
+      "titre": "Traversée du champ de glace",
+      "description": "Journée d'expédition intense sur le Campo de Hielo Sur, le troisième plus grand champ de glace au monde. Navigation entre les crevasses, observation des formations glaciaires uniques et randonnée technique dans un environnement aux conditions extrêmes. Panoramas à couper le souffle sur les sommets andins.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Campement sur le glacier", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente expédition haute performance", "prix": "+230€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas lyophilisés haute énergie", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu expédition préparé par chef spécialisé", "prix": "+120€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Trekking glaciaire guidé", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+          {"id": 2, "nom": "Exploration de grotte de glace", "prix": "+160€", "par_defaut": false, "max_personnes": 4},
+          {"id": 3, "nom": "Session photo professionnelle sur le glacier", "prix": "+240€", "par_defaut": false, "max_personnes": 2}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Progression à pied avec guide expérimenté", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Équipement d'alpinisme premium", "prix": "+210€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 7,
+      "titre": "Ascension du Cerro Zapata",
+      "description": "Tentative d'ascension du Cerro Zapata (1590m), sommet offrant une vue imprenable sur le Campo de Hielo Sur et le glacier Tyndall. Journée d'alpinisme technique nécessitant une bonne condition physique, récompensée par des panoramas exceptionnels sur l'une des dernières terres sauvages de la planète.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Refuge de montagne basique", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lodge confortable avec sauna de récupération", "prix": "+280€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas montagnard réconfortant", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu gourmet avec produits locaux", "prix": "+140€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Ascension guidée du Cerro Zapata", "prix": "inclus", "par_defaut": true, "max_personnes": 4},
+          {"id": 2, "nom": "Vol en drone pour filmer votre ascension", "prix": "+190€", "par_defaut": false, "max_personnes": 2}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert en 4x4 jusqu'au point de départ", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 9,
+      "titre": "Glacier Perito Moreno et retour",
+      "description": "Transfert vers l'Argentine pour découvrir le spectaculaire glacier Perito Moreno, l'un des rares glaciers au monde encore en croissance. Observation des chutes de séracs depuis les passerelles, puis navigation en bateau au plus près de la paroi de glace. Dîner d'adieu et célébration de cette aventure patagonienne.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel vue sur le lac à El Calafate", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Lodge de luxe avec spa glaciaire", "prix": "+320€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner d'adieu avec asado argentin", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Expérience gastronomique avec chef étoilé", "prix": "+180€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Excursion aux passerelles du Perito Moreno", "prix": "inclus", "par_defaut": true, "max_personnes": 12},
+          {"id": 2, "nom": "Mini-trekking exclusif sur le glacier", "prix": "+250€", "par_defaut": false, "max_personnes": 6}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert en minibus vers El Calafate", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé avec arrêts photos", "prix": "+120€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+},
+    {
+  "id": 15,
+  "titre": "Traversée de l'Antarctique à ski",
+  "prix": "29990€",
+  "duree": {
+    "debut": "2025-12-01",
+    "fin": "2025-12-20",
+    "jours": 20
+  },
+  "description": "Affrontez les conditions les plus extrêmes en traversant l'Antarctique à ski. C'est un défi sans pareil, réservé aux plus aguerris des aventuriers.",
+  "image": "../assets/img/Traverse Antarctique ski.jpg",
+  "climat": "froid",
+  "terrain": "glaciaire",
+  "couchage": ["tente", "abri"],
+  "restrictions": ["aucune"],
+  "pays": "Antarctique",
+  "niveau": 5,
+  "etapes": [
+    {
+      "id": 1,
+      "jour": 1,
+      "titre": "Préparation à Punta Arenas",
+      "description": "Rassemblement à Punta Arenas (Chili), dernier avant-poste avant l'Antarctique. Vérification méticuleuse de l'équipement polaire, briefing approfondi sur les protocoles de sécurité et formation aux communications par satellite. Introduction aux conditions extrêmes et aux défis physiologiques que vous allez affronter.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Hôtel 4* à Punta Arenas", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite avec vue sur le détroit de Magellan", "prix": "+250€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Dîner d'accueil avec l'équipe d'expédition", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu dégustation spécial préparation polaire", "prix": "+170€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Séminaire sur l'histoire des explorations antarctiques", "prix": "inclus", "par_defaut": true, "max_personnes": 8},
+          {"id": 2, "nom": "Session individuelle avec un explorateur polaire", "prix": "+320€", "par_defaut": false, "max_personnes": 1}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transfert depuis l'aéroport", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Transfert privé en SUV", "prix": "+90€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "jour": 3,
+      "titre": "Atterrissage sur Union Glacier",
+      "description": "Vol en avion gros-porteur Ilyushin Il-76 vers l'Antarctique, puis transfert en Twin Otter sur skis jusqu'au camp de base d'Union Glacier. Premier contact avec l'environnement antarctique, acclimatation au froid extrême et préparation des pulkas (traîneaux). Formation aux techniques de progression sur neige polaire.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente polaire au camp de base", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dome chauffé individuel", "prix": "+480€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas haute calorie au mess du camp", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu premium avec options gastronomiques", "prix": "+210€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Entraînement sur glacier avec guide polaire", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+          {"id": 2, "nom": "Visite des grottes de glace bleue", "prix": "+390€", "par_defaut": false, "max_personnes": 4}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Vol Ilyushin + Twin Otter", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pack confort vol prioritaire", "prix": "+750€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jour": 6,
+      "titre": "Progression vers le Pôle Sud",
+      "description": "Début de la traversée vers le Pôle Sud géographique. Ski de fond en autonomie complète sur le plateau antarctique à plus de 2800m d'altitude. Navigation à la boussole et GPS dans l'immensité blanche, adaptation aux conditions de vent catabatique et aux températures extrêmes pouvant descendre jusqu'à -40°C.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente expédition haute résistance", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Tente premium ultra-isolée", "prix": "+560€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Rations lyophilisées expédition polaire", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Pack nutrition avancée personnalisée", "prix": "+290€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Progression guidée sur le plateau polaire", "prix": "inclus", "par_defaut": true, "max_personnes": 4},
+          {"id": 2, "nom": "Séance photo professionnelle antarctique", "prix": "+420€", "par_defaut": false, "max_personnes": 2},
+          {"id": 3, "nom": "Communication satellite quotidienne avec proches", "prix": "+680€", "par_defaut": false, "max_personnes": 1}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Équipement ski nordique expédition", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Ski carbone ultraléger haute performance", "prix": "+890€", "par_defaut": false}
+        ]
+      }
+    },
+    {
+      "id": 4,
+      "jour": 13,
+      "titre": "Arrivée au Pôle Sud géographique",
+      "description": "Moment culminant de l'expédition avec l'arrivée au point 90° Sud, marquant le Pôle Sud géographique. Visite exceptionnelle de la station Amundsen-Scott, base scientifique américaine. Cérémonie du Pôle et célébration de cet accomplissement exceptionnel réservé à une élite d'explorateurs.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente près de la station Amundsen-Scott", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Accès aux quartiers chauffés de la station", "prix": "+720€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Repas de célébration au Pôle", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Dîner gastronomique avec champagne", "prix": "+450€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Visite guidée de la station scientifique", "prix": "inclus", "par_defaut": true, "max_personnes": 6},
+          {"id": 2, "nom": "Conférence privée avec chercheurs polaires", "prix": "+380€", "par_defaut": false, "max_personnes": 3}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Transport des équipements lourds", "prix": "inclus", "par_defaut": true}
+        ]
+      }
+    },
+    {
+      "id": 5,
+      "jour": 18,
+      "titre": "Retour et vol panoramique vers le camp de base",
+      "description": "Évacuation en avion Twin Otter depuis le Pôle Sud vers le camp de base d'Union Glacier. Vol panoramique au-dessus des chaînes de montagnes Ellsworth et Heritage Range. Préparation au retour vers la civilisation et célébration finale de cette aventure extrême avec remise de certificat officiel de traversée.",
+      "options": {
+        "hebergement": [
+          {"id": 1, "nom": "Tente confort au camp de base", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Suite polaire premium avec lit", "prix": "+640€", "par_defaut": false}
+        ],
+        "restauration": [
+          {"id": 1, "nom": "Banquet d'adieu antarctique", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Menu célébration avec vins et spiritueux", "prix": "+390€", "par_defaut": false}
+        ],
+        "activites": [
+          {"id": 1, "nom": "Cérémonie de remise des certificats", "prix": "inclus", "par_defaut": true, "max_personnes": 10},
+          {"id": 2, "nom": "Survol en hélicoptère des montagnes Ellsworth", "prix": "+1200€", "par_defaut": false, "max_personnes": 4}
+        ],
+        "transport": [
+          {"id": 1, "nom": "Vol Twin Otter depuis le Pôle Sud", "prix": "inclus", "par_defaut": true},
+          {"id": 2, "nom": "Place premium avec vue panoramique", "prix": "+490€", "par_defaut": false}
+        ]
+      }
+    }
+  ]
+}
   ]
 }
