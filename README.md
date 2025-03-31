@@ -1,4 +1,4 @@
-# Informations sur le Projet
+# Utilisateurs fournis
 
 Pour le bien du projet, tous les comptes déjà existants dans le fichier `data_user.json` ont le même mot de passe qui est : **"1234"**. Les mots de passe dans le fichier `.json` sont chiffrés pour sécuriser les informations des utilisateurs.
 
