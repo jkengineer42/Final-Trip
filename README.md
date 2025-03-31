@@ -3,3 +3,8 @@ Pour le bien du projet, tous les comptes déjà existants dans le fichier data_u
 Les 2 voyages qui fonctionne pour l'instant avec la vue détaillée sont :        
 1 • Expédition polaire
 2 • Plongée en cage
+
+Ce qu'on a pa réussi à implementer : 
+Page de paiement
+vue détaillée
+résumé de la vue détaillée après choix des options
