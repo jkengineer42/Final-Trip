@@ -1,10 +1,18 @@
-Pour le bien du projet, tous les comptes déjà existants dans le fichier data_user.json ont le même mot de passe qui est : "1234", les mots de passes dans le .json sont chiffré pour sécuriser les informations des utilisateurs.
+# Informations sur le Projet
 
-Les 2 voyages qui fonctionne pour l'instant avec la vue détaillée sont :        
-1 • Expédition polaire
-2 • Plongée en cage
+Pour le bien du projet, tous les comptes déjà existants dans le fichier `data_user.json` ont le même mot de passe qui est : **"1234"**. Les mots de passe dans le fichier `.json` sont chiffrés pour sécuriser les informations des utilisateurs.
 
-Ce qu'on a pa réussi à implementer : 
-Page de paiement
-vue détaillée
-résumé de la vue détaillée après choix des options
+## Voyages avec Vue Détaillée Fonctionnelle
+
+Les 2 voyages qui fonctionnent pour l'instant avec la vue détaillée sont :
+
+1. **Expédition polaire**
+2. **Plongée en cage**
+
+## Ce qui n'a pas été implémenté
+
+Voici ce qui n'a pas encore été implémenté :
+
+- **Page de paiement**
+- **Vue détaillée**
+- **Résumé de la vue détaillée après le choix des options**
