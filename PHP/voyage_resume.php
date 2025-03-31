@@ -35,13 +35,13 @@ if (isset($_POST['confirm_booking'])) {
     <link rel="stylesheet" href="/Final-Trip-main/css/voyage_resume.css">
 </head>
 <body>
-<header><?php include('footer.php'); ?></header>
+<header><?php include('header.php'); ?></header>
     <div class="trip-summary">
         <?php if (isset($bookingConfirmed)): ?>
             <div class="confirmation-message">
                 <h2>Votre voyage personnalisé a été enregistré !</h2>
                 <p>Un conseiller vous contactera prochainement pour finaliser votre réservation.</p>
-                <a href="index.php" class="primary-button">Retour à l'accueil</a>
+                <a href="Accueil.php" class="primary-button">Retour à l'accueil</a>
             </div>
         <?php else: ?>
             <header class="summary-header">
@@ -101,7 +101,7 @@ if (isset($_POST['confirm_booking'])) {
             
             <div class="summary-actions">
                 <form method="post" action="" class="confirmation-form">
-                    <a href="detailed_trip_view.php?id=<?php echo htmlspecialchars($personalizedTrip['tripId']); ?>" class="secondary-button">
+                    <a href="voyage_detail.php?id=<?php echo htmlspecialchars($personalizedTrip['tripId']); ?>" class="secondary-button">
                         Modifier les options
                     </a>
                     <button type="submit" name="confirm_booking" class="primary-button">
