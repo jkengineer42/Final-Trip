@@ -29,31 +29,52 @@ if (isset($_POST['submit_personalization'])) {
 
     // Parcourt chaque étape pour obtenir les options sélectionnées
     foreach ($_POST['etape_ids'] as $i => $etapeId) {
+        // Pour l'hébergement
+        $hebergementId = $_POST["hebergement_$etapeId"];
+        $hebergementName = $_POST["hebergement_{$etapeId}_name_{$hebergementId}"];
+        $hebergementPrice = $_POST["hebergement_{$etapeId}_price_{$hebergementId}"];
+        
+        // Pour la restauration
+        $restaurationId = $_POST["restauration_$etapeId"];
+        $restaurationName = $_POST["restauration_{$etapeId}_name_{$restaurationId}"];
+        $restaurationPrice = $_POST["restauration_{$etapeId}_price_{$restaurationId}"];
+        
+        // Pour les activités
+        $activitesId = $_POST["activites_$etapeId"];
+        $activitesName = $_POST["activites_{$etapeId}_name_{$activitesId}"];
+        $activitesPrice = $_POST["activites_{$etapeId}_price_{$activitesId}"];
+        $participants = isset($_POST["participants_$etapeId"]) ? $_POST["participants_$etapeId"] : 1;
+        
+        // Pour le transport
+        $transportId = $_POST["transport_$etapeId"];
+        $transportName = $_POST["transport_{$etapeId}_name_{$transportId}"];
+        $transportPrice = $_POST["transport_{$etapeId}_price_{$transportId}"];
+        
         $stage = [
             'id' => $etapeId,
             'title' => $_POST['etape_titles'][$i],
             'day' => $_POST['etape_days'][$i],
             'options' => [
                 'hebergement' => [
-                    'id' => $_POST["hebergement_$etapeId"],
-                    'nom' => $_POST["hebergement_{$etapeId}_name"],
-                    'prix' => $_POST["hebergement_{$etapeId}_price"]
+                    'id' => $hebergementId,
+                    'nom' => $hebergementName,
+                    'prix' => $hebergementPrice
                 ],
                 'restauration' => [
-                    'id' => $_POST["restauration_$etapeId"],
-                    'nom' => $_POST["restauration_{$etapeId}_name"],
-                    'prix' => $_POST["restauration_{$etapeId}_price"]
+                    'id' => $restaurationId,
+                    'nom' => $restaurationName,
+                    'prix' => $restaurationPrice
                 ],
                 'activites' => [
-                    'id' => $_POST["activites_$etapeId"],
-                    'nom' => $_POST["activites_{$etapeId}_name"],
-                    'prix' => $_POST["activites_{$etapeId}_price"],
-                    'participants' => $_POST["participants_$etapeId"]
+                    'id' => $activitesId,
+                    'nom' => $activitesName,
+                    'prix' => $activitesPrice,
+                    'participants' => $participants
                 ],
                 'transport' => [
-                    'id' => $_POST["transport_$etapeId"],
-                    'nom' => $_POST["transport_{$etapeId}_name"],
-                    'prix' => $_POST["transport_{$etapeId}_price"]
+                    'id' => $transportId,
+                    'nom' => $transportName,
+                    'prix' => $transportPrice
                 ]
             ]
         ];
@@ -146,6 +167,9 @@ if (!$trip) {
                                                 value="<?php echo $option['id']; ?>"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
+                                            <!-- Champs cachés pour stocker nom et prix -->
+                                            <input type="hidden" name="hebergement_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
+                                            <input type="hidden" name="hebergement_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
                                             <label for="hebergement-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
                                                 <?php echo htmlspecialchars($option['nom']); ?> 
                                                 <?php if ($option['prix'] !== "inclus"): ?>
@@ -170,6 +194,9 @@ if (!$trip) {
                                                 value="<?php echo $option['id']; ?>"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
+                                            <!-- Champs cachés pour stocker nom et prix -->
+                                            <input type="hidden" name="restauration_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
+                                            <input type="hidden" name="restauration_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
                                             <label for="restauration-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
                                                 <?php echo htmlspecialchars($option['nom']); ?> 
                                                 <?php if ($option['prix'] !== "inclus"): ?>
@@ -194,6 +221,9 @@ if (!$trip) {
                                                 value="<?php echo $option['id']; ?>"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
+                                            <!-- Champs cachés pour stocker nom et prix -->
+                                            <input type="hidden" name="activites_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
+                                            <input type="hidden" name="activites_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
                                             <label for="activites-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
                                                 <?php echo htmlspecialchars($option['nom']); ?> 
                                                 <?php if ($option['prix'] !== "inclus"): ?>
@@ -202,6 +232,27 @@ if (!$trip) {
                                             </label>
                                         </div>
                                     <?php endforeach; ?>
+                                    
+                                    <!-- Ajout du sélecteur de participants pour les activités -->
+                                    <?php 
+                                    // Détermine le nombre maximum de participants pour l'activité par défaut
+                                    $defaultOption = null;
+                                    foreach ($etape['options']['activites'] as $option) {
+                                        if ($option['par_defaut']) {
+                                            $defaultOption = $option;
+                                            break;
+                                        }
+                                    }
+                                    $maxParticipants = $defaultOption ? $defaultOption['max_personnes'] : 10;
+                                    ?>
+                                    <div class="participant-selector">
+                                        <label for="participants_<?php echo $etape['id']; ?>">Nombre de participants :</label>
+                                        <select name="participants_<?php echo $etape['id']; ?>" id="participants_<?php echo $etape['id']; ?>">
+                                            <?php for ($i = 1; $i <= $maxParticipants; $i++): ?>
+                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                            <?php endfor; ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             
@@ -218,6 +269,9 @@ if (!$trip) {
                                                 value="<?php echo $option['id']; ?>"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
+                                            <!-- Champs cachés pour stocker nom et prix -->
+                                            <input type="hidden" name="transport_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
+                                            <input type="hidden" name="transport_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
                                             <label for="transport-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
                                                 <?php echo htmlspecialchars($option['nom']); ?> 
                                                 <?php if ($option['prix'] !== "inclus"): ?>
