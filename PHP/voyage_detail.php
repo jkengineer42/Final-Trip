@@ -70,7 +70,7 @@ if (isset($_POST['submit_personalization'])) {
 }
 
 // Charge les données des voyages depuis le fichier JSON
-$jsonData = file_get_contents(../data/voyages.json');
+$jsonData = file_get_contents('../data/voyages.json');
 $data = json_decode($jsonData, true);
 
 // Trouve le voyage demandé
