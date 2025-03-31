@@ -7,8 +7,25 @@ if (!isset($_SESSION['user_email'])) {
     exit();
 }
 
-// Lire le fichier JSON existant
+// Vérifier si l'utilisateur est un administrateur
 $jsonFile = '../data/data_user.json';
+$jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+$userEmail = $_SESSION['user_email'];
+$isAdmin = false;
+
+foreach ($jsonData as $user) {
+    if ($user['email'] === $userEmail && isset($user['is_admin']) && $user['is_admin']) {
+        $isAdmin = true;
+        break;
+    }
+}
+
+if (!$isAdmin) {
+    header("Location: Accueil.php"); // Rediriger vers la page d'accueil ou une page d'erreur si l'utilisateur n'est pas administrateur
+    exit();
+}
+
+// Lire le fichier JSON existant
 $jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
 
 // Nombre d'utilisateurs par page
@@ -78,7 +95,16 @@ $paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
     <link rel="stylesheet" href="../Css/Admin.css">
 </head>
 <body>
-     <?php include('header.php'); ?>
+    <header>
+        <a href="Accueil.php" class="logo">FINAL TRIP</a>
+        <div class="right">
+            <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
+            <a href="Destination.php" class="head1">Destination</a>
+            <button class="encadré">Contact</button>
+            <a href="Profil.php"><img src="../assets/icon/User.png"></a>
+            <a href="#"><img src="../assets/icon/Shopping cart.png"></a>
+        </div>
+    </header>
 
     <hr class="hr1">
 
@@ -170,6 +196,20 @@ $paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
         </div>
     </main>
 
-     <?php include('footer.php'); ?>
+    <footer>
+        <h2>Le dernier voyage que vous rêvez d’avoir</h2>
+        <div class="contact">
+            <p><strong>Adresse :</strong> <a href="#">34, Boulevard Haussmann, Paris 75009</a></p>
+            <p><strong>Numéro :</strong> <a href="tel:0749685456">07 49 68 54 56</a></p>
+            <p><strong>Email :</strong> <a href="mailto:contact@final-trip.com">contact@final-trip.com</a></p>
+        </div>
+        <p class="copyright">© 2025 Final Trip, ALL RIGHTS RESERVED.</p>
+        <hr class="hr2">
+        <div class="links">
+            <a href="#">Mentions légales</a>
+            <a href="#">Politique de confidentialité</a>
+            <a href="#">Conditions d’utilisation</a>
+        </div>
+    </footer>
 </body>
 </html>
