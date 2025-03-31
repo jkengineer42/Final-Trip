@@ -9,7 +9,7 @@ Les 2 voyages qui fonctionnent pour l'instant avec la vue détaillée sont :
 1. **Expédition polaire**
 2. **Plongée en cage**
 
-## Ce qui n'a pas été implémenté
+## Ce qui n'a pas pu être implémenté à temps
 
 Voici ce qui n'a pas encore été implémenté :
 
