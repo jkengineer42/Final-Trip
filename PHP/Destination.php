@@ -9,7 +9,7 @@ if (isset($_SESSION['user_email'])) {
 }
 
 // Charger le fichier JSON des voyages
-$json = file_get_contents('/Applications/MAMP/htdocs/Final-Trip-main/data/voyages.json');
+$json = file_get_contents('.../data/voyages.json');
 if ($json === false) {
     echo "Erreur d'ouverture du fichier JSON. Détail de l'erreur : " . json_last_error_msg();
     exit;
