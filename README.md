@@ -4,10 +4,11 @@ Pour le bien du projet, tous les comptes déjà existants dans le fichier `data_
 
 ## Voyages avec Vue Détaillée Fonctionnelle
 
-Les 2 voyages qui fonctionnent pour l'instant avec la vue détaillée sont :
+Les 3 voyages qui fonctionnent pour l'instant avec la vue détaillée sont :
 
 1. **Expédition polaire**
 2. **Plongée en cage**
+3. **Randonnée à vélo**
 
 ## Ce qui n'a pas pu être implémenté à temps
 
