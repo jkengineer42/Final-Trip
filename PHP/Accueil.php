@@ -34,8 +34,8 @@ if (isset($_SESSION['user_email'])) {
                 </h1>
                 <div class="search-bar">
                 	<form action="Destination.php" method="get">
-                    	<input type="text" name="search" placeholder="Saisissez une destination, un voyage qui vous donne envie..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
-           			    <button type="submit">Rechercher</button>
+                    	<input type="text" class="barre" name="search" placeholder="   Saisissez une destination" value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+           			    <button type="submit" class="recherche">Rechercher</button>
                     </form>
                 </div>
             </div>

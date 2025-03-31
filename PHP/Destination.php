@@ -77,10 +77,10 @@ $voyagesToShow = array_slice($filteredVoyages, $startIndex, $tripsPerPage);
 
     <main>
         <section class="hero">
-            <h1>Découvrez les voyages les plus sensationnels du moment</h1>
+            <h1>Découvrez les voyages les plus sensationnels du moment</h1><br><br>
             <div class="search-bar">
             	<form action="Destination.php" method="get">
-            		<input type="text" name="search" placeholder="Saisissez une destination, un voyage qui vous donne envie..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
+            		<input type="text" name="search" placeholder="Saisissez une destination..." value="<?php echo isset($_GET['search']) ? $_GET['search'] : ''; ?>">
         		</form>
     		</div>
         </section>
