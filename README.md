@@ -1,6 +1,6 @@
 
 <h1 align="center"> 
-🗺️Final Trip🗺️
+🏖️ Final Trip 🏖️
 </h1>
 </p>
 <p align="center"> 
