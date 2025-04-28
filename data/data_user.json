@@ -1,0 +1,66 @@
+[
+    {
+        "nom": "Grignon",
+        "prenom": "Romuald",
+        "email": "romuald.grignon@gmail.com",
+        "birthdate": "2004-08-02",
+        "password": "$2y$10$Xpy304qTu1EJV3BalboFkuH3rpDr9.RVhBpFBPz\/zGSwpBPtyJGRC",
+        "is_admin": true
+    },
+    {
+        "nom": "Le Breton",
+        "prenom": "Caryl",
+        "email": "caryl.lebreton@gmail.com",
+        "birthdate": "2002-11-04",
+        "password": "$2y$10$1ZD.Fwsj\/7DgmrNzrqe2h.HoI33sbigcz0XwfPVEGqrUXy.f5p97C",
+        "is_admin": true
+    },
+    {
+        "nom": "Barbedor",
+        "prenom": "Erwan",
+        "email": "erwan.barbedor@gmail.com",
+        "birthdate": "2012-03-19",
+        "password": "$2y$10$aatVUOlt2MS5YmzmUeSeGOjyxO2FJ2VmvSo5tB7Qam5gBbKrd7FC.",
+        "is_admin": false
+    },
+    {
+        "nom": "Meo",
+        "prenom": "Dimi",
+        "email": "meo.dimi@gmail.com",
+        "birthdate": "1987-05-14",
+        "password": "$2y$10$X37nAUPQThBO2tI6OltWluJS9T5CWKphCCDbU1.jA4CPaVmMprZvC",
+        "is_admin": false
+    },
+    {
+        "nom": "Scofield",
+        "prenom": "Michael",
+        "email": "michael.scofield@gmail.com",
+        "birthdate": "1922-08-12",
+        "password": "$2y$10$.kpmU8JShJAKBsBTV8icMOcFCnGfS6.VrrO4GYfIE2I1FNMjyEVeK",
+        "is_admin": false
+    },
+    {
+        "nom": "Macron ",
+        "prenom": "Emmanuel ",
+        "email": "emmanuel.macron@gmail.com",
+        "birthdate": "2001-01-01",
+        "password": "$2y$10$a8\/xw8jvCjsj4Q\/QuMTnFOWulGP9IQUdDque\/Zc7jX\/Z6y8L5uv4G",
+        "is_admin": false
+    },
+    {
+        "nom": "Mahrez",
+        "prenom": "Riyad ",
+        "email": "riyad.mahrez@gmail.com",
+        "birthdate": "1991-02-21",
+        "password": "$2y$10$F3RXdAgH\/MNRxmBJYRgnvuUQqTeR6Cuh3udQ\/OtUDqVpK6EIlmHda",
+        "is_admin": true
+    },
+    {
+        "nom": "Dubois",
+        "prenom": "Fran\u00e7ois",
+        "email": "francois.dubois@gmail.com",
+        "birthdate": "1954-05-31",
+        "password": "$2y$10$dkYClGUjb9CQ3hTR7Rh8GebAqygoXWHYQ\/rCzx3oHjS.fqMRi\/90W",
+        "is_admin": false
+    }
+]

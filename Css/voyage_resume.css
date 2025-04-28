@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&display=swap');
+@import url(root.css);
+
+/* =========================================
+   1. HEADER
+   ========================================= */
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 40px; 
+}
+
+.logo {
+    color: var(--yellow);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Newsreader;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center; 
+    gap: 40px; 
+    margin-left: auto; 
+    margin-top: 5px;
+}
+
+.head1 {
+    color: var(--white);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "DM Sans";
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%; 
+    text-decoration: none;
+}
+
+.encadré {
+    display: inline-flex;
+    padding: 15px 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background: var(--white);
+    border: none; 
+    cursor: pointer; 
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.img1 .img2{
+    width: 30px; 
+    height: auto;
+}
+
+.hr1 {
+    width: 90%; 
+    margin: 20px auto; 
+    border: none;
+    height: 2px; 
+    background-color: var(--white); 
+}
+
+/* =========================================
+   2. MAIN
+   ========================================= */
+
+body {
+    background-color: var(--darker-grey);
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.trip-summary {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    color: var(--white);
+}
+
+.summary-header {
+    margin-bottom: 30px;
+}
+
+.summary-header h1 {
+    font-size: 2rem;
+    color: var(--yellow);
+    margin-bottom: 20px;
+}
+
+.trip-basic-info {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px var(--black);
+}
+
+.trip-basic-info h2 {
+    font-size: 1.8rem;
+    color: var(--yellow);
+    margin-bottom: 15px;
+}
+
+.trip-basic-info p {
+    margin: 8px 0;
+    font-size: 1.1rem;
+    color: var(--white);
+}
+
+.stages-summary h3 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    color: var(--yellow);
+}
+
+.summary-stage-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--black);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.summary-stage-card h4 {
+    font-size: 1.3rem;
+    color: var(--yellow);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--grey);
+    padding-bottom: 10px;
+}
+
+.summary-stage-card p {
+    color: var(--white);
+    line-height: 1.6;
+}
+
+.selected-options {
+    margin-top: 15px;
+}
+
+.selected-options h5 {
+    color: var(--yellow);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.selected-options ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.selected-options li {
+    color: var(--white);
+    margin-bottom: 5px;
+    padding-left: 15px;
+    position: relative;
+}
+
+.selected-options li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+}
+
+.total-summary {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 2px 10px var(--black);
+}
+
+.total-summary h3 {
+    font-size: 1.6rem;
+    color: var(--yellow);
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--grey);
+    padding-bottom: 10px;
+}
+
+.price-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    color: var(--white);
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 1px solid var(--grey);
+    color: var(--yellow);
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.primary-button, .secondary-button {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.primary-button {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: none;
+}
+
+.primary-button:hover {
+    background-color: var(--yellow2);
+}
+
+.secondary-button {
+    background-color: var(--light-grey);
+    color: var(--black_f);
+    border: none;
+}
+
+.secondary-button:hover {
+    background-color: #c4c4c4;
+}
+
+@media (max-width: 768px) {
+    .trip-summary {
+        padding: 15px;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .primary-button, .secondary-button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   3. FOOTER
+   ========================================= */
+
+footer {
+    background-color: var(--yellow2); 
+    color: var(--black_f);
+    text-align: center;
+    padding: 20px 0;
+    font-family: Arial, sans-serif;
+    position: relative;
+    width: 100%;
+    padding: 60px 0 40px;
+    transition: background-color 0.3s ease;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: var(--black_f);
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}

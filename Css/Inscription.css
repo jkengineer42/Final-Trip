@@ -1,0 +1,195 @@
+@import url(root.css);
+
+body {
+    background-color: var(--grey);
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+.logo {
+    color: var(--yellow);
+    font-family: Newsreader;
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+}
+
+.head1 {
+    color: var(--white);
+    font-family: "DM Sans";
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.encadré {
+    padding: 15px 50px;
+    border-radius: 200px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.error_message{
+    color: var(--yellow);
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+.profile-container {
+    text-align: center;
+    padding: 40px;
+}
+
+.user-icon {
+    width: 100px;
+    margin-bottom: 60px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form-group {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.checkbox-label {
+    align-items: center;
+    display: inline-block;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-left: 10px; /* Ajustez la marge selon vos besoins */
+}
+
+
+label {
+    color: var(--white);
+    font-size: 1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+.button1 {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.button1:hover {
+    background-color: var(--yellow);
+}
+
+.google-signup {
+    color: var(--white);
+    margin-top: 15px;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    text-decoration: none;
+}
+
+.google-signup img {
+    width: 60px;
+    vertical-align: middle;
+    margin-left: -7px;
+}
+
+
+footer {
+    background-color: var(--yellow2);
+    color: var(--black_f);
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 130px;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: var(--black_f);
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
