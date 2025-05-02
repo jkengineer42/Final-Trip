@@ -253,3 +253,9 @@ footer h2 {
     background-color: var(--yellow);
     color: var(--black);
 }
+
+.processing {
+opacity: 0.5;
+cursor :not-allowed
+
+}
