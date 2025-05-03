@@ -1,4 +1,6 @@
+
 :root {
+    /* Couleurs principales */
     --grey: #373737;
     --darker-grey: #2B2B2B;
     --yellow: #FFCF30;
@@ -8,6 +10,25 @@
     --black: rgba(0, 0, 0, 0.5);
     --black_f: #000000;
     --light-grey: #D9D9D9;
-    --card-bg: #373737;
     --input-bg: #D9D9D9;
+    --disabled-bg: #f1f1f1;
+    --disabled-text: #666666;
+    
+    /* Couleurs de notifications */
+    --red-admin: #f44336;
+    --success-bg: #dff0d8;
+    --success-text: #3c763d;
+    --error-bg: #f2dede;
+    --error-text: #a94442;
+    
+    /* Couleurs d'action */
+    --save-button-bg: #4CAF50;
+    --save-button-text: #ffffff;
+    --cancel-button-bg: #f44336;
+    --cancel-button-text: #ffffff;
+    
+    /* Couleurs du formulaire */
+    --form-field-bg: #f1f1f1;
+    --form-field-text: #666666;
+    --editing-border: #FFCF30;
 }

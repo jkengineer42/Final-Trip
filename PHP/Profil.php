@@ -113,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="profile-container">
             <img src="../assets/icon/User2.png" alt="User Icon" class="user-icon">
 
-            <form action="Profil.php?edit=<?= urlencode($editEmail) ?>" method="POST">
+            <form action="Profil.php?edit=<?= urlencode($editEmail) ?>" method="POST" id="profileForm">
                 <?php if (isset($success)): ?>
                     <div class="success"><?= $success ?></div>
                 <?php endif; ?>
@@ -123,32 +123,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 <?php if ($isAdmin): ?>
                 <div class="admin-link">
-                    <a href="Admin.php" class="button2" class="admin">  Accéder à la page Admin</a>
+                    <a href="Admin.php" class="button2">Accéder à la page Admin</a>
                 </div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <div class="input-container">
                         <label for="nom">Nom</label>
-                        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" required>
+                        <!-- Modifié : Ajout de la classe form-field pour être reconnu par le JS -->
+                        <input type="text" id="nom" name="nom" value="<?= htmlspecialchars($user['nom']) ?>" class="form-field disabled" readonly required>
+                        
+                        <!-- Modifié : Remplacement de l'image par un bouton -->
+                        <button type="button" class="edit-btn" data-field="nom">Modifier</button>
+                        
+                        <!-- Point 3 : Ajout des boutons Valider/Annuler -->
+                        <div class="action-buttons" style="display: none;">
+                            <button type="button" class="save-btn" data-field="nom">Valider</button>
+                            <button type="button" class="cancel-btn" data-field="nom">Annuler</button>
+                        </div>
                     </div>
 
                     <div class="input-container">
                         <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" required>
+                        <input type="text" id="prenom" name="prenom" value="<?= htmlspecialchars($user['prenom']) ?>" class="form-field disabled" readonly required>
+                        <button type="button" class="edit-btn" data-field="prenom">Modifier</button>
+                        <div class="action-buttons" style="display: none;">
+                            <button type="button" class="save-btn" data-field="prenom">Valider</button>
+                            <button type="button" class="cancel-btn" data-field="prenom">Annuler</button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-container">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" disabled>
+                        <input type="email" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" class="form-field disabled" disabled>
                     </div>
 
                     <?php if ($_SESSION['user_email'] === $editEmail): ?>
                         <div class="input-container">
                             <label for="password">Mot de passe</label>
-                            <input type="password" id="password" name="password" placeholder="Entrez votre nouveau mot de passe">
+                            <input type="password" id="password" name="password" placeholder="Entrez votre nouveau mot de passe" class="form-field disabled" readonly>
+                            <button type="button" class="edit-btn" data-field="password">Modifier</button>
+                            <div class="action-buttons" style="display: none;">
+                                <button type="button" class="save-btn" data-field="password">Valider</button>
+                                <button type="button" class="cancel-btn" data-field="password">Annuler</button>
+                            </div>
                         </div>
                     <?php endif; ?>
                 </div>
@@ -156,16 +176,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <div class="input-container">
                         <label for="birthdate">Date de naissance</label>
-                        <input type="date" id="birthdate" name="birthdate" value="<?= date('Y-m-d', strtotime($user['birthdate'])) ?>">
+                        <input type="date" id="birthdate" name="birthdate" value="<?= date('Y-m-d', strtotime($user['birthdate'])) ?>" class="form-field disabled" readonly>
+                        <button type="button" class="edit-btn" data-field="birthdate">Modifier</button>
+                        <div class="action-buttons" style="display: none;">
+                            <button type="button" class="save-btn" data-field="birthdate">Valider</button>
+                            <button type="button" class="cancel-btn" data-field="birthdate">Annuler</button>
+                        </div>
                     </div>
                 </div>
 
-                <button type="submit" class="button1">Sauvegarder les modifications</button>
+                <!-- Modifié : Bouton de soumission caché par défaut -->
+                <button type="submit" class="button1" id="submitBtn" style="display: none;">Sauvegarder les modifications</button>
                 <a href="logout.php" class="button2">Déconnexion</a>
             </form>
         </div>
     </main>
 
     <footer><?php include('footer.php'); ?></footer>
+    
+    <!-- Modifié : Vérification du chemin du fichier JavaScript -->
+    <script src="../Javascript/profil.js"></script>
 </body>
 </html>

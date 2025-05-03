@@ -211,5 +211,6 @@ $paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
             <a href="#">Conditions d’utilisation</a>
         </div>
     </footer>
+    <script src="../Javascript/admin.js"></script>
 </body>
 </html>
