@@ -142,8 +142,8 @@ input {
 
 .admin-link {
     position: absolute;
-    right: 200px; /* Ajustez selon vos besoins */
-    top: 200px; /* Ajustez selon vos besoins */
+    right: 200px;
+    top: 200px;
 }
 
 
@@ -203,4 +203,163 @@ footer h2 {
 
 .links a:hover {
     text-decoration: underline;
+}
+
+/* Rajout pour modifier le profil Javascript */
+
+#password-confirm-container {
+    margin-top: 10px;
+    width: 100%;
+    display : border-box; 
+}
+
+#password-confirm-container label {
+    display: block;
+    color: var(--white);
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+#password-confirm {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--white);
+    box-sizing: border-box;
+}
+
+/*Message d'erreur de mot de passe */
+#password-error {
+    color: var(--red-admin);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: border-box;
+}
+
+
+
+/* Structure en grille pour les conteneurs d'input */
+.input-container {
+    display: none;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto auto;
+    gap: 8px;
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Style des labels - ajustement pour grid */
+label {
+    grid-column: 1 / -1;
+    text-align: left;
+}
+
+/* Style des champs avec classe form-field */
+.form-field {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--form-field-bg);
+    color: var(--form-field-text);
+    grid-column: 1;
+    grid-row: 2;
+    box-sizing: border-box;
+}
+
+/* Style des champs en mode édition */
+.form-field.editing {
+    background-color: var(--white);
+    color: var(--black_f);
+    border: 2px solid var(--editing-border);
+}
+
+/* Style du bouton "Modifier" */
+.edit-btn {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+}
+
+
+.action-buttons {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.save-btn, .cancel-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.save-btn {
+    background-color: var(--save-button-bg);
+    color: var(--save-button-text);
+}
+
+.cancel-btn {
+    background-color: var(--cancel-button-bg);
+    color: var(--cancel-button-text);
+}
+
+
+.success-message {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Confirmation de mot de passe */
+.password-confirm-group {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 20px auto;
+}
+
+/* Adaptation téléphone */
+@media screen and (max-width: 768px) {
+    .input-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .edit-btn {
+        grid-column: 1;
+        grid-row: 3;
+        justify-self: start;
+    }
+    
+    .action-buttons {
+        grid-row: 4;
+    }
+    
+    .admin-link {
+        position: static;
+        margin: 20px auto;
+    }
 }
