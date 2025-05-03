@@ -1,5 +1,3 @@
-// form-validation.js - Script pour valider les formulaires côté client
-
 // Fonction qui s'exécute quand le document est complètement chargé
 document.addEventListener('DOMContentLoaded', function() {
     // On récupère le formulaire
@@ -16,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Pour chaque champ de mot de passe, on ajoute l'icône pour afficher/masquer
     champsMdp.forEach(function(champ) {
-        // Création de l'icône "œil"
+        // Création de l'icône "œil" pour le mot de passe
         const iconeOeil = document.createElement('img');
-        // Changement: utilisation d'une icône plus simple et disponible
-        iconeOeil.src = '../assets/icon/clic.png'; // On utilise une icône que vous avez déjà
+  
+        iconeOeil.src = '../assets/icon/clic.png'; // Icone à changer
         iconeOeil.alt = 'Afficher/Masquer le mot de passe';
         iconeOeil.className = 'icone-oeil';
         iconeOeil.style.cursor = 'pointer';
@@ -29,11 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
         iconeOeil.style.top = '50%';
         iconeOeil.style.transform = 'translateY(-50%)';
         
-        // On place le champ dans un conteneur pour positionner l'icône
+
         const conteneur = champ.parentElement;
         conteneur.style.position = 'relative';
         
-        // On ajoute l'icône après le champ
+
         conteneur.appendChild(iconeOeil);
         
         // Gestion du clic sur l'icône
@@ -41,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // On change le type du champ entre "password" et "text"
             if (champ.type === 'password') {
                 champ.type = 'text';
-                // Même icône pour les deux états pour simplifier
-                iconeOeil.style.opacity = '0.5'; // On change juste l'opacité pour indiquer l'état
+
+                iconeOeil.style.opacity = '0.5'; 
             } else {
                 champ.type = 'password';
                 iconeOeil.style.opacity = '1'; // Retour à l'opacité normale
