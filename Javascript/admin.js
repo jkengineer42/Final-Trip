@@ -46,9 +46,3 @@ deleteButtons.forEach(function(button) {
 }
 
 document.addEventListener('DOMContentLoaded', init);
-
-
-
-
-
-
