@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Création de l'icône "œil" pour le mot de passe
         const iconeOeil = document.createElement('img');
   
-        iconeOeil.src = '../assets/icon/clic.png'; // Icone à changer
+        iconeOeil.src = '../assets/icon/oeil.png'; // Icone à changer
         iconeOeil.alt = 'Afficher/Masquer le mot de passe';
         iconeOeil.className = 'icone-oeil';
         iconeOeil.style.cursor = 'pointer';
