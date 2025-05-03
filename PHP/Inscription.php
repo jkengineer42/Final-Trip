@@ -85,7 +85,9 @@ if (isset($_SESSION['user_email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Inscription.css">
+    <script src="../Javascript/formulaire.js"></script>
 </head>
+
 <body>
      <?php include('header.php'); ?>
 
@@ -137,7 +139,7 @@ if (isset($_SESSION['user_email'])) {
                 <div class="form-group">
                     <div class="input-container">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" required maxlength="20">
                     </div>
                 </div>
 
