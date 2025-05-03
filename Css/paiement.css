@@ -1,0 +1,351 @@
+@import url('root.css');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
+
+body {
+    background-color: var(--grey);
+    color: var(--white);
+    margin: 0;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+}
+
+.logo {
+    color: var(--yellow);
+    font-family: Newsreader, serif;
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+}
+
+.head1 {
+    color: var(--white);
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.encadré {
+    padding: 15px 50px;
+    border-radius: 200px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--black_f);
+}
+.right img {
+    width: 30px;
+    height: auto;
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+
+main {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding: 40px 20px;
+}
+
+.payment-container {
+    background-color: var(--darker-grey);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+
+.payment-container h1 {
+    color: var(--yellow);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.trip-summary {
+    background-color: var(--grey);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: left;
+    border: 1px solid var(--yellow2);
+}
+
+.trip-summary h2 {
+    color: var(--yellow);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--yellow2);
+    padding-bottom: 10px;
+}
+
+.trip-summary p {
+    margin: 10px 0;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+.trip-summary p strong {
+    color: var(--white2);
+    min-width: 100px; 
+    display: inline-block;
+}
+
+.total-price-display {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--grey);
+    font-size: 1.3em !important; 
+}
+
+.total-price-display strong {
+     color: var(--yellow) !important;
+     font-weight: bold;
+}
+
+
+.payment-form-container h2 {
+    color: var(--yellow);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    text-align: left;
+}
+
+#payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--white2);
+    font-size: 1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--grey);
+    background-color: var(--white);
+    color: var(--black_f);
+    font-size: 1em;
+    width: 100%;
+    box-sizing: border-box; 
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--yellow);
+    box-shadow: 0 0 5px var(--yellow);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end; 
+}
+
+.expiry-group {
+    flex: 2; 
+}
+
+.cvv-group {
+    flex: 1; 
+}
+
+.expiry-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.expiry-inputs input {
+    text-align: center;
+    
+     flex-grow: 1; 
+     min-width: 60px; 
+}
+.expiry-inputs span {
+    font-size: 1.5em;
+    color: var(--white);
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.primary-button, .secondary-button {
+    padding: 12px 25px;
+    border-radius: 200px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: none;
+}
+
+.primary-button {
+    background-color: var(--yellow);
+    color: var(--black_f);
+}
+
+.primary-button:hover {
+    background-color: var(--yellow2);
+    box-shadow: 0 4px 8px rgba(255, 207, 48, 0.4);
+}
+
+.secondary-button {
+    background-color: var(--white);
+    color: var(--black_f);
+     border: 1px solid var(--grey); 
+}
+
+.secondary-button:hover {
+    background-color: #c4c4c4; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.info-text {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: var(--white);
+    opacity: 0.8;
+}
+
+
+footer {
+
+    background-color: var(--yellow2);
+    color: var(--black_f);
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 50px; 
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.contact p {
+    margin: 5px 0;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: var(--black_f);
+    border: none;
+    margin: 20px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 14px;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+
+
+@media (max-width: 768px) {
+    .payment-container {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 20px; 
+        align-items: stretch;
+    }
+
+     .expiry-group, .cvv-group {
+        flex: none; 
+        width: 100%;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse; 
+        gap: 15px;
+    }
+
+     .primary-button, .secondary-button {
+        width: 100%; 
+        text-align: center;
+    }
+}
