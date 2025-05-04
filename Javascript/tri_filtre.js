@@ -1,175 +1,138 @@
-/**
- * ../js/filtering_sorting.js
- * Handles client-side filtering and sorting for the trip list on Destination.php
- */
 document.addEventListener('DOMContentLoaded', () => {
     // --- Element Selection ---
     const sortSelect = document.getElementById('sort-select');
     const tripListContainer = document.getElementById('trip-list-container');
-    const filterControls = document.querySelectorAll('.filter-control'); // Includes inputs, selects, checkboxes
+    // Select all filter controls (checkboxes, selects, number inputs)
+    const filterControls = document.querySelectorAll('.filter-control');
+    // Get specific filter inputs by ID
     const filterPaysSelect = document.getElementById('filter-pays');
     const filterDureeMaxInput = document.getElementById('filter-duree-max');
     const filterPrixMaxInput = document.getElementById('filter-prix-max');
-    const filterGroups = document.querySelectorAll('.filter-group'); // Specifically <ul> elements holding checkboxes
+    // Get checkbox groups
+    const filterGroups = document.querySelectorAll('.filter-group');
 
     const storageKeySort = 'finalTripSortPreference';
-    // const storageKeyFilters = 'finalTripFilterPreference'; // Uncomment if saving filters later
+    const storageKeyFilters = 'finalTripFilterPreference'; // For potentially saving filters
 
     // --- Basic check if elements exist ---
     if (!sortSelect || !tripListContainer || filterControls.length === 0) {
-        console.warn("Warning: Essential sorting/filtering elements might be missing on this page.");
-        // Don't return completely, maybe only sorting or filters are present
+        console.error("Essential sorting/filtering elements not found!");
+        return;
     }
 
     // --- Helper Functions ---
 
     /**
-     * Safely gets and parses the SORT value from a data attribute.
-     * @param {Element} element - The trip card <article> element.
-     * @param {string} key - The data key suffix (e.g., 'price', 'date').
-     * @returns {number|string|Date} - The parsed value for comparison.
+     * Safely gets and parses SORT value from data attribute.
      */
     function getSortValue(element, key) {
-        // Use || '' to provide a default empty string if dataset[key] is undefined
-        const value = element.dataset[key] || '';
-
+        const value = element.dataset[key];
+        if (!value) { // Handle missing data attributes gracefully
+             if (key === 'price' || key === 'duration' || key === 'stages') return 0;
+             if (key === 'date') return '9999-12-31';
+             return '';
+        }
         if (key === 'price' || key === 'duration' || key === 'stages') {
             const num = parseFloat(value);
-            // Default to 0 or a very large number for descending sort if needed? 0 is safer.
             return isNaN(num) ? 0 : num;
         }
         if (key === 'date') {
-            // Treat missing/invalid dates as very far in the future for ascending sort
-            return value || '9999-12-31';
+            return value; // String comparison works for YYYY-MM-DD
         }
-        // Includes pays, climat, terrain etc. - compare as strings
         return value;
     }
 
     /**
-     * Gets the current state of all active filters from the form controls.
+     * Gets the current state of all active filters.
      * @returns {object} An object containing active filter values.
      */
     function getActiveFilters() {
         const activeFilters = {
-            // Get value from select, default to empty string if not found or no value
             pays: filterPaysSelect ? filterPaysSelect.value : '',
-            // Get value from number input, parse as int, default to null if empty/invalid
             dureeMax: filterDureeMaxInput ? (parseInt(filterDureeMaxInput.value, 10) || null) : null,
-            // Get value from number input, parse as float, default to null if empty/invalid
             prixMax: filterPrixMaxInput ? (parseFloat(filterPrixMaxInput.value) || null) : null,
+            // Initialize checkbox groups
         };
-
-        // Populate checkbox groups (climat, terrain, couchage, restrictions)
+        // Populate checkbox groups
         filterGroups.forEach(group => {
-            const key = group.dataset.filterKey; // Reads data-filter-key="climat", etc.
+            const key = group.dataset.filterKey;
             if (key) {
-                activeFilters[key] = []; // Initialize empty array
+                activeFilters[key] = []; // Initialize empty array for this group
                 group.querySelectorAll('.filter-checkbox:checked').forEach(checkbox => {
-                    // Add the value of each checked checkbox (ensure values are lowercase if needed)
-                    activeFilters[key].push(checkbox.value.toLowerCase());
+                    activeFilters[key].push(checkbox.value);
                 });
             }
         });
-
-        // Clean up null filters if they are 0 (user might type 0 for price/duration)
-        if (activeFilters.dureeMax === 0) activeFilters.dureeMax = null;
-        if (activeFilters.prixMax === 0) activeFilters.prixMax = null;
-
 
         return activeFilters;
     }
 
     /**
-     * Checks if a trip card element matches the currently active filters.
+     * Checks if a trip card matches the currently active filters.
      * @param {Element} cardElement - The trip card <article> element.
      * @param {object} filters - The object returned by getActiveFilters().
-     * @returns {boolean} - True if the card matches all active filters, false otherwise.
+     * @returns {boolean} - True if the card matches, false otherwise.
      */
     function cardMatchesFilters(cardElement, filters) {
-        const cardData = cardElement.dataset; // Access all data-* attributes
+        const cardData = cardElement.dataset;
 
-        // --- Check each filter ---
-
-        // 1. Pays (Select dropdown)
-        // If a country filter is set AND it doesn't match the card's country, return false.
+        // 1. Check Country (if filter selected)
         if (filters.pays && cardData.pays !== filters.pays) {
-            // console.log(`Card ${cardData.id} failed Pays: ${cardData.pays} !== ${filters.pays}`);
             return false;
         }
 
-        // 2. Durée Max (Number input)
-        // If a max duration is set AND the card's duration is greater, return false.
-        const cardDuration = parseFloat(cardData.duration) || 0; // Ensure numeric comparison
-        if (filters.dureeMax !== null && cardDuration > filters.dureeMax) {
-             // console.log(`Card ${cardData.id} failed Durée: ${cardDuration} > ${filters.dureeMax}`);
+        // 2. Check Max Duration (if filter set)
+        if (filters.dureeMax !== null && (parseFloat(cardData.duration) || 0) > filters.dureeMax) {
             return false;
         }
 
-        // 3. Prix Max (Number input)
-        // If a max price is set AND the card's price is greater, return false.
-        const cardPrice = parseFloat(cardData.price) || 0; // Ensure numeric comparison
-        if (filters.prixMax !== null && cardPrice > filters.prixMax) {
-            // console.log(`Card ${cardData.id} failed Prix: ${cardPrice} > ${filters.prixMax}`);
+        // 3. Check Max Price (if filter set)
+        if (filters.prixMax !== null && (parseFloat(cardData.price) || 0) > filters.prixMax) {
             return false;
         }
 
-        // 4. Checkbox Groups (Climat, Terrain, Couchage, Restrictions)
+        // 4. Check Checkbox Groups (Climat, Terrain, Couchage, Restrictions)
         for (const key in filters) {
-            // Is this key one of our checkbox filter groups? (Check if it's an Array in activeFilters)
-            // AND are there actually any checkboxes checked in this group?
+            // Check if it's one of our checkbox group keys AND if any checkboxes are checked for that group
             if (Array.isArray(filters[key]) && filters[key].length > 0) {
-                // Get the corresponding data from the card (e.g., data-climat, data-couchage)
-                // Split comma-separated values (like for couchage/restrictions) into an array. Trim whitespace.
-                const cardValues = (cardData[key] || '').split(',').map(item => item.trim().toLowerCase());
+                 // Card must have at least one of the selected values for this category
+                 const cardValues = (cardData[key] || '').split(','); // Get values from card's data-attribute
+                 const hasMatch = filters[key].some(filterValue => cardValues.includes(filterValue.toLowerCase())); // Use toLowerCase if values might differ in case
 
-                // Check if *at least one* of the filter's selected values exists in the card's values for this key.
-                const hasMatch = filters[key].some(filterValue => cardValues.includes(filterValue));
-
-                // If *none* of the required filter values are found on the card for this category, the card fails.
-                if (!hasMatch) {
-                    // console.log(`Card ${cardData.id} failed ${key}: Card has [${cardValues.join(',')}] but needed one of [${filters[key].join(',')}]`);
-                    return false;
-                }
+                 if (!hasMatch) {
+                    return false; // If no match found for this checked group, the card fails
+                 }
             }
         }
 
-        // If the card passed all the above checks, it's a match!
+        // If all checks passed
         return true;
     }
 
 
     /**
-     * Main function to filter visibility and then sort the visible trip cards.
+     * Updates the visibility and order of trip cards based on filters and sort.
      */
     function updateTripList() {
-        if (!tripListContainer) return; // Exit if container not found
-
         const activeFilters = getActiveFilters();
-        const currentSortValue = sortSelect ? sortSelect.value : 'default'; // Handle missing sort select
+        const currentSortValue = sortSelect.value;
         const [sortKey, sortDirection] = currentSortValue.split('-');
 
-        const allTripLinks = Array.from(tripListContainer.querySelectorAll('.trip-card-link')); // Get the parent <a> links
-        const visibleTripArticles = []; // Collect only the <article> elements that pass filters
+        const allTripLinks = Array.from(tripListContainer.querySelectorAll('.trip-card-link')); // Get the <a> elements
+        const visibleTripArticles = []; // Store only articles that pass filters
 
-        // --- Step 1: Filter ---
-        // Loop through each trip link to determine visibility based on filters
+        // Step 1: Filter - Set visibility and collect visible articles
         allTripLinks.forEach(link => {
-            const card = link.querySelector('.trip-card'); // Get the article inside the link
-            if (card) { // Ensure the card element exists
-                if (cardMatchesFilters(card, activeFilters)) {
-                    link.classList.remove('hidden'); // Show the link
-                    visibleTripArticles.push(card); // Add the ARTICLE to the sort list
-                } else {
-                    link.classList.add('hidden'); // Hide the link
-                }
+            const card = link.querySelector('.trip-card'); // Find the article inside the link
+            if (card && cardMatchesFilters(card, activeFilters)) {
+                link.classList.remove('hidden'); // Show the link (and its card)
+                visibleTripArticles.push(card); // Add the article element to the list for sorting
             } else {
-                link.classList.add('hidden'); // Hide link if card is missing somehow
+                link.classList.add('hidden'); // Hide the link (and its card)
             }
         });
 
-        // --- Step 2: Sort ---
-        // Sort only the array of ARTICLE elements that are visible
+         // Step 2: Sort - Sort only the *visible* articles based on current sort selection
          if (currentSortValue !== 'default' && sortKey && sortDirection) {
             visibleTripArticles.sort((cardA, cardB) => {
                 const valueA = getSortValue(cardA, sortKey);
@@ -180,95 +143,70 @@ document.addEventListener('DOMContentLoaded', () => {
                 return (sortDirection === 'desc' ? (comparison * -1) : comparison);
             });
          }
-         // else: Keep the original DOM order for filtered items if sort is 'default'
+         // else: keep the default order for visible items
 
-        // --- Step 3: Re-append to DOM ---
-        // Append the visible, sorted items first. This moves them to the correct order at the top.
+        // Step 3: Re-append - Append the sorted visible items first, then the hidden ones
+        // This moves the visible, sorted items to the top of the container in the correct order.
          visibleTripArticles.forEach(card => {
-             // Append the PARENT LINK element (which contains the sorted article)
              if (card.parentElement && card.parentElement.classList.contains('trip-card-link')) {
-                 tripListContainer.appendChild(card.parentElement);
+                 tripListContainer.appendChild(card.parentElement); // Append the parent link
              }
          });
-         // Append the hidden items afterwards (they remain hidden but are moved to the end).
+         // Append hidden items afterwards (they keep their hidden class)
          allTripLinks.forEach(link => {
              if (link.classList.contains('hidden')) {
                  tripListContainer.appendChild(link);
              }
          });
 
-        // Optional: Save filter state
+
+        // Optional: Save filters to sessionStorage if needed (similar to sorting)
         // sessionStorage.setItem(storageKeyFilters, JSON.stringify(activeFilters));
     }
 
-    /**
-     * Applies saved sort preference on page load.
-     * (Could be extended to apply saved filters too).
-     */
+    // --- Function to apply saved sort preference (slightly modified) ---
     function applySavedPreferences() {
-        if (!sortSelect) return; // Don't try if sort select doesn't exist
-
-        // Apply Sort Preference
+        // Apply Sort
         const savedSort = sessionStorage.getItem(storageKeySort);
         if (savedSort && savedSort !== 'default') {
             const optionExists = Array.from(sortSelect.options).some(opt => opt.value === savedSort);
             if (optionExists) {
-                sortSelect.value = savedSort; // Set dropdown to saved value
+                sortSelect.value = savedSort;
             } else {
-                 sessionStorage.removeItem(storageKeySort); // Clean up invalid saved value
+                 sessionStorage.removeItem(storageKeySort);
                  sortSelect.value = 'default';
             }
         } else {
-            sortSelect.value = 'default'; // Ensure default is selected if nothing saved
+            sortSelect.value = 'default';
         }
 
-        // Apply Filter Preferences (Example - uncomment and adapt if saving filters)
-        /*
-        const savedFiltersJSON = sessionStorage.getItem(storageKeyFilters);
-        if (savedFiltersJSON) {
-            try {
-                const savedFilters = JSON.parse(savedFiltersJSON);
-                // Restore select
-                if (filterPaysSelect && savedFilters.pays) filterPaysSelect.value = savedFilters.pays;
-                // Restore number inputs
-                if (filterDureeMaxInput && savedFilters.dureeMax) filterDureeMaxInput.value = savedFilters.dureeMax;
-                if (filterPrixMaxInput && savedFilters.prixMax) filterPrixMaxInput.value = savedFilters.prixMax;
-                // Restore checkboxes
-                filterGroups.forEach(group => {
-                    const key = group.dataset.filterKey;
-                    if (key && Array.isArray(savedFilters[key])) {
-                        group.querySelectorAll('.filter-checkbox').forEach(checkbox => {
-                            checkbox.checked = savedFilters[key].includes(checkbox.value.toLowerCase());
-                        });
-                    }
-                });
-            } catch (e) {
-                console.error("Error parsing saved filters:", e);
-                sessionStorage.removeItem(storageKeyFilters); // Clear corrupted data
-            }
-        }
-        */
+        // Apply Filters (if you choose to save them)
+        // const savedFilters = JSON.parse(sessionStorage.getItem(storageKeyFilters) || '{}');
+        // TODO: Loop through savedFilters and set the values of the corresponding filter controls
+        // Example: if (savedFilters.pays) filterPaysSelect.value = savedFilters.pays; etc.
 
-        // Perform the initial filter and sort based on loaded/default values
+        // Initial update based on loaded preferences (or defaults)
         updateTripList();
     }
 
     // --- Attach Event Listeners ---
-    // Add listeners to all filter controls
+    // Listen to changes on ANY filter control
     filterControls.forEach(control => {
-        const eventType = (control.type === 'number' || control.type === 'text') ? 'input' : 'change';
-        control.addEventListener(eventType, updateTripList);
+        control.addEventListener('change', updateTripList);
+         // Use 'input' for number fields for more responsiveness
+         if (control.type === 'number') {
+             control.addEventListener('input', updateTripList);
+         }
     });
 
-     // Listener for the sort dropdown (also saves the preference)
-     if (sortSelect) {
-         sortSelect.addEventListener('change', () => {
-             sessionStorage.setItem(storageKeySort, sortSelect.value); // Save preference
-             updateTripList(); // Update the list
-         });
-     }
+     // Also listen to the sort select (which now just calls the main update function)
+     sortSelect.addEventListener('change', () => {
+         sessionStorage.setItem(storageKeySort, sortSelect.value); // Save sort choice
+         updateTripList();
+     });
 
-    // --- Initial Setup ---
-    applySavedPreferences(); // Apply saved sort/filters and run initial update
+
+    // --- Apply saved preferences and initial sort/filter on page load ---
+    applySavedPreferences(); // This will call updateTripList() internally
 
 }); // End DOMContentLoaded
