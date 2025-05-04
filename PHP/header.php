@@ -1,3 +1,10 @@
+<?php
+// Calculer le nombre d'articles dans le panier si la session existe
+$nombreArticlesPanier = 0;
+if (isset($_SESSION['panier'])) {
+    $nombreArticlesPanier = count($_SESSION['panier']);
+}
+?>
 <header>
     <a href="Accueil.php" class="logo">FINAL TRIP</a>
     <div class="right">
@@ -5,8 +12,13 @@
         <a href="Destination.php" class="head1">Destination</a>
         <button class="encadré">Contact</button>
         <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png" alt="Profil"></a>
-        <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png" alt="Panier"></a>
+        <a href="panier.php" class="img2 cart-link">
+            <img src="../assets/icon/Shopping cart.png" alt="Panier">
+            <?php if ($nombreArticlesPanier > 0): ?>
+                <span class="cart-counter"><?php echo $nombreArticlesPanier; ?></span>
+            <?php endif; ?>
+        </a>
     </div>
 
     <script src="../Javascript/theme.js"></script>
-</header> 
+</header>
