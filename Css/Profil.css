@@ -62,53 +62,127 @@ header {
     margin-bottom: 60px;
 }
 
-
+/* 🔧 Modification : Réglage du formulaire pour qu'il s'affiche correctement */
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
+.success, .error {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.success {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+}
+
+.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+}
+
+/* 🔧 Modification : Réglage des groupes de formulaire */
 .form-group {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 40px;
     width: 100%;
     margin-bottom: 20px;
 }
 
+/* 🔧 Modification : Correction de l'affichage des conteneurs d'input */
 .input-container {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: block;
+    width: 320px;
     margin-bottom: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
+    text-align: left;
 }
 
 label {
     color: var(--white);
     font-size: 1rem;
     margin-bottom: 5px;
+    display: block;
 }
 
 input {
-    width: 320px;
+    width: 100%;
     padding: 10px;
     border: none;
     border-radius: 8px;
     background-color: var(--white);
+    box-sizing: border-box;
 }
 
-.edit-icon {
-    position: absolute;
-    top: 70%;
-    left: 350px;
-    transform: translateY(-50%);
-    width: 20px;
+/* Style pour les champs de formulaire */
+.form-field {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #e0e0e0; /* Grisé par défaut */
+    color: #555;
+    box-sizing: border-box;
+}
+
+.form-field:read-only {
+    background-color: #e0e0e0;
+    color: #555;
+}
+
+.form-field:not(:read-only) {
+    background-color: var(--white);
+    color: var(--black_f);
+    border: 2px solid var(--yellow);
+}
+
+.edit-btn {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.9rem;
+    position: absolute;
+    right: 0;
+    top: 32px;
+}
+
+/* Style pour les boutons d'action */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.save-btn, .cancel-btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.save-btn {
+    background-color: var(--save-button-bg);
+    color: var(--save-button-text);
+}
+
+.cancel-btn {
+    background-color: var(--cancel-button-bg);
+    color: var(--cancel-button-text);
 }
 
 .button1 {
@@ -124,11 +198,12 @@ input {
 
 .button1:hover {
     background-color: var(--yellow);
+    opacity: 0.9;
 }
 
-.button2{
-    padding: 5px 10px;
-    border-radius: 200px;
+.button2 {
+    padding: 10px 20px;
+    border-radius: 20px;
     background: var(--white);
     border: none;
     cursor: pointer;
@@ -136,16 +211,36 @@ input {
     font-weight: bold;
     text-decoration: none;
     color: var(--black_f);
-    margin-top: 2rem;
-    margin-bottom: -50px;
+    margin-top: 20px;
+    display: inline-block;
 }
 
 .admin-link {
     position: absolute;
-    right: 200px;
-    top: 200px;
+    right: 40px;
+    top: 120px;
 }
 
+/* Ajout du style pour la confirmation de mot de passe */
+.password-confirm-group {
+    width: 320px;
+    margin: 20px auto;
+    text-align: left;
+}
+
+#password_confirm {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--white);
+}
+
+#password-error {
+    color: var(--yellow);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
 
 footer {
     background-color: var(--yellow2);
@@ -205,157 +300,16 @@ footer h2 {
     text-decoration: underline;
 }
 
-/* Rajout pour modifier le profil Javascript */
-
-#password-confirm-container {
-    margin-top: 10px;
-    width: 100%;
-    display : border-box; 
-}
-
-#password-confirm-container label {
-    display: block;
-    color: var(--white);
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-#password-confirm {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--white);
-    box-sizing: border-box;
-}
-
-/*Message d'erreur de mot de passe */
-#password-error {
-    color: var(--red-admin);
-    font-size: 0.8rem;
-    margin-top: 5px;
-    display: border-box;
-}
-
-
-
-/* Structure en grille pour les conteneurs d'input */
-.input-container {
-    display: none;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto;
-    gap: 8px;
-    width: 100%;
-    max-width: 320px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-/* Style des labels - ajustement pour grid */
-label {
-    grid-column: 1 / -1;
-    text-align: left;
-}
-
-/* Style des champs avec classe form-field */
-.form-field {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
-    background-color: var(--form-field-bg);
-    color: var(--form-field-text);
-    grid-column: 1;
-    grid-row: 2;
-    box-sizing: border-box;
-}
-
-/* Style des champs en mode édition */
-.form-field.editing {
-    background-color: var(--white);
-    color: var(--black_f);
-    border: 2px solid var(--editing-border);
-}
-
-/* Style du bouton "Modifier" */
-.edit-btn {
-    background-color: var(--yellow);
-    color: var(--black_f);
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    grid-column: 2;
-    grid-row: 2;
-    align-self: center;
-}
-
-
-.action-buttons {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    display: flex;
-    gap: 10px;
-    justify-content: flex-start;
-}
-
-.save-btn, .cancel-btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.8rem;
-}
-
-.save-btn {
-    background-color: var(--save-button-bg);
-    color: var(--save-button-text);
-}
-
-.cancel-btn {
-    background-color: var(--cancel-button-bg);
-    color: var(--cancel-button-text);
-}
-
-
-.success-message {
-    background-color: var(--success-bg);
-    color: var(--success-text);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.error-message {
-    background-color: var(--error-bg);
-    color: var(--error-text);
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-/* Confirmation de mot de passe */
-.password-confirm-group {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto 20px auto;
-}
-
-/* Adaptation téléphone */
+/* Adaptation pour les appareils mobiles */
 @media screen and (max-width: 768px) {
+    .form-group {
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .input-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .edit-btn {
-        grid-column: 1;
-        grid-row: 3;
-        justify-self: start;
-    }
-    
-    .action-buttons {
-        grid-row: 4;
+        width: 100%;
+        max-width: 320px;
     }
     
     .admin-link {
