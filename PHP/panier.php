@@ -64,7 +64,7 @@ if (!isset($_GET['id']) && !isset($_GET['action'])) {
     }
 
     echo '<div class="cart-actions">';
-    echo '<button onclick="viderPanier()" class="secondary-button" type="button">Vider le panier</button>';
+    echo '<a href="panier.php?action=vider" class="remove-button">Vider le panier</a>';
     echo '</div>';
 
     echo '</div></div>';
