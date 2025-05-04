@@ -1,0 +1,343 @@
+/* Css/light-mode.css - Mode clair pour FINAL TRIP */
+
+:root {
+    /* Modification : nouvelles couleurs principales pour un meilleur contraste en mode clair */
+    --grey: #f4f4f4;         /* Fond principal plus doux mais toujours clair */
+    --darker-grey: #e0e0e0;  /* Gris clair pour les éléments qui doivent se démarquer légèrement */
+    --yellow: #FF6A00;       /* Orange vif - conservé de la charte graphique */
+    --yellow2: #d35400;      /* Couleur du footer - nuance plus foncée pour meilleur contraste */
+    --white: #121212;        /* Modification : texte presque noir sur fond clair pour lisibilité */
+    --white2: #ffffff;       /* Blanc pur pour certains fonds */
+    --black: rgba(0, 0, 0, 0.5); /* Noir semi-transparent pour ombres */
+    --black_f: #000000;      /* Noir pour textes importants */
+    --light-grey: #d0d0d0;   /* Gris clair pour séparateurs */
+    --input-bg: #ffffff;     /* Fond des input */
+    --disabled-bg: #f1f1f1;  /* Éléments désactivés */
+    --disabled-text: #333333; /* Modification : texte des éléments désactivés en plus foncé */
+    --smooth-grey : #666666
+    ; 
+    
+    /* Couleurs de notifications */
+    --red-admin: #f44336;    /* Rouge */
+    --success-bg: #dff0d8;   /* Vert clair pour fond de succès */
+    --success-text: #3c763d; /* Vert foncé pour texte de succès */
+    --error-bg: #f2dede;     /* Rouge clair pour fond d'erreur */
+    --error-text: #a94442;   /* Rouge foncé pour texte d'erreur */
+    
+    /* Couleurs d'action */
+    --save-button-bg: #4CAF50; /* Vert */
+    --save-button-text: #ffffff; /* Blanc */
+    --cancel-button-bg: #f44336; /* Rouge */
+    --cancel-button-text: #ffffff; /* Blanc */
+    
+    /* Couleurs du formulaire */
+    --form-field-bg: #ffffff; /* Fond des champs de formulaire */
+    --form-field-text: #333333; /* Texte des champs de formulaire */
+    --editing-border: #FF6A00; /* Bordure d'édition en orange vif */
+    
+    /* Modification : nouvelles variables pour les cartes en mode clair */
+    --card-bg: #ffffff;      /* Fond de carte blanc */
+    --card-text: #EDEDED;    /* Texte de carte gris foncé #333333 */
+    --card-title: #FF6A00;   /* Titre de carte orange vif */
+    --card-border: #e0e0e0;  /* Bordure de carte gris clair */
+}
+
+/* Ajustements spécifiques pour le mode clair */
+body {
+    background-color: var(--grey);
+    color: var(--white);
+}
+
+/* Modification : header avec meilleur contraste */
+header {
+    background-color: var(--darker-grey);
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.logo {
+    color: var(--yellow); /* Garde la même couleur que le mode sombre */
+}
+
+/* Modification : texte de navigation plus foncé pour lisibilité */
+.head1 {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* Modification : bouton contact plus visible */
+.encadré {
+    background: var(--yellow);
+    color: var(--white2);
+}
+
+.hr1 {
+    background-color: var(--light-grey);
+}
+
+/* Correction du footer */
+footer {
+    background-color: var(--yellow2); /* Garde la même couleur que le mode sombre */
+    color: var(--white2); /* Modification : texte en blanc pour meilleur contraste */
+}
+
+footer a {
+    color: var(--white2) !important;
+}
+
+/* Modification : icônes visibles en mode clair */
+.img1 img, .img2 img {
+    filter: invert(0.8);
+}
+
+/* Style pour le sélecteur de thème en mode clair */
+.theme-selector {
+    background-color: #333;
+    border-radius: 20px;
+}
+
+/* On limite la taille des icônes soleil/lune pour qu'elles ne prennent pas trop de place */
+.theme-btn img {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+}
+
+/* Modification : amélioration pour la page Destination */
+.search-bar input {
+    background-color: var(--white2);
+    border: 1px solid var(--light-grey);
+    color: var(--white); 
+}
+
+
+/* Modification : filtre de la page Destination amélioré */
+.filters {
+    background-color: var(--smooth-grey);
+    border: 1px solid var(--card-border);
+}
+
+.filters h2 {
+    color: var(--yellow);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.filters li {
+    color: var(--white);
+}
+
+/* Modification : cartes de voyage avec meilleur contraste */
+.trip-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trip-info h3 {
+    color: var(--card-title);
+}
+
+.trip-info p {
+    color: var(--card-text) !important;
+}
+
+.price {
+    color: var(--yellow) !important;
+    font-weight: bold;
+}
+
+.duration {
+    color: var(--white) !important;
+}
+
+/* Modification : pagination en mode clair */
+.pagination a {
+    background-color: var(--darker-grey);
+    color: var(--white);
+    border: 1px solid var(--card-border);
+}
+
+.pagination a:hover, .pagination a.active {
+    background-color: var(--yellow);
+    color: var(--white2);
+}
+
+/* Ajustements pour les pages spécifiques */
+/* Page voyage_detail */
+.detailed-trip-view {
+    color: var(--white);
+}
+
+.trip-header h1, .trip-stages h2, .option-category h4 {
+    color: var(--yellow);
+}
+
+.trip-info p, .trip-description, .stage-card p, .option-item label {
+    color: var(--white);
+}
+
+/* Modification : carte d'étape plus lisible */
+.stage-card {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
+}
+
+.stage-card h3 {
+    color: var(--yellow);
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.stage-card p {
+    color: var(--card-text) !important;
+}
+
+/* Modification : options plus lisibles */
+.option-item label {
+    color: var(--card-text) !important;
+}
+
+/* Page voyage_resume */
+.trip-summary {
+    color: var(--white);
+}
+
+.summary-header h1, .trip-basic-info h2, .stages-summary h3, .summary-stage-card h4 {
+    color: var(--yellow);
+}
+
+.summary-stage-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+}
+
+.summary-option span {
+    color: var(--card-text) !important;
+}
+
+/* Modification : page À propos améliorée */
+/* Section "Qui nous sommes ?" */
+.about-section {
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
+}
+
+.text-content p {
+    color: var(--card-text) !important;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.section-title {
+    color: var(--yellow) !important;
+    font-weight: bold;
+}
+
+/* Modification : cartes de voyage améliorées */
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border);
+}
+
+.card-antarctica, .card-kenya, .card-nepal {
+    background-color: var(--card-bg) !important;
+}
+
+.title {
+    color: var(--yellow) !important;
+}
+
+.description {
+    color: var(--card-text) !important;
+}
+
+.location {
+    color: var(--card-text) !important;
+}
+
+/* Modification : flèches de navigation visibles */
+.arrow-button {
+    background-color: var(--yellow) !important;
+    color: var(--white2) !important;
+}
+
+.arrow-button::after {
+    color: var(--white2) !important;
+}
+
+.card:hover .arrow-button {
+    background-color: var(--yellow2) !important;
+    color: var(--white2) !important;
+}
+
+/* Correction pour les cartes des avis */
+.avis-card {
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border: 1px solid var(--card-border);
+}
+
+.avis-text {
+    color: var(--card-text) !important;
+}
+
+.name {
+    color: var(--card-text) !important;
+}
+
+/* Amélioration pour les titres en mode clair */
+.avis-title {
+    color: var(--white) !important;
+    font-weight: bold;
+}
+
+.hero h1 {
+    color: var(--white) !important;
+    font-weight: bold;
+}
+
+
+/* Modification des boutons secondaires (Déconnexion, Accéder à la page Admin) */
+.button2 {
+    background-color: var(--smooth-grey) !important; /* Utiliser la couleur orange */
+    color: var(--white2) !important; /* Texte en blanc */
+    border: none !important;
+}
+
+.button2:hover {
+    background-color: var(--smooth-grey) !important; /* Version plus foncée au survol */
+    color: var(--white2) !important;
+}
+
+
+/* Modification du champ en édition */
+.form-field:not(:read-only) {
+    background-color: var(--white2) !important; /* Fond blanc */
+    color: var(--black_f) !important; /* Texte noir */
+    border: 2px solid var(--yellow) !important; /* Bordure orange */
+}
+
+/* Ajouter également pour le mode "editing" */
+.form-field.editing {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+    border: 2px solid var(--yellow) !important;
+}
+
+.filters select, .filters input[type="number"] {
+    background-color: var(--white2) !important; /* Fond blanc */
+    color: var(--black_f) !important; /* Texte noir */
+    border: 1px solid var(--light-grey) !important;
+}
+
+
+
+
+/* Pour le sélecteur de pays spécifiquement */
+.cadre {
+    background-color: var(--white2) !important; /* Fond blanc */
+    color: var(--black_f) !important; /* Texte noir */
+    border-color: var(--light-grey) !important;
+}
