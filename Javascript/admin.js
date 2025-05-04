@@ -1,7 +1,4 @@
-/**
- * Script pour gérer les fonctionnalités JavaScript de la page Admin
- * - Simulation d'attente pour les boutons de promotion et suppression
- */
+
 function init() {
     console.log("DOM prêt pour la page Admin");
     
