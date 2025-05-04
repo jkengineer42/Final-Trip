@@ -60,6 +60,7 @@ $voyagesToShow = array_slice($filteredVoyages, $startIndex, $tripsPerPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FINAL TRIP - Destination</title>
     <link rel="stylesheet" href="../Css/Destination.css">
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
    <?php include('header.php'); ?>
