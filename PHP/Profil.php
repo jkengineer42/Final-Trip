@@ -141,6 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Profil - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Profil.css">
     <link rel="stylesheet" href="../Css/root.css">
+<script src="../Javascript/theme.js"></script>
 </head>
 <body>
 <header>
