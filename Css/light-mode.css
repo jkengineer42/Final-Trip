@@ -1,0 +1,168 @@
+/* Css/light-mode.css - Mode clair pour FINAL TRIP */
+
+:root {
+    /* Couleurs principales (mode clair) */
+    --grey: #f5f5f5;         /* Fond principal très clair */
+    --darker-grey: #e0e0e0;  /* Gris clair */
+    --yellow: #FF6A00;       /* Orange vif - même couleur que le mode sombre */
+    --yellow2: #af923f;      /* Couleur du footer */
+    --white: #333333;        /* Texte foncé sur fond clair */
+    --white2: #000000;       /* Noir pur */
+    --black: rgba(0, 0, 0, 0.5); /* Noir semi-transparent */
+    --black_f: #000000;      /* Noir pour textes */
+    --light-grey: #d0d0d0;   /* Gris clair */
+    --input-bg: #ffffff;     /* Fond des input */
+    --disabled-bg: #f1f1f1;  /* Éléments désactivés */
+    --disabled-text: #666666; /* Texte des éléments désactivés */
+    
+    /* Couleurs de notifications */
+    --red-admin: #f44336;    /* Rouge */
+    --success-bg: #dff0d8;   /* Vert clair pour fond de succès */
+    --success-text: #3c763d; /* Vert foncé pour texte de succès */
+    --error-bg: #f2dede;     /* Rouge clair pour fond d'erreur */
+    --error-text: #a94442;   /* Rouge foncé pour texte d'erreur */
+    
+    /* Couleurs d'action */
+    --save-button-bg: #4CAF50; /* Vert */
+    --save-button-text: #ffffff; /* Blanc */
+    --cancel-button-bg: #f44336; /* Rouge */
+    --cancel-button-text: #ffffff; /* Blanc */
+    
+    /* Couleurs du formulaire */
+    --form-field-bg: #ffffff; /* Fond des champs de formulaire */
+    --form-field-text: #333333; /* Texte des champs de formulaire */
+    --editing-border: #FF6A00; /* Bordure d'édition en orange vif */
+}
+
+/* Ajustements spécifiques pour le mode clair */
+body {
+    background-color: var(--grey);
+    color: var(--white);
+}
+
+/* Correction pour le header */
+header {
+    background-color: var(--darker-grey);
+}
+
+.logo {
+    color: var(--yellow); /* Garde la même couleur que le mode sombre */
+}
+
+.head1 {
+    color: var(--white);
+}
+
+.encadré {
+    background: var(--white2);
+    color: var(--grey);
+}
+
+.hr1 {
+    background-color: var(--white);
+}
+
+/* Correction du footer */
+footer {
+    background-color: var(--yellow2); /* Garde la même couleur que le mode sombre */
+    color: var(--black_f);
+}
+
+/* Correction des icônes */
+/* Ceci inverse les couleurs des icônes pour qu'elles soient visibles en mode clair */
+.img1 img, .img2 img {
+    filter: invert(0.8);
+}
+
+/* Style pour le sélecteur de thème en mode clair */
+.theme-selector {
+    background-color: #333;
+    border-radius: 20px;
+}
+
+/* On limite la taille des icônes soleil/lune pour qu'elles ne prennent pas trop de place */
+.theme-btn img {
+    width: 18px !important;
+    height: 18px !important;
+    max-width: 18px !important;
+    max-height: 18px !important;
+}
+
+/* Ajustements pour les pages spécifiques */
+/* Page voyage_detail */
+.detailed-trip-view {
+    color: var(--white);
+}
+
+.trip-header h1, .trip-stages h2, .option-category h4 {
+    color: var(--yellow);
+}
+
+.trip-info p, .trip-description, .stage-card p, .option-item label {
+    color: var(--white);
+}
+
+.stage-card {
+    background-color: var(--darker-grey);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Page voyage_resume */
+.trip-summary {
+    color: var(--white);
+}
+
+.summary-header h1, .trip-basic-info h2, .stages-summary h3, .summary-stage-card h4 {
+    color: var(--yellow);
+}
+
+.summary-stage-card {
+    background-color: var(--darker-grey);
+}
+
+
+/* Correction pour la section "Qui nous sommes ?" dans A-propos.php */
+.about-section {
+    background-color: var(--white2); /* Fond blanc */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-content p {
+    color: #333333 !important; /* Texte en gris foncé pour plus de lisibilité */
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.section-title {
+    color: var(--yellow) !important; /* Titre en orange pour maintenir l'identité */
+    font-weight: bold;
+}
+
+/* Correction pour les cartes des avis */
+.avis-card {
+    background-color: var(--white2);
+    color: #333333;
+}
+
+.avis-text {
+    color: #333333 !important;
+}
+
+.name {
+    color: #333333 !important;
+}
+
+/* Correction générale pour tous les textes en mode clair */
+.about-section p,
+.trip-info p,
+.trip-description,
+.avis-text,
+.summary-option span {
+    color: #333333 !important;
+}
+
+/* Amélioration pour les titres en mode clair */
+.avis-title {
+    color: var(--black_f) !important;
+}
+/* vérifier fleches */
