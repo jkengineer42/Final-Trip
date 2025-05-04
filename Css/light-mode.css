@@ -170,11 +170,11 @@ footer a {
 }
 
 .trip-header h1, .trip-stages h2, .option-category h4 {
-    color: var(--yellow);
+    color: var(--yellow) !important;
 }
 
 .trip-info p, .trip-description, .stage-card p, .option-item label {
-    color: var(--white);
+    color: var(--black_f) !important;
 }
 
 /* Modification : carte d'étape plus lisible */
@@ -213,7 +213,7 @@ footer a {
 }
 
 .summary-option span {
-    color: var(--card-text) !important;
+    color: var(--black_f) !important;
 }
 
 /* Modification : page À propos améliorée */
