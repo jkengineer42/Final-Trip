@@ -93,6 +93,7 @@ $paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Admin.css">
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
     <header>
