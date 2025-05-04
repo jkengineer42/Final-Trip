@@ -183,6 +183,7 @@ $estimatedPrice = floatval(str_replace(['€', ' '], '', $trip['prix']));
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnalisation de voyage - <?php echo htmlspecialchars($trip['titre']); ?></title>
     <link rel="stylesheet" href="../Css/voyage_detail.css">
+    <script src="../Javascript/panier.js"></script>
     <script src="../Javascript/theme.js"></script>
     <script src="../Javascript/voyage_detail_prix.js"></script>
     <script src="../Javascript/panier.js"></script>
