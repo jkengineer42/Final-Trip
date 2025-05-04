@@ -710,3 +710,31 @@ input[placeholder="Rechercher par email"] {
     background-color: var(--white2) !important;
     color: var(--black_f) !important;
 }
+
+
+/* Fix for the dark background on input fields in the registration form */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="date"],
+.form-group input[type="password"] {
+    background-color: var(--input-bg) !important; /* Using the white input background from your variables */
+    color: var(--black_f) !important; /* Black text for better contrast */
+    border: 1px solid var(--light-grey) !important; /* Light border */
+}
+
+/* Specific fix for the email field that appears black */
+input#email, 
+input[name="email"],
+input#confirm-email,
+input[name="confirm-email"],
+input#birthdate,
+input[name="birthdate"] {
+    background-color: var(--white2) !important; 
+    color: var(--black_f) !important;
+}
+
+/* Ensuring password field is visible */
+.form-group input[type="password"] {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+}
