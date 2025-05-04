@@ -117,6 +117,7 @@ if (!$trip) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnalisation de voyage - <?php echo htmlspecialchars($trip['titre']); ?></title>
     <link rel="stylesheet" href="/Final-Trip-main/css/voyage_detail.css">
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
  <?php include('header.php'); ?>
