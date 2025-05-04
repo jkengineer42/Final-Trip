@@ -479,4 +479,37 @@ footer h2 {
     height: 20px;
 }
 
+/* Styles pour l'affichage du prix estimé */
+.price-estimation {
+    background-color: var(--darker-grey);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.price-estimation h3 {
+    color: var(--yellow);
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+}
+
+.price-note {
+    color: var(--white);
+    font-size: 0.9rem;
+    margin: 5px 0 0 0;
+    opacity: 0.8;
+}
+
+/* Animation pour la mise à jour du prix */
+@keyframes price-update {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #fff; }
+    100% { transform: scale(1); }
+}
+
+.price-updated {
+    animation: price-update 0.5s ease;
+}
+
 
