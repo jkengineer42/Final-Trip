@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     // Sélectionner tous les boutons d'action du panier
     const removeButtons = document.querySelectorAll('.remove-button');
@@ -45,4 +47,23 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, interval);
     }
+
+// Définir la fonction viderPanier globalement
+window.viderPanier = function() {
+    if (confirm("Êtes-vous sûr de vouloir vider votre panier ?")) {
+        fetch('panier.php?action=vider', {
+            method: 'GET'
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            }
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+        });
+    }
+};
+
+
 });
