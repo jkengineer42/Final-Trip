@@ -68,7 +68,7 @@ footer {
     color: var(--black_f);
 }
 
-/* Correction des icônes */
+
 /* Ceci inverse les couleurs des icônes pour qu'elles soient visibles en mode clair */
 .img1 img, .img2 img {
     filter: invert(0.8);
