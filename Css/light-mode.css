@@ -345,3 +345,368 @@ input[type="password"] {
     color: var(--black_f) !important; /* Modifier la couleur du texte */
     border: 1px solid var(--light-grey) !important; /* Ajouter une bordure légère */
 }
+
+/* Correction pour le carré noir lors de la modification du prénom */
+.input-wrapper input#prenom:not([readonly]),
+.input-wrapper input[name="prenom"]:not([readonly]) {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+    border: 1px solid var(--orange) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* S'assurer qu'aucun style inline ne vient ajouter un fond noir */
+input#prenom,
+input[name="prenom"] {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+}
+
+/* Désactiver toute propriété qui pourrait créer un carré noir */
+.input-wrapper input:focus {
+    outline: none !important;
+    background-color: var(--white2) !important;
+    box-shadow: none !important;
+}
+
+/* Ciblage spécifique du carré noir autour du champ prénom */
+.validate-btn[data-field="prenom"] ~ input,
+input[id="prenom"].editing,
+input[name="prenom"].editing {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+    border: 1px solid var(--orange) !important;
+}
+
+
+
+
+
+
+
+
+
+/* Ajout de styles pour les boutons de paiement en orange */
+.primary-button {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+}
+
+.primary-button:hover {
+    background-color: var(--orange2) !important;
+    box-shadow: 0 4px 8px rgba(211, 84, 0, 0.4) !important;
+}
+
+.secondary-button {
+    border: 1px solid var(--orange) !important;
+    color: var(--orange) !important;
+    background-color: var(--white2) !important;
+}
+
+.secondary-button:hover {
+    background-color: rgba(255, 106, 0, 0.1) !important;
+}
+
+/* Harmonisation avec le CSS de paiement pour les totaux */
+.total-price-display strong {
+    color: var(--orange) !important;
+    font-weight: bold;
+}
+
+/* Harmonisation des titres dans la section paiement */
+.payment-container h1, .payment-form-container h2, .trip-summary h2 {
+    color: var(--orange) !important;
+}
+
+/* Style pour le bouton "Procéder au Paiement" */
+.proceder-button {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+    border: none !important;
+    padding: 10px 20px !important;
+    border-radius: 200px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: background-color 0.3s !important;
+}
+
+.proceder-button:hover {
+    background-color: var(--orange2) !important;
+}
+
+/* Style pour le bouton "Annuler" */
+.annuler-button {
+    background-color: var(--white2) !important;
+    color: var(--orange) !important;
+    border: 1px solid var(--orange) !important;
+    padding: 10px 20px !important;
+    border-radius: 200px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    transition: all 0.3s !important;
+}
+
+.annuler-button:hover {
+    background-color: rgba(255, 106, 0, 0.1) !important;
+}
+
+/* Style pour le bouton "Modifier les options" */
+.modifier-options {
+    color: var(--orange) !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+}
+
+.modifier-options:hover {
+    color: var(--orange2) !important;
+}
+
+/* Harmonisation du footer avec la couleur orange */
+footer {
+    background-color: var(--orange2) !important;
+}
+
+/* Harmonisation des titres des étapes de voyage */
+.stage-day {
+    color: var(--orange) !important;
+    font-weight: bold !important;
+}
+
+/* AJOUTS SPÉCIFIQUES POUR CORRIGER LES TEXTES BLANCS SUR LE RÉCAPITULATIF DE PAIEMENT */
+
+/* Correction pour les labels en blanc sur la page de paiement */
+.trip-summary p strong, 
+.trip-summary .voyage-label, 
+.trip-summary .dates-label, 
+.trip-summary label {
+    color: var(--black_f) !important;
+}
+
+/* Correction pour le texte du voyage et des dates */
+.trip-summary p:not(.total-price-display),
+.trip-summary .expedition-text,
+.trip-summary .dates-text {
+    color: var(--black_f) !important;
+}
+
+/* Pour le récapitulatif du voyage */
+.payment-container .trip-summary p,
+.trip-summary p {
+    color: var(--black_f) !important;
+}
+
+/* Pour les textes dans "Redirection vers CYBank" */
+.redirection-text,
+.payment-redirect-info,
+.payment-info-text,
+.info-text {
+    color: var(--black_f) !important;
+}
+
+/* Spécifiquement pour les éléments qui apparaissent en blanc dans les images */
+.trip-summary strong,
+.trip-summary .voyage-value,
+.trip-summary .dates-value,
+.trip-summary .montant-total,
+.trip-summary .transaction-id {
+    color: var(--black_f) !important;
+}
+
+/* Remplacer toutes les instances de couleur jaune par orange */
+:root {
+    --yellow: #FF6A00 !important;  /* Force le jaune à être orange */
+    --yellow2: #d35400 !important; /* Force le jaune foncé à être orange foncé */
+}
+
+/* Solution directe pour le Total Estimé et Total */
+#total-estime, .total-estime,
+#total, .total,
+.total-estime-heading, .total-heading,
+.total-amount, .total-price,
+[id^="total-"], [class^="total-"] {
+    color: var(--orange) !important;
+}
+
+/* Fix spécifique pour le Total Estimé et les éléments de votre image */
+body *[style*="color: rgb(255, 207, 48)"],
+body *[style*="color:#FFCF30"],
+body *[style*="color: #FFCF30"] {
+    color: var(--orange) !important;
+}
+
+/* Sélecteur pour les éléments avec couleur inline */
+h1[style*="color:#FFCF30"], 
+h2[style*="color:#FFCF30"],
+p[style*="color:#FFCF30"],
+span[style*="color:#FFCF30"],
+div[style*="color:#FFCF30"] {
+    color: var(--orange) !important;
+}
+
+/* Correction directe des éléments de la page de paiement */
+.payment-container h1,
+.payment-container h2,
+.payment-container .total-estime,
+.payment-container #total-estime,
+.trip-summary h2,
+.trip-summary .total,
+.trip-summary #total {
+    color: var(--orange) !important;
+}
+
+/* Ciblage très spécifique des éléments de la page */
+body .payment-container .total-price strong,
+body .payment-container .total-price-display strong,
+body .payment-container .trip-summary .total-price {
+    color: var(--orange) !important;
+}
+
+/* Modification directe du CSS de paiement */
+.primary-button {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+}
+
+.primary-button:hover {
+    background-color: var(--orange2) !important;
+}
+
+.trip-summary {
+    border: 1px solid var(--orange2) !important;
+}
+
+.trip-summary h2 {
+    border-bottom: 1px solid var(--orange2) !important;
+}
+
+.total-price-display strong {
+    color: var(--orange) !important;
+}
+
+/* Correction du bouton "Procéder au Paiement" */
+a[href*="paiement"], 
+button[type="submit"],
+input[type="submit"],
+.proceder-au-paiement,
+#proceder-paiement {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+}
+
+/* Correction du bouton "Modifier les options" */
+a[href*="modifier"], 
+.modifier-options,
+#modifier-options {
+    color: var(--orange) !important;
+    border-color: var(--orange) !important;
+}
+
+/* Forcer l'application des couleurs orange aux éléments de la page */
+body .payment-container {
+    --yellow: #FF6A00 !important;
+    --yellow2: #d35400 !important;
+}
+
+
+
+
+
+/* Correction pour le bouton "Accéder à la page Admin" qui apparaît en noir */
+.admin-button, 
+.button-small.admin-button,
+a.admin-button,
+a.button-small.admin-button {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+    border: none !important;
+    text-decoration: none !important;
+}
+
+.admin-button:hover, 
+.button-small.admin-button:hover,
+a.admin-button:hover,
+a.button-small.admin-button:hover {
+    background-color: var(--orange2) !important;
+    color: var(--white2) !important;
+}
+
+/* Correction supplémentaire pour tous les boutons d'administration */
+[class*="admin"] button,
+[class*="admin"] a,
+[id*="admin"] button,
+[id*="admin"] a,
+a[href*="Admin"],
+a[href*="admin"] {
+    background-color: var(--orange) !important;
+    color: var(--white2) !important;
+}
+
+
+
+/* Correction spécifique pour le problème des cases du tableau */
+
+/* Supprimer les fonds noirs des lignes impaires */
+.admin-container tr:nth-child(odd) td,
+.admin-container tr:nth-child(even) td {
+    background-color: var(--white2) !important; /* Toutes les cellules en blanc */
+    color: var(--black_f) !important;
+}
+
+/* Ajouter un effet d'alternance plus subtil */
+.admin-container tr:nth-child(even) td {
+    background-color: var(--grey) !important; /* Lignes paires légèrement grisées */
+}
+
+/* S'assurer que les en-têtes sont uniformes */
+.admin-container th {
+    background-color: var(--darker-grey) !important;
+    color: var(--black_f) !important;
+    border: 1px solid var(--light-grey) !important;
+}
+
+/* Correction des bordures */
+.admin-container td,
+.admin-container th {
+    border: 1px solid var(--light-grey) !important;
+}
+
+/* S'assurer que les champs de recherche sont blancs */
+.search, input[type="search"], input[type="text"] {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+    border: 1px solid var(--light-grey) !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Correction pour les cellules d'actions (icônes) */
+td.icons {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* S'assurer que toutes les cellules ont la même couleur de texte */
+.admin-container table td,
+.admin-container table th {
+    color: var(--black_f) !important;
+}
+
+/* Forcer le fond du conteneur admin à être clair */
+.admin-container {
+    background-color: var(--grey) !important;
+    border: 1px solid var(--light-grey) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Rendre les lignes plus lisibles avec un léger effet au survol */
+.admin-container tr:hover td {
+    background-color: var(--darker-grey) !important;
+}
+
+/* Correction pour la couleur des barres de recherche */
+input[placeholder="Rechercher par nom/prénom"],
+input[placeholder="Rechercher par email"] {
+    background-color: var(--white2) !important;
+    color: var(--black_f) !important;
+}
