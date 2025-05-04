@@ -2,6 +2,26 @@
 // Démarre la session pour stocker les données personnalisées du voyage
 session_start();
 
+
+// ─── Gestion ultra-simple du panier ───────────────────────────────
+if (isset($_GET['action']) && $_GET['action'] === 'ajouter' && isset($_GET['id'])) {
+    $id = intval($_GET['id']);
+
+    // Initialise le tableau s’il n’existe pas
+    if (!isset($_SESSION['panier'])) {
+        $_SESSION['panier'] = [];
+    }
+
+    // Incrémente la quantité de ce voyage
+    $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
+
+    // Reviens sur la page précédente pour ne pas rester sur du JSON
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit;
+}
+
+
+
 // Vérifier si l'utilisateur est connecté
 if (isset($_SESSION['user_email'])) {
     $profileLink = 'Profil.php'; // Lien vers la page de profil
