@@ -93,6 +93,7 @@ main {
     padding: 80px 20px;
 }
 
+/* Modification : meilleure visibilité du titre principal pour les deux modes */
 .hero h1 {
     color: var(--white); 
     text-align: center;
@@ -123,6 +124,7 @@ main {
     margin-right: auto;
 }
 
+/* Modification : meilleur contraste pour la barre de recherche */
 .search-bar input {
     border: none;
     outline: none;
@@ -130,7 +132,7 @@ main {
     font-size: 1rem;
     flex: 1;
     padding: 10px;
-    color: var(--black);
+    color: var(--black_f);
 }
 
 .search-bar button {
@@ -172,6 +174,8 @@ main {
     flex-direction: column;
     cursor: pointer;
     height: 100%;
+    /* Modification : ajout d'une bordure en mode clair */
+    border: 1px solid var(--light-grey);
   }
 
   .card-content {
@@ -183,6 +187,7 @@ main {
     height: 100%;
   }
 
+  /* Modification : couleurs adaptées pour les cartes */
   .card-antarctica {
     background-color: var(--white);
   }
@@ -195,11 +200,12 @@ main {
     background-color: rgb(170, 157, 157);   /*couleur utilisé qu'une seule fois*/
   }
 
+  /* Modification : couleur de texte adaptée */
   .location {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--black);
+    color: var(--black_f);
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 12px;
@@ -210,9 +216,10 @@ main {
     height: 16px;
   }
 
+  /* Modification : titre plus visible en mode clair */
   .title {
     font-size: 28px;
-    color: var(--black_f);
+    color: var(--yellow);
     margin-bottom: 24px;
     font-weight: 600;
     line-height: 1.2;
@@ -225,13 +232,14 @@ main {
     transform: scale(1.05);
   }
 
+  /* Modification : flèche de navigation plus visible */
   .arrow-button {
     position: absolute;
     right: 24px;
     top: 80px;
     width: 40px;
     height: 40px;
-    background-color: var(--white);
+    background-color: var(--yellow);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -239,22 +247,26 @@ main {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     font-size: 20px;
+    color: var(--white2);
   }
 
   .arrow-button::after {
     content: "→";
     transition: transform 0.3s ease;
+    color: var(--white2);
   }
 
+  /* Modification : effet de survol plus contrasté */
   .card:hover .arrow-button {
-    background-color: #000;
-    color: var(--white);
+    background-color: var(--yellow2);
+    color: var(--white2);
     transform: translateX(5px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   }
 
+  /* Modification : description plus lisible en mode clair */
   .description {
-    color: var(--grey);
+    color: var(--black_f);
     font-size: 15px;
     line-height: 1.5;
     margin-bottom: 24px;
@@ -265,6 +277,7 @@ main {
 /* ==========================
    SECTION 3  "À PROPOS DE NOUS"
    ========================== */
+   /* Modification : meilleur contraste pour la section À propos */
    .about-section {
     display: flex;
     align-items: center;
@@ -272,9 +285,10 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    background-color: var(--white);
+    background-color: var(--white2);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    border: 1px solid var(--light-grey);
 }
 
 .text-content {
@@ -282,18 +296,22 @@ main {
     padding: 20px;
 }
 
+/* Modification : titre de section plus visible */
 .section-title {
     font-size: 2em;
-    color:var(--yellow2);
+    color: var(--yellow);
     margin-bottom: 10px;
     font-family: 'DM Sans', sans-serif;
+    font-weight: bold;
 }
 
+/* Modification : texte plus lisible en mode clair */
 .text-content p {
     font-size: 1em;
     line-height: 1.6;
     margin-bottom: 15px;
     font-family: 'DM Sans', sans-serif;
+    color: var(--black_f);
 }
 
 .image-content {
@@ -318,6 +336,7 @@ main {
     font-family: 'DM Sans', Arial, sans-serif;
 }
 
+/* Modification : titre Avis plus visible */
 .avis-title {
     font-size: 3.5em;
     margin-bottom: 6%;
@@ -348,13 +367,14 @@ main {
     margin: 0 auto; 
 }
 
+/* Modification : cartes d'avis plus visibles */
 .avis-card {
-    background-color: var(--white);
+    background-color: var(--white2);
     color: var(--black_f);
     border-radius: 60px;
     padding: 30px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: var(--white);
+    border: 1px solid var(--light-grey);
 }
 
 .avis-header {
@@ -370,27 +390,33 @@ main {
     margin-right: 10px;
 }
 
+/* Modification : nom de l'avis plus visible */
 .name {
     font-size: 1.2em;
     margin: 0;
+    color: var(--black_f);
+    font-weight: bold;
 }
 
+/* Modification : texte de l'avis plus lisible */
 .avis-text {
     font-size: 0.9em;
     margin-bottom: 10px;
+    color: var(--black_f);
 }
 
 .rating {
     display: flex;
 }
 
+/* Modification : étoiles plus visibles */
 .star {
     color: var(--yellow);
     font-size: 1.5em;
 }
 
 .star.empty {
-    color: var(--white);
+    color: var(--light-grey);
 }
 
 
@@ -476,13 +502,13 @@ main {
     background-color: transparent;
 }
 
+/* Modification : animation et effets visuels de la section À propos */
 .about-section {
     margin: 100px auto;
     padding: 60px 40px;
     border-radius: 30px;
     transform: translateY(0);
     transition: transform 0.3s ease;
-    background-color: var(--white);
 }
 
 .about-section:hover {
@@ -504,6 +530,7 @@ main {
     padding: 20px;
 }
 
+/* Modification : amélioration des animations des cartes d'avis */
 .avis-card {
     transform: translateY(0);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -511,7 +538,7 @@ main {
 
 .avis-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px var(--black);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 footer {
