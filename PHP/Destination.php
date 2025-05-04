@@ -90,12 +90,19 @@ $voyagesToShow = array_slice($filteredVoyages, $startIndex, $tripsPerPage);
                 <h2>Pays</h2>
                 <select class="cadre">
                     <option>Sélectionnez votre pays ici</option>
-                    <option>France</option>
-                    <option>Pérou</option>
-                    <option>Costa Rica</option>
-                    <option>Maroc</option>
-                    <option>Malaisie</option>
-                    <option>Indonésie</option>
+                    <option>Afrique du Sud</option>
+    				<option>Algérie</option>
+    				<option>Antarctique</option>
+   				 	<option>Brésil</option>
+    				<option>Chili</option>
+    				<option>Costa Rica</option>
+    				<option>Groenland</option>
+    				<option>International</option>
+    				<option>Maroc</option>
+    				<option>Mexique</option>
+    				<option>Népal</option>
+   					<option>Pérou</option>
+    				<option>Tanzanie</option>
                 </select>
 
                 <h2>Climat</h2>
