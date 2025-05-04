@@ -155,6 +155,7 @@ $profileLink = 'Profil.php';
     <title><?php echo htmlspecialchars($confirmation_title); ?> - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/Paiement.css"> 
+    <script src="../Javascript/theme.js"></script>
     <style>
         .confirmation-container {
             background-color: var(--darker-grey);
