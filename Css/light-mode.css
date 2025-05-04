@@ -339,3 +339,9 @@ footer a {
     color: var(--black_f) !important; /* Texte noir */
     border-color: var(--light-grey) !important;
 }
+/* Pour le sélecteur MDP connexion */
+input[type="password"] {
+    background-color: var(--white2) !important; /* Modifier la couleur de fond */
+    color: var(--black_f) !important; /* Modifier la couleur du texte */
+    border: 1px solid var(--light-grey) !important; /* Ajouter une bordure légère */
+}
