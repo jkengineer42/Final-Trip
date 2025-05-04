@@ -47,6 +47,7 @@ if (isset($_SESSION['user_email'])) {
     <title>Connexion - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Connexion.css">
     <script src="../Javascript/formulaire.js"></script>
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
      <?php include('header.php'); ?>
