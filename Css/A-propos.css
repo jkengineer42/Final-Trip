@@ -239,7 +239,6 @@ main {
     top: 80px;
     width: 40px;
     height: 40px;
-    background-color: var(--yellow);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -247,7 +246,6 @@ main {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     font-size: 20px;
-    color: var(--white2);
   }
 
   .arrow-button::after {
