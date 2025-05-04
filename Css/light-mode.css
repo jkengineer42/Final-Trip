@@ -143,12 +143,12 @@ footer a {
 }
 
 .price {
-    color: var(--yellow) !important;
+    color: var(--card-text) !important;
     font-weight: bold;
 }
 
 .duration {
-    color: var(--white) !important;
+    color: var(--card-text) !important;
 }
 
 /* Modification : pagination en mode clair */
@@ -166,15 +166,15 @@ footer a {
 /* Ajustements pour les pages spécifiques */
 /* Page voyage_detail */
 .detailed-trip-view {
-    color: var(--white);
+    color: var(--white)!important;
 }
 
 .trip-header h1, .trip-stages h2, .option-category h4 {
-    color: var(--yellow) !important;
+    color: var(--black_f);
 }
 
 .trip-info p, .trip-description, .stage-card p, .option-item label {
-    color: var(--black_f) !important;
+    color: var(--black_f);
 }
 
 /* Modification : carte d'étape plus lisible */
@@ -190,17 +190,17 @@ footer a {
 }
 
 .stage-card p {
-    color: var(--card-text) !important;
+    color: var(--black_f) !important;
 }
 
 /* Modification : options plus lisibles */
 .option-item label {
-    color: var(--card-text) !important;
+    color: var(--black_f) !important;
 }
 
 /* Page voyage_resume */
 .trip-summary {
-    color: var(--white);
+    color: var(--black_f);
 }
 
 .summary-header h1, .trip-basic-info h2, .stages-summary h3, .summary-stage-card h4 {
