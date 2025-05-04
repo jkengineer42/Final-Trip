@@ -108,6 +108,9 @@ if (!$trip) {
     echo "Voyage non trouvé";
     exit;
 }
+
+// Initialiser la variable pour le prix total estimé
+$estimatedPrice = floatval(str_replace(['€', ' '], '', $trip['prix']));
 ?>
 
 <!DOCTYPE html>
@@ -116,11 +119,14 @@ if (!$trip) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnalisation de voyage - <?php echo htmlspecialchars($trip['titre']); ?></title>
-    <link rel="stylesheet" href="/Final-Trip-main/css/voyage_detail.css">
+    <link rel="stylesheet" href="../Css/voyage_detail.css">
     <script src="../Javascript/theme.js"></script>
+    <script src="../Javascript/voyage_detail_prix.js"></script>
 </head>
 <body>
- <?php include('header.php'); ?>
+    <?php include('header.php'); ?>
+    <hr class="hr1">
+    
     <div class="detailed-trip-view">
         
         <section class="trip-header">
@@ -133,20 +139,35 @@ if (!$trip) {
             <p class="trip-description"><?php echo htmlspecialchars($trip['description']); ?></p>
         </section>
 
+        <!-- Bouton Ajouter au panier -->
+        <div class="trip-quick-actions">
+            <a href="panier.php?action=ajouter&id=<?php echo $tripId; ?>" class="add-to-cart-button">
+                <img src="../assets/icon/Shopping cart.png" alt="Panier" class="cart-icon">
+                Ajouter au panier
+            </a>
+        </div>
+
+        <!-- Affichage du prix total estimé -->
+        <div class="price-estimation">
+            <h3>Prix total estimé: <span id="estimated-price"><?php echo htmlspecialchars($trip['prix']); ?></span></h3>
+            <p class="price-note">Le prix s'ajuste automatiquement en fonction de vos choix d'options.</p>
+        </div>
+
         <section class="trip-stages">
             <h2>Personnalisez votre voyage</h2>
             
-            <form method="post" action="">
+            <form method="post" action="" id="trip-customization-form">
                 <!-- Champs cachés pour stocker les informations du voyage -->
                 <input type="hidden" name="trip_title" value="<?php echo htmlspecialchars($trip['titre']); ?>">
                 <input type="hidden" name="trip_price" value="<?php echo htmlspecialchars($trip['prix']); ?>">
                 <input type="hidden" name="trip_start_date" value="<?php echo htmlspecialchars($trip['duree']['debut']); ?>">
                 <input type="hidden" name="trip_end_date" value="<?php echo htmlspecialchars($trip['duree']['fin']); ?>">
                 <input type="hidden" name="trip_days" value="<?php echo htmlspecialchars($trip['duree']['jours']); ?>">
+                <input type="hidden" id="base-price" value="<?php echo $estimatedPrice; ?>">
                 
                 <?php foreach ($trip['etapes'] as $index => $etape): ?>
-                    <div class="stage-card">
-                        <h3>Jour <?php echo htmlspecialchars($etape['jour']); ?>: <?php echo htmlspecialchars($etape['titre']); ?></h3>
+                    <div class="stage-card" data-stage-id="<?php echo htmlspecialchars($etape['id']); ?>">
+                        <h3 class="stage-day">Jour <?php echo htmlspecialchars($etape['jour']); ?>: <?php echo htmlspecialchars($etape['titre']); ?></h3>
                         <p><?php echo htmlspecialchars($etape['description']); ?></p>
                         
                         <!-- Stocke l'ID de l'étape et les informations -->
@@ -166,6 +187,10 @@ if (!$trip) {
                                                 id="hebergement-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
                                                 name="hebergement_<?php echo $etape['id']; ?>" 
                                                 value="<?php echo $option['id']; ?>"
+                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
+                                                data-category="hebergement"
+                                                data-stage-id="<?php echo $etape['id']; ?>"
+                                                class="price-option"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
                                             <!-- Champs cachés pour stocker nom et prix -->
@@ -193,6 +218,10 @@ if (!$trip) {
                                                 id="restauration-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
                                                 name="restauration_<?php echo $etape['id']; ?>" 
                                                 value="<?php echo $option['id']; ?>"
+                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
+                                                data-category="restauration"
+                                                data-stage-id="<?php echo $etape['id']; ?>"
+                                                class="price-option"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
                                             <!-- Champs cachés pour stocker nom et prix -->
@@ -220,6 +249,10 @@ if (!$trip) {
                                                 id="activites-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
                                                 name="activites_<?php echo $etape['id']; ?>" 
                                                 value="<?php echo $option['id']; ?>"
+                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
+                                                data-category="activites"
+                                                data-stage-id="<?php echo $etape['id']; ?>"
+                                                class="price-option"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
                                             <!-- Champs cachés pour stocker nom et prix -->
@@ -244,11 +277,16 @@ if (!$trip) {
                                             break;
                                         }
                                     }
-                                    $maxParticipants = $defaultOption ? $defaultOption['max_personnes'] : 10;
+                                    $maxParticipants = $defaultOption ? ($defaultOption['max_personnes'] ?? 10) : 10;
                                     ?>
                                     <div class="participant-selector">
                                         <label for="participants_<?php echo $etape['id']; ?>">Nombre de participants :</label>
-                                        <select name="participants_<?php echo $etape['id']; ?>" id="participants_<?php echo $etape['id']; ?>">
+                                        <select 
+                                            name="participants_<?php echo $etape['id']; ?>" 
+                                            id="participants_<?php echo $etape['id']; ?>"
+                                            data-stage-id="<?php echo $etape['id']; ?>"
+                                            class="participants-select"
+                                        >
                                             <?php for ($i = 1; $i <= $maxParticipants; $i++): ?>
                                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                                             <?php endfor; ?>
@@ -268,6 +306,10 @@ if (!$trip) {
                                                 id="transport-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
                                                 name="transport_<?php echo $etape['id']; ?>" 
                                                 value="<?php echo $option['id']; ?>"
+                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
+                                                data-category="transport"
+                                                data-stage-id="<?php echo $etape['id']; ?>"
+                                                class="price-option"
                                                 <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
                                             >
                                             <!-- Champs cachés pour stocker nom et prix -->
@@ -294,8 +336,9 @@ if (!$trip) {
             </form>
         </section>
     </div>
+    
     <footer>
-     <?php include('footer.php'); ?> 
+        <?php include('footer.php'); ?> 
     </footer>
 </body>
 </html>
