@@ -1,19 +1,19 @@
 /* Css/light-mode.css - Mode clair pour FINAL TRIP */
 
 :root {
-    /* Couleurs principales (mode clair) */
-    --grey: #f5f5f5;         /* Fond principal très clair */
-    --darker-grey: #e0e0e0;  /* Gris clair */
-    --yellow: #FF6A00;       /* Orange vif - même couleur que le mode sombre */
-    --yellow2: #af923f;      /* Couleur du footer */
-    --white: #333333;        /* Texte foncé sur fond clair */
-    --white2: #000000;       /* Noir pur */
-    --black: rgba(0, 0, 0, 0.5); /* Noir semi-transparent */
-    --black_f: #000000;      /* Noir pour textes */
-    --light-grey: #d0d0d0;   /* Gris clair */
+    /* Modification : nouvelles couleurs principales pour un meilleur contraste en mode clair */
+    --grey: #f4f4f4;         /* Fond principal plus doux mais toujours clair */
+    --darker-grey: #e0e0e0;  /* Gris clair pour les éléments qui doivent se démarquer légèrement */
+    --yellow: #FF6A00;       /* Orange vif - conservé de la charte graphique */
+    --yellow2: #d35400;      /* Couleur du footer - nuance plus foncée pour meilleur contraste */
+    --white: #121212;        /* Modification : texte presque noir sur fond clair pour lisibilité */
+    --white2: #ffffff;       /* Blanc pur pour certains fonds */
+    --black: rgba(0, 0, 0, 0.5); /* Noir semi-transparent pour ombres */
+    --black_f: #000000;      /* Noir pour textes importants */
+    --light-grey: #d0d0d0;   /* Gris clair pour séparateurs */
     --input-bg: #ffffff;     /* Fond des input */
     --disabled-bg: #f1f1f1;  /* Éléments désactivés */
-    --disabled-text: #666666; /* Texte des éléments désactivés */
+    --disabled-text: #333333; /* Modification : texte des éléments désactivés en plus foncé */
     
     /* Couleurs de notifications */
     --red-admin: #f44336;    /* Rouge */
@@ -32,6 +32,12 @@
     --form-field-bg: #ffffff; /* Fond des champs de formulaire */
     --form-field-text: #333333; /* Texte des champs de formulaire */
     --editing-border: #FF6A00; /* Bordure d'édition en orange vif */
+    
+    /* Modification : nouvelles variables pour les cartes en mode clair */
+    --card-bg: #ffffff;      /* Fond de carte blanc */
+    --card-text: #EDEDED;    /* Texte de carte gris foncé #333333 */
+    --card-title: #FF6A00;   /* Titre de carte orange vif */
+    --card-border: #e0e0e0;  /* Bordure de carte gris clair */
 }
 
 /* Ajustements spécifiques pour le mode clair */
@@ -40,36 +46,43 @@ body {
     color: var(--white);
 }
 
-/* Correction pour le header */
+/* Modification : header avec meilleur contraste */
 header {
     background-color: var(--darker-grey);
+    border-bottom: 1px solid #d0d0d0;
 }
 
 .logo {
     color: var(--yellow); /* Garde la même couleur que le mode sombre */
 }
 
+/* Modification : texte de navigation plus foncé pour lisibilité */
 .head1 {
     color: var(--white);
+    font-weight: 500;
 }
 
+/* Modification : bouton contact plus visible */
 .encadré {
-    background: var(--white2);
-    color: var(--grey);
+    background: var(--yellow);
+    color: var(--white2);
 }
 
 .hr1 {
-    background-color: var(--white);
+    background-color: var(--light-grey);
 }
 
 /* Correction du footer */
 footer {
     background-color: var(--yellow2); /* Garde la même couleur que le mode sombre */
-    color: var(--black_f);
+    color: var(--white2); /* Modification : texte en blanc pour meilleur contraste */
 }
 
+footer a {
+    color: var(--white2) !important;
+}
 
-/* Ceci inverse les couleurs des icônes pour qu'elles soient visibles en mode clair */
+/* Modification : icônes visibles en mode clair */
 .img1 img, .img2 img {
     filter: invert(0.8);
 }
@@ -88,6 +101,65 @@ footer {
     max-height: 18px !important;
 }
 
+/* Modification : amélioration pour la page Destination */
+.search-bar input {
+    background-color: var(--white2);
+    border: 1px solid var(--light-grey);
+    color: var(--white);
+}
+
+/* Modification : filtre de la page Destination amélioré */
+.filters {
+    background-color: var(--darker-grey);
+    border: 1px solid var(--card-border);
+}
+
+.filters h2 {
+    color: var(--yellow);
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.filters li {
+    color: var(--white);
+}
+
+/* Modification : cartes de voyage avec meilleur contraste */
+.trip-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trip-info h3 {
+    color: var(--card-title);
+}
+
+.trip-info p {
+    color: var(--card-text) !important;
+}
+
+.price {
+    color: var(--yellow) !important;
+    font-weight: bold;
+}
+
+.duration {
+    color: var(--white) !important;
+}
+
+/* Modification : pagination en mode clair */
+.pagination a {
+    background-color: var(--darker-grey);
+    color: var(--white);
+    border: 1px solid var(--card-border);
+}
+
+.pagination a:hover, .pagination a.active {
+    background-color: var(--yellow);
+    color: var(--white2);
+}
+
 /* Ajustements pour les pages spécifiques */
 /* Page voyage_detail */
 .detailed-trip-view {
@@ -102,9 +174,25 @@ footer {
     color: var(--white);
 }
 
+/* Modification : carte d'étape plus lisible */
 .stage-card {
-    background-color: var(--darker-grey);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
+}
+
+.stage-card h3 {
+    color: var(--yellow);
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.stage-card p {
+    color: var(--card-text) !important;
+}
+
+/* Modification : options plus lisibles */
+.option-item label {
+    color: var(--card-text) !important;
 }
 
 /* Page voyage_resume */
@@ -117,52 +205,92 @@ footer {
 }
 
 .summary-stage-card {
-    background-color: var(--darker-grey);
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
 }
 
+.summary-option span {
+    color: var(--card-text) !important;
+}
 
-/* Correction pour la section "Qui nous sommes ?" dans A-propos.php */
+/* Modification : page À propos améliorée */
+/* Section "Qui nous sommes ?" */
 .about-section {
-    background-color: var(--white2); /* Fond blanc */
+    background-color: var(--card-bg);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--card-border);
 }
 
 .text-content p {
-    color: #333333 !important; /* Texte en gris foncé pour plus de lisibilité */
+    color: var(--card-text) !important;
     font-size: 1em;
     line-height: 1.6;
 }
 
 .section-title {
-    color: var(--yellow) !important; /* Titre en orange pour maintenir l'identité */
+    color: var(--yellow) !important;
     font-weight: bold;
+}
+
+/* Modification : cartes de voyage améliorées */
+.card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--card-border);
+}
+
+.card-antarctica, .card-kenya, .card-nepal {
+    background-color: var(--card-bg) !important;
+}
+
+.title {
+    color: var(--yellow) !important;
+}
+
+.description {
+    color: var(--card-text) !important;
+}
+
+.location {
+    color: var(--card-text) !important;
+}
+
+/* Modification : flèches de navigation visibles */
+.arrow-button {
+    background-color: var(--yellow) !important;
+    color: var(--white2) !important;
+}
+
+.arrow-button::after {
+    color: var(--white2) !important;
+}
+
+.card:hover .arrow-button {
+    background-color: var(--yellow2) !important;
+    color: var(--white2) !important;
 }
 
 /* Correction pour les cartes des avis */
 .avis-card {
-    background-color: var(--white2);
-    color: #333333;
+    background-color: var(--card-bg);
+    color: var(--card-text);
+    border: 1px solid var(--card-border);
 }
 
 .avis-text {
-    color: #333333 !important;
+    color: var(--card-text) !important;
 }
 
 .name {
-    color: #333333 !important;
-}
-
-/* Correction générale pour tous les textes en mode clair */
-.about-section p,
-.trip-info p,
-.trip-description,
-.avis-text,
-.summary-option span {
-    color: #333333 !important;
+    color: var(--card-text) !important;
 }
 
 /* Amélioration pour les titres en mode clair */
 .avis-title {
-    color: var(--black_f) !important;
+    color: var(--white) !important;
+    font-weight: bold;
 }
-/* vérifier fleches */
+
+.hero h1 {
+    color: var(--white) !important;
+    font-weight: bold;
+}
