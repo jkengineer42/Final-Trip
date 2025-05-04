@@ -32,7 +32,9 @@ if (isset($_POST['confirm_booking'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résumé de votre voyage personnalisé</title>
-    <link rel="stylesheet" href="/Final-Trip-main/css/voyage_resume.css">
+    <!-- Modifié lien CSS-->
+    <link rel="stylesheet" href="../Css/voyage_resume.css">
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
 <header><?php include('header.php'); ?></header>
