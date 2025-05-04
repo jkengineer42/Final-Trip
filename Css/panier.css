@@ -272,6 +272,25 @@ main {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
+.cart-actions {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.secondary-button {
+    background-color: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.secondary-button:hover {
+    background-color: #cc0000;
+}
+
 
 
 
