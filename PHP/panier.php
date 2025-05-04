@@ -36,7 +36,7 @@ if (!isset($_GET['id']) && !isset($_GET['action'])) {
     $jsonData = file_get_contents('../data/voyages.json');
     $data = json_decode($jsonData, true);
 
-    echo "<link rel='stylesheet' href='./Css/panier.css'>";
+    echo "<link rel='stylesheet' href='../Css/panier.css'>";
     include('header.php');
     echo '<hr class="hr1"><div class="panier-container"><h1>Votre panier</h1><div class="panier-items">';
 
