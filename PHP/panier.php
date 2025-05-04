@@ -3,22 +3,65 @@
 session_start();
 
 
-// ─── Gestion ultra-simple du panier ───────────────────────────────
-if (isset($_GET['action']) && $_GET['action'] === 'ajouter' && isset($_GET['id'])) {
-    $id = intval($_GET['id']);
 
-    // Initialise le tableau s’il n’existe pas
+if (
+    isset($_GET['action'], $_GET['id']) &&
+    $_GET['action'] === 'ajouter'
+) {
+    $id = (int) $_GET['id'];
+
+    // 1) Initialise la session panier
     if (!isset($_SESSION['panier'])) {
         $_SESSION['panier'] = [];
     }
 
-    // Incrémente la quantité de ce voyage
+    // 2) Incrémente la quantité de cet id
     $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
 
-    // Reviens sur la page précédente pour ne pas rester sur du JSON
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // 3) Retourne à la page précédente
+    header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? 'index.php'));
     exit;
 }
+
+// ── 1) Affichage du panier quand aucun ID ni action n'est fourni─────────
+if (!isset($_GET['id']) && !isset($_GET['action'])) {
+
+    // Crée le tableau s'il n'existe pas
+    if (!isset($_SESSION['panier']) || empty($_SESSION['panier'])) {
+        echo "<h2 style='color:#DEDEDE;text-align:center;margin-top:80px'>Votre panier est vide</h2>";
+        exit;
+    }
+
+    // Charge la base de données de voyages
+    $jsonData = file_get_contents('../data/voyages.json');
+    $data = json_decode($jsonData, true);
+
+    echo "<link rel='stylesheet' href='./Css/panier.css'>";
+    include('header.php');
+    echo '<hr class="hr1"><div class="panier-container"><h1>Votre panier</h1><div class="panier-items">';
+
+    // Parcourt les articles du panier
+    foreach ($_SESSION['panier'] as $id => $qty) {
+        // Retrouve le voyage correspondant dans le JSON
+        $voyage = array_filter($data['voyages'], fn($v) => $v['id'] == $id);
+        if (!$voyage) continue;
+        $voyage = array_values($voyage)[0];
+
+        echo "<div class='panier-item'>
+                <div class='item-details'>
+                    <h3>{$voyage['titre']}</h3>
+                    <p class='item-price'>{$voyage['prix']}</p>
+                    <p>Quantité : $qty</p>
+                </div>
+              </div>";
+    }
+
+    echo '</div></div>';
+    exit;                      // *** on n’exécute pas la suite ***
+}
+// ─────────────────────────────────────────────────────────────────────────
+
+
 
 
 
