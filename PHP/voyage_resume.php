@@ -48,6 +48,7 @@ $totalPriceForDisplay = $basePrice + $optionsPrice;
    
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/voyage_resume.css">
+    <script src="../Javascript/theme.js"></script>
 </head>
 <body>
     <?php include('header.php'); ?>
