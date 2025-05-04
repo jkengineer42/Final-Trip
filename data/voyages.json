@@ -272,7 +272,7 @@
     "jours": 3
   },
   "description": "Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.",
-  "image": "../assets/img/Vélo de montagne Costa Rica.jpg",
+ "image": "../assets/img/Velo_de_montagne_Costa_Rica.jpg",
   "climat": "chaud",
   "terrain": "montagneux",
   "couchage": ["tente", "auberge"],
