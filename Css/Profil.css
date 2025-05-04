@@ -1,8 +1,11 @@
+/* Importation de root.css (assurez-vous que le chemin est correct) */
 @import url(root.css);
 
 body {
     background-color: var(--grey);
     margin: 0;
+    font-family: "DM Sans", sans-serif; /* Appliquer une police par défaut */
+    color: var(--white); /* Couleur de texte par défaut */
 }
 
 header {
@@ -14,7 +17,7 @@ header {
 
 .logo {
     color: var(--yellow);
-    font-family: Newsreader;
+    font-family: 'Newsreader', serif; /* Police spécifique pour le logo */
     font-size: 2.5rem;
     font-weight: 500;
     text-decoration: none;
@@ -29,141 +32,291 @@ header {
 
 .head1 {
     color: var(--white);
-    font-family: "DM Sans";
+    font-family: "DM Sans", sans-serif;
     font-size: 1.3rem;
     text-decoration: none;
 }
 
-.encadré {
-    padding: 15px 50px;
+.encadré { /* Style pour un bouton encadré potentiel dans le header */
+    padding: 10px 30px; /* Ajusté le padding */
     border-radius: 200px;
     background: var(--white);
     border: none;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
+    color: var(--black_f); /* Assurez-vous que cette variable est définie */
+    text-decoration: none; /* Si c'est un lien stylé comme un bouton */
 }
 
 .hr1 {
     width: 90%;
     margin: 20px auto;
     border: none;
-    height: 2px;
-    background-color: var(--white);
+    height: 1px; /* Plus fin */
+    background-color: var(--grey); /* Blanc semi-transparent */
+}
+
+main {
+    max-width: 900px; /* Limiter la largeur du contenu principal */
+    margin: 40px auto; /* Centrer le contenu */
+    padding: 20px;
+    margin-bottom: 150px;
 }
 
 .profile-container {
     text-align: center;
-    padding: 40px;
+    padding: 40px 20px; /* Padding ajusté */
+    background-color: var(--grey); /* Fond légèrement différent si souhaité */
+    border-radius: 10px; /* Coins arrondis pour le conteneur */
 }
 
 .user-icon {
     width: 100px;
-    margin-bottom: 60px;
+    height: 100px; /* Assurer un cercle parfait si l'icône est carrée */
+    border-radius: 10%; /* Icône ronde */
+    margin-bottom: 40px; /* Espace réduit */
+
+    padding: 3px;  
 }
 
-
-form {
+#profile-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
+.message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.message.success {
+    background-color: var(--grey); /* Fond jaune transparent */
+    color: var(--yellow);
+    border: 1px solid var(--yellow);
+}
+.message.error {
+     background-color: var(--grey); /* Fond rouge transparent */
+    color: var(--yellow2); /* Rouge plus clair pour le texte */
+    border: 1px solid var(--yellow2);
+}
+.admin-info-banner {
+    background-color: var(--black_f);
+    color: var(--white);
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+
 .form-group {
     display: flex;
-    justify-content: center;
-    gap: 40px;
+    justify-content: center; /* Centre les éléments enfants */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si pas assez de place */
+    gap: 40px; /* Espace entre les conteneurs d'input */
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Espace réduit */
 }
+.form-group.single-group {
+    justify-content: center; /* Centre le seul enfant */
+}
+
 
 .input-container {
-    position: relative;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    margin-left: 20px;
+    flex-direction: column; /* Label au-dessus */
+    align-items: flex-start; /* Aligner les labels à gauche */
+    /* margin-bottom: 20px; */ /* Géré par le gap du form-group */
+    flex: 1 1 320px; /* Permet aux champs de prendre de la place mais avec une base de 320px */
+    max-width: 360px; /* Limite la largeur maximale */
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+.input-container.placeholder {
+    /* Style pour un placeholder si besoin d'alignement */
+    min-height: 1px; /* Juste pour occuper l'espace */
 }
 
-label {
+
+.input-container label {
     color: var(--white);
-    font-size: 1rem;
-    margin-bottom: 5px;
+    font-size: 0.9rem; /* Taille de police légèrement réduite */
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+.input-container small {
+    font-size: 0.8rem;
+    color: var(--white);
+    margin-top: 5px;
 }
 
-input {
-    width: 320px;
-    padding: 10px;
-    border: none;
+.input-wrapper {
+    display: flex;
+    align-items: center; /* Aligne verticalement l'input et les boutons */
+    width: 100%;
+    gap: 8px; /* Espace entre l'input et les boutons */
+}
+
+.input-wrapper input {
+    flex-grow: 1; /* L'input prend l'espace restant */
+    padding: 12px 15px; /* Padding augmenté */
+    border: 1px solid transparent; /* Bordure transparente par défaut */
     border-radius: 8px;
     background-color: var(--white);
+    color: var(--black_f); /* Texte noir dans les inputs */
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.edit-icon {
-    position: absolute;
-    top: 70%;
-    left: 350px;
-    transform: translateY(-50%);
-    width: 20px;
+/* Style pour les champs non modifiables */
+.input-wrapper input[readonly] {
+    background-color: #e9ecef; /* Fond gris clair */
+    cursor: default; /* Curseur par défaut */
+    border-color: #ced4da; /* Bordure grise */
+    color: #495057; /* Texte plus sombre */
+}
+/* Style quand le champ devient modifiable */
+.input-wrapper input:not([readonly]):not([disabled]) {
+    background-color: var(--white);
+    border-color: var(--yellow); /* Bordure jaune pour indiquer l'édition */
+}
+
+/* Style pour le champ email désactivé (différent de readonly) */
+.input-wrapper input[disabled] {
+    background-color: #555; /* Fond gris foncé */
+    color: #aaa; /* Texte gris clair */
+    cursor: not-allowed;
+    border-color: #666;
+}
+
+
+/* Style des boutons d'édition individuels */
+.edit-btn, .validate-btn, .cancel-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    white-space: nowrap; /* Empêche le texte du bouton de passer à la ligne */
+    flex-shrink: 0; /* Empêche les boutons de rétrécir */
 }
 
-.button1 {
+.edit-btn {
+    background-color: #6c757d; /* Gris */
+    color: white;
+}
+.edit-btn:hover {
+    background-color: #5a6268;
+}
+
+.validate-btn {
+    background-color: #28a745; /* Vert */
+    color: white;
+}
+.validate-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: #dc3545; /* Rouge */
+    color: white;
+}
+.cancel-btn:hover {
+    background-color: #c82333;
+}
+
+
+/* Classe utilitaire pour cacher des éléments */
+.hidden {
+    display: none !important; /* !important pour s'assurer qu'il est caché */
+}
+
+/* Boutons principaux */
+.main-buttons {
+    margin-top: 40px; /* Espace au-dessus des boutons principaux */
+    display: flex;
+    gap: 20px; /* Espace entre les boutons */
+    align-items: center;
+}
+
+.button1 { /* Bouton Sauvegarder */
     background-color: var(--yellow);
     color: var(--black_f);
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 20px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
 }
-
 .button1:hover {
-    background-color: var(--yellow);
+    background-color: #e1a700; /* Jaune un peu plus foncé au survol */
 }
 
-.button2{
-    padding: 5px 10px;
-    border-radius: 200px;
+.button2 { /* Bouton Déconnexion (style lien mais comme un bouton) */
+    padding: 10px 20px; /* Padding ajusté */
+    border-radius: 20px; /* Coins arrondis */
     background: var(--white);
-    border: none;
+    border: 1px solid var(--white);
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
     color: var(--black_f);
-    margin-top: 2rem;
-    margin-bottom: -50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.button2:hover {
+    background-color: transparent;
+    color: var(--white);
 }
 
+/* Lien Admin */
 .admin-link {
     position: absolute;
-    right: 200px; /* Ajustez selon vos besoins */
-    top: 200px; /* Ajustez selon vos besoins */
+    right: 40px; /* Ajustez selon vos besoins */
+    top: 110px; /* Ajustez pour être sous le header */
+}
+.button-small.admin-button { /* Style spécifique si besoin */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: var(--white);
+    color: var(--black_f);
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+.button-small.admin-button:hover {
+    background-color: #f0f0f0;
 }
 
 
+/* Footer */
 footer {
-    background-color: var(--yellow2);
+    background-color: var(--yellow2); /* Assurez-vous que cette variable est définie */
     color: var(--black_f);
     text-align: center;
-    padding: 20px 0;
+    padding: 10px 0;
     width: 100%;
-    margin-top: 130px;
+
 }
 
 footer h2 {
-    font-size: 22px;
+    font-size: 1.4rem; /* Taille ajustée */
     font-weight: bold;
     margin-bottom: 15px;
+    font-family: 'Newsreader', serif; /* Utiliser la même police que le logo? */
 }
 
 .contact p {
     margin: 5px 0;
+    font-size: 0.95rem;
 }
 
 .contact a {
@@ -171,20 +324,20 @@ footer h2 {
     color: var(--black_f);
     font-weight: bold;
 }
-
 .contact a:hover {
     text-decoration: underline;
 }
 
 .copyright {
-    margin: 20px 0;
-    font-size: 14px;
+    margin: 20px 0 25px 0; /* Espace ajusté */
+    font-size: 0.85rem; /* Taille réduite */
+    color: var(--black_f); /* Couleur copyright */
 }
 
 .hr2 {
     width: 80%;
     height: 1px;
-    background-color: var(--black_f);
+    background-color: var(--grey); /* Noir transparent */
     border: none;
     margin: 20px auto;
 }
@@ -192,15 +345,42 @@ footer h2 {
 .links {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
+    gap: 30px; /* Espace ajusté */
 }
 
 .links a {
     text-decoration: none;
     color: var(--black_f);
-    font-size: 14px;
+    font-size: 0.9rem; /* Taille ajustée */
 }
-
 .links a:hover {
     text-decoration: underline;
+}
+
+/* Responsive (Exemple simple) */
+@media (max-width: 768px) {
+    .form-group {
+        flex-direction: column; /* Champs les uns sous les autres */
+        gap: 20px;
+        align-items: center; /* Centrer les champs verticalement */
+    }
+    .input-container {
+        width: 90%; /* Prendre plus de largeur */
+        max-width: none; /* Enlever la limite max */
+        flex: none; /* Désactiver flex grow/shrink */
+    }
+    .admin-link {
+        position: static; /* Enlever la position absolue */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+     .main-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+.input-container field-container{
+    margin-bottom: 10px;
 }
