@@ -1,49 +1,85 @@
-
-function init() {
-    console.log("DOM prêt pour la page Admin");
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Admin.js initialisé - vérification des boutons de promotion et de suppression");
     
-    // Sélection des boutons de promotion et suppression
+    // Sélectionner tous les boutons de promotion et de suppression plus précisément en utilisant des sélecteurs d'attributs
     const promoteButtons = document.querySelectorAll('button[name="promote"]');
     const deleteButtons = document.querySelectorAll('button[name="delete"]');
     
-    // Ajout des écouteurs d'événements pour les boutons de promotion
+    console.log("Boutons de promotion trouvés :", promoteButtons.length);
+    console.log("Boutons de suppression trouvés :", deleteButtons.length);
+    
+    // Ajouter des écouteurs d'événements aux boutons de promotion
     promoteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
-            event.preventDefault(); // Empêche la soumission immédiate du formulaire
-            const form = this.closest('form'); // Récupère le formulaire parent du bouton
+            event.preventDefault();
+            console.log("Bouton de promotion cliqué");
             
-            // Désactivation du bouton et ajout de la classe de traitement
+            // Trouver l'élément de formulaire le plus proche
+            const form = this.closest('form');
+            if (!form) {
+                console.error("Aucun formulaire parent trouvé pour le bouton de promotion");
+                return;
+            }
+            
+            // Désactiver le bouton et ajouter un retour visuel
             this.disabled = true;
             this.classList.add('processing');
             
-            // Simulation d'attente de 2 secondes
+            // Journaliser le formulaire qui sera soumis
+            console.log("Formulaire à soumettre :", form);
+            
+            // Soumettre le formulaire après un délai
             setTimeout(() => {
-                this.disabled = false;
-                this.classList.remove('processing'); // Retire la classe de traitement
-                form.submit(); // Soumet le formulaire pour effectuer l'action réelle
+                try {
+                    console.log("Soumission du formulaire pour la promotion");
+                    form.submit();
+                } catch (error) {
+                    console.error("Erreur lors de la soumission du formulaire :", error);
+                    // Réactiver le bouton si la soumission échoue
+                    this.disabled = false;
+                    this.classList.remove('processing');
+                }
             }, 2000);
         });
     });
     
-    // Ajout des écouteurs d'événements pour les boutons de suppression
+    // Ajouter des écouteurs d'événements aux boutons de suppression
     deleteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             event.preventDefault();
-            const form = this.closest('form');
+            console.log("Bouton de suppression cliqué");
             
-            // Désactivation du bouton et ajout de la classe de traitement
-            this.disabled = true;
-            this.classList.add('processing');
-            
-            // Simulation d'attente de 2 secondes
-            setTimeout(() => {
-                this.disabled = false;
-                this.classList.remove('processing');
-                form.submit();
-            }, 2000);
+            // Confirmer la suppression avec l'utilisateur
+            if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+                // Trouver l'élément de formulaire le plus proche
+                const form = this.closest('form');
+                if (!form) {
+                    console.error("Aucun formulaire parent trouvé pour le bouton de suppression");
+                    return;
+                }
+                
+                // Désactiver le bouton et ajouter un retour visuel
+                this.disabled = true;
+                this.classList.add('processing');
+                
+                // Journaliser le formulaire qui sera soumis
+                console.log("Formulaire à soumettre :", form);
+                
+                // Soumettre le formulaire après un délai
+                setTimeout(() => {
+                    try {
+                        console.log("Soumission du formulaire pour la suppression");
+                        form.submit();
+                    } catch (error) {
+                        console.error("Erreur lors de la soumission du formulaire :", error);
+                        // Réactiver le bouton si la soumission échoue
+                        this.disabled = false;
+                        this.classList.remove('processing');
+                    }
+                }, 2000);
+            } else {
+                console.log("Suppression annulée par l'utilisateur");
+            }
         });
     });
-}
-
-// Exécution du script lorsque le DOM est complètement chargé
-document.addEventListener('DOMContentLoaded', init);
+});
