@@ -10,7 +10,7 @@
         "jours": 5
       },
       "description": "Une expédition exceptionnelle entre banquises, hautes montagnes et glaciers en un lieu sans doute le plus esthétique et isolé du Groenland.",
-      "image": "../assets/img/Voyage Groenland Expédition Polaire.jpg",
+     "image": "../assets/img/Voyage_Groenland_Expedition_Polaire.jpg",
       "climat": "froid",
       "terrain": "aquatique",
       "couchage": ["hotel", "auberge", "habitant"],
