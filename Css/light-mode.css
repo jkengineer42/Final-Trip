@@ -4,8 +4,8 @@
     /* Modification : nouvelles couleurs principales pour un meilleur contraste en mode clair */
     --grey: #f4f4f4;         /* Fond principal plus doux mais toujours clair */
     --darker-grey: #e0e0e0;  /* Gris clair pour les éléments qui doivent se démarquer légèrement */
-    --yellow: #FF6A00;       /* Orange vif - conservé de la charte graphique */
-    --yellow2: #d35400;      /* Couleur du footer - nuance plus foncée pour meilleur contraste */
+    --orange: #FF6A00;       /* Orange vif - conservé de la charte graphique */
+    --orange2: #d35400;      /* Couleur du footer - nuance plus foncée pour meilleur contraste */
     --white: #121212;        /* Modification : texte presque noir sur fond clair pour lisibilité */
     --white2: #ffffff;       /* Blanc pur pour certains fonds */
     --black: rgba(0, 0, 0, 0.5); /* Noir semi-transparent pour ombres */
@@ -55,7 +55,7 @@ header {
 }
 
 .logo {
-    color: var(--yellow); /* Garde la même couleur que le mode sombre */
+    color: var(--orange); /* Garde la même couleur que le mode sombre */
 }
 
 /* Modification : texte de navigation plus foncé pour lisibilité */
@@ -66,7 +66,7 @@ header {
 
 /* Modification : bouton contact plus visible */
 .encadré {
-    background: var(--yellow);
+    background: var(--orange);
     color: var(--white2);
 }
 
@@ -76,7 +76,7 @@ header {
 
 /* Correction du footer */
 footer {
-    background-color: var(--yellow2); /* Garde la même couleur que le mode sombre */
+    background-color: var(--orange2); /* Garde la même couleur que le mode sombre */
     color: var(--white2); /* Modification : texte en blanc pour meilleur contraste */
 }
 
@@ -118,7 +118,7 @@ footer a {
 }
 
 .filters h2 {
-    color: var(--yellow);
+    color: var(--orange);
     font-weight: bold;
     margin-top: 15px;
 }
@@ -159,7 +159,7 @@ footer a {
 }
 
 .pagination a:hover, .pagination a.active {
-    background-color: var(--yellow);
+    background-color: var(--orange);
     color: var(--white2);
 }
 
@@ -185,7 +185,7 @@ footer a {
 }
 
 .stage-card h3 {
-    color: var(--yellow);
+    color: var(--orange);
     border-bottom: 1px solid var(--light-grey);
 }
 
@@ -204,7 +204,7 @@ footer a {
 }
 
 .summary-header h1, .trip-basic-info h2, .stages-summary h3, .summary-stage-card h4 {
-    color: var(--yellow);
+    color: var(--orange);
 }
 
 .summary-stage-card {
@@ -231,7 +231,7 @@ footer a {
 }
 
 .section-title {
-    color: var(--yellow) !important;
+    color: var(--orange) !important;
     font-weight: bold;
 }
 
@@ -246,7 +246,7 @@ footer a {
 }
 
 .title {
-    color: var(--yellow) !important;
+    color: var(--orange) !important;
 }
 
 .description {
@@ -259,7 +259,7 @@ footer a {
 
 /* Modification : flèches de navigation visibles */
 .arrow-button {
-    background-color: var(--yellow) !important;
+    background-color: var(--orange) !important;
     color: var(--white2) !important;
 }
 
@@ -268,7 +268,7 @@ footer a {
 }
 
 .card:hover .arrow-button {
-    background-color: var(--yellow2) !important;
+    background-color: var(--orange2) !important;
     color: var(--white2) !important;
 }
 
@@ -316,14 +316,14 @@ footer a {
 .form-field:not(:read-only) {
     background-color: var(--white2) !important; /* Fond blanc */
     color: var(--black_f) !important; /* Texte noir */
-    border: 2px solid var(--yellow) !important; /* Bordure orange */
+    border: 2px solid var(--orange) !important; /* Bordure orange */
 }
 
 /* Ajouter également pour le mode "editing" */
 .form-field.editing {
     background-color: var(--white2) !important;
     color: var(--black_f) !important;
-    border: 2px solid var(--yellow) !important;
+    border: 2px solid var(--orange) !important;
 }
 
 /* Filtre à gauche prix, durée, pays... */
