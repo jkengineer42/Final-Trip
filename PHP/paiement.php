@@ -99,6 +99,8 @@ $_SESSION['payment_vendeur'] = $vendeur_code;
     <title>Redirection vers Paiement - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/Paiement.css">
+    <script src="../Javascript/theme.js"></script>
+    
     <style>
  
         .trip-summary {
