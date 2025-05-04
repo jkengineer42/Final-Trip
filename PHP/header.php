@@ -2,7 +2,7 @@
 // Calculer le nombre d'articles dans le panier si la session existe
 $nombreArticlesPanier = 0;
 if (isset($_SESSION['panier'])) {
-    $nombreArticlesPanier = count($_SESSION['panier']);
+   $nombreArticlesPanier = array_sum($_SESSION['panier']);
 }
 ?>
 <header>
