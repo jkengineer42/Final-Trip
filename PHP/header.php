@@ -7,4 +7,7 @@
         <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png" alt="Profil"></a>
         <a href="#" class="img2"><img src="../assets/icon/Shopping cart.png" alt="Panier"></a>
     </div>
-</header>
+
+    <script src="../Javascript/theme.js"></script>
+</header> 
+ <!-- Modifié-->
