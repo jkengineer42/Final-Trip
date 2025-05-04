@@ -94,6 +94,7 @@ $paginatedUsers = array_slice($jsonData, $startIndex, $usersPerPage);
     <title>Admin - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Admin.css">
     <link rel="stylesheet" href="../Css/formulaire.css">
+    <script src="../Javascript/admin.js"></script>
     <script src="../Javascript/formulaire.js"></script>
     <script src="../Javascript/theme.js"></script>
 </head>
