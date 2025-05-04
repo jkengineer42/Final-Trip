@@ -46,6 +46,7 @@ if (isset($_SESSION['user_email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - FINAL TRIP</title>
     <link rel="stylesheet" href="../Css/Connexion.css">
+    <link rel="stylesheet" href="../Css/formulaire.css">
     <script src="../Javascript/formulaire.js"></script>
     <script src="../Javascript/theme.js"></script>
 </head>
