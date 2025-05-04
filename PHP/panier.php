@@ -122,6 +122,7 @@ $estimatedPrice = floatval(str_replace(['€', ' '], '', $trip['prix']));
     <link rel="stylesheet" href="../Css/voyage_detail.css">
     <script src="../Javascript/theme.js"></script>
     <script src="../Javascript/voyage_detail_prix.js"></script>
+    <script src="../Javascript/panier.js"></script>
 </head>
 <body>
     <?php include('header.php'); ?>
