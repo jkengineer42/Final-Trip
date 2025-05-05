@@ -1,420 +1,170 @@
 <?php
-// Démarre la session pour stocker les données personnalisées du voyage
+// Démarre la session pour utiliser le panier et potentiellement les infos utilisateur
 session_start();
 
 // Gestion de l'action vider le panier
 if (isset($_GET['action']) && $_GET['action'] === 'vider') {
     // Vide le panier
     unset($_SESSION['panier']);
-    // Redirige vers la page du panier
-    header('Location: panier.php');
+    // Redirige vers la page Destination comme demandé
+    header('Location: Destination.php');
     exit;
 }
 
+// Gestion de l'action ajouter un article au panier
 if (
     isset($_GET['action'], $_GET['id']) &&
     $_GET['action'] === 'ajouter'
 ) {
-    $id = (int) $_GET['id'];
+    $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-    // 1) Initialise la session panier
-    if (!isset($_SESSION['panier'])) {
-        $_SESSION['panier'] = [];
-    }
+    if ($id > 0) {
+        // 1) Initialise la session panier si elle n'existe pas
+        if (!isset($_SESSION['panier'])) {
+            $_SESSION['panier'] = [];
+        }
 
-    // 2) Incrémente la quantité de cet id
-    $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
+        // 2) Incrémente la quantité de cet id (ou initialise à 1)
+        $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
 
-    // 3) Retourne à la page précédente
-    header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? 'index.php'));
-    exit;
-}
-
-// ── 1) Affichage du panier quand aucun ID ni action n'est fourni─────────
-if (!isset($_GET['id']) && !isset($_GET['action'])) {
-
-    // Crée le tableau s'il n'existe pas
-    if (!isset($_SESSION['panier']) || empty($_SESSION['panier'])) {
-        echo "<h2 style='color:#DEDEDE;text-align:center;margin-top:80px'>Votre panier est vide</h2>";
+        // 3) Retourne à la page précédente (ou Destination par défaut)
+        header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? 'Destination.php'));
+        exit;
+    } else {
+        // Gérer ID invalide si nécessaire
+        header('Location: Destination.php'); // Rediriger en cas d'ID invalide
         exit;
     }
-
-    // Charge la base de données de voyages
-    $jsonData = file_get_contents('../data/voyages.json');
-    $data = json_decode($jsonData, true);
-
-    echo "<link rel='stylesheet' href='../Css/panier.css'>";
-    include('header.php');
-    echo '<hr class="hr1"><div class="panier-container"><h1>Votre panier</h1><div class="panier-items">';
-
-    // Parcourt les articles du panier
-    foreach ($_SESSION['panier'] as $id => $qty) {
-        // Retrouve le voyage correspondant dans le JSON
-        $voyage = array_filter($data['voyages'], fn($v) => $v['id'] == $id);
-        if (!$voyage) continue;
-        $voyage = array_values($voyage)[0];
-
-        echo "<div class='panier-item'>
-                <div class='item-details'>
-                    <h3>{$voyage['titre']}</h3>
-                    <p class='item-price'>{$voyage['prix']}</p>
-                    <p>Quantité : $qty</p>
-                </div>
-              </div>";
-    }
-
-    echo '<div class="cart-actions">';
-    echo '<a href="panier.php?action=vider" class="remove-button">Vider le panier</a>';
-    echo '</div>';
-
-    echo '</div></div>';
-    exit;                      // *** on n’exécute pas la suite ***
 }
-// ─────────────────────────────────────────────────────────────────────────
 
 
-
-
-
-// Vérifier si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté (pour l'affichage du header)
 if (isset($_SESSION['user_email'])) {
     $profileLink = 'Profil.php'; // Lien vers la page de profil
 } else {
     $profileLink = 'Connexion.php'; // Lien vers la page de connexion
 }
 
-// Récupère l'ID du voyage depuis le paramètre URL
-$tripId = isset($_GET['id']) ? intval($_GET['id']) : null;
+// --- Affichage du Panier ---
 
-// Vérifie si le formulaire a été soumis pour aller à la page récapitulative
-if (isset($_POST['submit_personalization'])) {
-    // Collecte toutes les options sélectionnées
-    $personalizedTrip = [
-        'tripId' => $tripId,
-        'tripTitle' => $_POST['trip_title'],
-        'originalPrice' => $_POST['trip_price'],
-        'duration' => [
-            'debut' => $_POST['trip_start_date'],
-            'fin' => $_POST['trip_end_date'],
-            'jours' => $_POST['trip_days']
-        ],
-        'stages' => []
-    ];
+// Charger la base de données de voyages
+$jsonData = @file_get_contents('../data/voyages.json');
+$data = $jsonData ? json_decode($jsonData, true) : null;
 
-    // Parcourt chaque étape pour obtenir les options sélectionnées
-    foreach ($_POST['etape_ids'] as $i => $etapeId) {
-        // Pour l'hébergement
-        $hebergementId = $_POST["hebergement_$etapeId"];
-        $hebergementName = $_POST["hebergement_{$etapeId}_name_{$hebergementId}"];
-        $hebergementPrice = $_POST["hebergement_{$etapeId}_price_{$hebergementId}"];
-        
-        // Pour la restauration
-        $restaurationId = $_POST["restauration_$etapeId"];
-        $restaurationName = $_POST["restauration_{$etapeId}_name_{$restaurationId}"];
-        $restaurationPrice = $_POST["restauration_{$etapeId}_price_{$restaurationId}"];
-        
-        // Pour les activités
-        $activitesId = $_POST["activites_$etapeId"];
-        $activitesName = $_POST["activites_{$etapeId}_name_{$activitesId}"];
-        $activitesPrice = $_POST["activites_{$etapeId}_price_{$activitesId}"];
-        $participants = isset($_POST["participants_$etapeId"]) ? $_POST["participants_$etapeId"] : 1;
-        
-        // Pour le transport
-        $transportId = $_POST["transport_$etapeId"];
-        $transportName = $_POST["transport_{$etapeId}_name_{$transportId}"];
-        $transportPrice = $_POST["transport_{$etapeId}_price_{$transportId}"];
-        
-        $stage = [
-            'id' => $etapeId,
-            'title' => $_POST['etape_titles'][$i],
-            'day' => $_POST['etape_days'][$i],
-            'options' => [
-                'hebergement' => [
-                    'id' => $hebergementId,
-                    'nom' => $hebergementName,
-                    'prix' => $hebergementPrice
-                ],
-                'restauration' => [
-                    'id' => $restaurationId,
-                    'nom' => $restaurationName,
-                    'prix' => $restaurationPrice
-                ],
-                'activites' => [
-                    'id' => $activitesId,
-                    'nom' => $activitesName,
-                    'prix' => $activitesPrice,
-                    'participants' => $participants
-                ],
-                'transport' => [
-                    'id' => $transportId,
-                    'nom' => $transportName,
-                    'prix' => $transportPrice
-                ]
-            ]
-        ];
-        
-        $personalizedTrip['stages'][] = $stage;
-    }
-    
-    // Stocke dans la session
-    $_SESSION['personalized_trip'] = $personalizedTrip;
-    
-    // Redirige vers la page récapitulative
-    header('Location: voyage_resume.php');
-    exit;
+// Vérifier si les données JSON sont valides
+if ($data === null || !isset($data['voyages'])) {
+     // Afficher une erreur ou gérer le cas où le JSON est invalide/manquant
+     // Pour la simplicité, on peut juste afficher un message et sortir
+     include('header.php'); // Inclure le header même en cas d'erreur
+     echo "<link rel='stylesheet' href='../Css/panier.css'>";
+     echo '<hr class="hr1">';
+     echo "<div class='panier-container'><h1>Votre panier</h1>";
+     echo "<p class='error-message'>Erreur: Impossible de charger les données des voyages.</p>";
+     echo "</div>";
+     include('footer.php'); // Inclure le footer
+     exit;
 }
 
-// Charge les données des voyages depuis le fichier JSON
-$jsonData = file_get_contents('../data/voyages.json');
-$data = json_decode($jsonData, true);
+$voyagesData = $data['voyages']; // Accéder au tableau des voyages
 
-// Trouve le voyage demandé
-$trip = null;
-foreach ($data['voyages'] as $voyage) {
-    if ($voyage['id'] === $tripId) {
-        $trip = $voyage;
-        break;
-    }
-}
+// Initialiser le prix total
+$totalPrice = 0.0;
+$panierEstVide = !isset($_SESSION['panier']) || empty($_SESSION['panier']);
 
-// Gère le cas où le voyage n'est pas trouvé
-if (!$trip) {
-    echo "Voyage non trouvé";
-    exit;
-}
-
-// Initialiser la variable pour le prix total estimé
-$estimatedPrice = floatval(str_replace(['€', ' '], '', $trip['prix']));
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personnalisation de voyage - <?php echo htmlspecialchars($trip['titre']); ?></title>
-    <link rel="stylesheet" href="../Css/voyage_detail.css">
+    <title>Votre Panier - FINAL TRIP</title>
+    <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/panier.css">
     <script src="../Javascript/theme.js"></script>
-    <script src="../Javascript/voyage_detail_prix.js"></script>
-    <script src="../Javascript/panier.js"></script>
+    <!-- Potentiellement ajouter un script JS pour le panier plus tard -->
+    <!-- <script src="../Javascript/panier.js"></script> -->
 </head>
 <body>
     <?php include('header.php'); ?>
     <hr class="hr1">
-    
-    <div class="detailed-trip-view">
-        
-        <section class="trip-header">
-            <h1><?php echo htmlspecialchars($trip['titre']); ?></h1>
-            <div class="trip-info">
-                <p><strong>Destination:</strong> <?php echo htmlspecialchars($trip['pays']); ?></p>
-                <p><strong>Durée:</strong> <?php echo htmlspecialchars($trip['duree']['jours']); ?> jours</p>
-                <p><strong>Prix de base:</strong> <?php echo htmlspecialchars($trip['prix']); ?></p>
-            </div>
-            <p class="trip-description"><?php echo htmlspecialchars($trip['description']); ?></p>
-        </section>
 
-        <!-- Bouton Ajouter au panier -->
-        <div class="trip-quick-actions">
-            <a href="panier.php?action=ajouter&id=<?php echo $tripId; ?>" class="add-to-cart-button">
-                <img src="../assets/icon/Shopping cart.png" alt="Panier" class="cart-icon">
-                Ajouter au panier
-            </a>
-        </div>
+    <main>
+        <div class="panier-container">
+            <h1>Votre panier</h1>
 
-        <!-- Affichage du prix total estimé -->
-        <div class="price-estimation">
-            <h3>Prix total estimé: <span id="estimated-price"><?php echo htmlspecialchars($trip['prix']); ?></span></h3>
-            <p class="price-note">Le prix s'ajuste automatiquement en fonction de vos choix d'options.</p>
-        </div>
+            <?php if ($panierEstVide): ?>
+                <div class="empty-panier">
+                    <p>Votre panier est actuellement vide.</p>
+                    <a href="Destination.php" class="primary-button">Découvrir nos voyages</a>
+                </div>
+            <?php else: ?>
+                <div class="panier-items">
+                    <?php
+                    // Boucle sur les articles du panier (id => quantité)
+                    foreach ($_SESSION['panier'] as $id => $qty):
+                        // Retrouver le voyage correspondant dans le JSON chargé
+                        $voyage = null;
+                        foreach ($voyagesData as $v) {
+                            if ($v['id'] == $id) {
+                                $voyage = $v;
+                                break;
+                            }
+                        }
 
-        <section class="trip-stages">
-            <h2>Personnalisez votre voyage</h2>
-            
-            <form method="post" action="" id="trip-customization-form">
-                <!-- Champs cachés pour stocker les informations du voyage -->
-                <input type="hidden" name="trip_title" value="<?php echo htmlspecialchars($trip['titre']); ?>">
-                <input type="hidden" name="trip_price" value="<?php echo htmlspecialchars($trip['prix']); ?>">
-                <input type="hidden" name="trip_start_date" value="<?php echo htmlspecialchars($trip['duree']['debut']); ?>">
-                <input type="hidden" name="trip_end_date" value="<?php echo htmlspecialchars($trip['duree']['fin']); ?>">
-                <input type="hidden" name="trip_days" value="<?php echo htmlspecialchars($trip['duree']['jours']); ?>">
-                <input type="hidden" id="base-price" value="<?php echo $estimatedPrice; ?>">
-                
-                <?php foreach ($trip['etapes'] as $index => $etape): ?>
-                    <div class="stage-card" data-stage-id="<?php echo htmlspecialchars($etape['id']); ?>">
-                        <h3 class="stage-day">Jour <?php echo htmlspecialchars($etape['jour']); ?>: <?php echo htmlspecialchars($etape['titre']); ?></h3>
-                        <p><?php echo htmlspecialchars($etape['description']); ?></p>
-                        
-                        <!-- Stocke l'ID de l'étape et les informations -->
-                        <input type="hidden" name="etape_ids[]" value="<?php echo htmlspecialchars($etape['id']); ?>">
-                        <input type="hidden" name="etape_titles[]" value="<?php echo htmlspecialchars($etape['titre']); ?>">
-                        <input type="hidden" name="etape_days[]" value="<?php echo htmlspecialchars($etape['jour']); ?>">
-                        
-                        <div class="options-container">
-                            <!-- Options d'hébergement -->
-                            <div class="option-category">
-                                <h4>Hébergement</h4>
-                                <div class="option-list">
-                                    <?php foreach ($etape['options']['hebergement'] as $option): ?>
-                                        <div class="option-item">
-                                            <input 
-                                                type="radio" 
-                                                id="hebergement-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
-                                                name="hebergement_<?php echo $etape['id']; ?>" 
-                                                value="<?php echo $option['id']; ?>"
-                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
-                                                data-category="hebergement"
-                                                data-stage-id="<?php echo $etape['id']; ?>"
-                                                class="price-option"
-                                                <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
-                                            >
-                                            <!-- Champs cachés pour stocker nom et prix -->
-                                            <input type="hidden" name="hebergement_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
-                                            <input type="hidden" name="hebergement_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
-                                            <label for="hebergement-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
-                                                <?php echo htmlspecialchars($option['nom']); ?> 
-                                                <?php if ($option['prix'] !== "inclus"): ?>
-                                                    (<?php echo htmlspecialchars($option['prix']); ?>)
-                                                <?php endif; ?>
-                                            </label>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                            
-                            <!-- Options de restauration -->
-                            <div class="option-category">
-                                <h4>Restauration</h4>
-                                <div class="option-list">
-                                    <?php foreach ($etape['options']['restauration'] as $option): ?>
-                                        <div class="option-item">
-                                            <input 
-                                                type="radio" 
-                                                id="restauration-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
-                                                name="restauration_<?php echo $etape['id']; ?>" 
-                                                value="<?php echo $option['id']; ?>"
-                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
-                                                data-category="restauration"
-                                                data-stage-id="<?php echo $etape['id']; ?>"
-                                                class="price-option"
-                                                <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
-                                            >
-                                            <!-- Champs cachés pour stocker nom et prix -->
-                                            <input type="hidden" name="restauration_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
-                                            <input type="hidden" name="restauration_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
-                                            <label for="restauration-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
-                                                <?php echo htmlspecialchars($option['nom']); ?> 
-                                                <?php if ($option['prix'] !== "inclus"): ?>
-                                                    (<?php echo htmlspecialchars($option['prix']); ?>)
-                                                <?php endif; ?>
-                                            </label>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                            
-                            <!-- Options d'activités -->
-                            <div class="option-category">
-                                <h4>Activités</h4>
-                                <div class="option-list">
-                                    <?php foreach ($etape['options']['activites'] as $option): ?>
-                                        <div class="option-item">
-                                            <input 
-                                                type="radio" 
-                                                id="activites-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
-                                                name="activites_<?php echo $etape['id']; ?>" 
-                                                value="<?php echo $option['id']; ?>"
-                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
-                                                data-category="activites"
-                                                data-stage-id="<?php echo $etape['id']; ?>"
-                                                class="price-option"
-                                                <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
-                                            >
-                                            <!-- Champs cachés pour stocker nom et prix -->
-                                            <input type="hidden" name="activites_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
-                                            <input type="hidden" name="activites_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
-                                            <label for="activites-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
-                                                <?php echo htmlspecialchars($option['nom']); ?> 
-                                                <?php if ($option['prix'] !== "inclus"): ?>
-                                                    (<?php echo htmlspecialchars($option['prix']); ?>)
-                                                <?php endif; ?>
-                                            </label>
-                                        </div>
-                                    <?php endforeach; ?>
-                                    
-                                    <!-- Ajout du sélecteur de participants pour les activités -->
-                                    <?php 
-                                    // Détermine le nombre maximum de participants pour l'activité par défaut
-                                    $defaultOption = null;
-                                    foreach ($etape['options']['activites'] as $option) {
-                                        if ($option['par_defaut']) {
-                                            $defaultOption = $option;
-                                            break;
-                                        }
-                                    }
-                                    $maxParticipants = $defaultOption ? ($defaultOption['max_personnes'] ?? 10) : 10;
-                                    ?>
-                                    <div class="participant-selector">
-                                        <label for="participants_<?php echo $etape['id']; ?>">Nombre de participants :</label>
-                                        <select 
-                                            name="participants_<?php echo $etape['id']; ?>" 
-                                            id="participants_<?php echo $etape['id']; ?>"
-                                            data-stage-id="<?php echo $etape['id']; ?>"
-                                            class="participants-select"
-                                        >
-                                            <?php for ($i = 1; $i <= $maxParticipants; $i++): ?>
-                                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                                            <?php endfor; ?>
-                                        </select>
+                        // Si le voyage est trouvé, l'afficher et calculer le prix
+                        if ($voyage):
+                            // Nettoyer le prix pour le calcul
+                            $itemPriceClean = preg_replace('/[^\d,\.]/', '', $voyage['prix']); // Garde chiffres, virgule, point
+                            $itemPrice = floatval(str_replace(',', '.', $itemPriceClean)); // Remplace virgule par point pour floatval
+
+                            // Ajouter au prix total
+                            $totalPrice += $itemPrice * $qty;
+                    ?>
+                            <div class="panier-item">
+                                <?php if (isset($voyage['image']) && !empty($voyage['image'])): ?>
+                                    <div class="item-image">
+                                        <img src="<?php echo htmlspecialchars($voyage['image']); ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
+                                    </div>
+                                <?php endif; ?>
+                                <div class="item-details">
+                                    <h3><?php echo htmlspecialchars($voyage['titre']); ?></h3>
+                                    <p class="item-price">Prix unitaire : <?php echo htmlspecialchars($voyage['prix']); ?></p>
+                                    <p>Quantité : <?php echo $qty; ?></p>
+                                    <p>Sous-total : <?php echo number_format($itemPrice * $qty, 2, ',', ' '); ?> €</p>
+                                    <div class="item-actions">
+                                        <!-- Bouton Voir Détails (lien vers la page de détail) -->
+                                        <a href="voyage_detail.php?id=<?php echo $id; ?>" class="view-button">Voir les détails</a>
+                                        <!-- Bouton Supprimer (pourrait être ajouté plus tard) -->
+                                        <!-- <a href="panier.php?action=supprimer&id=<?php echo $id; ?>" class="remove-button">Supprimer</a> -->
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- Options de transport -->
-                            <div class="option-category">
-                                <h4>Transport</h4>
-                                <div class="option-list">
-                                    <?php foreach ($etape['options']['transport'] as $option): ?>
-                                        <div class="option-item">
-                                            <input 
-                                                type="radio" 
-                                                id="transport-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>" 
-                                                name="transport_<?php echo $etape['id']; ?>" 
-                                                value="<?php echo $option['id']; ?>"
-                                                data-price="<?php echo is_numeric(str_replace(['€', ' '], '', $option['prix'])) ? str_replace(['€', ' '], '', $option['prix']) : '0'; ?>"
-                                                data-category="transport"
-                                                data-stage-id="<?php echo $etape['id']; ?>"
-                                                class="price-option"
-                                                <?php echo $option['par_defaut'] ? 'checked' : ''; ?>
-                                            >
-                                            <!-- Champs cachés pour stocker nom et prix -->
-                                            <input type="hidden" name="transport_<?php echo $etape['id']; ?>_name_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['nom']); ?>">
-                                            <input type="hidden" name="transport_<?php echo $etape['id']; ?>_price_<?php echo $option['id']; ?>" value="<?php echo htmlspecialchars($option['prix']); ?>">
-                                            <label for="transport-<?php echo $etape['id']; ?>-<?php echo $option['id']; ?>">
-                                                <?php echo htmlspecialchars($option['nom']); ?> 
-                                                <?php if ($option['prix'] !== "inclus"): ?>
-                                                    (<?php echo htmlspecialchars($option['prix']); ?>)
-                                                <?php endif; ?>
-                                            </label>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-                
-                <div class="actions">
-                    <a href="Destination.php" class="secondary-button">Retour</a>
-                    <button type="submit" name="submit_personalization" class="primary-button">Voir le résumé</button>
+                    <?php
+                        endif; // Fin de if ($voyage)
+                    endforeach; // Fin de la boucle foreach panier
+                    ?>
                 </div>
-            </form>
-        </section>
-    </div>
-    
-    <footer>
-        <?php include('footer.php'); ?> 
-    </footer>
+
+                <!-- Section Récapitulatif -->
+                <div class="panier-summary">
+                    <div class="total-price">
+                        <span>Total du panier :</span>
+                        <span><?php echo number_format($totalPrice, 2, ',', ' '); ?> €</span>
+                    </div>
+                    <div class="panier-actions">
+                         <!-- Bouton Valider et Payer -->
+                        <a href="voyage_resume.php" class="primary-button">Valider et Préparer le Paiement</a>
+                         <!-- Bouton Vider le Panier -->
+                        <a href="panier.php?action=vider" class="secondary-button">Vider le panier</a>
+                    </div>
+                     <p class="info-message">Note: Pour finaliser la commande, vous devrez peut-être confirmer les options sur la page suivante avant de procéder au paiement.</p>
+                </div>
+
+            <?php endif; // Fin de if/else panier vide ?>
+
+        </div>
+    </main>
+
+    <?php include('footer.php'); ?>
 </body>
 </html>
