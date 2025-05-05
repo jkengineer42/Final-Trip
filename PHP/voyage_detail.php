@@ -329,11 +329,6 @@ $estimatedPrice = floatval(str_replace(['€', ' '], '', $trip['prix']));
                     </div>
                 <?php endforeach; ?>
 
-                 <!-- Affichage du prix total estimé (Bas) -->
-        <div class="price-estimation">
-            <h3>Prix total estimé: <span id="estimated-price"><?php echo htmlspecialchars($trip['prix']); ?></span></h3>
-            <p class="price-note">Le prix s'ajuste automatiquement en fonction de vos choix d'options.</p>
-        </div>
                 
                 <div class="actions">
                     <a href="Destination.php" class="secondary-button">Retour</a>
