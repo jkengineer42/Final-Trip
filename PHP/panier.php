@@ -2,16 +2,20 @@
 // Démarre la session pour utiliser le panier et potentiellement les infos utilisateur
 session_start();
 
+// --- Gestion des Actions ---
+
 // Gestion de l'action vider le panier
 if (isset($_GET['action']) && $_GET['action'] === 'vider') {
-    // Vide le panier
+    // Vide le panier et les prix associés
     unset($_SESSION['panier']);
-    // Redirige vers la page Destination comme demandé
+    unset($_SESSION['panier_prices']); // Important : vider aussi les prix dynamiques
+    // Redirige vers la page Destination comme demandé (URL propre)
     header('Location: Destination.php');
-    exit;
+    exit; // Important: Arrêter l'exécution après redirection
 }
 
-// Gestion de l'action ajouter un article au panier
+// Gestion de l'action ajouter un article au panier (Typiquement depuis Destination.php)
+// Cette action ajoute le voyage avec son PRIX DE BASE. La personnalisation mettra à jour le prix.
 if (
     isset($_GET['action'], $_GET['id']) &&
     $_GET['action'] === 'ajouter'
@@ -23,26 +27,42 @@ if (
         if (!isset($_SESSION['panier'])) {
             $_SESSION['panier'] = [];
         }
+        // 2) Initialise le stockage des prix dynamiques s'il n'existe pas
+        if (!isset($_SESSION['panier_prices'])) {
+            $_SESSION['panier_prices'] = [];
+        }
 
-        // 2) Incrémente la quantité de cet id (ou initialise à 1)
-        $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
+        // 3) Incrémente la quantité de cet id (ou initialise à 1)
+        // Si le voyage est déjà personnalisé (prix dynamique existe), on ne change pas la quantité (on suppose 1)
+        // Sinon, on incrémente comme un produit standard.
+        if (!isset($_SESSION['panier_prices'][$id])) {
+             $_SESSION['panier'][$id] = ($_SESSION['panier'][$id] ?? 0) + 1;
+        } else {
+             // Si déjà personnalisé, on force la quantité à 1 pour éviter la multiplication du prix personnalisé
+             $_SESSION['panier'][$id] = 1;
+        }
 
-        // 3) Retourne à la page précédente (ou Destination par défaut)
-        header('Location: ' . ($_SERVER['HTTP_REFERER'] ?? 'Destination.php'));
-        exit;
+
+        // 4) Redirige vers panier.php SANS les paramètres d'action pour éviter la boucle
+        header('Location: panier.php');
+        exit; // Important: Arrêter l'exécution après redirection
     } else {
-        // Gérer ID invalide si nécessaire
-        header('Location: Destination.php'); // Rediriger en cas d'ID invalide
+        // Gérer ID invalide si nécessaire - rediriger vers une page sûre
+        header('Location: Destination.php');
         exit;
     }
 }
+
+// --- Fin de la Gestion des Actions ---
 
 
 // Vérifier si l'utilisateur est connecté (pour l'affichage du header)
 if (isset($_SESSION['user_email'])) {
     $profileLink = 'Profil.php'; // Lien vers la page de profil
 } else {
-    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
+    // Si pas connecté, on peut afficher le panier mais pas valider
+    $profileLink = 'Connexion.php';
+    // Pas de redirection ici, on permet de voir le panier
 }
 
 // --- Affichage du Panier ---
@@ -52,20 +72,10 @@ $jsonData = @file_get_contents('../data/voyages.json');
 $data = $jsonData ? json_decode($jsonData, true) : null;
 
 // Vérifier si les données JSON sont valides
-if ($data === null || !isset($data['voyages'])) {
-     // Afficher une erreur ou gérer le cas où le JSON est invalide/manquant
-     // Pour la simplicité, on peut juste afficher un message et sortir
-     include('header.php'); // Inclure le header même en cas d'erreur
-     echo "<link rel='stylesheet' href='../Css/panier.css'>";
-     echo '<hr class="hr1">';
-     echo "<div class='panier-container'><h1>Votre panier</h1>";
-     echo "<p class='error-message'>Erreur: Impossible de charger les données des voyages.</p>";
-     echo "</div>";
-     include('footer.php'); // Inclure le footer
-     exit;
+$voyagesData = null;
+if ($data !== null && isset($data['voyages'])) {
+    $voyagesData = $data['voyages']; // Accéder au tableau des voyages
 }
-
-$voyagesData = $data['voyages']; // Accéder au tableau des voyages
 
 // Initialiser le prix total
 $totalPrice = 0.0;
@@ -81,31 +91,34 @@ $panierEstVide = !isset($_SESSION['panier']) || empty($_SESSION['panier']);
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/panier.css">
     <script src="../Javascript/theme.js"></script>
-    <!-- Potentiellement ajouter un script JS pour le panier plus tard -->
+    <!-- Potentiellement ajouter un script JS pour le panier plus tard (ex: supprimer item sans recharger) -->
     <!-- <script src="../Javascript/panier.js"></script> -->
 </head>
 <body>
-    <?php include('header.php'); ?>
+    <?php include('header.php'); // Assurez-vous que header.php démarre aussi la session si ce n'est pas déjà fait ?>
     <hr class="hr1">
 
     <main>
         <div class="panier-container">
             <h1>Votre panier</h1>
 
-            <?php if ($panierEstVide): ?>
+            <?php if ($voyagesData === null): // Erreur chargement JSON ?>
+                <p class="error-message">Erreur: Impossible de charger les données des voyages pour afficher le panier.</p>
+            <?php elseif ($panierEstVide): ?>
                 <div class="empty-panier">
                     <p>Votre panier est actuellement vide.</p>
                     <a href="Destination.php" class="primary-button">Découvrir nos voyages</a>
                 </div>
-            <?php else: ?>
+            <?php else: // Le panier n'est pas vide et les données sont chargées ?>
                 <div class="panier-items">
                     <?php
+                    $itemsValidesTrouves = false;
                     // Boucle sur les articles du panier (id => quantité)
                     foreach ($_SESSION['panier'] as $id => $qty):
                         // Retrouver le voyage correspondant dans le JSON chargé
                         $voyage = null;
                         foreach ($voyagesData as $v) {
-                            if ($v['id'] == $id) {
+                            if (isset($v['id']) && $v['id'] == $id) { // Vérifier que 'id' existe
                                 $voyage = $v;
                                 break;
                             }
@@ -113,52 +126,115 @@ $panierEstVide = !isset($_SESSION['panier']) || empty($_SESSION['panier']);
 
                         // Si le voyage est trouvé, l'afficher et calculer le prix
                         if ($voyage):
-                            // Nettoyer le prix pour le calcul
-                            $itemPriceClean = preg_replace('/[^\d,\.]/', '', $voyage['prix']); // Garde chiffres, virgule, point
-                            $itemPrice = floatval(str_replace(',', '.', $itemPriceClean)); // Remplace virgule par point pour floatval
+                            $itemsValidesTrouves = true;
+                            $itemPrice = 0.0; // Prix unitaire à utiliser pour cet item
+                            $isPersonalized = false; // Par défaut, non personnalisé
 
-                            // Ajouter au prix total
+                            // *** VÉRIFIER S'IL EXISTE UN PRIX DYNAMIQUE POUR CET ID ***
+                            if (isset($_SESSION['panier_prices'][$id])) {
+                                $itemPrice = floatval($_SESSION['panier_prices'][$id]);
+                                // Si un prix dynamique existe, la quantité est toujours 1
+                                $qty = 1;
+                                $isPersonalized = true; // Marquer comme personnalisé
+                            }
+                            // *** SINON, UTILISER LE PRIX DE BASE DU JSON ***
+                            elseif (isset($voyage['prix'])) {
+                                 $itemPriceStr = $voyage['prix'];
+                                 $itemPriceClean = preg_replace('/[^\d,\.]/', '', $itemPriceStr);
+                                 $itemPrice = floatval(str_replace(',', '.', $itemPriceClean));
+                                 $isPersonalized = false; // Marquer comme non personnalisé (prix de base)
+                            } else {
+                                 // Si aucun prix n'est trouvé, on met 0 mais on pourrait logger une erreur
+                                 $itemPrice = 0.0;
+                                 $isPersonalized = false;
+                                 // error_log("Avertissement: Prix non trouvé pour l'article ID $id dans voyages.json");
+                            }
+
+
+                            // Ajouter au prix total (prix unitaire * quantité)
                             $totalPrice += $itemPrice * $qty;
                     ?>
                             <div class="panier-item">
-                                <?php if (isset($voyage['image']) && !empty($voyage['image'])): ?>
+                                <?php // Bloc Image (vérifier si l'image existe réellement)
+                                $imagePath = isset($voyage['image']) ? htmlspecialchars($voyage['image']) : '';
+                                $imageAlt = isset($voyage['titre']) ? htmlspecialchars($voyage['titre']) : 'Image du voyage';
+                                // Simple check if path is not empty, for more robustness check file_exists() server side if needed before rendering
+                                if (!empty($imagePath)) : ?>
                                     <div class="item-image">
-                                        <img src="<?php echo htmlspecialchars($voyage['image']); ?>" alt="<?php echo htmlspecialchars($voyage['titre']); ?>">
+                                        <img src="<?php echo $imagePath; ?>" alt="<?php echo $imageAlt; ?>">
                                     </div>
+                                <?php else: ?>
+                                    <div class="item-image placeholder"></div>
                                 <?php endif; ?>
+
                                 <div class="item-details">
-                                    <h3><?php echo htmlspecialchars($voyage['titre']); ?></h3>
-                                    <p class="item-price">Prix unitaire : <?php echo htmlspecialchars($voyage['prix']); ?></p>
+                                    <h3><?php echo htmlspecialchars($voyage['titre'] ?? 'Titre inconnu'); ?></h3>
+
+                                    <?php if ($isPersonalized): ?>
+                                         <p class="item-price">Prix (personnalisé) : <?php echo number_format($itemPrice, 2, ',', ' '); ?> €</p>
+                                    <?php else: ?>
+                                         <p class="item-price">Prix unitaire : <?php echo htmlspecialchars($voyage['prix'] ?? 'N/A'); ?></p>
+                                    <?php endif; ?>
+
                                     <p>Quantité : <?php echo $qty; ?></p>
+                                    <!-- Le sous-total utilise le prix unitaire (dynamique ou base) * quantité -->
                                     <p>Sous-total : <?php echo number_format($itemPrice * $qty, 2, ',', ' '); ?> €</p>
+
                                     <div class="item-actions">
-                                        <!-- Bouton Voir Détails (lien vers la page de détail) -->
-                                        <a href="voyage_detail.php?id=<?php echo $id; ?>" class="view-button">Voir les détails</a>
-                                        <!-- Bouton Supprimer (pourrait être ajouté plus tard) -->
-                                        <!-- <a href="panier.php?action=supprimer&id=<?php echo $id; ?>" class="remove-button">Supprimer</a> -->
+                                        <!-- Lien pour voir/modifier la personnalisation OU voir détails du voyage de base -->
+                                        <a href="voyage_detail.php?id=<?php echo $id; ?>" class="view-button">
+                                            <?php echo $isPersonalized ? 'Modifier / Voir détails' : 'Personnaliser / Voir détails'; ?>
+                                        </a>
+                                        <!-- Bouton Supprimer (Fonctionnalité à ajouter si nécessaire) -->
+                                         <a href="panier.php?action=supprimer&id=<?php echo $id; ?>" class="remove-button" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?');">Supprimer</a>
                                     </div>
                                 </div>
                             </div>
                     <?php
+                        else: // Si l'ID du panier ne correspond à aucun voyage dans le JSON
+                             // Optionnel : Retirer l'ID invalide du panier ici pour auto-nettoyer
+                             unset($_SESSION['panier'][$id]);
+                             unset($_SESSION['panier_prices'][$id]); // Retirer aussi le prix associé
+                             // error_log("Avertissement: ID de voyage $id trouvé dans le panier mais pas dans voyages.json. Article retiré.");
                         endif; // Fin de if ($voyage)
                     endforeach; // Fin de la boucle foreach panier
-                    ?>
-                </div>
 
-                <!-- Section Récapitulatif -->
-                <div class="panier-summary">
-                    <div class="total-price">
-                        <span>Total du panier :</span>
-                        <span><?php echo number_format($totalPrice, 2, ',', ' '); ?> €</span>
+                    // Affichage si aucun item valide trouvé après la boucle
+                    if (!$itemsValidesTrouves) {
+                        echo "<p class='info-message'>Les articles de votre panier ne sont plus disponibles ou ont été retirés.</p>";
+                         // Si aucun item valide, on peut considérer le panier comme vide pour le récapitulatif
+                         $panierEstVide = true;
+                    }
+                    ?>
+                </div> <!-- Fin panier-items -->
+
+                 <?php if ($itemsValidesTrouves): // N'afficher le récapitulatif que s'il y a des items valides ?>
+                    <!-- Section Récapitulatif -->
+                    <div class="panier-summary">
+                        <div class="total-price">
+                            <span>Total du panier :</span>
+                            <span><?php echo number_format($totalPrice, 2, ',', ' '); ?> €</span>
+                        </div>
+                        <div class="panier-actions">
+                            <?php
+                            // Déterminer la cible du bouton "Valider"
+                            // Si l'utilisateur est connecté, on va vers le résumé, sinon vers la connexion
+                            $validationLink = isset($_SESSION['user_email']) ? 'voyage_resume.php' : 'Connexion.php?redirect=panier';
+                            $validationText = isset($_SESSION['user_email']) ? 'Valider et Préparer le Paiement' : 'Se connecter pour Valider';
+                            ?>
+                            <!-- Bouton Valider et Payer / Se connecter -->
+                            <a href="<?php echo $validationLink; ?>" class="primary-button"><?php echo $validationText; ?></a>
+
+                            <!-- Bouton Vider le Panier -->
+                            <a href="panier.php?action=vider" class="secondary-button">Vider le panier</a>
+                        </div>
+                        <?php if(isset($_SESSION['user_email'])): ?>
+                            <p class="info-message">Note: La validation vous mènera au récapitulatif du dernier voyage personnalisé (ou du premier du panier) pour confirmer les options avant paiement.</p>
+                        <?php else: ?>
+                             <p class="info-message">Vous devez être connecté pour pouvoir valider votre panier et procéder au paiement.</p>
+                        <?php endif; ?>
                     </div>
-                    <div class="panier-actions">
-                         <!-- Bouton Valider et Payer -->
-                        <a href="voyage_resume.php" class="primary-button">Valider et Préparer le Paiement</a>
-                         <!-- Bouton Vider le Panier -->
-                        <a href="panier.php?action=vider" class="secondary-button">Vider le panier</a>
-                    </div>
-                     <p class="info-message">Note: Pour finaliser la commande, vous devrez peut-être confirmer les options sur la page suivante avant de procéder au paiement.</p>
-                </div>
+                 <?php endif; ?>
 
             <?php endif; // Fin de if/else panier vide ?>
 
