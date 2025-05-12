@@ -140,7 +140,7 @@ if (isset($_SESSION['user_email'])) {
                 <div class="form-group">
                     <div class="input-container">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" maxlength="20" required>
                     </div>
                 </div>
 
