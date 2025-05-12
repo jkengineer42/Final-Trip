@@ -290,6 +290,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     const isAdminEditingAnotherUser = <?= json_encode($isAdmin && isset($_SESSION['user_email']) && isset($editEmail) && $_SESSION['user_email'] !== $editEmail) ?>;
     const adminUpdateDelay = 5000; // Délai en millisecondes (5 secondes)
 </script>
-<script src="../Javascript/Profil.js" defer></script>
+<script src="../Javascript/profil.js" defer></script>
 </body>
 </html>
