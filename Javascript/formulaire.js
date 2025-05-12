@@ -27,11 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
         iconeOeil.style.top = '50%';
         iconeOeil.style.transform = 'translateY(-50%)';
         
-
         const conteneur = champ.parentElement;
         conteneur.style.position = 'relative';
         
-
         conteneur.appendChild(iconeOeil);
         
         // Gestion du clic sur l'icône
@@ -39,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // On change le type du champ entre "password" et "text"
             if (champ.type === 'password') {
                 champ.type = 'text';
-
                 iconeOeil.style.opacity = '0.5'; 
             } else {
                 champ.type = 'password';
@@ -142,6 +139,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (dateSelectionnee > dixHuitAnsAvant) {
                     afficherMessageErreur(champ, 'Vous devez avoir au moins 18 ans');
+                    formulaireValide = false;
+                }
+            } else if (champ.id === 'pseudo') {
+                // Vérifier que le pseudo a au moins 4 caractères
+                if (champ.value.length < 4) {
+                    afficherMessageErreur(champ, 'Le pseudo doit contenir au moins 4 caractères');
+                    formulaireValide = false;
+                } 
+                // Vérifier que le pseudo ne contient que des lettres et des chiffres
+                else if (!/^[a-zA-Z0-9]+$/.test(champ.value)) {
+                    afficherMessageErreur(champ, 'Le pseudo ne doit contenir que des lettres et des chiffres');
+                    formulaireValide = false;
+                }
+            } else if (champ.id === 'telephone') {
+                // Vérifier que le téléphone contient exactement 10 chiffres
+                if (!/^\d{10}$/.test(champ.value)) {
+                    afficherMessageErreur(champ, 'Le numéro de téléphone doit contenir exactement 10 chiffres');
                     formulaireValide = false;
                 }
             }
