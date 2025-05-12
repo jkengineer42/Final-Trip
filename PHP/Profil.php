@@ -215,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 						<div class="input-container field-container">
 							<label for="password">Nouveau mot de passe</label>
 							<div class="input-wrapper">
-								<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" readonly>
+								<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" maxlength="20" readonly>
 								<button type="button" class="edit-btn" data-field="password">Modifier</button>
 								<button type="button" class="validate-btn hidden" data-field="password">Valider</button>
 								<button type="button" class="cancel-btn hidden" data-field="password">Annuler</button>
