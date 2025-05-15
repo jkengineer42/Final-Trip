@@ -174,8 +174,8 @@ main {
     flex-direction: column;
     cursor: pointer;
     height: 100%;
-    /* Modification : ajout d'une bordure en mode clair */
     border: 1px solid var(--light-grey);
+    
   }
 
   .card-content {
@@ -417,6 +417,13 @@ main {
     color: var(--light-grey);
 }
 
+_card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+    width: 100;
+}
 
 
 
