@@ -24,24 +24,7 @@ $personalizedTrip = $_SESSION['personalized_trip'];
 // **NOUVEAU**: Utiliser directement le prix calculé stocké dans la session
 $totalPriceForDisplay = isset($personalizedTrip['calculatedTotalPrice']) ? floatval($personalizedTrip['calculatedTotalPrice']) : 0.0;
 
-// Récupérer le prix de base original pour afficher le détail (si besoin)
-$basePrice = isset($personalizedTrip['originalPrice']) ? floatval(str_replace(['€', ' '], '', $personalizedTrip['originalPrice'])) : 0.0;
-// Calculer la différence pour l'affichage des options (peut être négatif si options moins chères)
-$optionsPrice = $totalPriceForDisplay - $basePrice;
 
-$basePrice = floatval(str_replace(['€', ' '], '', $personalizedTrip['originalPrice']));
-$optionsPrice = 0;
-foreach ($personalizedTrip['stages'] as $stage) {
-    foreach ($stage['options'] as $category => $option) {
-        $priceStr = str_replace(['€', ' '], '', $option['prix'] ?? '0');
-        if (is_numeric($priceStr) && floatval($priceStr) > 0) {
-            $price = floatval($priceStr);
-            $participants = ($category === 'activites' && isset($option['participants'])) ? intval($option['participants']) : 1;
-            $optionsPrice += $price * $participants;
-        }
-    }
-}
-$totalPriceForDisplay = $basePrice + $optionsPrice;
 // -----------------------------------------------------------------
 
 ?>
