@@ -45,6 +45,7 @@ $control_hash_send = md5(
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirection vers Paiement - FINAL TRIP</title>
+    <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/Paiement.css">
     <script src="../Javascript/theme.js"></script>
