@@ -1,4 +1,4 @@
-<h1 align="center">
+<div align="center">
 🏖️ Final Trip 🏖️
 </h1>
 <p align="center">
