@@ -37,6 +37,11 @@ $control_hash_send = md5(
 . "#" . $vendeur_code
 . "#" . $retour_url . "#" 
 );
+$_SESSION['payment_transaction_id'] = $transaction_id;
+$_SESSION['payment_montant'] = (string)$montant_cybank; // Stocker comme chaîne pour une comparaison exacte
+$_SESSION['payment_vendeur'] = $vendeur_code;
+$_SESSION['payment_total_price'] = $totalPrice; // Pour l'enregistrement si succès
+
 ?>
 
 <!DOCTYPE html>
