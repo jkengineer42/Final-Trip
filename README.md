@@ -1,6 +1,6 @@
 <div align="center">
 <h1 align="center">
-🏖️ Final Trip 🏖️
+  <img src="documentation/readme-images/logo.png" />
 </h1>
 <p align="center">
   <a href="https://github.com/jkengineer42/Final-Trip">
@@ -18,8 +18,6 @@
 
 <br />
 <br />
-  
-  <img src="./readme-images/project-logo.png" />
 
   <h2 align="center">Final Trip - Travel website</h2>
 
