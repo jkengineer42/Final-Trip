@@ -14,7 +14,7 @@ if (isset($_SESSION['panier'])) {
     <div class="right">
         <a href="A-propos.php" class="head1">Qui sommes nous ?</a>
         <a href="Destination.php" class="head1">Destination</a>
-        <button class="encadré">Contact</button>
+        <a href="Contact.php" class="encadré">Contact</a>
         <a href="<?= $profileLink ?>" class="img1"><img src="../assets/icon/User.png" alt="Profil"></a>
         <a href="panier.php" class="img2 cart-link">
             <img src="../assets/icon/Shopping cart.png" alt="Panier">
