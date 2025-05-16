@@ -3,9 +3,6 @@
 🏖️ Final Trip 🏖️
 </h1>
 <p align="center">
-  Your ultimate gateway to discovering, customizing, and booking sensational and extreme travel experiences around the globe.
-</p>
-<p align="center">
   <a href="https://github.com/jkengineer42/Final-Trip">
     <img src="https://img.shields.io/github/contributors/jkengineer42/Final-Trip.svg?style=for-the-badge" alt="Contributors" /> </a>
   <a href="https://github.com/jkengineer42/Final-Trip/issues">
