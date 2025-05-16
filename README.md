@@ -15,7 +15,9 @@
 </p>
 
   <img src="documentation/readme-images/logo.png" />
+  
 <br />
+
   <h2 align="center">Final Trip - Travel website</h2>
 
   Final Trip is fully responsive travel website, <br />Responsive for all devices, built using HTML, CSS,PHP and JavaScript.
