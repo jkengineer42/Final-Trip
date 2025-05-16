@@ -1,7 +1,5 @@
 <div align="center">
-<h1 align="center">
-  <img src="documentation/readme-images/logo.png" />
-</h1>
+
 <p align="center">
   <a href="https://github.com/jkengineer42/Final-Trip">
     <img src="https://img.shields.io/github/contributors/jkengineer42/Final-Trip.svg?style=for-the-badge" alt="Contributors" /> </a>
@@ -15,6 +13,8 @@
   <a href="https://raw.githubusercontent.com/jkengineer42/Final-Trip/main/LICENSE">
     <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /> </a>
 </p>
+
+  <img src="documentation/readme-images/logo.png" />
 
 <br />
 <br />
