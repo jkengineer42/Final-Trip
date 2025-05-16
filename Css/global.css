@@ -1,0 +1,188 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&family=Newsreader:wght@500&display=swap');
+@import url(root.css); /* root.css contient vos variables --yellow, --grey etc. */
+
+body {
+    background-color: var(--grey);
+    color: var(--white); /* Couleur de texte par défaut si non surchargée */
+    margin: 0;
+    font-family: "DM Sans", sans-serif; /* Police par défaut pour le corps */
+    display: flex; /* Pour le footer collant en bas si le contenu est court */
+    flex-direction: column; /* Pour le footer collant */
+    min-height: 100vh; /* Pour le footer collant */
+}
+
+main {
+    flex-grow: 1; /* Pour que le main prenne l'espace et pousse le footer */
+}
+
+/* =========================================
+   STYLES DU HEADER (COPIÉS ET CENTRALISÉS)
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    /* background-color: transparent; /* Si c'est toujours le cas */
+    position: relative; /* Pour z-index si besoin */
+    z-index: 2; /* Si besoin */
+}
+
+.logo {
+    color: var(--yellow);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: 'Newsreader', serif; /* Assurez-vous que Newsreader est importé */
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-decoration: none;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-left: auto;
+    margin-top: 5px; /* Peut-être à ajuster ou supprimer si plus nécessaire */
+}
+
+.head1 {
+    color: var(--white);
+    text-align: center;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    text-decoration: none;
+}
+
+.encadré {
+    display: inline-flex;
+    padding: 15px 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background: var(--white);
+    color: var(--black_f); /* Texte noir pour contraste sur fond blanc */
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none; /* Si c'est un <a> stylé en bouton */
+}
+
+.right .img1 img,
+.right .img2 img,
+.right .cart-link img { /* Cible plus précisément les images dans .right */
+    width: 30px;
+    height: auto;
+    vertical-align: middle; /* Bon pour aligner avec le texte/compteur */
+}
+
+/* Styles pour l'icône du panier et le compteur (déjà dans root.css, mais bon à avoir ici si root n'est pas global) */
+.cart-link {
+    position: relative;
+    display: inline-flex; /* ou inline-block */
+    align-items: center;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--yellow);
+    color: var(--black_f);
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 18px; /* Assure que le texte est centré verticalement */
+}
+
+
+.hr1 { /* Style global pour le hr sous le header */
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+
+/* =========================================
+   STYLES DU FOOTER (COPIÉS ET CENTRALISÉS)
+   ========================================= */
+footer {
+    background-color: var(--yellow2);
+    color: var(--black_f);
+    text-align: center;
+    padding: 40px 20px 20px; /* Ajusté pour un meilleur espacement */
+    font-family: "DM Sans", sans-serif; /* Utiliser la police principale */
+    /* position: relative; /* Plus nécessaire si on utilise flexbox sur body */
+    width: 100%;
+    margin-top: auto; /* S'assure qu'il est poussé en bas par flex-grow sur main */
+    box-sizing: border-box;
+}
+
+footer h2 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Espacement augmenté */
+    font-family: 'Newsreader', serif; /* Ou DM Sans si vous préférez */
+}
+
+.contact p {
+    margin: 8px 0; /* Espacement ajusté */
+    font-size: 0.95rem;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 25px 0; /* Espacement augmenté */
+    font-size: 0.9rem;
+}
+
+.hr2 {
+    width: 80%;
+    height: 1px;
+    background-color: var(--black_f);
+    border: none;
+    margin: 25px auto; /* Espacement augmenté */
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Pour petits écrans */
+    gap: 30px; /* Espacement entre les liens */
+    padding-bottom: 10px; /* Espace en bas */
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 0.9rem;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
