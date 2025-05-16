@@ -153,6 +153,7 @@ $profileLink = 'Profil.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($confirmation_title); ?> - FINAL TRIP</title>
+    <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/Paiement.css"> 
     <script src="../Javascript/theme.js"></script>
