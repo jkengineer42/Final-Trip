@@ -21,7 +21,7 @@
 
   <h2 align="center">🏖️ Travel website 🏖️ </h2>
 
-  Final Trip is fully responsive travel website, <br />Responsive for all devices, built using HTML, CSS,PHP and JavaScript.
+  Final Trip is fully responsive travel website, <br />Responsive for all devices, built using HTML, CSS, PHP and JavaScript.
 
   <a href="#"><strong>➥ Live Demo</strong></a>
 
