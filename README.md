@@ -21,11 +21,11 @@
   
   <img src="./readme-images/project-logo.png" />
 
-  <h2 align="center">Tourly - Travel website</h2>
+  <h2 align="center">Final Trip - Travel website</h2>
 
-  Tourly is fully responsive travel website, <br />Responsive for all devices, built using HTML, CSS, and JavaScript.
+  Final Trip is fully responsive travel website, <br />Responsive for all devices, built using HTML, CSS,PHP and JavaScript.
 
-  <a href="https://codewithsadee.github.io/tourly/"><strong>➥ Live Demo</strong></a>
+  <a href="#"><strong>➥ Live Demo</strong></a>
 
 </div>
 
@@ -33,7 +33,7 @@
 
 ### Demo Screeshots
 
-![Tourly Desktop Demo](./readme-images/desktop.png "Desktop Demo")
+![Final-Trip Desktop Demo](#)
 ---
 
 ## 📜 Table of Contents
