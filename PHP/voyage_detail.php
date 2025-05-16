@@ -141,6 +141,7 @@ $estimatedPrice = $basePrice;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personnalisation - <?php echo htmlspecialchars($trip['titre']); ?></title>
+    <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/root.css">
     <link rel="stylesheet" href="../Css/voyage_detail.css">
     <!-- Le JS doit être chargé APRES les éléments HTML qu'il manipule -->
