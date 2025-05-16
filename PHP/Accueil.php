@@ -15,6 +15,7 @@ if (isset($_SESSION['user_email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Final Trip</title>
+    <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/Accueil.css">
     <script src="../Javascript/theme.js"></script>
 </head>
