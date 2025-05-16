@@ -1,5 +1,8 @@
 <div align="center">
-
+<h1 align="center">
+  Final Trip - Travel website
+</h1>
+  
 <p align="center">
   <a href="https://github.com/jkengineer42/Final-Trip">
     <img src="https://img.shields.io/github/contributors/jkengineer42/Final-Trip.svg?style=for-the-badge" alt="Contributors" /> </a>
