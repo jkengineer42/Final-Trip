@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&display=swap');
+@import url(root.css); /* Already imported in Contact.php by including root.css link */
+
+body {
+    background-color: var(--grey);
+    color: var(--white);
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: var(--white);
+}
+
+main {
+    padding: 40px 20px;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Center vertically if content is less than viewport */
+}
+
+.contact-container {
+    background-color: var(--darker-grey);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 1100px;
+    width: 100%;
+}
+
+.contact-container h1 {
+    color: var(--yellow);
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5em; /* Corresponds to H1 in charte graphique */
+    font-family: 'DM Sans', sans-serif; /* Using DM Sans as Montserrat not specified for all H1s */
+    font-weight: 700;
+}
+
+.contact-container .intro-text {
+    text-align: center;
+    color: var(--white);
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.contact-content {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-form-section,
+.contact-info-section {
+    flex: 1;
+    min-width: 320px; /* Ensures a minimum width before wrapping */
+}
+
+.contact-form-section h2,
+.contact-info-section h2 {
+    color: var(--yellow);
+    margin-bottom: 25px;
+    font-size: 1.8em; /* Corresponds to H2 in charte graphique if DM Sans is used */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    border-bottom: 1px solid var(--yellow2);
+    padding-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--white2);
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--light-grey);
+    background-color: var(--input-bg);
+    color: var(--black_f);
+    font-size: 1em;
+    font-family: "DM Sans", sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+    color: #6c757d; /* Placeholder text color */
+    opacity: 1;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--yellow);
+    box-shadow: 0 0 8px rgba(255, 207, 48, 0.5); /* Yellow glow, using --yellow variable */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-button {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    padding: 12px 30px;
+    border: none;
+    border-radius: 200px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Allows margin auto for centering if needed, or text-align on parent */
+}
+
+.submit-button:hover {
+    background-color: var(--yellow2);
+    transform: translateY(-2px);
+}
+
+.contact-info-section p {
+    color: var(--white);
+    margin-bottom: 10px;
+    line-height: 1.6;
+    font-size: 1em;
+}
+.contact-info-section a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.contact-info-section a:hover {
+    color: var(--yellow);
+    text-decoration: underline;
+}
+
+.contact-info-section h3 {
+    color: var(--white2);
+    font-size: 1.2em; /* Corresponds to H3 in charte graphique if DM Sans is used */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600; /* Semi-bold like */
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.info-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 3px; /* Slight adjustment for vertical alignment */
+    /* Filter for dark mode (assuming black SVG source becoming yellow/orange) */
+    filter: invert(85%) sepia(27%) saturate(3429%) hue-rotate(348deg) brightness(103%) contrast(103%);
+}
+
+.map-container {
+    margin-top: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid var(--yellow2);
+}
+
+.map-container iframe {
+    display: block;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) { /* Adjusted breakpoint for better layout */
+    .contact-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-container {
+        padding: 20px;
+    }
+    .contact-container h1 {
+        font-size: 2em;
+    }
+    .contact-form-section h2,
+    .contact-info-section h2 {
+        font-size: 1.6em;
+    }
+    .submit-button {
+        width: 100%;
+        text-align: center;
+    }
+}
