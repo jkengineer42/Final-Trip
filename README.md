@@ -151,8 +151,9 @@ To get a local copy up and running, follow these simple steps.
     *   The return URL for payment confirmation in `PHP/paiement.php` is hardcoded to `http://localhost:8080/Final-Trip-main/PHP/retour_paiement.php`. You may need to adjust the hostname and port (`localhost:8080`) if your local server setup differs.
 
 ---
-```
 ## 📂 Project Structure
+```
+
 Final-Trip-main/
 ├── Css/ # Stylesheets (global, page-specific, themes)
 ├── Javascript/ # Client-side JavaScript files
