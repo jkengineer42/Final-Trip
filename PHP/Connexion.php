@@ -1,8 +1,8 @@
 <?php
-session_start();
+require_once 'sessions.php'; // Handles session_start()
 
 // Vérifier si l'utilisateur est déjà connecté
-if (isset($_SESSION['user_email'])) {
+if ($isLoggedIn) { // $isLoggedIn is from sessions.php
     header("Location: Accueil.php"); // Rediriger vers la page principale
     exit();
 }
@@ -10,33 +10,38 @@ if (isset($_SESSION['user_email'])) {
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $email = htmlspecialchars($_POST['email']);
-    $password = $_POST['password'];
+    $email_input = htmlspecialchars($_POST['email']); // Renamed to avoid conflict with $currentUserEmail
+    $password_input = $_POST['password']; // Renamed
 
-    // Lire le fichier JSON existant
-    $jsonFile = '../data/data_user.json';
-    $jsonData = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+    // Lire le fichier JSON existant - Handled by ft_get_user_data_by_field in sessions.php
+    // For login, we still need to iterate or get specific user.
+    $jsonFile = '../data/data_user.json'; // Path relative to Connexion.php
+    $jsonDataUsers = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
+    if ($jsonDataUsers === null) { $jsonDataUsers = []; }
+
 
     // Vérifier les informations d'identification
-    foreach ($jsonData as $user) {
-        if ($user['email'] === $email && password_verify($password, $user['password'])) {
-            // Connexion réussie
-            $_SESSION['user_email'] = $email;
-            header("Location: Accueil.php"); // Rediriger vers la page principale
-            exit();
+    $loginSuccessful = false;
+    if (is_array($jsonDataUsers)) {
+        foreach ($jsonDataUsers as $userAccount) { // Renamed to avoid conflict with $user from other contexts
+            if (isset($userAccount['email']) && $userAccount['email'] === $email_input && isset($userAccount['password']) && password_verify($password_input, $userAccount['password'])) {
+                // Connexion réussie
+                $_SESSION['user_email'] = $email_input; // Set the session
+                $loginSuccessful = true;
+                header("Location: Accueil.php"); // Rediriger vers la page principale
+                exit();
+            }
         }
     }
 
+
     // Si les informations d'identification sont incorrectes
-    $error = "<span style='color: var(--yellow);'>Email ou mot de passe incorrect.</span>";
+    if (!$loginSuccessful) {
+        $error = "<span style='color: var(--yellow);'>Email ou mot de passe incorrect.</span>";
+    }
 }
 
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['user_email'])) {
-    $profileLink = 'Profil.php'; // Lien vers la page de profil
-} else {
-    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
-}
+// $profileLink is already set by sessions.php based on login status (which is false here if not redirected)
 ?>
 
 <!DOCTYPE html>

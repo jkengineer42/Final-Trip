@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'sessions.php';
 require_once 'getapikey.php'; // Assurez-vous que ce fichier existe et fonctionne
 
 // --- Récupération des Données de la Redirection CYBank ---

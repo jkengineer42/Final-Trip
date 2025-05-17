@@ -1,11 +1,5 @@
-<?php
-session_start();
-
-if (isset($_SESSION['user_email'])) {
-    $profileLink = 'Profil.php'; 
-} else {
-    $profileLink = 'Connexion.php'; 
-}
+    <?php
+  require_once 'sessions.php';
 ?>
 
 <!DOCTYPE html>

@@ -1,12 +1,5 @@
 <?php
-session_start();
-
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['user_email'])) {
-    $profileLink = 'Profil.php'; // Lien vers la page de profil
-} else {
-    $profileLink = 'Connexion.php'; // Lien vers la page de connexion
-}
+require_once 'sessions.php';
 ?>
 
 <!DOCTYPE html>

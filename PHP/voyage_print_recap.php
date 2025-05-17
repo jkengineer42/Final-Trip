@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once 'sessions.php';
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_email'])) {

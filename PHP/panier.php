@@ -1,6 +1,5 @@
 <?php
-// Démarre la session pour utiliser le panier et potentiellement les infos utilisateur
-session_start();
+require_once 'sessions.php';
 
 // --- Gestion des Actions ---
 

@@ -1,5 +1,11 @@
 <?php
-session_start();
+require_once 'sessions.php';
+
+// If user is already logged in, redirect them from the inscription page
+if ($isLoggedIn) {
+    header("Location: Accueil.php");
+    exit();
+}
 
 // Fonction pour valider la date de naissance
 function validateDate($date, $format = 'Y-m-d') {

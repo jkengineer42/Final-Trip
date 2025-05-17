@@ -1,26 +1,25 @@
 <?php
-session_start();
+require_once 'sessions.php'; // Handles session_start(), sets $isLoggedIn, $currentUserEmail, etc.
 require_once 'getapikey.php'; 
 
 
-if (!isset($_SESSION['user_email'])) {
-    header("Location: Connexion.php");
+if (!$isLoggedIn) { // Check if user is logged in
+    $_SESSION['redirect_after_login'] = 'panier.php'; // Or a more appropriate redirect
+    header("Location: Connexion.php?error=login_required_for_payment");
     exit();
 }
 
 
 if (!isset($_SESSION['personalized_trip'])) {
-   
-    header("Location: Destination.php"); 
+    // If no trip is being personalized, redirect to destinations or cart
+    header("Location: Destination.php?error=no_trip_for_payment"); 
     exit();
 }
 
-
-$userEmail = $_SESSION['user_email'];
+// $currentUserEmail is available from sessions.php
 $personalizedTrip = $_SESSION['personalized_trip'];
-$profileLink = 'Profil.php'; 
+// $profileLink is available from sessions.php for the header
 $totalPrice = isset($personalizedTrip['calculatedTotalPrice']) ? floatval($personalizedTrip['calculatedTotalPrice']) : 0.0;
-
 
 
 // --- Préparation des données pour CYBank ---

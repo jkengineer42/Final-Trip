@@ -1,6 +1,5 @@
 <?php
-// Démarre la session pour récupérer les données personnalisées du voyage
-session_start();
+require_once 'sessions.php';
 
 // Vérifier si l'utilisateur est connecté
 if (isset($_SESSION['user_email'])) {
