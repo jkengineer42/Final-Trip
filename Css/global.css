@@ -186,3 +186,175 @@ footer h2 {
 .links a:hover {
     text-decoration: underline;
 }
+
+/* --- Styles for Hamburger Menu --- */
+
+/* Hamburger Button */
+.hamburger {
+    display: none; /* Hidden by default, shown in media query */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* Ensure it's above other header content if needed */
+    margin-left: auto; /* Push to the right if other elements are on the left */
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white); /* Or var(--black_f) for light mode if header bg changes */
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hamburger animation for open state (optional) */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    position: fixed;
+    top: 0; /* Or top: height-of-header if you want it below */
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-color: var(--grey); /* Or a slightly different background */
+    padding-top: 80px; /* Space for header or just general padding */
+    z-index: 1000;
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); /* Start off-screen to the right */
+}
+
+.mobile-menu.active {
+    display: flex;
+    transform: translateX(0); /* Slide in */
+}
+
+.mobile-menu a.head1,
+.mobile-menu a.encadré {
+    padding: 15px 20px;
+    width: 80%;
+    text-align: center;
+    font-size: 1.5rem; /* Larger for mobile tap targets */
+    border-bottom: 1px solid var(--light-grey);
+    color: var(--white); /* Ensure text color is good on mobile menu bg */
+}
+.mobile-menu a.encadré {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border-radius: 5px;
+    margin-top: 15px;
+    border-bottom: none;
+}
+
+.mobile-menu .mobile-menu-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.mobile-menu .mobile-menu-icons img {
+    width: 35px; /* Slightly larger icons for mobile */
+    height: auto;
+}
+/* Adjust cart counter for mobile if needed */
+.mobile-menu .mobile-cart-counter {
+    top: -10px;
+    right: -10px;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+}
+
+
+/* Styles for the theme selector when inside the mobile menu */
+.mobile-menu .mobile-theme-selector-placeholder {
+    margin-top: 20px;
+    padding: 10px;
+    /* border-top: 1px solid var(--light-grey); */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.mobile-menu .theme-selector {
+    /* theme-selector styles are in theme.js or root.css, adjust if needed for mobile context */
+    /* Example: ensure it's centered or styled appropriately */
+    position: relative; /* Reset position if it was absolute */
+    display: flex; /* Ensure buttons are side-by-side */
+    background-color: var(--darker-grey); /* Match theme or make distinct */
+    padding: 5px;
+    border-radius: 20px;
+    margin: 10px auto; /* Centering */
+}
+.mobile-menu .theme-selector .theme-btn img {
+    width: 24px; /* Adjust size for mobile menu */
+    height: 24px;
+}
+
+
+/* Media Query for Mobile */
+@media (max-width: 992px) { /* Adjust breakpoint as needed, e.g., 768px or 992px */
+    header .desktop-nav {
+        display: none; /* Hide desktop navigation */
+    }
+    .hamburger {
+        display: flex; /* Show hamburger button */
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    /* Ensure logo and hamburger are aligned */
+    header {
+        justify-content: space-between;
+    }
+}
+
+/* --- End Hamburger Menu Styles --- */
+
+/*
+   Ensure your existing header styles in global.css are compatible.
+   You might have:
+*/
+header {
+    display: flex;
+    justify-content: space-between; /* This should be default */
+    align-items: center;
+    padding: 10px 40px;
+    position: relative;
+    z-index: 2; /* Keep header above some content, but mobile menu (1000) above header */
+}
+
+.right.desktop-nav { /* Target only the desktop nav for display flex */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    /* margin-left: auto; /* This might not be needed if hamburger is taking its place */
+    margin-top: 5px;
+}
+
+@media (max-width: 992px) { /* Or your chosen breakpoint */
+    header .desktop-nav {
+        display: none; /* <<< THIS IS THE KEY PART */
+    }
+    .hamburger {
+        display: flex; /* This shows the hamburger button */
+        /* ... other hamburger styles ... */
+    }
+}
