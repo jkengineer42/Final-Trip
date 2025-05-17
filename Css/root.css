@@ -10,4 +10,27 @@
     --light-grey: #D9D9D9;
     --card-bg: #373737;
     --input-bg: #D9D9D9;
+    --hamburger-color: var(--white);
+}
+
+/* Styles pour l'icône du panier et le compteur */
+.cart-link {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--yellow);
+    color: var(--black_f);
+    font-size: 0.7rem;
+    font-weight: bold;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }

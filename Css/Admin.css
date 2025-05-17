@@ -8,50 +8,6 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-}
-
-.logo {
-    color: var(--yellow);
-    font-family: Newsreader;
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.right {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
-
-.head1 {
-    color: var(--white);
-    font-size: 1.3rem;
-    text-decoration: none;
-}
-
-.encadré {
-    padding: 15px 50px;
-    border-radius: 200px;
-    background: var(--white);
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.hr1 {
-    width: 90%;
-    margin: 20px auto;
-    border: none;
-    height: 2px;
-    background-color: var(--white);
-}
 
 main {
     flex-grow: 1;
@@ -135,6 +91,7 @@ main {
 table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
 }
 
 th, td {
@@ -145,10 +102,13 @@ th, td {
 
 th {
     background-color: var(--yellow);
+    color: var(--black_f); 
 }
 
 td:not(.icons) {
     background-color: var(--white);
+    color: var(--black_f); /* AJOUTEZ CETTE LIGNE pour un texte noir */
+    /* ou color: var(--grey); pour un texte gris foncé */
 }
 
 td.icons {
@@ -218,6 +178,8 @@ footer h2 {
     width: fit-content;
     margin: 10px auto;
     margin-right: 200px;
+    color: var(--black_f); /* AJOUTEZ CETTE LIGNE pour un texte noir */
+    /* ou color: var(--grey); pour un texte gris foncé */
 }
 
 .legend-item {
@@ -252,4 +214,44 @@ footer h2 {
 .page-link.active {
     background-color: var(--yellow);
     color: var(--black);
+    
 }
+
+
+/* Style pour les boutons en cours de traitement */
+.processing {
+    opacity: 0.5;
+    cursor: not-allowed;
+    position: relative;
+}
+
+/* Animation pour indiquer le traitement en cours */
+.processing::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 0.4; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+/* Style spécifique pour le bouton de promotion en traitement */
+.promote-button.processing img {
+    filter: grayscale(80%);
+}
+
+/* Style spécifique pour le bouton de suppression en traitement */
+.delete-button.processing img {
+    filter: grayscale(80%);
+}
+
+

@@ -1,0 +1,364 @@
+/* Css/global.css */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&family=Newsreader:wght@500&display=swap');
+@import url(root.css); /* root.css contient vos variables --yellow, --grey etc. */
+
+:root {
+    /* Vos variables de couleurs principales (assurez-vous qu'elles sont ici ou dans root.css) */
+    --grey: #373737;
+    --darker-grey: #2B2B2B;
+    --yellow: #FFCF30;
+    --yellow2: #af923f;
+    --white: #DEDEDE;
+    --white2: #ffffff; /* Blanc pur pour certains fonds ou textes sur fond sombre */
+    --black: rgba(0, 0, 0, 0.5);
+    --black_f: #000000;
+    --light-grey: #D9D9D9;
+    --card-bg: var(--grey); /* Ou une autre valeur selon le thème */
+    --input-bg: var(--light-grey);
+
+    /* Variable pour la couleur des barres du hamburger, s'adapte au thème */
+    --hamburger-color: var(--white);
+    /* Variable pour la couleur des icônes de thème, s'adapte au thème (si SVG simple couleur) */
+    --theme-icon-color: var(--white);
+    --theme-icon-filter: invert(1); /* Défaut pour thème sombre (icône devient blanche) */
+}
+
+body {
+    background-color: var(--grey);
+    color: var(--white);
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* =========================================
+   STYLES DU HEADER
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    color: var(--yellow);
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: 'Newsreader', serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -0.36px;
+    text-decoration: none;
+    z-index: 1002; /* Au-dessus du menu mobile */
+}
+
+/* Bouton Hamburger */
+.hamburger {
+    display: none; /* Caché par défaut sur desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin: 0;
+    z-index: 1001; /* Au-dessus du menu déroulant */
+}
+
+.hamburger-bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--hamburger-color);
+    margin: 5px 0;
+    transition: 0.4s ease-in-out;
+}
+
+/* Conteneur des liens de navigation (incluant les boutons de thème) */
+.nav-links {
+    display: flex; /* Comportement par défaut sur desktop */
+    align-items: center;
+    gap: 25px; /* Espacement sur desktop */
+}
+
+.nav-links .head1 {
+    color: var(--white);
+    font-family: "DM Sans", sans-serif;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+.nav-links .head1:hover {
+    color: var(--yellow);
+}
+
+.nav-links .encadré {
+    display: inline-flex;
+    padding: 10px 30px; /* Ajusté pour être un peu plus petit */
+    justify-content: center;
+    align-items: center;
+    border-radius: 200px;
+    background: var(--white);
+    color: var(--black_f);
+    border: 1px solid transparent;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.nav-links .encadré:hover {
+    background: var(--yellow);
+    border-color: var(--yellow);
+}
+
+.nav-links .nav-icon-link img {
+    width: 28px;
+    height: auto;
+    vertical-align: middle;
+    /* Pour le mode clair, les icônes SVG peuvent avoir besoin d'un filtre si elles sont noires par défaut */
+    /* Exemple: filter: var(--icon-filter-header); */
+}
+
+/* Styles pour le sélecteur de thème (quand il est dans .nav-links) */
+.theme-selector-mobile { /* Renommé pour clarté, mais peut être .theme-selector */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px; /* Plus petit padding pour les boutons de thème */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Rendre le fond du bouton rond si on ajoute un fond au survol */
+    transition: background-color 0.2s ease;
+}
+.theme-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Léger fond au survol */
+}
+
+.theme-btn img {
+    width: 20px;
+    height: 20px;
+    filter: var(--theme-icon-filter);
+    /* Si SVG simple couleur, la couleur peut être contrôlée par CSS 'fill' ou 'filter' */
+    /* Exemple : fill: var(--theme-icon-color); */
+}
+
+
+/* Styles pour l'icône du panier et le compteur */
+.cart-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.cart-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--yellow);
+    color: var(--black_f);
+    font-size: 0.75rem;
+    font-weight: bold;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 20px;
+    padding: 0 3px;
+    box-sizing: border-box;
+}
+
+.hr1 {
+    width: 90%;
+    margin: 20px auto;
+    border: none;
+    height: 1px;
+    background-color: var(--white);
+    opacity: 0.3; /* Moins dominant */
+}
+
+
+/* --- Styles pour le Mobile (Menu Hamburger) --- */
+@media (max-width: 900px) { /* Breakpoint ajusté, à tester */
+    header {
+        padding: 10px 15px;
+    }
+
+    .hamburger {
+        display: block;
+        order: 1; /* Pour le mettre à droite après le logo si besoin avec flex */
+        margin-left: auto; /* Pousse le hamburger complètement à droite */
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Juste en dessous du header */
+        left: 0;
+        width: 100%;
+        background-color: var(--darker-grey);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        padding-top: 0; /* Pas de padding en haut, géré par les items */
+        padding-bottom: 10px;
+        z-index: 999;
+        border-top: 1px solid var(--grey);
+        gap: 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Styles des items dans le menu mobile */
+    .nav-links > *, /* Cible tous les enfants directs : a, div.theme-selector-mobile */
+    .nav-links .encadré { /* Le bouton contact est un <a> mais stylé comme .encadré */
+        width: 100%;
+        text-align: left;
+        padding: 14px 20px; /* Padding uniforme pour les items */
+        box-sizing: border-box;
+        color: var(--white);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        font-size: 1rem;
+    }
+
+    .nav-links > *:last-child {
+        border-bottom: none;
+    }
+
+    .nav-links .encadré { /* Style spécifique pour le bouton contact dans le menu */
+        margin: 10px 20px 0 20px; /* Marge pour le distinguer, pas de marge en bas */
+        width: calc(100% - 40px); /* Prend presque toute la largeur */
+        text-align: center;
+        background-color: var(--yellow);
+        color: var(--black_f);
+        padding: 12px 20px; /* Ajuster le padding pour le bouton */
+        border-bottom: none; /* Pas de bordure pour le bouton */
+    }
+    .nav-links .encadré:hover {
+        background-color: var(--yellow2);
+    }
+
+    .nav-links .nav-icon-link {
+        display: flex;
+        align-items: center;
+        gap: 12px; /* Espace entre icône et texte (si présent) ou compteur */
+    }
+    .nav-links .nav-icon-link img {
+        margin-right: 0; /* Le gap s'en occupe */
+    }
+
+    .nav-links .cart-link .cart-counter {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        /* margin-left: 0; (le gap du parent s'en occupe) */
+    }
+
+    /* Style spécifique pour le conteneur des boutons de thème DANS le menu mobile */
+    .nav-links .theme-selector-mobile {
+        justify-content: center; /* Centrer les boutons soleil/lune */
+        padding: 10px 20px; /* Un peu moins de padding que les liens texte */
+        display: flex;
+        align-items: center;
+
+    }
+
+    /* Animation du hamburger en croix */
+    .hamburger.active .hamburger-bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .hamburger-bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .hamburger-bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+
+/* =========================================
+   STYLES DU FOOTER
+   ========================================= */
+footer {
+    background-color: var(--yellow2);
+    color: var(--black_f);
+    text-align: center;
+    padding: 40px 20px 20px;
+    font-family: "DM Sans", sans-serif;
+    width: 100%;
+    margin-top: auto;
+    box-sizing: border-box;
+}
+
+footer h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Newsreader', serif;
+}
+
+.contact p {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.contact a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-weight: bold;
+}
+.contact a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin: 25px 0;
+    font-size: 0.9rem;
+}
+
+.hr2 {
+    width: 80%;
+    max-width: 400px;
+    height: 1px;
+    background-color: var(--black_f);
+    opacity: 0.3; /* Moins dominant */
+    border: none;
+    margin: 25px auto;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px 30px;
+    padding-bottom: 10px;
+}
+
+.links a {
+    text-decoration: none;
+    color: var(--black_f);
+    font-size: 0.9rem;
+}
+.links a:hover {
+    text-decoration: underline;
+}

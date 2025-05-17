@@ -2,75 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Sansita+One:wght@400;700&display=swap');
 
 /* =========================================
-   1. HEADER
-   ========================================= */
-
-header {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 10px 40px; 
-}
-
-.logo {
-    color: var(--yellow);
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: Newsreader;
-    font-size: 2.5rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 100%;
-    letter-spacing: -0.36px;
-    text-decoration: none;
-}
-
-.right {
-    display: flex;
-    align-items: center; 
-    gap: 40px; 
-    margin-left: auto; 
-    margin-top: 5px;
-}
-
-.head1 {
-    color: var(--white);
-    text-align: center;
-    font-feature-settings: 'liga' off, 'clig' off;
-    font-family: "DM Sans";
-    font-size: 1.3rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%; 
-    text-decoration: none;
-}
-
-.encadré {
-    display: inline-flex;
-    padding: 15px 50px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 200px;
-    background: var(--white);
-    border: none; 
-    cursor: pointer; 
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-.img1 .img2{
-    width: 30px; 
-    height: auto;
-}
-
-.hr1 {
-    width: 90%; 
-    margin: 20px auto; 
-    border: none;
-    height: 2px; 
-    background-color: var(--white); 
-}
-
-/* =========================================
    2. MAIN
    ========================================= */
 
@@ -382,67 +313,68 @@ input[type="checkbox"] {
     }
 }
 
-/* =========================================
-   3. FOOTER
-   ========================================= */
 
-footer {
-    background-color: var(--yellow2); 
+/* Styles pour le bouton "Ajouter au panier" */
+.trip-quick-actions {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-to-cart-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--yellow);
     color: var(--black_f);
-    text-align: center;
-    padding: 20px 0;
-    font-family: Arial, sans-serif;
-    position : relative;
-    width: 100%;
-    padding: 60px 0 40px;
+    padding: 10px 20px;
+    border-radius: 200px;
+    text-decoration: none;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
-footer h2 {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
+.add-to-cart-button:hover {
+    background-color: var(--yellow2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.contact p {
-    margin: 5px 0;
+.cart-icon {
+    width: 20px;
+    height: 20px;
 }
 
-.contact a {
-    text-decoration: none;
-    color: var(--black_f);
-    font-weight: bold;
-}
-
-.contact a:hover {
-    text-decoration: underline;
-}
-
-.copyright {
+/* Styles pour l'affichage du prix estimé */
+.price-estimation {
+    background-color: var(--darker-grey);
+    padding: 15px 20px;
+    border-radius: 10px;
     margin: 20px 0;
-    font-size: 14px;
+    text-align: center;
 }
 
-.hr2{
-    width: 80%;
-    height: 1px;
-    background-color: var(--black_f);
-    border: none;
-    margin: 20px auto;
+.price-estimation h3 {
+    color: var(--yellow);
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
 }
 
-.links {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
+.price-note {
+    color: var(--white);
+    font-size: 0.9rem;
+    margin: 5px 0 0 0;
+    opacity: 0.8;
 }
 
-.links a {
-    text-decoration: none;
-    color: var(--black_f);
-    font-size: 14px;
+/* Animation pour la mise à jour du prix */
+@keyframes price-update {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: #fff; }
+    100% { transform: scale(1); }
 }
 
-.links a:hover {
-    text-decoration: underline;
+.price-updated {
+    animation: price-update 0.5s ease;
 }
+
+
