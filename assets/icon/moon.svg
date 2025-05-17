@@ -1,0 +1,14 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Le chemin du croissant de lune.
+       Vous pouvez changer la couleur avec la propriété 'fill' en CSS ou directement ici.
+       Par défaut, il sera noir.
+  -->
+  <path
+    d="M 50 0 A 50 50 0 0 0 50 100 A 40 40 0 0 1 50 0 Z"
+    fill="currentColor"
+  />
+  <!-- currentColor permettra de contrôler la couleur via la propriété CSS 'color' de l'élément parent,
+       ou la propriété 'fill' directement sur le SVG ou le path.
+       Si vous voulez une couleur fixe, remplacez currentColor par ex: fill="#FFFFFF" pour blanc.
+  -->
+</svg>
