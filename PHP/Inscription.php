@@ -84,7 +84,11 @@ if (isset($_SESSION['user_email'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription - FINAL TRIP</title>
+    <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/Inscription.css">
+    <link rel="stylesheet" href="../Css/formulaire.css">
+    <script src="../Javascript/theme.js"></script>
+    <script src="../Javascript/formulaire.js"></script>
 </head>
 <body>
      <?php include('header.php'); ?>
@@ -137,7 +141,7 @@ if (isset($_SESSION['user_email'])) {
                 <div class="form-group">
                     <div class="input-container">
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" maxlength="20" required>
                     </div>
                 </div>
 
@@ -155,5 +159,6 @@ if (isset($_SESSION['user_email'])) {
     </main>
 
      <?php include('footer.php'); ?>
+     <script src="../Javascript/menu.js"></script>
 </body>
 </html>

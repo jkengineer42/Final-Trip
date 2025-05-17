@@ -4,7 +4,7 @@
         "prenom": "Romuald",
         "email": "romuald.grignon@gmail.com",
         "birthdate": "2004-08-02",
-        "password": "$2y$10$Xpy304qTu1EJV3BalboFkuH3rpDr9.RVhBpFBPz\/zGSwpBPtyJGRC",
+        "password": "$2y$12$\/pUn8M1Qci61k1x1q10gYeSdRb22T5LmaeQIYoipchsBKOqVGfw2a",
         "is_admin": true
     },
     {
@@ -12,7 +12,7 @@
         "prenom": "Caryl",
         "email": "caryl.lebreton@gmail.com",
         "birthdate": "2002-11-04",
-        "password": "$2y$10$1ZD.Fwsj\/7DgmrNzrqe2h.HoI33sbigcz0XwfPVEGqrUXy.f5p97C",
+        "password": "$2y$12$DKg0Lnk2lhvdEN7uulZyXOTslP8tnD99lQ59fGyzDEczznOfGztz6",
         "is_admin": true
     },
     {
@@ -61,6 +61,14 @@
         "email": "francois.dubois@gmail.com",
         "birthdate": "1954-05-31",
         "password": "$2y$10$dkYClGUjb9CQ3hTR7Rh8GebAqygoXWHYQ\/rCzx3oHjS.fqMRi\/90W",
+        "is_admin": false
+    },
+    {
+        "nom": "ijjdjisjd",
+        "prenom": "sijsijsjisdij",
+        "email": "jdjdjd@jdjdjd.fr",
+        "birthdate": "2000-02-22",
+        "password": "$2y$12$SmZas2oJlnn9TqvB7xwlCu\/Yc4SBGB3VW1NGl1DC5ZNJI\/HW7Ee\/C",
         "is_admin": false
     }
 ]

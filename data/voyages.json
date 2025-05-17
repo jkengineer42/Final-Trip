@@ -10,7 +10,7 @@
         "jours": 5
       },
       "description": "Une expédition exceptionnelle entre banquises, hautes montagnes et glaciers en un lieu sans doute le plus esthétique et isolé du Groenland.",
-      "image": "../assets/img/Voyage Groenland Expédition Polaire.jpg",
+     "image": "../assets/img/Voyage_Groenland_Expedition_Polaire.jpg",
       "climat": "froid",
       "terrain": "aquatique",
       "couchage": ["hotel", "auberge", "habitant"],
@@ -155,7 +155,7 @@
         "jours": 4
       },
       "description": "Pour les amateurs de sensations fortes, et ceux qui aiment se retrouver face à face avec l'un des prédateurs les plus redoutables du monde.",
-      "image": "../assets/img/Plongée sous marine Guadalupe.jpg",
+      "image": "../assets/img/Plongee_sous_marine_Guadalupe.jpg",
       "climat": "chaud",
       "terrain": "aquatique",
       "couchage": ["hotel"],
@@ -272,7 +272,7 @@
     "jours": 3
   },
   "description": "Le Costa Rica est un terrain de jeu idéal pour les amateurs de VTT. Les montagnes, les volcans et les jungles tropicales offrent des défis uniques.",
-  "image": "../assets/img/Vélo de montagne Costa Rica.jpg",
+ "image": "../assets/img/Velo_de_montagne_Costa_Rica.jpg",
   "climat": "chaud",
   "terrain": "montagneux",
   "couchage": ["tente", "auberge"],
