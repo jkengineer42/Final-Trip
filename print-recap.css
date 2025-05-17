@@ -1,0 +1,78 @@
+/* Css/print-recap.css */
+
+@media print {
+    body {
+        background-color: #fff !important; /* Fond blanc pour l'impression */
+        color: #000 !important; /* Texte noir */
+        font-family: Arial, sans-serif;
+        font-size: 12pt;
+        margin: 0;
+        padding: 0;
+    }
+
+    .print-container {
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 10mm !important; /* Marges d'impression */
+        background-color: #fff !important;
+    }
+
+    .print-actions, 
+    header, /* Masquer le header du site si vous l'incluez par erreur */
+    footer /* Masquer le footer du site si vous l'incluez par erreur */
+    {
+        display: none !important;
+    }
+
+    .print-header h1, .stage-title {
+        color: #333 !important; /* Titres en gris foncé pour l'impression */
+    }
+    
+    .trip-main-info {
+        background-color: #f9f9f9 !important; /* Fond légèrement grisé pour cette section */
+        border: 1px solid #eee;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+    .trip-main-info p, .option-value, .option-price {
+        color: #333 !important;
+    }
+    .option-label {
+        color: #000 !important;
+    }
+
+
+    .stage-details {
+        page-break-inside: avoid; /* Éviter les coupures de page au milieu d'une étape */
+        border-bottom: 1px solid #ccc !important;
+    }
+    
+    .stage-details:last-child {
+        border-bottom: none !important;
+    }
+
+    .print-total {
+        color: #000 !important;
+        border-top: 2px solid #000 !important;
+        font-size: 14pt;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000 !important;
+    }
+
+    /* Pour s'assurer que les variables CSS ne surchargent pas */
+    :root {
+        --yellow: #000 !important; /* ou une autre couleur imprimable si besoin */
+        --white: #000 !important;
+        --white2: #000 !important;
+        --light-grey: #555 !important;
+        --black_f: #000 !important;
+        --grey: #fff !important;
+        --darker-grey: #fff !important;
+    }
+}
