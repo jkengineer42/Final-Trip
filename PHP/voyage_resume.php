@@ -149,7 +149,12 @@ $optionsPrice = $totalPriceForDisplay - $originalPriceNumeric;
             <a href="voyage_detail.php?id=<?php echo htmlspecialchars($personalizedTrip['tripId']); ?>" class="secondary-button">
                 Modifier les options
             </a>
-          
+
+          <!-- NOUVEAU BOUTON/LIEN POUR IMPRIMER -->
+            <a href="voyage_print_recap.php" target="_blank" class="secondary-button" style="background-color: var(--light-grey); color: var(--black_f);">
+                Imprimer le récapitulatif
+            </a>
+
             <a href="paiement.php" class="primary-button">
                 Procéder au Paiement
             </a>
