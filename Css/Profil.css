@@ -8,55 +8,6 @@ body {
     color: var(--white); /* Couleur de texte par défaut */
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-}
-
-.logo {
-    color: var(--yellow);
-    font-family: 'Newsreader', serif; /* Police spécifique pour le logo */
-    font-size: 2.5rem;
-    font-weight: 500;
-    text-decoration: none;
-}
-
-.right {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    margin-left: auto;
-}
-
-.head1 {
-    color: var(--white);
-    font-family: "DM Sans", sans-serif;
-    font-size: 1.3rem;
-    text-decoration: none;
-}
-
-.encadré { /* Style pour un bouton encadré potentiel dans le header */
-    padding: 10px 30px; /* Ajusté le padding */
-    border-radius: 200px;
-    background: var(--white);
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    color: var(--black_f); /* Assurez-vous que cette variable est définie */
-    text-decoration: none; /* Si c'est un lien stylé comme un bouton */
-}
-
-.hr1 {
-    width: 90%;
-    margin: 20px auto;
-    border: none;
-    height: 1px; /* Plus fin */
-    background-color: var(--grey); /* Blanc semi-transparent */
-}
-
 main {
     max-width: 900px; /* Limiter la largeur du contenu principal */
     margin: 40px auto; /* Centrer le contenu */
@@ -76,7 +27,6 @@ main {
     height: 100px; /* Assurer un cercle parfait si l'icône est carrée */
     border-radius: 10%; /* Icône ronde */
     margin-bottom: 40px; /* Espace réduit */
-
     padding: 3px;  
 }
 
@@ -296,67 +246,6 @@ main {
     background-color: #f0f0f0;
 }
 
-
-/* Footer */
-footer {
-    background-color: var(--yellow2); /* Assurez-vous que cette variable est définie */
-    color: var(--black_f);
-    text-align: center;
-    padding: 10px 0;
-    width: 100%;
-
-}
-
-footer h2 {
-    font-size: 1.4rem; /* Taille ajustée */
-    font-weight: bold;
-    margin-bottom: 15px;
-    font-family: 'Newsreader', serif; /* Utiliser la même police que le logo? */
-}
-
-.contact p {
-    margin: 5px 0;
-    font-size: 0.95rem;
-}
-
-.contact a {
-    text-decoration: none;
-    color: var(--black_f);
-    font-weight: bold;
-}
-.contact a:hover {
-    text-decoration: underline;
-}
-
-.copyright {
-    margin: 20px 0 25px 0; /* Espace ajusté */
-    font-size: 0.85rem; /* Taille réduite */
-    color: var(--black_f); /* Couleur copyright */
-}
-
-.hr2 {
-    width: 80%;
-    height: 1px;
-    background-color: var(--grey); /* Noir transparent */
-    border: none;
-    margin: 20px auto;
-}
-
-.links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Permet le retour à la ligne sur petits écrans */
-    gap: 30px; /* Espace ajusté */
-}
-
-.links a {
-    text-decoration: none;
-    color: var(--black_f);
-    font-size: 0.9rem; /* Taille ajustée */
-}
-.links a:hover {
-    text-decoration: underline;
-}
 
 /* Responsive (Exemple simple) */
 @media (max-width: 768px) {
