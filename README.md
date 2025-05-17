@@ -33,7 +33,7 @@
 
 ### Demo Screeshots
 
-![Final-Trip Desktop Demo](#)
+![Final-Trip Desktop Demo](documentation/readme-images/demo-desktop.png)
 ---
 
 ## 📜 Table of Contents
