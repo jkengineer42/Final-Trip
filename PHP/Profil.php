@@ -125,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 
             <form id="profile-form" action="Profil.php<?= ($isAdmin && $_SESSION['user_email'] !== $editEmail) ? '?edit='.urlencode($editEmail) : '' ?>" method="POST">
                 <input type="hidden" name="action" value="save_profile">
+		<input type="hidden" id="user-email-to-edit" value="<?php echo htmlspecialchars($editEmail); ?>">
 
                 <?php if (isset($success)): ?>
                     <div class="message success"><?= $success ?></div>
