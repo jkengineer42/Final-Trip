@@ -175,16 +175,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 					</div>
 
 					<?php if ($_SESSION['user_email'] === $editEmail || $isAdmin): ?>
-						<div class="input-container field-container">
-							<label for="password">Nouveau mot de passe</label>
-							<div class="input-wrapper">
-								<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" maxlength="20" readonly>
-								<button type="button" class="edit-btn" data-field="password">Modifier</button>
-								<button type="button" class="validate-btn hidden" data-field="password">Valider</button>
-								<button type="button" class="cancel-btn hidden" data-field="password">Annuler</button>
-							</div>
-							<small>Entrez un nouveau mot de passe uniquement si vous souhaitez le changer.</small>
-						</div>
+
+
+					<div class="input-container field-container">
+    						<label for="password">Nouveau mot de passe</label>
+    						<div class="input-wrapper">
+        						<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" maxlength="20" readonly>
+        							<!-- Ajout de l'icône œil ici qui faisait bugger profil modification-->
+        						<img src="../assets/icon/oeil.png" alt="Afficher/Masquer" 
+             						style="position: absolute; left: 280px; top: 50%; transform: translateY(-50%); width: 25px; height: 25px; cursor: pointer; z-index: 100;" 
+             						onclick="togglePasswordVisibility(this)">
+        
+        						<button type="button" class="edit-btn" data-field="password">Modifier</button>
+        						<button type="button" class="validate-btn hidden" data-field="password">Valider</button>
+        						<button type="button" class="cancel-btn hidden" data-field="password">Annuler</button>
+    						</div>
+    						<small>Entrez un nouveau mot de passe uniquement si vous souhaitez le changer.</small>
+					</div>
+						
 					<?php else: ?>
                         <div class="input-container field-container placeholder"></div>
                     <?php endif; ?>
@@ -231,5 +239,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
     const isAdminEditingAnotherUser = <?= json_encode($isAdmin && isset($_SESSION['user_email']) && isset($editEmail) && $_SESSION['user_email'] !== $editEmail) ?>;
     const adminUpdateDelay = 5000; 
 </script>
+
+	<script>
+        function togglePasswordVisibility(icon) {
+            const passwordField = document.getElementById('password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.style.opacity = '0.5';
+            } else {
+                passwordField.type = 'password';
+                icon.style.opacity = '1';
+            }
+        }
+        </script>
 </body>
 </html>
