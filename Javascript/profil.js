@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             // Envoyer la requête AJAX
-            fetch('../ajax/update_profile.php', {
+            fetch('../ajax/update_user.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
