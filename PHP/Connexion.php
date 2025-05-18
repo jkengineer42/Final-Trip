@@ -7,41 +7,52 @@ if ($isLoggedIn) { // $isLoggedIn is from sessions.php
     exit();
 }
 
+$email_value_to_display = ''; // Variable pour stocker l'email à réafficher
+
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
-    $email_input = htmlspecialchars($_POST['email']); // Renamed to avoid conflict with $currentUserEmail
-    $password_input = $_POST['password']; // Renamed
+    $email_input = htmlspecialchars($_POST['email']);
+    $password_input = $_POST['password'];
 
-    // Lire le fichier JSON existant - Handled by ft_get_user_data_by_field in sessions.php
-    // For login, we still need to iterate or get specific user.
-    $jsonFile = '../data/data_user.json'; // Path relative to Connexion.php
+    // Conserver l'email saisi pour le réafficher en cas d'erreur
+    $email_value_to_display = $email_input;
+
+    // Lire le fichier JSON existant
+    $jsonFile = '../data/data_user.json';
     $jsonDataUsers = file_exists($jsonFile) ? json_decode(file_get_contents($jsonFile), true) : [];
     if ($jsonDataUsers === null) { $jsonDataUsers = []; }
-
 
     // Vérifier les informations d'identification
     $loginSuccessful = false;
     if (is_array($jsonDataUsers)) {
-        foreach ($jsonDataUsers as $userAccount) { // Renamed to avoid conflict with $user from other contexts
+        foreach ($jsonDataUsers as $userAccount) {
             if (isset($userAccount['email']) && $userAccount['email'] === $email_input && isset($userAccount['password']) && password_verify($password_input, $userAccount['password'])) {
                 // Connexion réussie
                 $_SESSION['user_email'] = $email_input; // Set the session
                 $loginSuccessful = true;
-                header("Location: Accueil.php"); // Rediriger vers la page principale
+
+                // NOUVEAU : Vérifier s'il y a une redirection en attente (pour la fonctionnalité "mot de passe oublié" ou autre)
+                if (isset($_SESSION['redirect_after_login'])) {
+                    $redirect_url = $_SESSION['redirect_after_login'];
+                    unset($_SESSION['redirect_after_login']); // Nettoyer la variable de session
+                    header("Location: " . $redirect_url);
+                } else {
+                    header("Location: Accueil.php"); // Redirection par défaut
+                }
                 exit();
             }
         }
     }
 
-
     // Si les informations d'identification sont incorrectes
     if (!$loginSuccessful) {
         $error = "<span style='color: var(--yellow);'>Email ou mot de passe incorrect.</span>";
+        // L'email est déjà dans $email_value_to_display
     }
 }
 
-// $profileLink is already set by sessions.php based on login status (which is false here if not redirected)
+// $profileLink est déjà défini par sessions.php
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +64,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../Css/global.css">
     <link rel="stylesheet" href="../Css/Connexion.css">
     <link rel="stylesheet" href="../Css/formulaire.css">
-    <script src="../Javascript/formulaire.js"></script>
-    <script src="../Javascript/theme.js"></script>
+    <script src="../Javascript/formulaire.js" defer></script>
+    <script src="../Javascript/theme.js" defer></script>
 </head>
 <body>
      <?php include('header.php'); ?>
@@ -67,18 +78,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <form action="Connexion.php" method="POST">
                 <?php if (isset($error)): ?>
-                    <div class="error"><?= $error ?></div>
+                    <div class="error" style="color: var(--yellow); margin-bottom: 15px; text-align: center;"><?= $error ?></div>
                 <?php endif; ?>
 
                 <div class="form-group">
                     <label for="email" class="right">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required value="<?= htmlspecialchars($email_value_to_display) ?>">
                 </div><br>
 
                 <div class="form-group">
                     <label for="password" class="right">Mot de passe</label>
                     <input type="password" id="password" name="password" required>
-                </div>
+                    </div><br>
+                
+                <p class="style1">
+                    <a href="mot_de_passe_oublie.php" style="color: var(--white); font-size: 0.9rem; text-decoration: underline;">Mot de passe oublié ?</a>
+                </p>
 
                 <button type="submit" class="button1">Connexion</button>
             </form>
