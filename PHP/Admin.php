@@ -204,8 +204,8 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
                                                 <input type="hidden" name="page" value="<?= $currentPage ?>">
                                                 <?php if (!empty($searchName)): ?><input type="hidden" name="search_name" value="<?= htmlspecialchars($searchName) ?>"><?php endif; ?>
                                                 <?php if (!empty($searchEmail)): ?><input type="hidden" name="search_email" value="<?= htmlspecialchars($searchEmail) ?>"><?php endif; ?>
-                                                <button type="submit" name="delete" class="delete-button" title="Supprimer l'utilisateur">
-                                                    <img src="../assets/icon/delete.png" alt="Supprimer" class="icon delete-icon">
+                                                <button type="submit" name="delete" class="delete-button" title="Bloquer l'utilisateur">
+                                                    <img src="../assets/icon/delete.png" alt="Bloquer" class="icon delete-icon">
                                                 </button>
                                             </form>
                                             <form method="POST" style="display:inline;">
