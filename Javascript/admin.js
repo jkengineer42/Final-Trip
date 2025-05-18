@@ -96,99 +96,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Fonction pour supprimer un utilisateur
-    function supprimerUtilisateur(button) {
-        // Demander confirmation
-        if (!confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur?")) {
-            return;
-        }
-        
-        // Trouver le formulaire parent
-        var form = button.closest('form');
-        if (!form) {
-            alert("Erreur: formulaire non trouvé");
-            return;
-        }
-        
-        // Trouver l'email de l'utilisateur
-        var emailInput = form.querySelector('input[name="email"]');
-        if (!emailInput) {
-            alert("Erreur: email non trouvé");
-            return;
-        }
-        
-        var email = emailInput.value;
-        
-        // Désactiver le bouton et ajouter un indicateur
-        button.disabled = true;
-        button.classList.add('processing');
-        
-        // Ajouter un texte de chargement
-        var loadingText = document.createElement('span');
-        loadingText.textContent = " Suppression en cours...";
-        loadingText.style.color = "#FFFFFF";
-        button.appendChild(loadingText);
-        
-        // Envoyer la requête au serveur
-        fetch('../ajax/admin_action.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                action: 'delete',
-                email: email
-            })
+    function bloquerUtilisateur(button) {
+    // Demander confirmation
+    if (!confirm("Êtes-vous sûr de vouloir bloquer cet utilisateur?")) {
+        return;
+    }
+    
+    // Trouver le formulaire parent
+    var form = button.closest('form');
+    if (!form) {
+        alert("Erreur: formulaire non trouvé");
+        return;
+    }
+    
+    // Trouver l'email de l'utilisateur
+    var emailInput = form.querySelector('input[name="email"]');
+    if (!emailInput) {
+        alert("Erreur: email non trouvé");
+        return;
+    }
+    
+    var email = emailInput.value;
+    
+    // Désactiver le bouton et ajouter un indicateur
+    button.disabled = true;
+    button.classList.add('processing');
+    
+    // Ajouter un texte de chargement
+    var loadingText = document.createElement('span');
+    loadingText.textContent = " Blocage en cours...";
+    loadingText.style.color = "#FFFFFF";
+    button.appendChild(loadingText);
+    
+    // Envoyer la requête au serveur
+    fetch('../ajax/admin_action.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            action: 'block', // Changé de 'delete' à 'block'
+            email: email
         })
-        .then(function(response) {
-            return response.json();
-        })
-        .then(function(data) {
-            // Enlever le texte de chargement
-            if (loadingText.parentNode) {
-                loadingText.parentNode.removeChild(loadingText);
-            }
+    })
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        // Enlever le texte de chargement
+        if (loadingText.parentNode) {
+            loadingText.parentNode.removeChild(loadingText);
+        }
+        
+        // Vérifier si l'action a réussi
+        if (data.success) {
+            // Afficher un message de succès
+            alert("L'utilisateur a été bloqué!");
             
-            // Vérifier si l'action a réussi
-            if (data.success) {
-                // Afficher un message de succès
-                alert("L'utilisateur a été supprimé!");
-                
-                // Masquer la ligne dans le tableau
-                var row = button.closest('tr');
-                if (row) {
-                    // Animation simple de disparition
-                    row.style.opacity = "0";
-                    
-                    // Cacher la ligne après l'animation
-                    setTimeout(function() {
-                        row.style.display = "none";
-                    }, 500);
+            // Mettre à jour la ligne dans le tableau
+            var row = button.closest('tr');
+            if (row) {
+                // Mettre à jour le statut dans le tableau
+                var statusCell = row.querySelector('td:nth-child(6)'); // Ajustez l'index si nécessaire
+                if (statusCell) {
+                    statusCell.textContent = 'Bloqué';
+                    statusCell.style.color = 'red';
                 }
-            } else {
-                // Afficher l'erreur
-                alert("Erreur: " + (data.message || "La suppression a échoué"));
                 
-                // Réactiver le bouton
-                button.disabled = false;
-                button.classList.remove('processing');
+                // Changer le texte du bouton ou le désactiver
+                button.textContent = "Bloqué";
+                button.disabled = true;
             }
-        })
-        .catch(function(error) {
-            // Gérer les erreurs
-            console.error("Erreur: ", error);
-            alert("Erreur de communication avec le serveur");
-            
-            // Enlever le texte de chargement
-            if (loadingText.parentNode) {
-                loadingText.parentNode.removeChild(loadingText);
-            }
+        } else {
+            // Afficher l'erreur
+            alert("Erreur: " + (data.message || "Le blocage a échoué"));
             
             // Réactiver le bouton
             button.disabled = false;
             button.classList.remove('processing');
-        });
-    }
+        }
+    })
+    .catch(function(error) {
+        // Gérer les erreurs
+        console.error("Erreur: ", error);
+        alert("Erreur de communication avec le serveur");
+        
+        // Enlever le texte de chargement
+        if (loadingText.parentNode) {
+            loadingText.parentNode.removeChild(loadingText);
+        }
+        
+        // Réactiver le bouton
+        button.disabled = false;
+        button.classList.remove('processing');
+    });
+}
     
     // Ajouter les écouteurs d'événements aux boutons
     promoteButtons.forEach(function(button) {
