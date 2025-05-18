@@ -5,7 +5,9 @@
         "email": "romuald.grignon@gmail.com",
         "birthdate": "2004-08-02",
         "password": "$2y$12$\/pUn8M1Qci61k1x1q10gYeSdRb22T5LmaeQIYoipchsBKOqVGfw2a",
-        "is_admin": true
+        "is_admin": true,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Le Breton",
@@ -13,7 +15,9 @@
         "email": "caryl.lebreton@gmail.com",
         "birthdate": "2002-11-04",
         "password": "$2y$12$DKg0Lnk2lhvdEN7uulZyXOTslP8tnD99lQ59fGyzDEczznOfGztz6",
-        "is_admin": true
+        "is_admin": true,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Barbedor",
@@ -21,7 +25,9 @@
         "email": "erwan.barbedor@gmail.com",
         "birthdate": "2012-03-19",
         "password": "$2y$10$aatVUOlt2MS5YmzmUeSeGOjyxO2FJ2VmvSo5tB7Qam5gBbKrd7FC.",
-        "is_admin": false
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Meo",
@@ -29,7 +35,9 @@
         "email": "meo.dimi@gmail.com",
         "birthdate": "1987-05-14",
         "password": "$2y$10$X37nAUPQThBO2tI6OltWluJS9T5CWKphCCDbU1.jA4CPaVmMprZvC",
-        "is_admin": false
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Scofield",
@@ -37,7 +45,9 @@
         "email": "michael.scofield@gmail.com",
         "birthdate": "1922-08-12",
         "password": "$2y$10$.kpmU8JShJAKBsBTV8icMOcFCnGfS6.VrrO4GYfIE2I1FNMjyEVeK",
-        "is_admin": false
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Macron ",
@@ -45,7 +55,9 @@
         "email": "emmanuel.macron@gmail.com",
         "birthdate": "2001-01-01",
         "password": "$2y$10$a8\/xw8jvCjsj4Q\/QuMTnFOWulGP9IQUdDque\/Zc7jX\/Z6y8L5uv4G",
-        "is_admin": false
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Mahrez",
@@ -53,7 +65,9 @@
         "email": "riyad.mahrez@gmail.com",
         "birthdate": "1991-02-21",
         "password": "$2y$10$F3RXdAgH\/MNRxmBJYRgnvuUQqTeR6Cuh3udQ\/OtUDqVpK6EIlmHda",
-        "is_admin": true
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     },
     {
         "nom": "Dubois",
@@ -61,6 +75,8 @@
         "email": "francois.dubois@gmail.com",
         "birthdate": "1954-05-31",
         "password": "$2y$10$dkYClGUjb9CQ3hTR7Rh8GebAqygoXWHYQ\/rCzx3oHjS.fqMRi\/90W",
-        "is_admin": false
+        "is_admin": false,
+        "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
+        "reset_token_expiry": 1747576340
     }
 ]
