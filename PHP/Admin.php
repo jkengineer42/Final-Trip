@@ -186,13 +186,15 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
                             </tr>
                         <?php else: ?>
                             <?php foreach ($paginatedUsers as $user): ?>
+
                                 <tr>
                                     <td><?= htmlspecialchars($user['nom'] ?? 'N/A') ?></td>
                                     <td><?= htmlspecialchars($user['prenom'] ?? 'N/A') ?></td>
                                     <td><?= htmlspecialchars($user['email'] ?? 'N/A') ?></td>
                                     <td><?= htmlspecialchars($user['birthdate'] ?? 'N/A') ?></td>
                                     <td><?= (isset($user['is_admin']) && $user['is_admin']) ? 'Oui' : 'Non' ?></td>
-                                    <td class="icons">
+                                    <td><?= (isset($user['is_blocked']) && $user['is_blocked']) ? '<span style="color:red;">Bloqué</span>' : 'Actif' ?></td> 
+                                    <td class="icons"> 
                                         <a href="Profil.php?edit=<?= urlencode($user['email']) ?>">
                                             <img src="../assets/icon/black_edit.png" alt="Modifier" class="icon">
                                         </a>
