@@ -179,17 +179,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['action']) && $_POST['a
 
 					<div class="input-container field-container">
     						<label for="password">Nouveau mot de passe</label>
-    						<div class="input-wrapper">
-        						<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" maxlength="20" readonly>
-        							<!-- Ajout de l'icône œil ici qui faisait bugger profil modification-->
-        						<img src="../assets/icon/oeil.png" alt="Afficher/Masquer" 
-             						style="position: absolute; left: 280px; top: 50%; transform: translateY(-50%); width: 25px; height: 25px; cursor: pointer; z-index: 100;" 
-             						onclick="togglePasswordVisibility(this)">
+   						 <div class="input-wrapper">
+        					<input type="password" id="password" name="password" placeholder="Laisser vide pour ne pas changer" maxlength="20" readonly>
+        
+        						<!-- Bouton œil simplifié, inséré en tant que bouton -->
+        						<button type="button" style="border: none; background: none; cursor: pointer; margin: 0 5px;" onclick="togglePasswordVisibility()">
+            						<img src="../assets/icon/oeil.png" alt="Afficher/Masquer" style="width: 25px; height: 25px;">
+        						</button>
         
         						<button type="button" class="edit-btn" data-field="password">Modifier</button>
         						<button type="button" class="validate-btn hidden" data-field="password">Valider</button>
         						<button type="button" class="cancel-btn hidden" data-field="password">Annuler</button>
-    						</div>
+   					 	</div>
     						<small>Entrez un nouveau mot de passe uniquement si vous souhaitez le changer.</small>
 					</div>
 						
