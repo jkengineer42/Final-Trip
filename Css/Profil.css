@@ -4,29 +4,29 @@
 body {
     background-color: var(--grey);
     margin: 0;
-    font-family: "DM Sans", sans-serif; /* Appliquer une police par défaut */
-    color: var(--white); /* Couleur de texte par défaut */
+    font-family: "DM Sans", sans-serif; 
+    color: var(--white); 
 }
 
 main {
-    max-width: 900px; /* Limiter la largeur du contenu principal */
-    margin: 40px auto; /* Centrer le contenu */
+    max-width: 900px; 
+    margin: 40px auto; 
     padding: 20px;
     margin-bottom: 150px;
 }
 
 .profile-container {
     text-align: center;
-    padding: 40px 20px; /* Padding ajusté */
-    background-color: var(--grey); /* Fond légèrement différent si souhaité */
-    border-radius: 10px; /* Coins arrondis pour le conteneur */
+    padding: 40px 20px; 
+    background-color: var(--grey); 
+    border-radius: 10px; 
 }
 
 .user-icon {
     width: 100px;
-    height: 100px; /* Assurer un cercle parfait si l'icône est carrée */
-    border-radius: 10%; /* Icône ronde */
-    margin-bottom: 40px; /* Espace réduit */
+    height: 100px; 
+    border-radius: 10%; 
+    margin-bottom: 40px; 
     padding: 3px;  
 }
 
@@ -42,6 +42,8 @@ main {
     border-radius: 5px;
     margin-bottom: 20px;
     font-weight: 500;
+    width: 100%; /* S'assurer qu'il prend la largeur pour le centrage */
+    box-sizing: border-box;
 }
 .message.success {
     background-color: var(--grey); /* Fond jaune transparent */
@@ -49,8 +51,8 @@ main {
     border: 1px solid var(--yellow);
 }
 .message.error {
-     background-color: var(--grey); /* Fond rouge transparent */
-    color: var(--yellow2); /* Rouge plus clair pour le texte */
+    background-color: var(--grey); /* Fond rouge transparent */
+    color: var(--yellow2); 
     border: 1px solid var(--yellow2);
 }
 .admin-info-banner {
@@ -60,41 +62,43 @@ main {
     border-radius: 5px;
     margin-bottom: 20px;
     font-size: 0.9em;
+    width: fit-content; /* S'adapte au contenu */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
 .form-group {
     display: flex;
-    justify-content: center; /* Centre les éléments enfants */
-    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si pas assez de place */
-    gap: 40px; /* Espace entre les conteneurs d'input */
-    width: 100%;
-    margin-bottom: 15px; /* Espace réduit */
+    justify-content: space-between; /* Espace les enfants équitablement */
+    flex-wrap: wrap; /* Permet le passage à la ligne sur petits écrans */
+    gap: 20px; /* Espace entre les conteneurs d'input */
+    width: 100%; /* Le groupe prend toute la largeur */
+    max-width: 900px; /* Limite la largeur du groupe de formulaire */
+    margin-bottom: 20px; 
 }
-.form-group.single-group {
-    justify-content: center; /* Centre le seul enfant */
-}
-
 
 .input-container {
     display: flex;
-    flex-direction: column; /* Label au-dessus */
-    align-items: flex-start; /* Aligner les labels à gauche */
-    /* margin-bottom: 20px; */ /* Géré par le gap du form-group */
-    flex: 1 1 320px; /* Permet aux champs de prendre de la place mais avec une base de 320px */
-    max-width: 360px; /* Limite la largeur maximale */
-    margin-bottom: 15px;
-    margin-top: 20px;
+    flex-direction: column; 
+    align-items: flex-start; 
+    flex: 1 1 calc(50% - 10px); /* Chaque champ prend près de 50% moins la moitié du gap */
+    /* min-width: 300px; /* Largeur minimale avant de passer à la ligne */
+    max-width: calc(50% - 10px); /* S'assurer qu'ils ne dépassent pas 50% */
+    box-sizing: border-box; /* Inclure padding et border dans la largeur/hauteur */
 }
 .input-container.placeholder {
-    /* Style pour un placeholder si besoin d'alignement */
-    min-height: 1px; /* Juste pour occuper l'espace */
+    visibility: hidden; /* Cache le placeholder mais il occupe de l'espace pour l'alignement */
+    /* Ou, si vous ne voulez pas qu'il occupe d'espace s'il n'y a qu'un vrai champ sur la ligne :
+       display: none; (mais cela casserait le space-between s'il n'y a qu'un champ visible)
+       Une alternative est de ne pas rendre le placeholder du tout en PHP si le deuxième champ n'est pas nécessaire.
+    */
 }
 
 
 .input-container label {
     color: var(--white);
-    font-size: 0.9rem; /* Taille de police légèrement réduite */
+    font-size: 0.9rem; 
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -106,45 +110,41 @@ main {
 
 .input-wrapper {
     display: flex;
-    align-items: center; /* Aligne verticalement l'input et les boutons */
+    align-items: center; 
     width: 100%;
-    gap: 8px; /* Espace entre l'input et les boutons */
+    gap: 8px; 
 }
 
 .input-wrapper input {
-    flex-grow: 1; /* L'input prend l'espace restant */
-    padding: 12px 15px; /* Padding augmenté */
-    border: 1px solid transparent; /* Bordure transparente par défaut */
+    flex-grow: 1; 
+    padding: 12px 15px; 
+    border: 1px solid transparent; 
     border-radius: 8px;
     background-color: var(--white);
-    color: var(--black_f); /* Texte noir dans les inputs */
+    color: var(--black_f); 
     font-size: 1rem;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Style pour les champs non modifiables */
 .input-wrapper input[readonly] {
-    background-color: #e9ecef; /* Fond gris clair */
-    cursor: default; /* Curseur par défaut */
-    border-color: #ced4da; /* Bordure grise */
-    color: #495057; /* Texte plus sombre */
+    background-color: #e9ecef; 
+    cursor: default; 
+    border-color: #ced4da; 
+    color: #495057; 
 }
-/* Style quand le champ devient modifiable */
 .input-wrapper input:not([readonly]):not([disabled]) {
     background-color: var(--white);
-    border-color: var(--yellow); /* Bordure jaune pour indiquer l'édition */
+    border-color: var(--yellow); 
 }
 
-/* Style pour le champ email désactivé (différent de readonly) */
 .input-wrapper input[disabled] {
-    background-color: #555; /* Fond gris foncé */
-    color: #aaa; /* Texte gris clair */
+    background-color: #555; 
+    color: #aaa; 
     cursor: not-allowed;
     border-color: #666;
 }
 
 
-/* Style des boutons d'édition individuels */
 .edit-btn, .validate-btn, .cancel-btn {
     padding: 8px 12px;
     border: none;
@@ -153,12 +153,12 @@ main {
     font-size: 0.8rem;
     font-weight: bold;
     transition: background-color 0.3s ease, opacity 0.3s ease;
-    white-space: nowrap; /* Empêche le texte du bouton de passer à la ligne */
-    flex-shrink: 0; /* Empêche les boutons de rétrécir */
+    white-space: nowrap; 
+    flex-shrink: 0; 
 }
 
 .edit-btn {
-    background-color: #6c757d; /* Gris */
+    background-color: #6c757d; 
     color: white;
 }
 .edit-btn:hover {
@@ -166,7 +166,7 @@ main {
 }
 
 .validate-btn {
-    background-color: #28a745; /* Vert */
+    background-color: #28a745; 
     color: white;
 }
 .validate-btn:hover {
@@ -174,7 +174,7 @@ main {
 }
 
 .cancel-btn {
-    background-color: #dc3545; /* Rouge */
+    background-color: #dc3545; 
     color: white;
 }
 .cancel-btn:hover {
@@ -182,20 +182,25 @@ main {
 }
 
 
-/* Classe utilitaire pour cacher des éléments */
 .hidden {
-    display: none !important; /* !important pour s'assurer qu'il est caché */
+    display: none !important; 
 }
 
-/* Boutons principaux */
 .main-buttons {
-    margin-top: 40px; /* Espace au-dessus des boutons principaux */
+    margin-top: 40px; 
     display: flex;
-    gap: 20px; /* Espace entre les boutons */
-    align-items: center;
+    flex-direction: column; /* Empile les boutons principaux */
+    align-items: center; /* Centre les boutons */
+    gap: 20px; 
+}
+/* Style pour les boutons principaux pour qu'ils aient une largeur raisonnable */
+.button1, .button2 {
+    min-width: 250px; /* Donne une largeur minimale pour une meilleure apparence */
+    text-align: center; /* Centre le texte dans les boutons */
 }
 
-.button1 { /* Bouton Sauvegarder */
+
+.button1 { 
     background-color: var(--yellow);
     color: var(--black_f);
     border: none;
@@ -207,12 +212,12 @@ main {
     transition: background-color 0.3s ease;
 }
 .button1:hover {
-    background-color: #e1a700; /* Jaune un peu plus foncé au survol */
+    background-color: #e1a700; 
 }
 
-.button2 { /* Bouton Déconnexion (style lien mais comme un bouton) */
-    padding: 10px 20px; /* Padding ajusté */
-    border-radius: 20px; /* Coins arrondis */
+.button2 { 
+    padding: 10px 20px; 
+    border-radius: 20px; 
     background: var(--white);
     border: 1px solid var(--white);
     cursor: pointer;
@@ -225,51 +230,110 @@ main {
 .button2:hover {
     background-color: transparent;
     color: var(--white);
+    border-color: var(--white); /* Ajout pour que la bordure devienne blanche aussi */
 }
 
-/* Lien Admin */
 .admin-link {
-    position: absolute;
-    right: 40px; /* Ajustez selon vos besoins */
-    top: 110px; /* Ajustez pour être sous le header */
+    /* Peut être positionné de manière absolue ou relative comme avant */
+    /* Si dans le flux normal : */
+    width: 100%; /* Pour permettre le centrage du lien/bouton via text-align sur un parent ou margin auto */
+    text-align: center; /* Centrer le lien admin */
+    margin-bottom: 30px; /* Espace en dessous */
 }
-.button-small.admin-button { /* Style spécifique si besoin */
-    padding: 5px 10px;
+.button-small.admin-button { 
+    padding: 8px 15px;
     font-size: 0.9rem;
     background-color: var(--white);
     color: var(--black_f);
     border-radius: 15px;
     text-decoration: none;
     font-weight: bold;
+    display: inline-block; /* Nécessaire si on veut centrer avec text-align sur parent */
 }
 .button-small.admin-button:hover {
     background-color: #f0f0f0;
 }
 
 
-/* Responsive (Exemple simple) */
 @media (max-width: 768px) {
     .form-group {
-        flex-direction: column; /* Champs les uns sous les autres */
-        gap: 20px;
-        align-items: center; /* Centrer les champs verticalement */
+        flex-direction: column; /* Champs les uns sous les autres sur mobile */
+        align-items: center; /* Centrer les champs dans le groupe */
     }
     .input-container {
-        width: 90%; /* Prendre plus de largeur */
-        max-width: none; /* Enlever la limite max */
-        flex: none; /* Désactiver flex grow/shrink */
+        flex-basis: 100%; /* Chaque champ prend toute la largeur sur mobile */
+        max-width: 100%; 
+        width: 90%; /* Un peu de marge sur les côtés */
     }
     .admin-link {
-        position: static; /* Enlever la position absolue */
         margin-top: 20px;
         margin-bottom: 20px;
     }
      .main-buttons {
         flex-direction: column;
         gap: 15px;
+        width: 100%; /* Permettre aux boutons de prendre plus de largeur si désiré */
+    }
+    .main-buttons .button1, .main-buttons .button2 {
+        width: 80%; /* Les boutons prennent 80% de la largeur disponible */
+        max-width: 300px; /* Mais pas plus de 300px */
     }
 }
 
-.input-container field-container{
-    margin-bottom: 10px;
+
+.admin-filters-form .filters {
+    display: flex;
+    gap: 10px; /* Espace entre les inputs et boutons */
+    align-items: center; /* Alignement vertical */
+}
+
+.admin-filters-form .search {
+    padding: 10px;
+    /* width: 30%; */ /* Ajustez si besoin, flex-grow peut être mieux */
+    flex-grow: 1; /* Permet aux champs de recherche de prendre l'espace */
+    border-radius: 8px;
+    border: 1px solid var(--light-grey); /* Bordure légère pour mieux les voir */
+    outline: none;
+    background-color: var(--white);
+    color: var(--black_f);
+}
+
+.admin-filters-form .button-search,
+.admin-filters-form .button-reset {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.admin-filters-form .button-search {
+    background-color: var(--yellow);
+    color: var(--black_f);
+}
+.admin-filters-form .button-search:hover {
+    background-color: var(--yellow2);
+}
+
+.admin-filters-form .button-reset {
+    background-color: var(--light-grey);
+    color: var(--black_f);
+    text-decoration: none; /* Si c'est un lien <a> */
+}
+.admin-filters-form .button-reset:hover {
+    background-color: #c4c4c4; /* Un gris un peu plus foncé */
+}
+
+/* S'assurer que les icônes dans les boutons d'action ne sont pas trop grandes */
+.promote-button img, .delete-button img {
+    width: 20px; /* Ajustez la taille des icônes si nécessaire */
+    height: 20px;
+    vertical-align: middle;
+}
+.promote-button, .delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2px; /* Léger padding pour faciliter le clic */
 }

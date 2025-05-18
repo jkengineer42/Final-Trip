@@ -1,0 +1,51 @@
+/* Pour la classe .error-message */
+.error-message {
+    color: var(--yellow); 
+    margin-bottom:15px; 
+    text-align:center; 
+    padding: 10px; 
+    border: 1px solid var(--yellow); 
+    border-radius: 5px;
+}
+
+/* Pour la classe .success-message */
+.success-message {
+    color: green; 
+    margin-bottom:15px; 
+    text-align:center; 
+    padding: 10px; 
+    border: 1px solid green; 
+    border-radius: 5px;
+}
+
+/* Pour le paragraphe dans .success-message + p */
+.success-message + p { /* Ou un sélecteur plus spécifique si nécessaire */
+    text-align:center; 
+    margin-top:20px;
+}
+
+/* Pour le premier paragraphe dans le formulaire */
+form > p:first-of-type { /* cible le premier <p> enfant direct du <form> */
+    color: var(--white); 
+    margin-bottom: 20px;
+}
+
+/* Pour la balise <small> dans le formulaire */
+form .form-group small {
+    color: var(--white); 
+    font-size:0.8em; 
+    display:block; 
+    margin-top:5px;
+}
+
+/* Pour le premier paragraphe après le formulaire (cas !$token_valid) */
+form + p { /* Cible le <p> qui suit immédiatement le <form> */
+    color: var(--white); 
+    text-align:center;
+}
+
+/* Pour le deuxième paragraphe après le formulaire (cas !$token_valid) */
+form + p + p { /* Cible le <p> qui suit immédiatement le <p> précédent */
+    text-align:center; 
+    margin-top:20px;
+}

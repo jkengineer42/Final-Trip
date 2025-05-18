@@ -84,4 +84,12 @@ input {
     margin-left: -7px;
 }
 
-
+.style1{
+    width: 100%; 
+    padding: 10px; 
+    border: none; 
+    border-radius: 8px; 
+    background-color: 
+    var(--white); color: 
+    var(--black_f);
+}

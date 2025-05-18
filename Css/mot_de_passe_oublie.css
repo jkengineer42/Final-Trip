@@ -1,0 +1,30 @@
+/* Pour la classe .error-message */
+.error-message {
+    color: var(--yellow); 
+    margin-bottom:15px; 
+    text-align:center; 
+    padding: 10px; 
+    border: 1px solid var(--yellow); 
+    border-radius: 5px;
+}
+
+/* Pour la classe .success-message */
+.success-message {
+    color: green; 
+    margin-bottom:15px; 
+    text-align:center; 
+    padding: 10px; 
+    border: 1px solid green; 
+    border-radius: 5px;
+}
+
+/* Pour le paragraphe dans le formulaire */
+form p {
+    color: var(--white); 
+    margin-bottom: 20px;
+}
+
+/* Pour la classe .register-link */
+.register-link {
+    margin-top: 30px;
+}

@@ -16,6 +16,8 @@ main {
     justify-content: center;
     align-items: center;
     height: 80vh; /* Ajuste pour centrer verticalement */
+    margin-bottom: 250px;
+    margin-top: 50px;
 }
 
 .login-container {
@@ -81,4 +83,14 @@ input {
 
 .clic{
     width: 20px;
+}
+
+.forgot-password-link {
+    text-decoration: none;
+}
+
+.style1{
+    text-align: right; 
+    margin-top: -20px; 
+    margin-bottom: 30px;
 }

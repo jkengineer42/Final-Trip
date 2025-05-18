@@ -8,7 +8,6 @@ body {
     min-height: 100vh;
 }
 
-
 main {
     flex-grow: 1;
 }
@@ -18,7 +17,9 @@ main {
     border: none; /* Supprime les bordures */
     padding: 0; /* Supprime le padding */
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 5px; /* Conserve votre marge */
+    display: inline-flex; /* Pour un meilleur alignement des images */
+    align-items: center;
 }
 
 .promote-button img {
@@ -31,26 +32,30 @@ main {
     justify-content: center; /* Centre les icônes horizontalement */
     align-items: center; /* Centre les icônes verticalement */
     gap: 5px; /* Espace entre les icônes */
-    padding: 0; /* Supprime le padding pour éviter les décalages */
-    margin: 0; /* Supprime les marges pour éviter les décalages */
+    padding: 0; 
+    margin: 0; 
 }
 
-.icon {
+.icon { /* Style pour l'icône modifier dans un <a> */
     width: 25px;
+    height: 25px; /* Assurer la même taille */
     cursor: pointer;
-    margin: 0; /* Supprime les marges pour éviter les décalages */
+    margin: 0; 
+    vertical-align: middle; /* Bon pour les images dans les liens */
 }
 
 .icons .delete-button {
-    background: none; /* Supprime le fond */
-    border: none; /* Supprime les bordures */
-    padding: 0; /* Supprime le padding */
+    background: none; 
+    border: none; 
+    padding: 0; 
     cursor: pointer;
+    display: inline-flex; /* Pour un meilleur alignement des images */
+    align-items: center;
 }
 
 .icons .delete-button img {
-    width: 25px; /* Même taille que les autres icônes */
-    height: 25px; /* Même taille que les autres icônes */
+    width: 25px; 
+    height: 25px; 
 }
 
 .admin-title {
@@ -58,34 +63,84 @@ main {
     color: var(--white);
     font-size: 2rem;
     margin: 20px 0;
-    margin-top: -40px;
+    /* margin-top: -40px; /* Si vous voulez que ça chevauche/soit plus haut */
 }
 
 .admin-container {
-    background: var(--yellow);
+    background: var(--yellow); /* Fond jaune distinctif pour le conteneur admin */
     border-radius: 15px;
     padding: 20px;
     max-width: 80%;
     margin: 0 auto;
 }
 
-.filters {
+/* Styles pour le formulaire de filtres et ses éléments */
+.admin-filters-form .filters { /* Cible la div .filters à l'intérieur du form */
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    flex-wrap: wrap; /* Permet le passage à la ligne sur petits écrans */
+    justify-content: space-between; /* Espace les éléments au lieu de space-around */
+    align-items: center; /* Bon alignement vertical */
+    padding: 10px 0; /* Moins de padding vertical si déjà dans .admin-container */
+    gap: 10px; /* Espace entre les éléments du filtre */
 }
 
-.search {
-    padding: 10px;
-    width: 30%;
+/* Style pour les inputs de recherche */
+.admin-filters-form .search { /* Cible les .search à l'intérieur du form */
+    padding: 10px 12px;
+    /* width: 30%; /* Remplacé par flex-grow pour plus de flexibilité */
+    flex-grow: 1; /* Permet aux champs de prendre l'espace disponible */
+    min-width: 180px; /* Largeur minimale */
     border-radius: 8px;
-    border: none;
+    border: 1px solid var(--grey); /* Bordure subtile */
     outline: none;
     background-color: var(--white);
+    color: var(--black_f); /* Texte noir pour lisibilité sur fond blanc */
+    font-size: 0.9rem;
 }
+.admin-filters-form .search:focus {
+    border-color: var(--black_f); /* Ou une autre couleur de focus de votre charte */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Style commun pour les nouveaux boutons du formulaire de filtre */
+.admin-filters-form .button-search,
+.admin-filters-form .button-reset {
+    padding: 10px 20px;
+    border-radius: 8px; /* Garde le style des inputs .search */
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    flex-shrink: 0; 
+}
+
+/* Style spécifique pour le bouton "Rechercher" */
+.admin-filters-form .button-search {
+    background-color: var(--black_f); /* Bouton noir pour contraster avec le fond jaune de admin-container */
+    color: var(--yellow); /* Texte jaune */
+    border: 1px solid var(--black_f); /* Optionnel: bordure si nécessaire */
+}
+.admin-filters-form .button-search:hover {
+    opacity: 0.85;
+}
+
+/* Style spécifique pour le bouton "Réinitialiser" */
+.admin-filters-form .button-reset {
+    background-color: var(--white); 
+    color: var(--black_f); 
+    border: 1px solid var(--grey); /* Bordure grise pour le différencier */
+}
+.admin-filters-form .button-reset:hover {
+    background-color: #f0f0f0; /* Léger gris au survol */
+}
+
 
 .table-container {
     margin-top: 10px;
+    overflow-x: auto; /* Important pour la responsivité du tableau */
 }
 
 table {
@@ -100,24 +155,22 @@ th, td {
 }
 
 th {
-    background-color: var(--yellow);
-    color: var(--black_f); /* AJOUTEZ CETTE LIGNE pour un texte noir */
-    /* ou une autre couleur foncée si vous préférez, ex: var(--grey) */
+    background-color: var(--yellow); /* Conserve le fond jaune pour les en-têtes */
+    color: var(--black_f); 
 }
 
 td:not(.icons) {
     background-color: var(--white);
-    color: var(--black_f); /* AJOUTEZ CETTE LIGNE pour un texte noir */
-    /* ou color: var(--grey); pour un texte gris foncé */
+    color: var(--black_f); 
 }
 
 td.icons {
-    width: auto; /* Ajuste automatiquement la largeur */
+    width: auto; 
     text-align: center;
     white-space: nowrap;
-    border: none;
-    background: transparent;
-    padding: 0; /* Supprime le padding pour éviter les décalages */
+    border: none; /* Conserve la suppression de bordure */
+    background: transparent; /* Conserve le fond transparent */
+    padding: 0; 
 }
 
 footer {
@@ -176,10 +229,9 @@ footer h2 {
     padding: 10px;
     border-radius: 10px;
     width: fit-content;
-    margin: 10px auto;
-    margin-right: 200px;
-    color: var(--black_f); /* AJOUTEZ CETTE LIGNE pour un texte noir */
-    /* ou color: var(--grey); pour un texte gris foncé */
+    margin: 10px auto 20px auto; /* Ajout de marge en bas */
+    /* margin-right: 200px; /* Ce style décentrait la légende, à ajuster si besoin spécifique */
+    color: var(--black_f); 
 }
 
 .legend-item {
@@ -209,12 +261,18 @@ footer h2 {
     padding: 5px 10px;
     border: 1px solid var(--black_f);
     border-radius: 5px;
+    background-color: var(--white); /* Fond blanc pour les liens de page */
+    transition: background-color 0.2s, color 0.2s;
+}
+.page-link:hover {
+    background-color: var(--black_f); /* Fond noir au survol */
+    color: var(--yellow); /* Texte jaune au survol */
 }
 
 .page-link.active {
-    background-color: var(--yellow);
-    color: var(--black);
-    
+    background-color: var(--black_f); /* Bouton actif noir */
+    color: var(--yellow); /* Texte jaune */
+    border-color: var(--black_f);
 }
 
 
@@ -225,7 +283,6 @@ footer h2 {
     position: relative;
 }
 
-/* Animation pour indiquer le traitement en cours */
 .processing::after {
     content: '';
     position: absolute;
@@ -244,14 +301,39 @@ footer h2 {
     100% { transform: scale(1); opacity: 0.7; }
 }
 
-/* Style spécifique pour le bouton de promotion en traitement */
-.promote-button.processing img {
-    filter: grayscale(80%);
-}
-
-/* Style spécifique pour le bouton de suppression en traitement */
+.promote-button.processing img,
 .delete-button.processing img {
     filter: grayscale(80%);
 }
 
+/* Nettoyage du style orphelin que vous aviez à la fin */
+/* .button-search{
+    text-decoration: none;
+    border: 1rem; // Ce n'est probablement pas ce que vous vouliez, 1rem de bordure est énorme
+} */
 
+/* Responsive (ajout si nécessaire) */
+@media (max-width: 768px) {
+    .admin-container {
+        max-width: 95%; /* Plus de largeur pour le conteneur sur mobile */
+    }
+    .admin-filters-form .filters {
+        flex-direction: column; /* Empiler les filtres */
+        align-items: stretch; /* Étirer les éléments pour prendre la largeur */
+    }
+    .admin-filters-form .search,
+    .admin-filters-form .button-search,
+    .admin-filters-form .button-reset {
+        width: 100%; /* Pleine largeur pour les inputs et boutons de filtre */
+        min-width: unset;
+        margin-bottom: 10px; /* Espace quand empilé */
+    }
+     .admin-filters-form .filters .button-reset {
+        margin-bottom: 0; /* Pas de marge en bas pour le dernier bouton */
+    }
+
+    .icon-legend {
+        margin-right: auto; /* Centrer la légende */
+        max-width: 90%;
+    }
+}
