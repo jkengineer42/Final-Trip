@@ -175,6 +175,7 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
                             <th>Email</th>
                             <th>Date de naissance</th>
                             <th>Administrateur</th>
+                            <th>Statut</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
