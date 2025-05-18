@@ -1,221 +1,196 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('profile-form');
-    const saveChangesBtn = document.getElementById('save-changes-btn');
-    const fieldContainers = form.querySelectorAll('.field-container');
-    let originalValues = {}; // Pour stocker les valeurs initiales
-    let hasValidatedChanges = false; // Indicateur pour savoir si au moins un champ a été validé
-    let saveTimer = null; // Pour gérer le timer de sauvegarde admin
-
-    // --- Initialisation ---
-    fieldContainers.forEach(container => {
-        const input = container.querySelector('input:not([disabled])');
-        if (!input) return;
-
-        const fieldName = input.id;
-        // S'assurer que l'id existe avant de l'utiliser comme clé
-        if (!fieldName) {
-            console.warn("Champ sans ID trouvé dans un field-container:", container);
-            return;
-        }
-        originalValues[fieldName] = input.value; // Stocker la valeur initiale
-
-        const editBtn = container.querySelector(`.edit-btn[data-field="${fieldName}"]`);
-        const validateBtn = container.querySelector(`.validate-btn[data-field="${fieldName}"]`);
-        const cancelBtn = container.querySelector(`.cancel-btn[data-field="${fieldName}"]`);
-
-        if(validateBtn) validateBtn.classList.add('hidden');
-        if(cancelBtn) cancelBtn.classList.add('hidden');
-
-        if (editBtn) {
-            editBtn.addEventListener('click', () => handleEdit(fieldName));
-        }
-        if (validateBtn) {
-            validateBtn.addEventListener('click', () => handleValidate(fieldName));
-        }
-        if (cancelBtn) {
-            cancelBtn.addEventListener('click', () => handleCancel(fieldName));
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    // Sélectionner tous les boutons
+    var editButtons = document.querySelectorAll('.edit-btn');
+    var validateButtons = document.querySelectorAll('.validate-btn');
+    var cancelButtons = document.querySelectorAll('.cancel-btn');
+    var form = document.getElementById('profile-form');
+    
+    // Stocker les valeurs originales
+    var originalValues = {};
+    
+    // Sauvegarder les valeurs initiales
+    document.querySelectorAll('input[id]').forEach(function(input) {
+        originalValues[input.id] = input.value;
     });
-
-    // --- Gestionnaires d'événements ---
-
-    function handleEdit(fieldName) {
-        // ... (Code existant de handleEdit - pas de changement nécessaire ici)
-        const container = document.getElementById(fieldName)?.closest('.field-container');
-         if (!container) return;
-         const input = container.querySelector(`#${fieldName}`);
-         const editBtn = container.querySelector(`.edit-btn[data-field="${fieldName}"]`);
-         const validateBtn = container.querySelector(`.validate-btn[data-field="${fieldName}"]`);
-         const cancelBtn = container.querySelector(`.cancel-btn[data-field="${fieldName}"]`);
-
-         // Désactiver les autres boutons "Modifier"
-         disableOtherEditButtons(true, fieldName);
-
-         // Rendre le champ modifiable
-         input.readOnly = false;
-         input.focus();
-         // Gérer le cas où select() n'est pas dispo (ex: type date)
-         if (typeof input.select === 'function') {
-            input.select();
-         }
-
-
-         // Cacher "Modifier", Afficher "Valider" et "Annuler"
-         editBtn.classList.add('hidden');
-         validateBtn.classList.remove('hidden');
-         cancelBtn.classList.remove('hidden');
-    }
-
-    function handleValidate(fieldName) {
-        // ... (Début du code existant de handleValidate) ...
-        const container = document.getElementById(fieldName)?.closest('.field-container');
-        if (!container) return;
-        const input = container.querySelector(`#${fieldName}`);
-        const editBtn = container.querySelector(`.edit-btn[data-field="${fieldName}"]`);
-        const validateBtn = container.querySelector(`.validate-btn[data-field="${fieldName}"]`);
-        const cancelBtn = container.querySelector(`.cancel-btn[data-field="${fieldName}"]`);
-
-        // --- Validation Côté Client (Optionnelle) ---
-        if ((fieldName === 'nom' || fieldName === 'prenom') && input.value.trim() === '') {
-            alert(`Le champ ${input.labels[0]?.textContent || fieldName} ne peut pas être vide.`);
-            return;
-        }
-        if (fieldName === 'birthdate' && input.value && !isValidDate(input.value)) {
-             alert("Le format de la date de naissance n'est pas valide (AAAA-MM-JJ), ou la date est invalide.");
-             return;
-        }
-        // -------------------------------------------
-
-        input.readOnly = true; // Rendre le champ non modifiable
-
-        // Vérifier si la valeur a réellement changé
-        // !! Important: Utiliser la clé correcte pour originalValues
-        if (input.value !== originalValues[fieldName]) {
-
-             console.log(`Changement détecté pour ${fieldName}: "${originalValues[fieldName]}" -> "${input.value}"`);
-             hasValidatedChanges = true; // Marquer qu'il y a des changements
-             updateSaveChangesButtonVisibility(); // Mettre à jour la visibilité du bouton principal
-         } else {
-             console.log(`Pas de changement réel pour ${fieldName}.`);
-         }
-
-
-        // Cacher "Valider" et "Annuler", Afficher "Modifier"
-        validateBtn.classList.add('hidden');
-        cancelBtn.classList.add('hidden');
-        editBtn.classList.remove('hidden');
-
-        // Réactiver les autres boutons "Modifier"
-        disableOtherEditButtons(false);
-    }
-
-    function handleCancel(fieldName) {
-        // ... (Code existant de handleCancel - pas de changement nécessaire ici) ...
-        const container = document.getElementById(fieldName)?.closest('.field-container');
-        if (!container) return;
-        const input = container.querySelector(`#${fieldName}`);
-        const editBtn = container.querySelector(`.edit-btn[data-field="${fieldName}"]`);
-        const validateBtn = container.querySelector(`.validate-btn[data-field="${fieldName}"]`);
-        const cancelBtn = container.querySelector(`.cancel-btn[data-field="${fieldName}"]`);
-
-        // Restaurer la valeur originale stockée au chargement
-        input.value = originalValues[fieldName];
-        input.readOnly = true;
-
-        validateBtn.classList.add('hidden');
-        cancelBtn.classList.add('hidden');
-        editBtn.classList.remove('hidden');
-
-        disableOtherEditButtons(false);
-
-    }
-
-
-    function updateSaveChangesButtonVisibility() {
-        // Affiche le bouton s'il y a eu au moins une validation de changement
-        if (hasValidatedChanges) {
-            saveChangesBtn.classList.remove('hidden');
-        } else {
-            // Optionnel: Cacher si plus aucun changement n'est en attente après des annulations multiples.
-             // saveChangesBtn.classList.add('hidden');
-        }
-    }
-
-    function disableOtherEditButtons(disable, currentField = null) {
-        // ... (Code existant - pas de changement) ...
-         fieldContainers.forEach(container => {
-            const editBtn = container.querySelector('.edit-btn');
-            if (!editBtn) return;
-            const fieldName = editBtn.getAttribute('data-field');
-
-             // S'assurer que fieldName est valide avant la comparaison
-             if (fieldName && fieldName !== currentField) {
-                 editBtn.disabled = disable;
-                 editBtn.style.opacity = disable ? '0.5' : '1';
-                 editBtn.style.cursor = disable ? 'not-allowed' : 'pointer';
-             }
+    
+    // Cacher les boutons valider/annuler au départ
+    validateButtons.forEach(function(btn) {
+        btn.classList.add('hidden');
+    });
+    
+    cancelButtons.forEach(function(btn) {
+        btn.classList.add('hidden');
+    });
+    
+    // Fonction pour activer l'édition d'un champ
+    function activerEdition(fieldName) {
+        // Trouver les éléments concernés
+        var input = document.getElementById(fieldName);
+        var editBtn = document.querySelector('.edit-btn[data-field="' + fieldName + '"]');
+        var validateBtn = document.querySelector('.validate-btn[data-field="' + fieldName + '"]');
+        var cancelBtn = document.querySelector('.cancel-btn[data-field="' + fieldName + '"]');
+        
+        // Rendre le champ modifiable
+        input.readOnly = false;
+        input.focus();
+        
+        // Cacher/montrer les bons boutons
+        editBtn.classList.add('hidden');
+        validateBtn.classList.remove('hidden');
+        cancelBtn.classList.remove('hidden');
+        
+        // Désactiver les autres boutons d'édition
+        editButtons.forEach(function(btn) {
+            if (btn !== editBtn) {
+                btn.disabled = true;
+            }
         });
     }
-
-    function isValidDate(dateString) {
-        // ... (Code existant - pas de changement) ...
-         const regEx = /^\d{4}-\d{2}-\d{2}$/;
-         if (!dateString.match(regEx)) return false; // Mauvais format
-         const d = new Date(dateString);
-         const dNum = d.getTime();
-         if (!dNum && dNum !== 0) return false; // Date invalide (ex: 2023-02-31)
-         // Vérifie aussi que la date créée correspond bien à la string
-         return d.toISOString().slice(0, 10) === dateString;
+    
+    // Fonction pour valider une modification
+    function validerModification(fieldName) {
+        // Trouver les éléments concernés
+        var input = document.getElementById(fieldName);
+        var editBtn = document.querySelector('.edit-btn[data-field="' + fieldName + '"]');
+        var validateBtn = document.querySelector('.validate-btn[data-field="' + fieldName + '"]');
+        var cancelBtn = document.querySelector('.cancel-btn[data-field="' + fieldName + '"]');
+        
+        // Vérifier si la valeur a changé
+        if (input.value !== originalValues[fieldName]) {
+            // Récupérer l'email de l'utilisateur
+            var userEmail = document.getElementById('user-email-to-edit').value;
+            
+            // Désactiver les boutons pendant l'envoi
+            validateBtn.disabled = true;
+            cancelBtn.disabled = true;
+            
+            // Ajouter un message de chargement
+            var loadingMessage = document.createElement('span');
+            loadingMessage.textContent = " Enregistrement...";
+            loadingMessage.style.color = "#FFCF30";
+            validateBtn.parentNode.appendChild(loadingMessage);
+            
+            // Préparer les données à envoyer
+            var donnees = {
+                field: fieldName,
+                value: input.value,
+                email: userEmail
+            };
+            
+            // Envoyer la requête AJAX
+            fetch('../ajax/update_profile.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(donnees)
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Enlever le message de chargement
+                if (loadingMessage.parentNode) {
+                    loadingMessage.parentNode.removeChild(loadingMessage);
+                }
+                
+                // Si la mise à jour a réussi
+                if (data.success) {
+                    // Mettre à jour la valeur originale
+                    originalValues[fieldName] = input.value;
+                    // Afficher un message de succès
+                    alert("Modification enregistrée avec succès!");
+                } else {
+                    // Afficher l'erreur et restaurer la valeur originale
+                    alert("Erreur: " + (data.message || "La modification a échoué"));
+                    input.value = originalValues[fieldName];
+                }
+                
+                // Réactiver les boutons
+                validateBtn.disabled = false;
+                cancelBtn.disabled = false;
+            })
+            .catch(function(error) {
+                // Gérer les erreurs
+                console.error("Erreur: ", error);
+                alert("Erreur de communication avec le serveur");
+                
+                // Restaurer la valeur originale
+                input.value = originalValues[fieldName];
+                
+                // Enlever le message de chargement
+                if (loadingMessage.parentNode) {
+                    loadingMessage.parentNode.removeChild(loadingMessage);
+                }
+                
+                // Réactiver les boutons
+                validateBtn.disabled = false;
+                cancelBtn.disabled = false;
+            });
+        }
+        
+        // Rendre le champ non modifiable
+        input.readOnly = true;
+        
+        // Cacher/montrer les bons boutons
+        editBtn.classList.remove('hidden');
+        validateBtn.classList.add('hidden');
+        cancelBtn.classList.add('hidden');
+        
+        // Réactiver tous les boutons d'édition
+        editButtons.forEach(function(btn) {
+            btn.disabled = false;
+        });
     }
-
-    // --- Logique de Soumission du Formulaire ---
-
-    // Intercepter la soumission du formulaire qui serait déclenchée par le bouton 'submit'
-    form.addEventListener('submit', (event) => {
-        // Empêcher la soumission par défaut IMMÉDIATEMENT
+    
+    // Fonction pour annuler une modification
+    function annulerModification(fieldName) {
+        // Trouver les éléments concernés
+        var input = document.getElementById(fieldName);
+        var editBtn = document.querySelector('.edit-btn[data-field="' + fieldName + '"]');
+        var validateBtn = document.querySelector('.validate-btn[data-field="' + fieldName + '"]');
+        var cancelBtn = document.querySelector('.cancel-btn[data-field="' + fieldName + '"]');
+        
+        // Restaurer la valeur originale
+        input.value = originalValues[fieldName];
+        input.readOnly = true;
+        
+        // Cacher/montrer les bons boutons
+        editBtn.classList.remove('hidden');
+        validateBtn.classList.add('hidden');
+        cancelBtn.classList.add('hidden');
+        
+        // Réactiver tous les boutons d'édition
+        editButtons.forEach(function(btn) {
+            btn.disabled = false;
+        });
+    }
+    
+    // Ajouter les écouteurs d'événements aux boutons
+    editButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var fieldName = this.getAttribute('data-field');
+            activerEdition(fieldName);
+        });
+    });
+    
+    validateButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var fieldName = this.getAttribute('data-field');
+            validerModification(fieldName);
+        });
+    });
+    
+    cancelButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var fieldName = this.getAttribute('data-field');
+            annulerModification(fieldName);
+        });
+    });
+    
+    // Empêcher la soumission normale du formulaire
+    form.addEventListener('submit', function(event) {
         event.preventDefault();
-
-        // Vérifier si c'est un admin qui modifie un autre user
-        // 'isAdminEditingAnotherUser' et 'adminUpdateDelay' sont définis par le PHP via le <script> ajouté
-        if (typeof isAdminEditingAnotherUser !== 'undefined' && isAdminEditingAnotherUser === true) {
-            console.log(`Admin modifie un autre user. Lancement du timer de ${adminUpdateDelay / 1000}s.`);
-
-            // Afficher un message et désactiver le bouton pendant le délai
-            saveChangesBtn.disabled = true;
-            saveChangesBtn.textContent = `Sauvegarde dans ${adminUpdateDelay / 1000}...`; // Feedback visuel
-
-            // Effacer un timer précédent s'il existe (au cas où le bouton est cliqué plusieurs fois rapidement)
-            clearTimeout(saveTimer);
-
-            // Lancer le timer
-            saveTimer = setTimeout(() => {
-                console.log("Timer terminé. Soumission du formulaire.");
-                // Rétablir le texte/état du bouton n'est pas nécessaire car la page va recharger
-                form.submit(); // Soumettre le formulaire après le délai
-            }, adminUpdateDelay); // Utiliser la variable de délai
-
-        } else {
-            // Si ce n'est pas un admin modifiant un autre user, soumettre immédiatement
-            console.log("Utilisateur normal ou admin sur son profil. Soumission immédiate.");
-            form.submit();
-        }
+        alert("Toutes les modifications sont déjà enregistrées!");
     });
-
-
-    // --- Initialisation finale ---
-    updateSaveChangesButtonVisibility(); // Cacher le bouton au début si pas de changement
-
-    // Optionnel : Empêcher Entrée de soumettre (le addEventListener 'submit' ci-dessus gère déjà le délai)
-    form.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' && event.target.tagName === 'INPUT' && !event.target.readOnly) {
-             event.preventDefault(); // Empêche la soumission par Entrée
-             // Simuler un clic sur le bouton Valider correspondant s'il est visible
-             const fieldName = event.target.id;
-             const validateBtn = document.querySelector(`.validate-btn[data-field="${fieldName}"]:not(.hidden)`);
-             if (validateBtn) {
-                 validateBtn.click();
-             }
-        }
-    });
-
-}); // Fin de DOMContentLoaded
+});
