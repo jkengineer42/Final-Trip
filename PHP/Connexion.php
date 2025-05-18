@@ -28,6 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (is_array($jsonDataUsers)) {
         foreach ($jsonDataUsers as $userAccount) {
             if (isset($userAccount['email']) && $userAccount['email'] === $email_input && isset($userAccount['password']) && password_verify($password_input, $userAccount['password'])) {
+                
+                 // Vérifier si l'utilisateur est bloqué
+            if (isset($userAccount['is_blocked']) && $userAccount['is_blocked'] === true) {
+                $error = "<span style='color: var(--yellow);'>Votre compte a été bloqué. Veuillez contacter l'administrateur.</span>";
+                break; // Important : sortir de la boucle ici
+            }
+
                 // Connexion réussie
                 $_SESSION['user_email'] = $email_input; // Set the session
                 $loginSuccessful = true;
