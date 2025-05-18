@@ -64,25 +64,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 break;
             }
         }
-    } elseif (isset($_POST['delete'])) {
-        $emailToDelete = $_POST['email'];
-        $canDelete = true;
-        foreach ($allUsersData as $key => $user) {
-            if ($user['email'] === $emailToDelete) {
-                if ($user['is_admin']) { // On ne peut pas supprimer un admin via ce bouton
-                    $canDelete = false;
-                    // Optionnel: ajouter un message d'erreur ici si besoin
-                    break;
-                }
-                if ($canDelete) {
-                    unset($allUsersData[$key]);
-                    $allUsersData = array_values($allUsersData); // Réindexer
-                    $actionTaken = true;
-                }
+    } elseif (isset($_POST['delete'])) { // On garde 'delete' pour la compatibilité avec les formulaires existants
+    $emailToBlock = $_POST['email'];
+    $canBlock = true;
+    foreach ($allUsersData as $key => $user) {
+        if ($user['email'] === $emailToBlock) {
+            if ($user['is_admin']) { // On ne peut pas bloquer un admin
+                $canBlock = false;
+                // Optionnel: ajouter un message d'erreur ici si besoin
                 break;
             }
+            if ($canBlock) {
+                // Au lieu de supprimer, on marque comme bloqué
+                $allUsersData[$key]['is_blocked'] = true;
+                $actionTaken = true;
+            }
+            break;
         }
     }
+}
 
     if ($actionTaken) {
         file_put_contents($jsonFile, json_encode($allUsersData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
