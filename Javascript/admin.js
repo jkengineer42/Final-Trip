@@ -203,7 +203,8 @@ document.addEventListener('DOMContentLoaded', function() {
     deleteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             event.preventDefault();
-            supprimerUtilisateur(this);
+            bloquerUtilisateur(this); // Utilisez bloquerUtilisateur au lieu de supprimerUtilisateur
+
         });
     });
 });
