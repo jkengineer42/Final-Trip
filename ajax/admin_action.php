@@ -36,14 +36,13 @@ sleep(3);
 if ($data['action'] === 'promote') {
     $utilisateurs[$index_utilisateur]['is_admin'] = true;
     $message = "Promotion réussie";
-} elseif ($action === 'block') {
+} elseif ($data['action'] === 'block') {
     // Vérifier si l'utilisateur à bloquer est admin
-    if (isset($users[$user_index]['is_admin']) && $users[$user_index]['is_admin'] === true) {
-        echo json_encode(['success' => false, 'message' => 'Impossible de bloquer un administrateur']);
-        exit;
+    if (isset($utilisateurs[$index_utilisateur]['is_admin']) && $utilisateurs[$index_utilisateur]['is_admin'] === true) {
+        envoyerErreur("Impossible de bloquer un administrateur");
     }
-    $users[$user_index]['is_blocked'] = true;
-    $message = "Suppression réussie";
+    $utilisateurs[$index_utilisateur]['is_blocked'] = true;
+    $message = "Blocage réussi";
 } else {
     envoyerErreur("Action non reconnue");
 }
