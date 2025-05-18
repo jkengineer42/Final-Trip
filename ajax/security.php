@@ -46,7 +46,7 @@ function verifierAdmin() {
 
 function chargerUtilisateurs() {
     // Chemin vers le fichier JSON des utilisateurs
-    $fichierUtilisateurs = '../../data/data_user.json';
+    $fichierUtilisateurs = '../data/data_user.json';
     
     // Vérifier si le fichier existe
     if (!file_exists($fichierUtilisateurs)) {
