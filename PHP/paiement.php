@@ -27,7 +27,7 @@ $transaction_id = substr(md5(uniqid('FT_') . rand(100, 999)), 0, 23);
 $montant_cybank = $totalPrice;
 //______________PROF____________
 $vendeur_code = 'MEF-1_H';
-$retour_url = 'http://localhost:8080/Final-Trip-main/PHP/retour_paiement.php';
+$retour_url = 'http://localhost/Final-Trip-main/PHP/retour_paiement.php';
 $api_key = getAPIKey($vendeur_code);
 $control_hash_send = md5( 
     $api_key
