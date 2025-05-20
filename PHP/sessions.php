@@ -55,12 +55,29 @@ if (!function_exists('ft_get_user_data_by_field')) {
 
 // --- Determine Login Status, User Data, and Admin Role ---
 if (isset($_SESSION['user_email'])) {
-    $isLoggedIn = true;
     $currentUserEmail = $_SESSION['user_email'];
-    $profileLink = 'Profil.php'; // Link to user's own profile
-
+    
     // Fetch data for the currently logged-in user
     $currentUserData = ft_get_user_data_by_field($currentUserEmail, 'email');
+
+    // Check if user is blocked
+    if ($currentUserData && isset($currentUserData['is_blocked']) && $currentUserData['is_blocked'] === true) {
+        // User is blocked - destroy session and redirect to login page
+        session_unset();
+        session_destroy();
+        
+        // Set a temporary message in a new session
+        session_start();
+        $_SESSION['login_error'] = "Votre compte a été bloqué par un administrateur. Veuillez contacter le support.";
+        
+        // Redirect to login page
+        header("Location: Connexion.php");
+        exit();
+    }
+    
+    // If we get here, user is logged in and not blocked
+    $isLoggedIn = true;
+    $profileLink = 'Profil.php'; // Link to user's own profile
 
     if ($currentUserData && isset($currentUserData['is_admin']) && $currentUserData['is_admin'] === true) {
         $isAdmin = true;
