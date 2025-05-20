@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Sélectionner tous les boutons
     var promoteButtons = document.querySelectorAll('button[name="promote"]');
     var deleteButtons = document.querySelectorAll('button[name="delete"]');
-    var unblockButtons = document.querySelectorAll('button[name="unblock"]'); // Nouveau sélecteur
+    var unblockButtons = document.querySelectorAll('button[name="unblock"]'); 
     
     // Fonction pour promouvoir un utilisateur
     function promouvoirUtilisateur(button) {
