@@ -1,6 +1,13 @@
 <?php
 require_once 'sessions.php'; // Handles session_start()
 
+// Récupérer le message d'erreur de blocage (s'il existe)
+$error = '';
+if (isset($_SESSION['login_error'])) {
+    $error = $_SESSION['login_error'];
+    unset($_SESSION['login_error']); // Effacer le message après l'avoir affiché
+}
+
 // Vérifier si l'utilisateur est déjà connecté
 if ($isLoggedIn) { // $isLoggedIn is from sessions.php
     header("Location: Accueil.php"); // Rediriger vers la page principale
@@ -29,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         foreach ($jsonDataUsers as $userAccount) {
             if (isset($userAccount['email']) && $userAccount['email'] === $email_input && isset($userAccount['password']) && password_verify($password_input, $userAccount['password'])) {
                 
-                 // Vérifier si l'utilisateur est bloqué
-            if (isset($userAccount['is_blocked']) && $userAccount['is_blocked'] === true) {
-                $error = "<span style='color: var(--yellow);'>Votre compte a été bloqué. Veuillez contacter l'administrateur.</span>";
-                break; // Important : sortir de la boucle ici
-            }
+                // Vérifier si l'utilisateur est bloqué
+                if (isset($userAccount['is_blocked']) && $userAccount['is_blocked'] === true) {
+                    $error = "<span style='color: var(--yellow);'>Votre compte a été bloqué. Veuillez contacter l'administrateur.</span>";
+                    break; // Important : sortir de la boucle ici
+                }
 
                 // Connexion réussie
                 $_SESSION['user_email'] = $email_input; // Set the session
@@ -84,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img src="../assets/icon/User2.png" alt="User Icon" class="user-icon">
 
             <form action="Connexion.php" method="POST">
-                <?php if (isset($error)): ?>
+                <?php if (isset($error) && !empty($error)): ?>
                     <div class="error" style="color: var(--yellow); margin-bottom: 15px; text-align: center;"><?= $error ?></div>
                 <?php endif; ?>
 
@@ -105,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="button1">Connexion</button>
             </form>
 
-            <p class="register-link">Toujours pas dans l’équipe ? <a href="Inscription.php">Aller clique ici <img src="../assets/icon/clic.png" class="clic"></a></p>
+            <p class="register-link">Toujours pas dans l'équipe ? <a href="Inscription.php">Aller clique ici <img src="../assets/icon/clic.png" class="clic"></a></p>
         </div>
     </main>
 
