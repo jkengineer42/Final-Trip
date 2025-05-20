@@ -52,7 +52,7 @@ if (!empty($searchEmail)) {
 }
 $filteredUsers = array_values($filteredUsers); // Réindexer après filtrage
 
-// Gestion des actions POST (Promouvoir, Supprimer)
+// Gestion des actions POST (Promouvoir, Supprimer, Débloquer)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $actionTaken = false;
     if (isset($_POST['promote'])) {
@@ -65,24 +65,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     } elseif (isset($_POST['delete'])) { // On garde 'delete' pour la compatibilité avec les formulaires existants
-    $emailToBlock = $_POST['email'];
-    $canBlock = true;
-    foreach ($allUsersData as $key => $user) {
-        if ($user['email'] === $emailToBlock) {
-            if ($user['is_admin']) { // On ne peut pas bloquer un admin
-                $canBlock = false;
-                // Optionnel: ajouter un message d'erreur ici si besoin
+        $emailToBlock = $_POST['email'];
+        $canBlock = true;
+        foreach ($allUsersData as $key => $user) {
+            if ($user['email'] === $emailToBlock) {
+                if ($user['is_admin']) { // On ne peut pas bloquer un admin
+                    $canBlock = false;
+                    // Optionnel: ajouter un message d'erreur ici si besoin
+                    break;
+                }
+                if ($canBlock) {
+                    // Au lieu de supprimer, on marque comme bloqué
+                    $allUsersData[$key]['is_blocked'] = true;
+                    $actionTaken = true;
+                }
                 break;
             }
-            if ($canBlock) {
-                // Au lieu de supprimer, on marque comme bloqué
-                $allUsersData[$key]['is_blocked'] = true;
+        }
+    } elseif (isset($_POST['unblock'])) { // Nouveau code pour débloquer
+        $emailToUnblock = $_POST['email'];
+        foreach ($allUsersData as $key => $user) {
+            if ($user['email'] === $emailToUnblock && isset($user['is_blocked'])) {
+                $allUsersData[$key]['is_blocked'] = false;
                 $actionTaken = true;
+                break;
             }
-            break;
         }
     }
-}
 
     if ($actionTaken) {
         file_put_contents($jsonFile, json_encode($allUsersData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
@@ -143,8 +152,12 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
             <span>Modifier</span>
         </div>
         <div class="legend-item">
-            <img src="../assets/icon/delete.png" alt="Supprimer" class="legend-icon">
-            <span>Supprimer</span>
+            <img src="../assets/icon/delete.png" alt="Bloquer" class="legend-icon">
+            <span>Bloquer</span>
+        </div>
+        <div class="legend-item">
+            <img src="../assets/icon/unlock.png" alt="Débloquer" class="legend-icon">
+            <span>Débloquer</span>
         </div>
         <div class="legend-item">
             <img src="../assets/icon/Admin.png" alt="Admin" class="legend-icon">
@@ -182,7 +195,7 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
                     <tbody>
                         <?php if (empty($paginatedUsers)): ?>
                             <tr>
-                                <td colspan="6">Aucun utilisateur trouvé correspondant à vos critères de recherche.</td>
+                                <td colspan="7">Aucun utilisateur trouvé correspondant à vos critères de recherche.</td>
                             </tr>
                         <?php else: ?>
                             <?php foreach ($paginatedUsers as $user): ?>
@@ -199,15 +212,30 @@ $paginationQueryString = http_build_query($paginationQueryHttp);
                                             <img src="../assets/icon/black_edit.png" alt="Modifier" class="icon">
                                         </a>
                                         <?php if (!(isset($user['is_admin']) && $user['is_admin'])): ?>
-                                            <form method="POST" style="display:inline;">
-                                                <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
-                                                <input type="hidden" name="page" value="<?= $currentPage ?>">
-                                                <?php if (!empty($searchName)): ?><input type="hidden" name="search_name" value="<?= htmlspecialchars($searchName) ?>"><?php endif; ?>
-                                                <?php if (!empty($searchEmail)): ?><input type="hidden" name="search_email" value="<?= htmlspecialchars($searchEmail) ?>"><?php endif; ?>
-                                                <button type="submit" name="delete" class="delete-button" title="Bloquer l'utilisateur">
-                                                    <img src="../assets/icon/delete.png" alt="Bloquer" class="icon delete-icon">
-                                                </button>
-                                            </form>
+                                            <?php if (isset($user['is_blocked']) && $user['is_blocked']): ?>
+                                                <!-- Bouton de déblocage pour les utilisateurs bloqués -->
+                                                <form method="POST" style="display:inline;">
+                                                    <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                                                    <input type="hidden" name="page" value="<?= $currentPage ?>">
+                                                    <?php if (!empty($searchName)): ?><input type="hidden" name="search_name" value="<?= htmlspecialchars($searchName) ?>"><?php endif; ?>
+                                                    <?php if (!empty($searchEmail)): ?><input type="hidden" name="search_email" value="<?= htmlspecialchars($searchEmail) ?>"><?php endif; ?>
+                                                    <button type="submit" name="unblock" class="unblock-button" title="Débloquer l'utilisateur">
+                                                        <img src="../assets/icon/unlock.png" alt="Débloquer" class="icon unblock-icon">
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <!-- Bouton de blocage pour les utilisateurs actifs -->
+                                                <form method="POST" style="display:inline;">
+                                                    <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
+                                                    <input type="hidden" name="page" value="<?= $currentPage ?>">
+                                                    <?php if (!empty($searchName)): ?><input type="hidden" name="search_name" value="<?= htmlspecialchars($searchName) ?>"><?php endif; ?>
+                                                    <?php if (!empty($searchEmail)): ?><input type="hidden" name="search_email" value="<?= htmlspecialchars($searchEmail) ?>"><?php endif; ?>
+                                                    <button type="submit" name="delete" class="delete-button" title="Bloquer l'utilisateur">
+                                                        <img src="../assets/icon/delete.png" alt="Bloquer" class="icon delete-icon">
+                                                    </button>
+                                                </form>
+                                            <?php endif; ?>
+
                                             <form method="POST" style="display:inline;">
                                                 <input type="hidden" name="email" value="<?= htmlspecialchars($user['email']) ?>">
                                                 <input type="hidden" name="page" value="<?= $currentPage ?>">
