@@ -70,7 +70,7 @@ function chargerUtilisateurs() {
 
 function sauvegarderUtilisateurs($utilisateurs) {
     // Chemin vers le fichier JSON des utilisateurs
-    $fichierUtilisateurs = '../../data/data_user.json';
+    $fichierUtilisateurs = '../data/data_user.json';
     
     // Encoder le tableau en JSON avec formatage pour lisibilité
     $contenuJSON = json_encode($utilisateurs, JSON_PRETTY_PRINT);
