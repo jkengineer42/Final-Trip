@@ -57,21 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Afficher un message de succès
                 alert("L'utilisateur a été promu administrateur!");
                 
-                // Mettre à jour la ligne dans le tableau
-                var row = button.closest('tr');
-                if (row) {
-                    // Mettre à jour la cellule "Admin"
-                    var adminCell = row.querySelector('td:nth-child(5)');
-                    if (adminCell) {
-                        adminCell.textContent = 'Oui';
-                    }
-                    
-                    // Supprimer les boutons d'action
-                    var actionsCell = row.querySelector('td.icons');
-                    if (actionsCell) {
-                        actionsCell.innerHTML = '<span style="color:#FFCF30">Administrateur</span>';
-                    }
-                }
+                // Plutôt que de modifier le DOM, recharger la page
+                location.reload();
             } else {
                 // Afficher l'erreur
                 alert("Erreur: " + (data.message || "La promotion a échoué"));
@@ -136,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                action: 'block', // Changé de 'delete' à 'block'
+                action: 'block',
                 email: email
             })
         })
@@ -154,17 +141,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Afficher un message de succès
                 alert("L'utilisateur a été bloqué!");
                 
-                // Mettre à jour la ligne dans le tableau
+                // Mettre à jour le statut avec un texte rouge "Bloqué"
                 var row = button.closest('tr');
                 if (row) {
-                    // Mettre à jour le statut dans le tableau
-                    var statusCell = row.querySelector('td:nth-child(6)'); // Ajustez l'index si nécessaire
+                    var statusCell = row.querySelector('td:nth-child(6)');
                     if (statusCell) {
                         statusCell.innerHTML = '<span style="color:red;">Bloqué</span>';
                     }
-                    
-                    // Recharger la page pour voir les changements 
-                    window.location.reload();
+                }
+                
+                // On cache le bouton de blocage et on cherche le formulaire parent du bouton
+                var blockForm = button.closest('form');
+                if (blockForm) {
+                    blockForm.style.display = 'none';
+                }
+                
+                // On cherche le bouton de déblocage qui pourrait être masqué et on l'affiche
+                var actionsCell = row.querySelector('td.icons');
+                if (actionsCell) {
+                    var unblockForm = actionsCell.querySelector('form:has(button[name="unblock"])');
+                    if (unblockForm) {
+                        unblockForm.style.display = 'inline';
+                    } else {
+                        // S'il n'y a pas de bouton de déblocage, recharger la page pour l'obtenir
+                        location.reload();
+                    }
                 }
             } else {
                 // Afficher l'erreur
@@ -249,8 +250,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Afficher un message de succès
                 alert("L'utilisateur a été débloqué!");
                 
-                // Recharger la page pour voir les changements
-                window.location.reload();
+                // Mettre à jour le statut 
+                var row = button.closest('tr');
+                if (row) {
+                    var statusCell = row.querySelector('td:nth-child(6)');
+                    if (statusCell) {
+                        statusCell.textContent = 'Actif';
+                    }
+                }
+                
+                // On cache le bouton de déblocage
+                var unblockForm = button.closest('form');
+                if (unblockForm) {
+                    unblockForm.style.display = 'none';
+                }
+                
+                // On cherche le bouton de blocage qui pourrait être masqué et on l'affiche
+                var actionsCell = row.querySelector('td.icons');
+                if (actionsCell) {
+                    var blockForm = actionsCell.querySelector('form:has(button[name="delete"])');
+                    if (blockForm) {
+                        blockForm.style.display = 'inline';
+                    } else {
+                        // S'il n'y a pas de bouton de blocage, recharger la page pour l'obtenir
+                        location.reload();
+                    }
+                }
             } else {
                 // Afficher l'erreur
                 alert("Erreur: " + (data.message || "Le déblocage a échoué"));
@@ -291,7 +316,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    //Ajouter les écouteurs d'événements pour les boutons de déblocage
     unblockButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             event.preventDefault();
