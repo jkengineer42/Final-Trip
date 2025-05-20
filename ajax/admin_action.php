@@ -43,6 +43,10 @@ if ($data['action'] === 'promote') {
     }
     $utilisateurs[$index_utilisateur]['is_blocked'] = true;
     $message = "Blocage réussi";
+} elseif ($data['action'] === 'unblock') {
+    // Nouvelle action pour débloquer
+    $utilisateurs[$index_utilisateur]['is_blocked'] = false;
+    $message = "Déblocage réussi";
 } else {
     envoyerErreur("Action non reconnue");
 }
