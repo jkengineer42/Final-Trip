@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // C'est comme prendre une "photo" de l'état initial du formulaire
     document.querySelectorAll('input[id]').forEach(function(input) {
         originalValues[input.id] = input.value;
+        
+        // AJOUT: Empêcher la soumission sur Entrée
+        input.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+            }
+        });
     });
     
     // Au chargement de la page, cacher les boutons de validation et d'annulation
@@ -76,6 +83,21 @@ document.addEventListener('DOMContentLoaded', function() {
         var validateBtn = document.querySelector('.validate-btn[data-field="' + fieldName + '"]');
         var cancelBtn = document.querySelector('.cancel-btn[data-field="' + fieldName + '"]');
         
+        // AJOUT: Vérification spéciale pour le mot de passe
+        if (fieldName === 'password' && input.value.trim() === '') {
+            // Si le mot de passe est vide, on n'envoie pas la requête
+            input.readOnly = true;
+            editBtn.classList.remove('hidden');
+            validateBtn.classList.add('hidden');
+            cancelBtn.classList.add('hidden');
+            
+            // Réactiver les autres boutons
+            editButtons.forEach(function(btn) {
+                btn.disabled = false;
+            });
+            return;
+        }
+        
         // Vérifier si la valeur a réellement été modifiée
         // Si la valeur n'a pas changé, pas besoin d'envoyer une requête au serveur
         if (input.value !== originalValues[fieldName]) {
@@ -100,7 +122,8 @@ document.addEventListener('DOMContentLoaded', function() {
             var donnees = {
                 field: fieldName,
                 value: input.value,
-                email: userEmail
+                email: userEmail,
+                is_password: fieldName === 'password' 
             };
             
             // Envoyer la requête AJAX au serveur
@@ -127,8 +150,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Si la mise à jour a réussi :
                     // 1. Mettre à jour la valeur originale dans notre objet de suivi
                     originalValues[fieldName] = input.value;
-                    // 2. Informer l'utilisateur du succès
-                    alert("Modification enregistrée avec succès!");
+                    
+                    // Message spécial pour le mot de passe
+                    if (fieldName === 'password') {
+                        alert("Mot de passe modifié avec succès ! Vous devrez utiliser ce nouveau mot de passe lors de votre prochaine connexion.");
+                    } else {
+                        // 2. Informer l'utilisateur du succès
+                        alert("Modification enregistrée avec succès!");
+                    }
                 } else {
                     // Si la mise à jour a échoué :
                     // 1. Afficher le message d'erreur
@@ -205,7 +234,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // === MISE EN PLACE DES ÉCOUTEURS D'ÉVÉNEMENTS ===
+    // === ÉCOUTEURS D'ÉVÉNEMENTS ===
     
     // Ajouter des écouteurs d'événements sur tous les boutons d'édition
     // Quand on clique sur un bouton d'édition, on active l'édition du champ correspondant
@@ -243,8 +272,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Empêcher la soumission normale du formulaire qui rechargerait la page
     // Dans ce système, les modifications sont envoyées individuellement via AJAX
     form.addEventListener('submit', function(event) {
-        // Bloquer l'action par défaut (soumission du formulaire)
+        // Toujours empêcher la soumission du formulaire
         event.preventDefault();
+        
+        // Vérifier si des champs sont en cours d'édition
+        var champsNonReadOnly = document.querySelectorAll('input:not([readonly])');
+        if (champsNonReadOnly.length > 0) {
+            alert("Veuillez d'abord valider ou annuler vos modifications en cours.");
+            return;
+        }
+        
         // Informer l'utilisateur que les modifications sont déjà enregistrées
         alert("Toutes les modifications sont déjà enregistrées!");
     });
