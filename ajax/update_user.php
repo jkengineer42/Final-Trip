@@ -37,6 +37,16 @@ foreach ($utilisateurs as &$utilisateur) {
         if ($email_utilisateur !== $data['email'] && !$est_admin) {
             envoyerErreur("Droits insuffisants", 403);
         }
+
+    // Vérifier si c'est un mot de passe à modifier
+    if (isset($data['is_password']) && $data['is_password'] === true && $data['field'] === 'password') {
+        // Hasher le mot de passe
+        $data['value'] = password_hash($data['value'], PASSWORD_DEFAULT);
+    }
+
+// Appliquer la modification
+$utilisateur[$data['field']] = $data['value'];
+
         
         // Appliquer la modification
         $utilisateur[$data['field']] = $data['value'];
