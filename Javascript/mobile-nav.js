@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gestionnaire de redimensionnement de fenêtre (rotation écran, resize navigateur)
+    // Gestionnaire de redimensionnement de fenêtre 
     window.addEventListener('resize', () => {
         // Si on passe en mode desktop, fermer automatiquement le menu mobile
         if (window.innerWidth > 992) {
@@ -83,9 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// CSS complémentaire nécessaire à ajouter dans global.css
-/*
-body.no-scroll {
-    overflow: hidden; // Empêche le défilement de la page
-}
-*/
+
