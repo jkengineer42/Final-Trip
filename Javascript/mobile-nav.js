@@ -1,87 +1,91 @@
+// Gestion de la navigation mobile responsive et du positionnement du sélecteur de thème
 document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const body = document.body;
+    
+    // Sélection des éléments principaux pour le menu mobile
+    const hamburger = document.querySelector('.hamburger');     // Bouton hamburger (☰)
+    const mobileMenu = document.querySelector('.mobile-menu');  // Menu coulissant mobile
+    const body = document.body;                                 // Pour contrôler le scroll
 
+    // Conteneurs pour repositionner le sélecteur de thème selon le contexte
     const desktopNavContainer = document.querySelector('header .right.desktop-nav');
     const mobileThemePlaceholder = document.querySelector('.mobile-menu .mobile-theme-selector-placeholder');
 
-    // Function to move theme selector
+    // Fonction pour repositionner le sélecteur de thème selon la taille d'écran et l'état du menu
     function moveThemeSelector() {
-        const themeSelector = document.querySelector('.theme-selector'); // This is created by theme.js
+        const themeSelector = document.querySelector('.theme-selector'); // Créé dynamiquement par theme.js
         if (!themeSelector) {
             // console.warn('Theme selector not found. Ensure theme.js has run.');
-            return;
+            return; // Sortir si le sélecteur n'existe pas encore
         }
 
+        // Cas 1: Mobile avec menu ouvert - déplacer le sélecteur dans le menu mobile
         if (window.innerWidth <= 992 && mobileMenu.classList.contains('active')) {
-            // If on mobile and menu is open, move to mobile menu
             if (mobileThemePlaceholder && !mobileThemePlaceholder.contains(themeSelector)) {
                 mobileThemePlaceholder.appendChild(themeSelector);
             }
-        } else if (window.innerWidth <= 992 && !mobileMenu.classList.contains('active')) {
-            // If on mobile and menu is closed, move back to header (or hide)
-            // For simplicity, we can just ensure it's not in mobile. theme.js appends it to .right
-            // If it was in mobile placeholder, move it back to desktop container
+        } 
+        // Cas 2: Mobile avec menu fermé - remettre le sélecteur dans la navigation principale
+        else if (window.innerWidth <= 992 && !mobileMenu.classList.contains('active')) {
              if (desktopNavContainer && mobileThemePlaceholder.contains(themeSelector)) {
-                 desktopNavContainer.appendChild(themeSelector); // Or a specific hidden place if needed
+                 desktopNavContainer.appendChild(themeSelector); // Garder l'accès même menu fermé
              }
         }
+        // Cas 3: Desktop - s'assurer que le sélecteur est dans la navigation desktop
         else {
-            // On desktop, ensure it's in the desktop nav
             if (desktopNavContainer && !desktopNavContainer.contains(themeSelector)) {
                 desktopNavContainer.appendChild(themeSelector);
             }
         }
     }
 
-
+    // Gestionnaire de clic sur le bouton hamburger
     if (hamburger && mobileMenu) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            body.classList.toggle('no-scroll'); // Optional: prevent body scroll when menu is open
+            hamburger.classList.toggle('active');   // Animation du bouton (☰ ↔ ×)
+            mobileMenu.classList.toggle('active');  // Ouverture/fermeture du menu coulissant
+            body.classList.toggle('no-scroll');     // Empêcher le scroll de la page quand menu ouvert
 
-            // Move theme selector after menu state changes
+            // Repositionner le sélecteur de thème après le changement d'état du menu
             moveThemeSelector();
         });
     }
 
-    // Handle window resize
+    // Gestionnaire de redimensionnement de fenêtre (rotation écran, resize navigateur)
     window.addEventListener('resize', () => {
+        // Si on passe en mode desktop, fermer automatiquement le menu mobile
         if (window.innerWidth > 992) {
-            // If resized to desktop, close mobile menu if it's open
             if (mobileMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                body.classList.remove('no-scroll');
+                hamburger.classList.remove('active');  // Remettre hamburger normal
+                mobileMenu.classList.remove('active'); // Fermer le menu
+                body.classList.remove('no-scroll');    // Réactiver le scroll
             }
         }
-        // Always try to reposition theme selector on resize
+        // Toujours repositionner le sélecteur selon la nouvelle taille d'écran
         moveThemeSelector();
     });
 
-    // Initial check in case the page loads on mobile
+    // Positionnement initial du sélecteur au chargement de la page
     moveThemeSelector();
 
-    // Close mobile menu if a link inside it is clicked
+    // Fermeture automatique du menu mobile lors du clic sur un lien de navigation
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
+            // Si le menu est ouvert, le fermer après clic sur lien
             if (mobileMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-                body.classList.remove('no-scroll');
-                moveThemeSelector(); // Move theme selector back
+                hamburger.classList.remove('active');  // Hamburger redevient normal
+                mobileMenu.classList.remove('active'); // Menu se ferme
+                body.classList.remove('no-scroll');    // Page redevient scrollable
+                moveThemeSelector();                    // Repositionner le sélecteur
             }
+            // Le navigateur suivra ensuite automatiquement le lien
         });
     });
 });
 
-// CSS for no-scroll
-// Add this to your global.css if you use body.classList.toggle('no-scroll');
+// CSS complémentaire nécessaire à ajouter dans global.css
 /*
 body.no-scroll {
-    overflow: hidden;
+    overflow: hidden; // Empêche le défilement de la page
 }
 */
