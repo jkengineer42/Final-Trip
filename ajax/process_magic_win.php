@@ -20,7 +20,7 @@ if (!file_exists($voyagesJsonPath)) {
 }
 $voyagesData = json_decode(file_get_contents($voyagesJsonPath), true);
 if ($voyagesData === null || !isset($voyagesData['voyages'])) {
-    echo json_encode(['success' => false, 'message' 'Erreur critique: Données des voyages invalides.']);
+    echo json_encode(['success' => false, 'message' => 'Erreur critique: Données des voyages invalides.']); // CORRECTION ICI
     exit;
 }
 
