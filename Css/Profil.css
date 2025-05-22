@@ -337,3 +337,92 @@ main {
     cursor: pointer;
     padding: 2px; /* Léger padding pour faciliter le clic */
 }
+
+/* Styles pour l'historique des achats */
+.purchased-trips-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: var(--darker-grey); 
+    border-radius: 8px;
+    border: 1px solid var(--grey);
+    color: var(--white); /* Couleur de texte par défaut pour cette section */
+}
+.purchased-trips-section h2 {
+    color: var(--yellow);
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--yellow);
+    padding-bottom: 10px;
+    font-size: 1.6em; /* Taille cohérente avec d'autres H2 */
+}
+.purchase-item {
+    background-color: var(--grey);
+    border: 1px solid var(--light-grey);
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    /* color: var(--white); // Hérité de .purchased-trips-section */
+}
+.purchase-item h3 {
+    color: var(--yellow);
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.3em; /* Taille de titre pour chaque item */
+}
+.purchase-item p {
+    margin: 5px 0;
+    font-size: 1em; /* Taille de texte standard */
+    line-height: 1.5;
+}
+.purchase-item strong {
+    color: var(--white2); /* Pour un meilleur contraste des labels */
+}
+.no-purchases {
+    /* color: var(--white); // Hérité */
+    text-align: center;
+    padding: 20px;
+    font-style: italic;
+    font-size: 1.1em;
+}
+
+.purchase-details-toggle {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: none;
+    padding: 8px 12px; /* Ajustement padding */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em; /* Ajustement taille police */
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+.purchase-details-toggle:hover {
+    background-color: var(--yellow2); /* Ou une version plus foncée de yellow */
+}
+
+.purchase-options-details {
+    margin-top: 15px; /* Espace au-dessus des détails */
+    padding: 10px 0 10px 20px; /* Padding ajusté */
+    font-size: 0.9em;
+    border-left: 3px solid var(--yellow); /* Bordure plus visible */
+    background-color: var(--darker-grey); /* Léger fond pour distinguer */
+    border-radius: 0 4px 4px 0;
+    display: none; /* Caché par défaut */
+}
+.purchase-options-details ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+.purchase-options-details li {
+    margin-bottom: 5px; /* Espace entre les items de liste */
+}
+.purchase-options-details li ul {
+    padding-left: 15px; /* Indentation pour les options de chaque étape */
+    margin-top: 3px;
+}
+.purchase-options-details li ul li {
+    font-size: 0.95em; /* Légère réduction pour les sous-détails */
+    color: var(--light-grey);
+}
+.purchase-options-details li ul li strong { /* Pour les labels comme "Hébergement:" */
+    color: var(--white);
+}

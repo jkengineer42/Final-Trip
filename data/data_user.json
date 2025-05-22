@@ -71,12 +71,13 @@
     },
     {
         "nom": "Dubois",
-        "prenom": "François",
+        "prenom": "Fran\u00e7ois",
         "email": "francois.dubois@gmail.com",
         "birthdate": "1954-05-31",
         "password": "$2y$10$dkYClGUjb9CQ3hTR7Rh8GebAqygoXWHYQ\/rCzx3oHjS.fqMRi\/90W",
         "is_admin": false,
         "reset_token": "0fe7bdf04e5128b1c3726f3fc4d239a1b3173d41fa37c4862f8e280b2018ff0b",
-        "reset_token_expiry": 1747576340
+        "reset_token_expiry": 1747576340,
+        "is_blocked": false
     }
 ]

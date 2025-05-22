@@ -80,42 +80,60 @@ $optionsPrice = $totalPriceForDisplay - $originalPriceNumeric;
                         <!-- Hebergement -->
                         <div class="summary-option">
                             <span class="option-label">Hébergement:</span>
-                            <span class="option-value"><?php echo htmlspecialchars($stage['options']['hebergement']['nom']); ?></span>
-                            <?php if (isset($stage['options']['hebergement']['prix']) && $stage['options']['hebergement']['prix'] !== "inclus"): ?>
-                                <span class="option-price">(<?php echo htmlspecialchars($stage['options']['hebergement']['prix']); ?>)</span>
+                            <?php if (isset($stage['options']['hebergement']) && isset($stage['options']['hebergement']['nom'])): ?>
+                                <span class="option-value"><?php echo htmlspecialchars($stage['options']['hebergement']['nom']); ?></span>
+                                <?php if (isset($stage['options']['hebergement']['prix']) && $stage['options']['hebergement']['prix'] !== "inclus"): ?>
+                                    <span class="option-price">(<?php echo htmlspecialchars($stage['options']['hebergement']['prix']); ?>)</span>
+                                <?php endif; ?>
+                            <?php else: ?>
+                                <span class="option-value"><em>Non spécifié ou inclus par défaut</em></span>
                             <?php endif; ?>
                         </div>
 
                         <!-- Restauration -->
                          <div class="summary-option">
                             <span class="option-label">Restauration:</span>
-                            <span class="option-value"><?php echo htmlspecialchars($stage['options']['restauration']['nom']); ?></span>
-                             <?php if (isset($stage['options']['restauration']['prix']) && $stage['options']['restauration']['prix'] !== "inclus"): ?>
-                                <span class="option-price">(<?php echo htmlspecialchars($stage['options']['restauration']['prix']); ?>)</span>
-                             <?php endif; ?>
+                             <?php if (isset($stage['options']['restauration']) && isset($stage['options']['restauration']['nom'])): ?>
+                                <span class="option-value"><?php echo htmlspecialchars($stage['options']['restauration']['nom']); ?></span>
+                                 <?php if (isset($stage['options']['restauration']['prix']) && $stage['options']['restauration']['prix'] !== "inclus"): ?>
+                                    <span class="option-price">(<?php echo htmlspecialchars($stage['options']['restauration']['prix']); ?>)</span>
+                                 <?php endif; ?>
+                            <?php else: ?>
+                                <span class="option-value"><em>Non spécifié ou inclus par défaut</em></span>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Activites -->
                         <div class="summary-option">
                             <span class="option-label">Activité:</span>
-                            <span class="option-value">
-                                <?php echo htmlspecialchars($stage['options']['activites']['nom']); ?>
-                                <span class="participant-info">
-                                    (<?php echo htmlspecialchars($stage['options']['activites']['participants']); ?> participant<?php echo $stage['options']['activites']['participants'] > 1 ? 's' : ''; ?>)
+                            <?php if (isset($stage['options']['activites']) && isset($stage['options']['activites']['nom'])): ?>
+                                <span class="option-value">
+                                    <?php echo htmlspecialchars($stage['options']['activites']['nom']); ?>
+                                    <?php if (isset($stage['options']['activites']['participants'])): ?>
+                                        <span class="participant-info">
+                                            (<?php echo htmlspecialchars($stage['options']['activites']['participants']); ?> participant<?php echo intval($stage['options']['activites']['participants']) > 1 ? 's' : ''; ?>)
+                                        </span>
+                                    <?php endif; ?>
                                 </span>
-                            </span>
-                             <?php if (isset($stage['options']['activites']['prix']) && $stage['options']['activites']['prix'] !== "inclus"): ?>
-                                <span class="option-price">(<?php echo htmlspecialchars($stage['options']['activites']['prix']); ?>)</span>
-                             <?php endif; ?>
+                                 <?php if (isset($stage['options']['activites']['prix']) && $stage['options']['activites']['prix'] !== "inclus"): ?>
+                                    <span class="option-price">(<?php echo htmlspecialchars($stage['options']['activites']['prix']); ?>)</span>
+                                 <?php endif; ?>
+                            <?php else: ?>
+                                <span class="option-value"><em>Non spécifié ou inclus par défaut</em></span>
+                            <?php endif; ?>
                         </div>
 
                         <!-- Transport -->
                          <div class="summary-option">
                             <span class="option-label">Transport:</span>
-                            <span class="option-value"><?php echo htmlspecialchars($stage['options']['transport']['nom']); ?></span>
-                             <?php if (isset($stage['options']['transport']['prix']) && $stage['options']['transport']['prix'] !== "inclus"): ?>
-                                <span class="option-price">(<?php echo htmlspecialchars($stage['options']['transport']['prix']); ?>)</span>
-                             <?php endif; ?>
+                             <?php if (isset($stage['options']['transport']) && isset($stage['options']['transport']['nom'])): ?>
+                                <span class="option-value"><?php echo htmlspecialchars($stage['options']['transport']['nom']); ?></span>
+                                 <?php if (isset($stage['options']['transport']['prix']) && $stage['options']['transport']['prix'] !== "inclus"): ?>
+                                    <span class="option-price">(<?php echo htmlspecialchars($stage['options']['transport']['prix']); ?>)</span>
+                                 <?php endif; ?>
+                            <?php else: ?>
+                                <span class="option-value"><em>Non spécifié ou inclus par défaut</em></span>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -149,7 +167,7 @@ $optionsPrice = $totalPriceForDisplay - $originalPriceNumeric;
                 Modifier les options
             </a>
 
-          <!-- NOUVEAU BOUTON/LIEN POUR IMPRIMER -->
+          <!-- BOUTON/LIEN POUR IMPRIMER -->
             <a href="voyage_print_recap.php" target="_blank" class="secondary-button" style="background-color: var(--light-grey); color: var(--black_f);">
                 Imprimer le récapitulatif
             </a>

@@ -1,0 +1,129 @@
+/* Css/jeu-nombre-magique.css */
+
+/* Ensure main on game page can center content if needed */
+.game-page-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top, or center if preferred */
+    padding: 40px 20px;
+    min-height: calc(100vh - 200px); /* Adjust based on header/footer height */
+}
+
+.game-container {
+    background-color: var(--darker-grey); /* Use theme variable */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    color: var(--white); /* Default text color */
+    border: 1px solid var(--yellow2);
+}
+
+.game-container h1 {
+    color: var(--yellow); /* Use theme variable */
+    margin-bottom: 20px;
+    font-family: 'Sansita One', cursive; /* Or your preferred title font */
+}
+
+.instructions {
+    color: var(--light-grey); /* Use theme variable */
+    margin-bottom: 25px;
+    font-size: 1em;
+}
+
+.game-container input[type="number"] {
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid var(--yellow); /* Use theme variable */
+    border-radius: 8px;
+    width: 100px;
+    text-align: center;
+    margin: 10px;
+    background-color: var(--input-bg); /* Use theme variable */
+    color: var(--black_f); /* Text color for input */
+}
+
+.game-container input[type="number"]::placeholder {
+    color: var(--grey);
+}
+
+.game-container button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background-color: var(--yellow); /* Use theme variable */
+    color: var(--black_f); /* Text color for button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.1s;
+    font-weight: bold;
+}
+
+.game-container button:hover {
+    background-color: var(--yellow2); /* Darker yellow on hover */
+    transform: translateY(-1px);
+}
+
+.game-container .reset-button {
+    background-color: var(--grey); /* A less prominent color */
+    color: var(--white);
+    border: 1px solid var(--yellow2);
+}
+
+.game-container .reset-button:hover {
+    background-color: var(--light-grey);
+    color: var(--black_f);
+}
+
+.message {
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.message.hint {
+    background-color: rgba(255, 207, 48, 0.15); /* Light yellow bg */
+    color: var(--yellow);
+    border: 1px solid var(--yellow2);
+}
+
+.message.success {
+    background-color: rgba(46, 204, 113, 0.15); /* Light green bg for success */
+    color: #2ecc71; /* Bright green text */
+    border: 1px solid #27ae60; /* Darker green border */
+}
+.message.special-win {
+    background-color: var(--yellow);
+    color: var(--black_f);
+    border: 1px solid var(--yellow2);
+    animation: pulse-win 1s infinite alternate;
+}
+
+@keyframes pulse-win {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+.stats {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: var(--white);
+}
+
+.attempts {
+    font-weight: bold;
+    color: var(--yellow); /* Use theme variable */
+}
+
+.reward-info {
+    font-size: 1em;
+    font-style: italic;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.1);
+}

@@ -22,6 +22,10 @@ require_once 'sessions.php';
             <h1>Contactez-nous</h1>
             <p class="intro-text">Une question, une suggestion, ou besoin d'aide pour planifier votre prochain voyage ? N'hésitez pas à nous contacter !</p>
 
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a href="jeu-nombre-magique.php" class="submit-button" style="background-color: var(--yellow2); text-decoration: none;">🤫 Envie d'un petit jeu, Caryl ? 🤫</a>
+            </div>
+
             <div class="contact-content">
                 <div class="contact-form-section">
                     <h2>Envoyez-nous un message</h2>

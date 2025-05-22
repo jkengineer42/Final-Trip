@@ -28,14 +28,12 @@ if (!$received_transaction || !$received_montant || !$received_vendeur || !$rece
 } elseif ($received_transaction !== $stored_transaction) {
     $error_message = "Erreur: Incohérence de l'identifiant de transaction.";
 } elseif ($received_montant !== $stored_montant) {
-    // Utiliser une tolérance pour la comparaison des flottants si nécessaire, mais une correspondance exacte est attendue ici
      $error_message = "Erreur: Incohérence du montant de la transaction.";
 } elseif ($received_vendeur !== $stored_vendeur) {
     $error_message = "Erreur: Incohérence du code vendeur.";
 } else {
-    // Toutes les vérifications préliminaires ont réussi, vérification du hash de contrôle maintenant
     $api_key = getAPIKey($received_vendeur);
-    if ($api_key === 'zzzz') { // Clé invalide retournée par getAPIKey
+    if ($api_key === 'zzzz') {
         $error_message = "Erreur: Code vendeur invalide lors de la vérification.";
     } else {
         $control_string_verify = $api_key . "#" . $received_transaction . "#" . $received_montant . "#" . $received_vendeur . "#" . $received_status . "#";
@@ -43,10 +41,8 @@ if (!$received_transaction || !$received_montant || !$received_vendeur || !$rece
 
         if ($received_control !== $calculated_control_verify) {
             $error_message = "Erreur: La signature de contrôle est invalide. La réponse a peut-être été altérée.";
-            // Journaliser les informations détaillées pour le débogage si nécessaire :
-             error_log("Incohérence du Hash de Contrôle. Attendu: $calculated_control_verify, Reçu: $received_control. Chaîne: $control_string_verify");
+            error_log("Incohérence du Hash de Contrôle. Attendu: $calculated_control_verify, Reçu: $received_control. Chaîne: $control_string_verify");
         } else {
-            // Vérification réussie !
             $is_valid = true;
         }
     }
@@ -56,95 +52,137 @@ if (!$received_transaction || !$received_montant || !$received_vendeur || !$rece
 $payment_successful = false;
 $confirmation_title = "Résultat du Paiement";
 $confirmation_message = "";
-$transaction_id_display = $received_transaction; // Utiliser celui reçu pour l'affichage
+$transaction_id_display = $received_transaction;
 
 if ($is_valid) {
     if ($received_status === 'accepted') {
-        $payment_successful = true;
+        $payment_successful = true; // Marquer comme succès pour le moment
         $confirmation_title = "Paiement Réussi !";
-        $confirmation_message = "Votre transaction a été acceptée et enregistrée avec succès.";
+        $confirmation_message = "Votre transaction a été acceptée."; // Message initial
 
-        // --- Enregistrement du Paiement (Logique de l'ancien fichier enregistrer_paiement.php) ---
+        // --- Enregistrement du Paiement ---
         if ($userEmail && $tripData && $totalPriceToSave !== null) {
             $newPayment = [
-                'transaction_id' => $received_transaction, // Utiliser l'ID vérifié
+                'transaction_id' => $received_transaction,
                 'timestamp' => date('Y-m-d H:i:s'),
                 'user_email' => $userEmail,
-                'total_paid' => $totalPriceToSave, // Enregistrer le total calculé en interne
-                'amount_processed' => $received_montant, // Montant traité par CYBank
+                'total_paid' => $totalPriceToSave,
+                'amount_processed' => $received_montant,
                 'status' => 'accepted',
                 'vendeur' => $received_vendeur,
                 'trip_configuration' => $tripData
             ];
 
-            $logFile = '../data/paiements.json';
+            // 1. Sauvegarde dans paiements.json
+            $logFilePayments = '../data/paiements.json';
             $payments = [];
-            if (file_exists($logFile) && is_readable($logFile)) {
-                $jsonContent = file_get_contents($logFile);
-                // Gérer le cas où le fichier est vide
+            if (file_exists($logFilePayments) && is_readable($logFilePayments)) {
+                $jsonContent = file_get_contents($logFilePayments);
                 if (!empty($jsonContent)) {
                     $payments = json_decode($jsonContent, true);
                     if (json_last_error() !== JSON_ERROR_NONE) {
-                         error_log("Erreur de décodage de payments.json dans retour_paiement: " . json_last_error_msg());
-                         $payments = []; // Réinitialiser en cas d'erreur de décodage
+                         error_log("Erreur de décodage de payments.json: " . json_last_error_msg());
+                         $payments = [];
                     }
                 }
-                // Assurer que $payments est toujours un tableau
-                if (!is_array($payments)) $payments = [];
-            } elseif (!file_exists($logFile)) {
-                 // Si le fichier n'existe pas, $payments est déjà []
-                 // On peut éventuellement le créer ici si nécessaire, mais file_put_contents le fera
+            }
+            if (!is_array($payments)) $payments = []; // S'assurer que c'est un tableau
+
+            $payments[] = $newPayment;
+            if (file_put_contents($logFilePayments, json_encode($payments, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) === false) {
+                error_log("Erreur: Échec de l'écriture dans payments.json.");
+                $confirmation_message .= " Une erreur est survenue lors de la sauvegarde des détails du paiement.";
+                $payment_successful = false; // Le paiement a échoué au niveau de notre système
             } else {
-                 // Le fichier existe mais n'est pas lisible
-                 error_log("Erreur: payments.json existe mais n'est pas lisible dans retour_paiement.");
-                 $confirmation_message .= " Erreur interne lors de la sauvegarde (lecture fichier)."; // Ajouter l'erreur
-                 $payment_successful = false; // Marquer comme échoué si erreur de sauvegarde
+                 $confirmation_message .= " Votre paiement a été enregistré avec succès."; // Confirmer la sauvegarde
             }
 
-            if ($payment_successful) { // Tenter la sauvegarde uniquement si aucune erreur de lecture ne s'est produite
-                $payments[] = $newPayment;
-                if (file_put_contents($logFile, json_encode($payments, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) === false) {
-                    error_log("Erreur: Échec de l'écriture dans payments.json dans retour_paiement.");
-                    $confirmation_message .= " Erreur interne lors de la sauvegarde (écriture fichier)."; // Ajouter l'erreur
-                     $payment_successful = false; // Marquer comme échoué si erreur de sauvegarde
+
+            // 2. Sauvegarde dans historique_achats.json (SEULEMENT SI la sauvegarde dans paiements.json a réussi)
+            if ($payment_successful) {
+                $historiqueFile = '../data/historique_achats.json';
+                $historiqueAchats = [];
+
+                if (file_exists($historiqueFile) && is_readable($historiqueFile)) {
+                    $jsonHistoriqueContent = file_get_contents($historiqueFile);
+                    if (!empty($jsonHistoriqueContent)) {
+                        $historiqueAchats = json_decode($jsonHistoriqueContent, true);
+                        if (json_last_error() !== JSON_ERROR_NONE) {
+                            error_log("Erreur de décodage de historique_achats.json: " . json_last_error_msg());
+                            $historiqueAchats = [];
+                        }
+                    }
+                }
+                if (!is_array($historiqueAchats)) $historiqueAchats = [];
+
+                $newPurchaseRecord = [
+                    'user_email' => $userEmail,
+                    'transaction_id' => $received_transaction,
+                    'purchase_timestamp' => date('Y-m-d H:i:s'),
+                    'trip_title' => $tripData['tripTitle'] ?? 'Titre du voyage non disponible',
+                    'trip_id_original' => $tripData['tripId'] ?? null,
+                    'total_paid' => $totalPriceToSave,
+                    'personalized_trip_details' => $tripData
+                ];
+
+                $historiqueAchats[] = $newPurchaseRecord;
+
+                if (file_put_contents($historiqueFile, json_encode($historiqueAchats, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE)) === false) {
+                    error_log("Erreur: Échec de l'écriture dans historique_achats.json.");
+                    $confirmation_message .= " Une erreur est survenue lors de la sauvegarde de l'historique de votre achat.";
+                    // Note: $payment_successful reste true car le paiement bancaire a réussi et le log principal est fait.
+                    // C'est un problème de log secondaire.
+                } else {
+                    // Optionnel : ajouter un message de succès pour la sauvegarde de l'historique si souhaité
+                    // $confirmation_message .= " L'historique de votre achat a aussi été sauvegardé.";
                 }
             }
+
         } else {
             $missing_data_error = "Erreur interne: Données utilisateur";
             if (!$tripData) $missing_data_error .= ", voyage";
             if ($totalPriceToSave === null) $missing_data_error .= ", prix total";
             $missing_data_error .= " manquantes pour la sauvegarde.";
             $confirmation_message .= " " . $missing_data_error;
-             error_log($missing_data_error . " Email: " . ($userEmail ? 'OK' : 'MANQUANT') . ", TripData: " . ($tripData ? 'OK' : 'MANQUANT') . ", TotalPrice: " . ($totalPriceToSave !== null ? 'OK' : 'MANQUANT'));
-             $payment_successful = false; // Marquer comme échoué si erreur de sauvegarde
+            error_log($missing_data_error . " Email: " . ($userEmail ? 'OK' : 'MANQUANT') . ", TripData: " . ($tripData ? 'OK' : 'MANQUANT') . ", TotalPrice: " . ($totalPriceToSave !== null ? 'OK' : 'MANQUANT'));
+            $payment_successful = false; // Le paiement a échoué au niveau de notre système
         }
-        // --- Fin de l'Enregistrement du Paiement ---
 
     } elseif ($received_status === 'declined') {
         $confirmation_title = "Paiement Refusé";
         $confirmation_message = "Votre transaction a été refusée par le système de paiement.";
+        $payment_successful = false; // Clairement pas un succès
     } else {
         $confirmation_title = "Statut Inconnu";
         $confirmation_message = "Le statut retourné par le système de paiement est inconnu ('" . htmlspecialchars($received_status) . "').";
+        $payment_successful = false; // Statut incertain, considérer comme échec
     }
 } else {
-    // Utiliser le message d'erreur généré lors de la vérification
+    // Erreur de vérification, $error_message est déjà défini
     $confirmation_title = "Erreur de Vérification";
-    $confirmation_message = $error_message; // $error_message contient déjà le message d'erreur spécifique
+    $confirmation_message = $error_message;
+    $payment_successful = false; // Échec de vérification
 }
 
-// --- Nettoyage de la Session (toujours nettoyer les infos de tentative de paiement) ---
+// --- Nettoyage de la Session ---
 unset($_SESSION['payment_transaction_id']);
 unset($_SESSION['payment_montant']);
 unset($_SESSION['payment_vendeur']);
-// Ne désactiver les données du voyage que si le paiement a RÉUSSI et a été SAUVEGARDÉ
+
+// Nettoyer les données du voyage et du panier seulement si le paiement a été enregistré avec succès dans notre système
 if ($payment_successful) {
+    $tripIdToClean = $tripData['tripId'] ?? null;
     unset($_SESSION['personalized_trip']);
+    if ($tripIdToClean && isset($_SESSION['panier'][$tripIdToClean])) {
+        unset($_SESSION['panier'][$tripIdToClean]);
+    }
+    if ($tripIdToClean && isset($_SESSION['panier_prices'][$tripIdToClean])) {
+        unset($_SESSION['panier_prices'][$tripIdToClean]);
+    }
     unset($_SESSION['payment_total_price']);
-    // Conserver user_email en session car il n'est pas spécifique au paiement
 }
 
-$profileLink = 'Profil.php'; 
+$profileLink = 'Profil.php'; // Est déjà défini par sessions.php, mais pour être sûr
 
 ?>
 <!DOCTYPE html>
@@ -195,29 +233,32 @@ $profileLink = 'Profil.php';
             gap: 20px; 
             flex-wrap: wrap; 
         }
-        .primary-button, .secondary-button {
+        .primary-button, .secondary-button { /* Styles repris de paiement.css pour cohérence */
             padding: 12px 25px;
-            border-radius: 8px;
-            text-decoration: none;
+            border-radius: 200px;
+            font-size: 1rem;
             font-weight: bold;
-            transition: background-color 0.3s ease;
             cursor: pointer;
-            border: none; 
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
             display: inline-block; 
         }
         .primary-button {
             background-color: var(--yellow);
-            color: var(--black);
+            color: var(--black_f);
         }
         .primary-button:hover {
-            background-color: #ffd966; /
+            background-color: var(--yellow2);
+            box-shadow: 0 4px 8px rgba(255, 207, 48, 0.4);
         }
-        .secondary-button {
-            background-color: var(--grey);
+        .secondary-button { /* Bouton secondaire pour le profil par exemple */
+            background-color: var(--grey); /* Ou var(--white) et var(--black_f) comme dans paiement.css */
             color: var(--white);
+            border: 1px solid var(--white); /* Optionnel: ajouter une bordure */
         }
         .secondary-button:hover {
-            background-color: var(--darker-grey);
+            background-color: var(--darker-grey); /* Ou var(--light-grey) etc. */
         }
     </style>
 </head>
@@ -230,30 +271,27 @@ $profileLink = 'Profil.php';
             <h1><?php echo htmlspecialchars($confirmation_title); ?></h1>
             <p><?php echo htmlspecialchars($confirmation_message); ?></p>
 
-            <?php if ($is_valid): // Afficher les détails uniquement si la vérification de base a réussi (même si refusé) ?>
+            <?php if ($is_valid || !empty($transaction_id_display)): // Afficher détails si au moins l'ID est là ?>
             <div class="transaction-details">
                 <p><strong>ID Transaction :</strong> <?php echo htmlspecialchars($transaction_id_display); ?></p>
                 <?php if ($received_montant !== null): ?>
                     <p><strong>Montant traité :</strong> <?php echo number_format(floatval($received_montant), 2, ',', ' '); ?> €</p>
                 <?php endif; ?>
-                <p><strong>Statut :</strong> <?php echo htmlspecialchars($received_status); ?></p>
-            </div>
-            <?php elseif (!empty($transaction_id_display)): // Afficher au moins l'ID de transaction si disponible, même en cas d'erreur de vérification ?>
-             <div class="transaction-details">
-                <p><strong>ID Transaction (Reçu) :</strong> <?php echo htmlspecialchars($transaction_id_display); ?></p>
+                <?php if ($received_status !== null): ?>
+                    <p><strong>Statut :</strong> <?php echo htmlspecialchars($received_status); ?></p>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
 
             <div class="action-buttons">
                 <a href="Accueil.php" class="primary-button">Retour à l'accueil</a>
-                <?php if (!$payment_successful && $is_valid && $received_status !== 'accepted'): // Proposer de réessayer uniquement si refusé/inconnu mais vérifié (et que le voyage est potentiellement encore en session) ?>
+                <?php if (!$payment_successful && $is_valid && $received_status !== 'accepted' && isset($_SESSION['personalized_trip']) /* Vérifier que le voyage est encore en session pour réessayer */): ?>
                     <a href="Paiement.php" class="secondary-button">Réessayer le paiement</a>
                 <?php elseif ($payment_successful): ?>
-                     <!-- Lien vers l'historique des commandes si implémenté -->
-                     <!-- <a href="Profil.php?section=commandes" class="secondary-button">Voir mes commandes</a> -->
+                     <a href="Profil.php" class="secondary-button">Voir mon profil et mes achats</a>
+                <?php else: // Cas d'erreur de vérification ou autre ?>
+                    <a href="Profil.php" class="secondary-button">Mon Profil</a>
                 <?php endif; ?>
-                <!-- Toujours proposer d'aller au profil -->
-                <a href="Profil.php" class="secondary-button">Mon Profil</a>
             </div>
         </div>
     </main>

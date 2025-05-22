@@ -1,0 +1,702 @@
+[
+    {
+        "transaction_id": "8572c0d8bdc904a6cf58de9",
+        "timestamp": "2025-05-22 09:22:25",
+        "user_email": "caryl.lebreton@gmail.com",
+        "total_paid": 4600,
+        "amount_processed": "4600",
+        "status": "accepted",
+        "vendeur": "MEF-1_H",
+        "trip_configuration": {
+            "tripId": 3,
+            "tripTitle": "Randonnée à vélo",
+            "originalPrice": "4600€",
+            "calculatedTotalPrice": 4600,
+            "duration": {
+                "debut": "2025-11-15",
+                "fin": "2025-11-30",
+                "jours": "3"
+            },
+            "stages": [
+                {
+                    "id": "1",
+                    "title": "Arrivée à San José et transfert à Arenal",
+                    "day": "1",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Auberge La Fortuna",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Demi-pension",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Briefing technique et ajustement des vélos",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transfert groupé depuis l'aéroport",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "2",
+                    "title": "Circuit du volcan Arenal",
+                    "day": "2",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Eco-lodge forestier",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Circuit VTT standard (35km)",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport des bagages",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "3",
+                    "title": "Descente vers les plages du Pacifique",
+                    "day": "3",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Auberge côtière",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "2",
+                            "nom": "Baignade et récupération",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport des bagages",
+                            "prix": "inclus"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "transaction_id": "6d3a96d86edb761d1a24f6e",
+        "timestamp": "2025-05-22 09:24:59",
+        "user_email": "caryl.lebreton@gmail.com",
+        "total_paid": 9070,
+        "amount_processed": "9070",
+        "status": "accepted",
+        "vendeur": "MEF-1_H",
+        "trip_configuration": {
+            "tripId": 12,
+            "tripTitle": "Traversée du Sahara en 4x4",
+            "originalPrice": "8990€",
+            "calculatedTotalPrice": 9070,
+            "duration": {
+                "debut": "2025-10-01",
+                "fin": "2025-10-15",
+                "jours": "15"
+            },
+            "stages": [
+                {
+                    "id": "1",
+                    "title": "Arrivée à Alger et préparatifs",
+                    "day": "1",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Hôtel 4 étoiles à Alger",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Dîner de bienvenue traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Briefing et présentation de l'équipe",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transfert aéroport-hôtel standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "2",
+                    "title": "Transfert vers le désert et première nuit saharienne",
+                    "day": "2",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas traditionnel bédouin",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Formation aux techniques de survie",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "3",
+                    "title": "Traversée des dunes de l'Erg Oriental",
+                    "day": "3",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas désertique traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Formation à la conduite sur dunes",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "4",
+                    "title": "Exploration de l'oasis de Timimoun",
+                    "day": "4",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Maison d'hôtes traditionnelle",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas chez l'habitant",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite guidée de l'oasis",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "5",
+                    "title": "Traversée du plateau du Tademaït",
+                    "day": "5",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas désertique traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Recherche de fossiles guidée",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "6",
+                    "title": "Les mystérieuses gravures rupestres de Tassili",
+                    "day": "6",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas désertique traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite guidée des sites rupestres",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "7",
+                    "title": "Les grands ergs du sud algérien",
+                    "day": "7",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas désertique traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Cours avancé de désensablage",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "8",
+                    "title": "Découverte de Djanet et de son marché",
+                    "day": "8",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Auberge traditionnelle à Djanet",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas au marché local",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite guidée du marché et de la ville",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "9",
+                    "title": "Traversée du Ténéré et ses paysages surréalistes",
+                    "day": "9",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas désertique traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Randonnée guidée dans les canyons",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "10",
+                    "title": "Exploration des ruines de l'ancienne forteresse",
+                    "day": "10",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente standard de bivouac",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas de campagne historique",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite historique guidée",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "11",
+                    "title": "Survie en conditions extrêmes",
+                    "day": "11",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente de survie basique",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Rations de survie standard",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Exercice de navigation autonome",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Dépose en 4x4 sur le site",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "12",
+                    "title": "Rencontre avec une tribu nomade",
+                    "day": "12",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Tente nomade traditionnelle",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Repas avec la tribu",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Initiation aux traditions nomades",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Déplacement à dos de dromadaire",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "13",
+                    "title": "Nuit sous les étoiles du Sahara",
+                    "day": "13",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Couchage sur matelas sous les étoiles",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Dîner léger sous les étoiles",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Session d'astronomie guidée",
+                            "prix": "inclus",
+                            "participants": 1
+                        }
+                    }
+                },
+                {
+                    "id": "14",
+                    "title": "Retour vers la civilisation",
+                    "day": "14",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Hôtel 4 étoiles à Alger",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Dîner d'adieu traditionnel",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Cérémonie de remise de diplôme",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transport en 4x4 standard",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "15",
+                    "title": "Départ d'Alger",
+                    "day": "15",
+                    "options": {
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Petit déjeuner d'adieu",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite express d'Alger",
+                            "prix": "+80€",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transfert aéroport standard",
+                            "prix": "inclus"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "transaction_id": "cc98f04e202b7aa960e7465",
+        "timestamp": "2025-05-22 10:14:25",
+        "user_email": "caryl.lebreton@gmail.com",
+        "total_paid": 12490,
+        "amount_processed": "12490",
+        "status": "accepted",
+        "vendeur": "MEF-1_H",
+        "trip_configuration": {
+            "tripId": 7,
+            "tripTitle": "Expédition en Antarctique",
+            "originalPrice": "12490€",
+            "calculatedTotalPrice": 12490,
+            "duration": {
+                "debut": "2025-12-01",
+                "fin": "2025-12-30",
+                "jours": "30"
+            },
+            "stages": [
+                {
+                    "id": "1",
+                    "title": "Départ pour Ushuaia",
+                    "day": "1",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Hôtel Albatros",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Demi-pension",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Briefing expédition",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Transfert collectif aéroport-hôtel",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "2",
+                    "title": "Traversée du passage de Drake",
+                    "day": "5",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Cabine standard",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Conférences sur l'Antarctique",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Navire d'expédition",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "3",
+                    "title": "Exploration de la péninsule Antarctique",
+                    "day": "10",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Cabine standard",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Excursion en zodiac",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Zodiac",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "4",
+                    "title": "Station scientifique et mer de Weddell",
+                    "day": "18",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Cabine standard",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Visite station scientifique",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Zodiac et navire",
+                            "prix": "inclus"
+                        }
+                    }
+                },
+                {
+                    "id": "5",
+                    "title": "Retour vers Ushuaia",
+                    "day": "28",
+                    "options": {
+                        "hebergement": {
+                            "id": "1",
+                            "nom": "Cabine standard",
+                            "prix": "inclus"
+                        },
+                        "restauration": {
+                            "id": "1",
+                            "nom": "Pension complète",
+                            "prix": "inclus"
+                        },
+                        "activites": {
+                            "id": "1",
+                            "nom": "Bilan de l'expédition",
+                            "prix": "inclus",
+                            "participants": 1
+                        },
+                        "transport": {
+                            "id": "1",
+                            "nom": "Navire d'expédition",
+                            "prix": "inclus"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]
