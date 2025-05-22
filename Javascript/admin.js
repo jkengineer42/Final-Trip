@@ -1,22 +1,29 @@
+/*
+1. PROMOTION D'UTILISATEURS :
+2. BLOCAGE D'UTILISATEURS
+3. DÉBLOCAGE D'UTILISATEURS :
+*/
+
+
 // Attendre que la page soit complètement chargée avant d'exécuter le code
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Sélectionner tous les boutons d'action de la page
-    var promoteButtons = document.querySelectorAll('button[name="promote"]'); // Boutons pour promouvoir un utilisateur
+    // Sélectionner tous les boutons d'action de la page admin
+    var promoteButtons = document.querySelectorAll('button[name="promote"]'); // Boutons pour promouvoir un utilisateur en admin
     var deleteButtons = document.querySelectorAll('button[name="delete"]');   // Boutons pour bloquer un utilisateur
     var unblockButtons = document.querySelectorAll('button[name="unblock"]'); // Boutons pour débloquer un utilisateur
     
     // Fonction qui gère la promotion d'un utilisateur au statut d'administrateur
     function promouvoirUtilisateur(button) {
-        // Trouver le formulaire qui contient le bouton cliqué
+        // Trouver le formulaire HTML qui contient le bouton cliqué
         var form = button.closest('form');
         if (!form) {
-            // Si aucun formulaire n'est trouvé, afficher une erreur et arrêter
+            // Si aucun formulaire n'est trouvé, afficher une erreur et arrêter l'exécution
             alert("Erreur: formulaire non trouvé");
-            return;
+            return; // Sortir de la fonction immédiatement
         }
         
-        // Chercher le champ caché qui contient l'email de l'utilisateur
+        // Chercher le champ caché qui contient l'email de l'utilisateur à promouvoirv(trouve le premier élément correspondant au sélecteur CSS)
         var emailInput = form.querySelector('input[name="email"]');
         if (!emailInput) {
             // Si le champ d'email n'est pas trouvé, afficher une erreur et arrêter
@@ -24,41 +31,41 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
-        // Récupérer la valeur de l'email
+        // Récupérer la valeur de l'email depuis le champ caché
         var email = emailInput.value;
         
-        // Désactiver le bouton pour éviter les clics multiples
+        // Désactiver le bouton pour éviter que l'utilisateur clique plusieurs fois
         button.disabled = true;
         // Ajouter une classe CSS pour indiquer visuellement que le traitement est en cours
         button.classList.add('processing');
         
-        // Créer un élément texte pour montrer que l'action est en cours
+        // Créer un élément HTML <span> pour afficher un message de chargement
         var loadingText = document.createElement('span');
-        loadingText.textContent = " Promotion en cours...";
-        loadingText.style.color = "#FFFFFF"; // Texte en blanc
-        // Ajouter ce texte au bouton
+        loadingText.textContent = " Promotion en cours..."; 
+        loadingText.style.color = "#FFFFFF"; 
+        // Ajouter ce texte au bouton (devient enfant du bouton)
         button.appendChild(loadingText);
         
-        // IMPORTANT: Désactiver la soumission du formulaire pour empêcher le rechargement de la page
+        //Empêcher la soumission normale du formulaire qui rechargerait la page
         form.onsubmit = function(e) {
-            e.preventDefault();
-            return false;
+            e.preventDefault(); // Annule l'événement de soumission
+            return false; // Double sécurité pour empêcher la soumission
         };
         
-        // Envoyer une requête AJAX asynchrone au serveur pour promouvoir l'utilisateur
+        // Envoyer une requête asynchrone au serveur pour promouvoir l'utilisateur
         fetch('../ajax/admin_action.php', {
-            method: 'POST', // Méthode HTTP POST
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Format des données envoyées: JSON
+                'Content-Type': 'application/json' 
             },
             body: JSON.stringify({ // Convertir l'objet JavaScript en chaîne JSON
-                action: 'promote', // Action à effectuer
-                email: email       // Email de l'utilisateur à promouvoir
+                action: 'promote', 
+                email: email       
             })
         })
         // Analyser la réponse JSON du serveur
         .then(function(response) {
-            return response.json();
+            return response.json(); // Convertir la réponse en objet JavaScript
         })
         // Traiter les données de la réponse
         .then(function(data) {
@@ -69,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Vérifier si l'opération a réussi
             if (data.success) {
-                // Afficher un message de succès
+                // Afficher un message de succès à l'utilisateur
                 alert("L'utilisateur a été promu administrateur!");
                 
-                // Mettre à jour l'interface sans recharger la page (conforme Phase 4)
-                var row = button.closest('tr'); // Trouver la ligne du tableau
+                // Mettre à jour l'interface utilisateur sans recharger la page
+                var row = button.closest('tr'); // Trouver la ligne du tableau contenant ce bouton
                 if (row) {
-                    // Chercher la cellule qui affiche le rôle (5e colonne)
+                    // Chercher la cellule qui affiche le rôle (5e colonne du tableau)
                     var roleCell = row.querySelector('td:nth-child(5)');
                     if (roleCell) {
-                        // Mettre à jour le texte du rôle
+                        // Mettre à jour le texte pour indiquer que l'utilisateur est maintenant admin
                         roleCell.textContent = 'Oui';
                     }
                 }
@@ -86,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Cacher le bouton de promotion car l'utilisateur est maintenant admin
                 button.closest('form').style.display = 'none';
             } else {
-                // Si l'opération a échoué, afficher un message d'erreur
+                // Si l'opération a échoué, afficher le message d'erreur du serveur
                 alert("Erreur: " + (data.message || "La promotion a échoué"));
                 
                 // Réactiver le bouton pour permettre une nouvelle tentative
@@ -94,11 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.remove('processing');
             }
         })
-        // Capturer et gérer les erreurs de réseau ou autres
+        // Capturer et gérer les erreurs de réseau ou autres erreurs techniques
         .catch(function(error) {
-            // Afficher l'erreur dans la console 
+            // Afficher l'erreur dans la console du navigateur pour le débogage
             console.error("Erreur: ", error);
-            // Afficher un message pour l'utilisateur
+            // Afficher un message d'erreur générique pour l'utilisateur
             alert("Erreur de communication avec le serveur");
             
             // Supprimer le texte de chargement
@@ -114,19 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fonction qui gère le blocage d'un utilisateur
     function bloquerUtilisateur(button) {
-        // Demander confirmation avant de procéder
+        // Demander confirmation avant de procéder au blocage
         if (!confirm("Êtes-vous sûr de vouloir bloquer cet utilisateur?")) {
-            return; // Si l'utilisateur annule, arrêter la fonction
+            return; // Si l'utilisateur clique sur "Annuler", arrêter la fonction
         }
         
-        // Trouver le formulaire parent du bouton
+        // Trouver le formulaire parent du bouton cliqué
         var form = button.closest('form');
         if (!form) {
             alert("Erreur: formulaire non trouvé");
             return;
         }
         
-        // Récupérer l'email de l'utilisateur à bloquer
+        // Récupérer l'email de l'utilisateur à bloquer depuis le champ caché
         var emailInput = form.querySelector('input[name="email"]');
         if (!emailInput) {
             alert("Erreur: email non trouvé");
@@ -135,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         var email = emailInput.value;
         
-        // Désactiver le bouton et ajouter une indication visuelle
+        // Désactiver le bouton et ajouter une indication visuelle de traitement
         button.disabled = true;
         button.classList.add('processing');
         
@@ -145,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadingText.style.color = "#FFFFFF";
         button.appendChild(loadingText);
         
-        // IMPORTANT: Désactiver la soumission du formulaire pour empêcher le rechargement de la page
+        // Empêcher la soumission normale du formulaire
         form.onsubmit = function(e) {
             e.preventDefault();
             return false;
@@ -158,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                action: 'block',
+                action: 'block', // Action de blocage
                 email: email
             })
         })
@@ -182,24 +189,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Mettre à jour la cellule de statut (6e colonne)
                     var statusCell = row.querySelector('td:nth-child(6)');
                     if (statusCell) {
-                        // Afficher "Bloqué" en rouge
+                        // Afficher "Bloqué" en rouge pour indiquer le nouveau statut
                         statusCell.innerHTML = '<span style="color:red;">Bloqué</span>';
                     }
                 }
                 
-                // Cacher le formulaire avec le bouton de blocage
+                // Cacher le formulaire contenant le bouton de blocage
                 var blockForm = button.closest('form');
                 if (blockForm) {
                     blockForm.style.display = 'none';
                 }
                 
-                // Chercher la cellule qui contient les actions
+                // Chercher la cellule qui contient tous les boutons d'actions
                 var actionsCell = row.querySelector('td.icons');
                 if (actionsCell) {
-                    // Chercher si un formulaire de déblocage existe déjà
-                    // Trouver tous les formulaires et rechercher celui qui contient le bouton approprié
+                    // Chercher si un formulaire de déblocage existe déjà dans cette cellule
                     var forms = actionsCell.querySelectorAll('form');
                     var unblockForm = null;
+                    // Parcourir tous les formulaires pour trouver celui qui contient un bouton de déblocage
                     forms.forEach(function(form) {
                         if (form.querySelector('button[name="unblock"]')) {
                             unblockForm = form;
@@ -207,46 +214,52 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                     
                     if (unblockForm) {
-                        // Si le formulaire existe, l'afficher
+                        // Si le formulaire de déblocage existe déjà, l'afficher
                         unblockForm.style.display = 'inline';
+                        
+                        // Réactiver le bouton de déblocage (mon bug)
+                        var unblockButton = unblockForm.querySelector('button[name="unblock"]');
+                        if (unblockButton) {
+                            unblockButton.disabled = false; // Réactiver le bouton
+                            unblockButton.classList.remove('processing'); // Retirer la classe de traitement
+                        }
                     } else {
                         // Si le formulaire n'existe pas, le créer dynamiquement
                         var newForm = document.createElement('form');
-                        newForm.style.display = 'inline';
+                        newForm.style.display = 'inline'; // Affichage en ligne pour rester sur la même ligne
                         
-                        // Créer un champ caché pour l'email
+                        // Créer un champ caché pour stocker l'email
                         var emailInput = document.createElement('input');
-                        emailInput.type = 'hidden';
+                        emailInput.type = 'hidden'; // Champ invisible
                         emailInput.name = 'email';
                         emailInput.value = email;
-                        newForm.appendChild(emailInput);
+                        newForm.appendChild(emailInput); // Ajouter le champ au formulaire
                         
                         // Créer le bouton de déblocage
                         var unblockButton = document.createElement('button');
-                        unblockButton.name = 'unblock';
+                        unblockButton.name = 'unblock'; 
                         unblockButton.type = 'submit';
-                        unblockButton.className = 'unblock-button';
-                        unblockButton.title = "Débloquer l'utilisateur";
-                        // IMPORTANT: S'assurer que le nouveau bouton n'est pas désactivé
-                        unblockButton.disabled = false;
+                        unblockButton.className = 'unblock-button'; 
+                        unblockButton.title = "Débloquer l'utilisateur"; 
+                        unblockButton.disabled = false; // S'assurer que le bouton est activé
                         
-                        // Créer l'image pour le bouton
+                        // Créer l'image (icône) pour le bouton
                         var img = document.createElement('img');
-                        img.src = '../assets/icon/unlock.png';
+                        img.src = '../assets/icon/unlock.png'; 
                         img.alt = 'Débloquer';
-                        img.className = 'icon unblock-icon';
-                        unblockButton.appendChild(img);
+                        img.className = 'icon unblock-icon'; 
+                        unblockButton.appendChild(img); // Ajouter l'image au bouton
                         
-                        // Ajouter un événement de clic au bouton
+                        // Ajouter un événement de clic au nouveau bouton
                         unblockButton.addEventListener('click', function(event) {
-                            event.preventDefault();
-                            debloquerUtilisateur(this);
+                            event.preventDefault(); // Empêcher la soumission normale du formulaire
+                            debloquerUtilisateur(this); // Appeler la fonction de déblocage
                         });
                         
                         // Ajouter le bouton au formulaire
                         newForm.appendChild(unblockButton);
                         
-                        // Ajouter le formulaire à la cellule d'actions
+                        // Ajouter le nouveau formulaire à la cellule d'actions
                         actionsCell.appendChild(newForm);
                     }
                 }
@@ -254,13 +267,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Si l'opération a échoué, afficher l'erreur
                 alert("Erreur: " + (data.message || "Le blocage a échoué"));
                 
-                // Réactiver le bouton
+                // Réactiver le bouton pour permettre une nouvelle tentative
                 button.disabled = false;
                 button.classList.remove('processing');
             }
         })
         .catch(function(error) {
-            // Gérer les erreurs de communication
+            // Gérer les erreurs de communication avec le serveur
             console.error("Erreur: ", error);
             alert("Erreur de communication avec le serveur");
             
@@ -277,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Fonction qui gère le déblocage d'un utilisateur
     function debloquerUtilisateur(button) {
-        // Demander confirmation avant de procéder
+        // Demander confirmation avant de procéder au déblocage
         if (!confirm("Êtes-vous sûr de vouloir débloquer cet utilisateur?")) {
             return; // Si l'utilisateur annule, arrêter la fonction
         }
@@ -308,20 +321,20 @@ document.addEventListener('DOMContentLoaded', function() {
         loadingText.style.color = "#FFFFFF";
         button.appendChild(loadingText);
         
-        // IMPORTANT: Désactiver la soumission du formulaire pour empêcher le rechargement de la page
+        // Empêcher la soumission normale du formulaire
         form.onsubmit = function(e) {
             e.preventDefault();
             return false;
         };
         
-        // Envoyer la requête au serveur pour débloquer l'utilisateur
+        // Envoyer la requête AJAX au serveur pour débloquer l'utilisateur
         fetch('../ajax/admin_action.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                action: 'unblock',
+                action: 'unblock', // Action de déblocage
                 email: email
             })
         })
@@ -345,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Mettre à jour la cellule de statut (6e colonne)
                     var statusCell = row.querySelector('td:nth-child(6)');
                     if (statusCell) {
-                        // Remettre le statut à "Actif"
+                        // Remettre le statut à "Actif" (statut normal)
                         statusCell.textContent = 'Actif';
                     }
                 }
@@ -363,20 +376,21 @@ document.addEventListener('DOMContentLoaded', function() {
                     var forms = actionsCell.querySelectorAll('form');
                     var blockForm = null;
                     forms.forEach(function(form) {
+                        // Chercher le formulaire qui contient un bouton de blocage
                         if (form.querySelector('button[name="delete"]')) {
                             blockForm = form;
                         }
                     });
                     
                     if (blockForm) {
-                        // Si le formulaire existe, l'afficher
+                        // Si le formulaire de blocage existe, l'afficher
                         blockForm.style.display = 'inline';
                         
-                        // IMPORTANT: S'assurer que le bouton de blocage est activé
+                        // S'assurer que le bouton de blocage est activé
                         var blockButton = blockForm.querySelector('button[name="delete"]');
                         if (blockButton) {
-                            blockButton.disabled = false;
-                            blockButton.classList.remove('processing');
+                            blockButton.disabled = false; // Réactiver le bouton
+                            blockButton.classList.remove('processing'); // Retirer les classes de traitement
                         }
                     } else {
                         // Si le formulaire n'existe pas, le créer dynamiquement
@@ -392,18 +406,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         // Créer le bouton de blocage
                         var blockButton = document.createElement('button');
-                        blockButton.name = 'delete';
+                        blockButton.name = 'delete'; // Nom historique conservé pour compatibilité
                         blockButton.type = 'submit';
                         blockButton.className = 'delete-button';
                         blockButton.title = "Bloquer l'utilisateur";
-                        // IMPORTANT: S'assurer que le nouveau bouton n'est pas désactivé
-                        blockButton.disabled = false;
-                        // IMPORTANT: S'assurer qu'aucune classe CSS de désactivation n'est présente
-                        blockButton.classList.remove('processing');
+                        blockButton.disabled = false; // S'assurer que le bouton est activé
+                        blockButton.classList.remove('processing'); // S'assurer qu'aucune classe de désactivation n'est présente
                         
                         // Créer l'image pour le bouton
                         var img = document.createElement('img');
-                        img.src = '../assets/icon/delete.png';
+                        img.src = '../assets/icon/delete.png'; // Icône de blocage
                         img.alt = 'Bloquer';
                         img.className = 'icon delete-icon';
                         blockButton.appendChild(img);
@@ -411,7 +423,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Ajouter un événement de clic au bouton
                         blockButton.addEventListener('click', function(event) {
                             event.preventDefault();
-                            bloquerUtilisateur(this);
+                            bloquerUtilisateur(this); // Appeler la fonction de blocage
                         });
                         
                         // Ajouter le bouton au formulaire
@@ -446,17 +458,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Ajouter des écouteurs d'événements à tous les boutons "Promouvoir"
+    //  ÉCOUTEURS D'ÉVÉNEMENTS
+    
+    // Ajouter des écouteurs d'événements à tous les boutons "Promouvoir" présents sur la page
     promoteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
-            // Empêcher le comportement par défaut du formulaire (rechargement de page)
+            // Empêcher le rechargement de page par défaut du formulaire 
             event.preventDefault();
-            // Appeler la fonction pour promouvoir l'utilisateur
+            // Appeler la fonction pour promouvoir l'utilisateur, en passant le bouton cliqué
             promouvoirUtilisateur(this);
         });
     });
     
-    // Ajouter des écouteurs d'événements à tous les boutons "Bloquer"
+    // Ajouter des écouteurs d'événements à tous les boutons "Bloquer" présents sur la page
     deleteButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             // Empêcher le comportement par défaut du bouton/formulaire
@@ -466,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Ajouter des écouteurs d'événements à tous les boutons "Débloquer"
+    // Ajouter des écouteurs d'événements à tous les boutons "Débloquer" présents sur la page
     unblockButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
             // Empêcher le comportement par défaut du bouton/formulaire
@@ -476,3 +490,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
