@@ -110,18 +110,20 @@ document.addEventListener('DOMContentLoaded', function() {
        if (jours) {
            var date = new Date();
            date.setTime(date.getTime() + (jours * 24 * 60 * 60 * 1000)); // Conversion jours -> millisecondes
-           dateExpiration = '; expires=' + date.toUTCString(); // Format UTC pour la compatibilité
+           dateExpiration = '; expires=' + date.toUTCString(); // On convertit cette date en format UTC pour la compatibilité
        }
        
-       // Création du cookie avec path global pour tout le site
+       // Création du cookie avec path global pour tout le site 
        document.cookie = nom + '=' + valeur + dateExpiration + '; path=/';
    }
    
    // Utilitaire pour lire la valeur d'un cookie spécifique
    function lireCookie(nom) {
        var nomEgal = nom + '='; // Pattern de recherche avec le signe égal
-       var cookies = document.cookie.split(';'); // Séparation de tous les cookies
-       
+       var cookies = document.cookie.split(';'); // Séparation de tous les cookies, découpe pour avoir un tableau de cookies
+       // Avant : "theme=clair; session=1"
+        // Après : ["theme=clair", " session=1"]
+
        // Parcours de tous les cookies pour trouver celui recherché
        for (var i = 0; i < cookies.length; i++) {
            var cookie = cookies[i];
@@ -141,4 +143,4 @@ document.addEventListener('DOMContentLoaded', function() {
    }
 });
 
-// vérifier si pas de pb ou pas de pas
+// A la fin on a theme=clair; session=abc123;
