@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const basePrice = parseFloat(basePriceElement.value) || 0;
+    const basePrice = parseFloat(basePriceElement.value) || 0; // Convertit le prix de base en float ou 0 si invalide
 
     function formatPrice(price) {
-        // Ajoute le symbole € et formate le nombre
+        // Ajoute le symbole € et formate le nombre. Convertit 1234.56 en "1 234,56 €"
         return price.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' });
     }
 
@@ -62,16 +62,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ajouter les prix des autres catégories (qui ne dépendent pas des participants)
             Object.keys(stageOptions).forEach(cat => {
                 if (cat !== 'activites' && cat !== 'participants') {
+                    // Ajoute chaque prix stocké dans l'objet (ex : logement, transport…)
                     currentTotal += stageOptions[cat] || 0;
                 }
             });
         });
 
-
         // Met à jour l'affichage du prix estimé
         if (estimatedPriceElement) {
             estimatedPriceElement.textContent = formatPrice(currentTotal);
-            // Ajouter une classe pour une éventuelle animation
+            // Ajouter une animation
             estimatedPriceElement.classList.add('price-updated');
             setTimeout(() => estimatedPriceElement.classList.remove('price-updated'), 500);
         }
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ajoute des écouteurs d'événements sur tous les éléments pertinents du formulaire
     const optionsElements = form.querySelectorAll('.price-option');
     optionsElements.forEach(element => {
-        element.addEventListener('change', updateEstimatedPrice);
+        element.addEventListener('change', updateEstimatedPrice); // Recalcule le prix dès qu'on change une option
     });
 
     // Calcule le prix initial au chargement de la page
