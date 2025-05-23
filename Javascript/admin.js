@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var deleteButtons = document.querySelectorAll('button[name="delete"]');   // Boutons pour bloquer un utilisateur
     var unblockButtons = document.querySelectorAll('button[name="unblock"]'); // Boutons pour débloquer un utilisateur
     
-    // Fonction qui gère la promotion d'un utilisateur au statut d'administrateur
+    // ==FONCTION PROMOTION USER==
     function promouvoirUtilisateur(button) {
         // Trouver le formulaire HTML qui contient le bouton cliqué
         var form = button.closest('form');
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Fonction qui gère le blocage d'un utilisateur
+    // ==FONCTION BLOCKAGE USER==
     function bloquerUtilisateur(button) {
         // Demander confirmation avant de procéder au blocage
         if (!confirm("Êtes-vous sûr de vouloir bloquer cet utilisateur?")) {
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             unblockButton.classList.remove('processing'); // Retirer la classe de traitement
                         }
                     } else {
-                        // Si le formulaire n'existe pas, le créer dynamiquement
+                        // Si le formulaire n'existe pas, le créer dynamiquement. On recrée le bouton manuellement si jamais il a disparu, a été mal affiché, ou est resté bloqué (disabled)
                         var newForm = document.createElement('form');
                         newForm.style.display = 'inline'; // Affichage en ligne pour rester sur la même ligne
                         
@@ -287,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Fonction qui gère le déblocage d'un utilisateur
+    // == FONCTION DEBLOCKAGE USER==
     function debloquerUtilisateur(button) {
         // Demander confirmation avant de procéder au déblocage
         if (!confirm("Êtes-vous sûr de vouloir débloquer cet utilisateur?")) {
@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             blockButton.classList.remove('processing'); // Retirer les classes de traitement
                         }
                     } else {
-                        // Si le formulaire n'existe pas, le créer dynamiquement
+                        // Si le formulaire n'existe pas, le créer dynamiquement.On recrée le bouton manuellement si jamais il a disparu, a été mal affiché, ou est resté bloqué (disabled)
                         var newForm = document.createElement('form');
                         newForm.style.display = 'inline';
                         
@@ -457,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    //  ÉCOUTEURS D'ÉVÉNEMENTS
+    //  ==ÉCOUTEURS D'ÉVÉNEMENTS==
     
     // Ajouter des écouteurs d'événements à tous les boutons "Promouvoir" présents sur la page
     promoteButtons.forEach(function(button) {
