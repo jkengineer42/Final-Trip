@@ -36,14 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Désactiver le bouton pour éviter que l'utilisateur clique plusieurs fois
         button.disabled = true;
-        // Ajouter une classe CSS pour indiquer visuellement que le traitement est en cours
         button.classList.add('processing');
         
         // Créer un élément HTML <span> pour afficher un message de chargement
         var loadingText = document.createElement('span');
         loadingText.textContent = " Promotion en cours..."; 
         loadingText.style.color = "#FFFFFF"; 
-        // Ajouter ce texte au bouton (devient enfant du bouton)
+        // Ajouter ce texte au bouton
         button.appendChild(loadingText);
         
         //Empêcher la soumission normale du formulaire qui rechargerait la page
@@ -85,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Chercher la cellule qui affiche le rôle (5e colonne du tableau)
                     var roleCell = row.querySelector('td:nth-child(5)');
                     if (roleCell) {
-                        // Mettre à jour le texte pour indiquer que l'utilisateur est maintenant admin
+                        // Mettre à jour le texte pour indiquer que l'utilisateur est admin
                         roleCell.textContent = 'Oui';
                     }
                 }
@@ -142,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         var email = emailInput.value;
         
-        // Désactiver le bouton et ajouter une indication visuelle de traitement
+        // Désactiver le bouton
         button.disabled = true;
         button.classList.add('processing');
         
@@ -184,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert("L'utilisateur a été bloqué!");
                 
                 // Mettre à jour l'interface utilisateur
-                var row = button.closest('tr'); // Trouver la ligne du tableau
+                var row = button.closest('tr'); 
                 if (row) {
                     // Mettre à jour la cellule de statut (6e colonne)
                     var statusCell = row.querySelector('td:nth-child(6)');
@@ -217,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Si le formulaire de déblocage existe déjà, l'afficher
                         unblockForm.style.display = 'inline';
                         
-                        // Réactiver le bouton de déblocage (mon bug)
+                        // Réactiver le bouton de déblocage (ancien bug)
                         var unblockButton = unblockForm.querySelector('button[name="unblock"]');
                         if (unblockButton) {
                             unblockButton.disabled = false; // Réactiver le bouton
